@@ -1,0 +1,26 @@
+Package: suddengains
+Title: Identify Sudden Gains in Psychological Therapies
+Date: 2018-02-08
+Version: 0.0.0.9000
+Authors@R: person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre"))
+Description: Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). It 
+    applies all three criteria to a dataset while adjusting for missing values. It calculated further variables
+    that are of interest. It handles multiple gains by creating two datasets, one structured by sudden gain and 
+    one by participant. It also implements a function to specify which sudden gains to choose in case of multiple gains
+    (earliest or largest gain). See the GitHub repository for more information and examples.Depends: R (>= 3.4.3)
+License: GPL-3
+Encoding: UTF-8
+URL: https://github.com/milanwiedemann/suddengains
+BugReports: https://github.com/milanwiedemann/suddengains/issues
+LazyData: true
+Imports:
+    dplyr (>= 0.7.4),
+    tibble (>= 1.4.2),
+    magrittr (>= 1.5),
+    psych (>= 1.7.8),
+    rlang (>= 0.1.6),
+Suggests:
+    ggplot2 (>= 2.2.1),
+    reshape2 (>= 1.4.3),
+    readr (>= 1.1.1)
+RoxygenNote: 6.0.1

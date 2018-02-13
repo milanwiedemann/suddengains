@@ -3,7 +3,7 @@
 #' @param data_sessions A dataset in wide format with values for pre _s0 and post treatment _end
 #' @param data_item A dataset in item-by-item scores for the SG measure
 
-#' @return A full dataset with all participants, the earliest gain per person
+#' @return A list with all calculated variables using formulate for RCI including cut-off
 
 define_crit1_cutoff <- function(data_sessions, data_item) {
   # Calculate mean pds change score

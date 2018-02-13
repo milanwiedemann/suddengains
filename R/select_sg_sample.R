@@ -1,7 +1,6 @@
 #' Select sample with enough available data to identify sudden gains
 #'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
-
 #' @return A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 
 select_sg_sample <- function(data) {

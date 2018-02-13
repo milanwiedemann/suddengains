@@ -4,6 +4,7 @@
 #' @param data_item A dataset in item-by-item scores for the SG measure
 
 #' @return A list with all calculated variables using formulate for RCI including cut-off
+#' @export
 
 define_crit1_cutoff <- function(data_sessions, data_item) {
   # Calculate mean pds change score

@@ -6,7 +6,7 @@
 #' @param sg_var_name A string of the sudden gains variable name.
 
 #' @return A dataset with one row per sudden gain.
-
+#' @export
 
 create_bysg_data <- function(data, cutoff, id_var_name, sg_var_name){
 

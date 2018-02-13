@@ -4,6 +4,7 @@
 #' @param bysg_data A \code{bysg} dataset.
 
 #' @return A full dataset with all participants, the earliest gain per person
+#' @export
 
 create_byperson_data <- function(data, bysg_data){
 

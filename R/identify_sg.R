@@ -6,6 +6,7 @@
 #' @param sg_var_name A string of the sudden gains variable name.
 
 #' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+#' @export
 
 identify_sg <- function(data, cutoff, id_var_name, sg_var_name) {
 

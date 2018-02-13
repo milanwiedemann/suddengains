@@ -4,6 +4,7 @@
 #' @param var_name A string of the variable name which numbers numbers need to get extracted around the sudden gain.
 
 #' @return A wide dataset with values for \code{var_name} around the sudden gain.
+#' @export
 
 extract_var_sg <- function(data, var_name){
   data_extract <- mutate(data,

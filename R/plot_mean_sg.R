@@ -11,6 +11,7 @@
 #' @param post3 A string of the post3 variable name.
 #' @param end A string of the variable name with scores at the end of treatment.
 #' @return A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
+#' @export
 
 plot_mean_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
 

@@ -15,9 +15,9 @@
 
 plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
 
-plot_data <- data %>%
-  filter(sg_crit123 == 1) %>%
-    select(
+  plot_data <- data %>%
+  dplyr::filter(sg_crit123 == 1) %>%
+    dplyr::select(
       id,
       start_fun = start,
       pre3_fun = pre3,
@@ -27,17 +27,17 @@ plot_data <- data %>%
       post2_fun = post2,
       post3_fun = post3,
       end_fun = end) %>%
-    melt(id = c("id"), na.rm = FALSE)
+    reshape2::melt(id = c("id"), na.rm = FALSE)
 
-ggplot(data = plot_data, aes(x = variable,
+  ggplot2::ggplot(data = plot_data, aes(x = variable,
                         y = value)) +
     stat_summary(fun.y = mean, geom = "point", colour = "#00BFC4") +
     stat_summary(fun.data = mean_cl_normal, geom = "errorbar", fun.args = list(mult = 1.96), width = 0.1, colour = "#00BFC4") +
-    stat_summary(data=filter(plot_data, variable %in% c("start_fun", "pre3_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line", linetype = 3, colour = "#00BFC4") +
-    stat_summary(data=filter(plot_data, variable %in% c("pre3_fun", "pre2_fun", "pre1_fun", "post1_fun", "post2_fun", "post3_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line",linetype = 1, colour = "#00BFC4") +
-    stat_summary(data=filter(plot_data, variable %in% c("post3_fun", "end_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line",linetype = 3, colour = "#00BFC4") +
+    stat_summary(data = dplyr::filter(plot_data, variable %in% c("start_fun", "pre3_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line", linetype = 3, colour = "#00BFC4") +
+    stat_summary(data = dplyr::filter(plot_data, variable %in% c("pre3_fun", "pre2_fun", "pre1_fun", "post1_fun", "post2_fun", "post3_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line", linetype = 1, colour = "#00BFC4") +
+    stat_summary(data = dplyr::filter(plot_data, variable %in% c("post3_fun", "end_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line",linetype = 3, colour = "#00BFC4") +
     theme_classic() +
-    theme(text = element_text(size=14)) +
+    theme(text = element_text(size = 14)) +
     scale_x_discrete(labels = c("Start", "n-2", "n-1", "n", "n+1", "n+2", "n+3", "End")) +
     xlab("Session") + ylab(ylabel)
 }

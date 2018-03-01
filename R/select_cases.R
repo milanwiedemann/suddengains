@@ -4,9 +4,9 @@
 #' @return A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 #' @export
 
-select_sg_sample <- function(data) {
+select_cases <- function(data) {
 
-  data_sg_sample <- data %>%
+  select_cases <- data %>%
     dplyr::mutate(sg_select = NA,
          sg_select = base::ifelse((!base::is.na(pds_s1 == TRUE)) & (!base::is.na(pds_s2 == TRUE)) & (!base::is.na(pds_s3 == TRUE)) & (!base::is.na(pds_s4 == TRUE)) |
                               (!base::is.na(pds_s1 == TRUE)) & (!base::is.na(pds_s2 == TRUE)) & (!base::is.na(pds_s3 == TRUE)) & (!base::is.na(pds_s5 == TRUE)) |
@@ -49,8 +49,8 @@ select_sg_sample <- function(data) {
                             1, sg_select)
   )
 
-data_sg_sample$sg_select[base::is.na(data_sg_sample$sg_select)] <- 0
+select_cases$sg_select[base::is.na(select_cases$sg_select)] <- 0
 
-data_sg_sample
+select_cases
 
 }

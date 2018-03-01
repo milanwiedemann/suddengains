@@ -8,7 +8,7 @@
 #' @return A dataset with one row per sudden gain.
 #' @export
 
-create_bysg_data <- function(data, cutoff, id_var_name, sg_var_name){
+create_df_bysg <- function(data, cutoff, id_var_name, sg_var_name){
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
@@ -97,7 +97,7 @@ create_bysg_data <- function(data, cutoff, id_var_name, sg_var_name){
   data_bysg <- data_bysg %>%
     dplyr::left_join(data_in, by = "id")
 
-  data_bysg <- suddengains::extract_var_sg(data_bysg, "pds")
+  data_bysg <- suddengains::extract_var(data_bysg, "pds")
 
 
   data_bysg <- data_bysg %>%

@@ -6,9 +6,9 @@
 #' @return A full dataset with all participants, the earliest gain per person
 #' @export
 
-create_byperson_data <- function(data, bysg_data){
+create_df_byperson <- function(data, bysg_data){
 
-data_byperson_sgonly <- data_bysg %>%
+data_byperson_sgonly <- bysg_data %>%
   dplyr::group_by(id) %>%
   dplyr::rename(sg_reversal_byperson = sg_reversal) %>%
   dplyr::mutate(sg_reversal_byperson = ifelse(sg_reversal_byperson > 0, 1, 0)) %>%

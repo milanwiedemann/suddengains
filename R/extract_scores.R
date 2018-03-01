@@ -6,7 +6,7 @@
 #' @return A wide dataset with values for \code{var_name} around the sudden gain.
 #' @export
 
-extract_var <- function(data, var_name){
+extract_scores <- function(data, var_name){
   data_extract <- dplyr::mutate(data,
                           !!base::sprintf("sg_%s_pre3", var_name) := NA,
                           !!base::sprintf("sg_%s_pre2", var_name) := NA,

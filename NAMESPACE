@@ -3,7 +3,7 @@
 export(create_df_byperson)
 export(create_df_bysg)
 export(define_crit1_cutoff)
-export(extract_var)
+export(extract_scores)
 export(identify_sg)
 export(plot_sg)
 export(plot_sg_group)

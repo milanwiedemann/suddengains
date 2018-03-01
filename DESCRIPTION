@@ -2,7 +2,9 @@ Package: suddengains
 Title: Identify Sudden Gains in Psychological Therapies
 Date: 2018-02-08
 Version: 0.0.0.9001
-Authors@R: person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+  person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre")),
+  person("Graham M", "Thew", role = "ctb"))
 Description: Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). It 
     applies all three criteria to a dataset while adjusting for missing values. It calculated further variables
     that are of interest. It handles multiple gains by creating two datasets, one structured by sudden gain and 

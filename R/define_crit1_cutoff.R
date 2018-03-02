@@ -26,7 +26,7 @@ define_crit1_cutoff <- function(data_sessions, data_item) {
   # Calculate RCI using mean change pds
   crit1_cutoff <- (mean_change / sdiff) * 1.96
 
-  output <- list(mean_change_score = mean_change, standard_deviation_at_pretreatment = sd, chronbachs_alpha_at_pretreatment = alpha, standard_error_of_measurement = se, sdiff = sdiff, crit1_cutoff = crit1_cutoff)
+  output <- list(mean_change_score = mean_change, standard_deviation_at_pretreatment = sd, cronbachs_alpha_at_pretreatment = alpha, standard_error_of_measurement = se, sdiff = sdiff, crit1_cutoff = crit1_cutoff)
   print(output)
 
 }

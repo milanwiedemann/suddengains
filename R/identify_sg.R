@@ -1,14 +1,18 @@
-#' Identify all sudden gains in a wide dataset.
+#' @title Identify sudden gains in a wide dataset.
+#'
+#' @description Function identify sudden gains in a wide dataset. automatically checks whether first session gains are calculated by analysing the variable names looking for session with 0 (intake) before a letter.
 #'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
 #' @param cutoff A number specifying the cut-off for criterion 1.
 #' @param id_var_name A string of the id variable name.
 #' @param sg_var_name A string of the sudden gains variable name.
+#' @param first_sess_sg Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE
+
 
 #' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
 #' @export
 
-identify_sg <- function(data, cutoff, id_var_name, sg_var_name) {
+identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = TRUE) {
 
   # Load data ----
   # data object is the dataframe with id as a unique identifier and all session to session variables
@@ -94,10 +98,25 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name) {
   crit123 <- crit1 * crit2 * crit3
 
   # Change the name of the dataframe
+
+  # Check whether session 0 ie intake is in dataset and therefore sg counting needs to start at 1
+  if (sum(str_detect(names(data), "[:alpha:]0")) == 1) {
+
+    sg_col_names <- base::c()
+    for (i in 1:(base::ncol(df)-3)) {
+      sg_col_names[i] <- base::paste("sg_",i,"to",i+1, sep = "")
+    }
+  }
+
+  # Check whether session 0 ie intake is in dataset and therefore sg counting needs to start at 1
+  if (sum(str_detect(names(data), "[:alpha:]0")) == 0) {
+
   sg_col_names <- base::c()
   for (i in 1:(base::ncol(df)-3)) {
-    sg_col_names[i] <- base::paste("sg_",i,"to",i+1, sep = "")
+    sg_col_names[i] <- base::paste("sg_",i+1,"to",i+2, sep = "")
   }
+}
+
 
   names(crit123) <- sg_col_names
 
@@ -112,6 +131,20 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name) {
 
   data_col_number <- base::max(base::ncol(data))
 
-  data %>%
-    dplyr::left_join(data_crit123, by = id_var_name)
+
+
+  if (first_sess_sg == TRUE) {
+    data %>%
+      dplyr::left_join(data_crit123, by = id_var_name)
+  } else if (first_sess_sg == FALSE) {
+    if (sum(str_detect(names(data), "[:alpha:]0")) == 1) {
+      data %>%
+        dplyr::left_join(data_crit123, by = id_var_name) %>%
+        select(-sg_1to2)
+    } else if (sum(str_detect(names(data), "[:alpha:]0")) == 0) {
+      data %>%
+        dplyr::left_join(data_crit123, by = id_var_name)
+    }
+
+  }
 }

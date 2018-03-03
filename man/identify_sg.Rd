@@ -2,9 +2,9 @@
 % Please edit documentation in R/identify_sg.R
 \name{identify_sg}
 \alias{identify_sg}
-\title{Identify all sudden gains in a wide dataset.}
+\title{Identify sudden gains in a wide dataset.}
 \usage{
-identify_sg(data, cutoff, id_var_name, sg_var_name)
+identify_sg(data, cutoff, id_var_name, sg_var_name, first_sess_sg)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
@@ -14,10 +14,12 @@ identify_sg(data, cutoff, id_var_name, sg_var_name)
 \item{id_var_name}{A string of the id variable name.}
 
 \item{sg_var_name}{A string of the sudden gains variable name.}
+
+\item{first_sess_sg}{Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided}
 }
 \value{
 A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
 }
 \description{
-Identify all sudden gains in a wide dataset.
+Function identify sudden gains in a wide dataset. automatically checks whether first session gains are calculated by analysing the variable names looking for session with 0 (intake) before a letter.
 }

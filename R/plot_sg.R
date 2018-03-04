@@ -65,7 +65,7 @@ plot_sg_group <- function(data, ylabel, pre, post, start, pre3, pre2, pre1, post
   plot_sg_m_matched <- data %>%
     dplyr::select(sg_crit123,
                   start, starts_with(pre), starts_with(post), end) %>%
-    dplyr::mutate(sg_crit123 = factor(sg_crit123, levels = c(0, 1), labels = c("Matched", "SG"))) %>%
+    dplyr::mutate(sg_crit123 = factor(sg_crit123, levels = c(0, 1), labels = c("Pseudo gain", "Sudden gain"))) %>%
     reshape2::melt(id = c("sg_crit123"), na.rm = TRUE)
 
   ggplot2::ggplot(plot_sg_m_matched, aes(x = variable, y = value, colour = sg_crit123, shape = sg_crit123)) +

@@ -8,7 +8,7 @@
 #' @return A dataset with one row per sudden gain.
 #' @export
 
-create_df_bysg <- function(data, cutoff, id_var_name, sg_var_name){
+create_bysg <- function(data, cutoff, id_var_name, sg_var_name){
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data

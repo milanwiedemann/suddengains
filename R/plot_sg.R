@@ -38,7 +38,7 @@ plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, 
     stat_summary(data = dplyr::filter(plot_data, variable %in% c("post3_fun", "end_fun")), aes(y = value, group = 1), fun.y = mean, geom = "line",linetype = 3, colour = "#00BFC4") +
     theme_classic() +
     theme(text = element_text(size = 12)) +
-    scale_x_discrete(labels = c("Start", "n-2", "n-1", "n", "n+1", "n+2", "n+3", "End")) +
+    scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +
     xlab("Session") + ylab(ylabel)
 }
 
@@ -76,7 +76,7 @@ plot_sg_group <- function(data, ylabel, pre, post, start, pre3, pre2, pre1, post
     stat_summary(data = filter(plot_sg_m_matched, variable %in% c(post3, end)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line", linetype = 3, position=position_dodge(width = 0.2)) +
     theme_classic() +
     theme(text = element_text(size = 12)) +
-    scale_x_discrete(labels = c("Start", "n-2", "n-1", "n", "n+1", "n+2", "n+3", "End")) +
+    scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +
     labs(x = "Session", y = ylabel, colour = "", shape = "")
 }
 

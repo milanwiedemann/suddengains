@@ -12,6 +12,8 @@ define_crit1_cutoff <- function(data_sessions, data_item) {
 
   # Calculate RCI for PDS ----
   # Calculate the standard deviation of the sum scores at baseline
+
+  # What is the start of treatment value here
   sd <- stats::sd(data_sessions$pds_s0, na.rm = TRUE)
 
   # Calculate Cronbach's alpha for PDS at baseline using psych package

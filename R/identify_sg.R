@@ -6,13 +6,13 @@
 #' @param cutoff A number specifying the cut-off for criterion 1.
 #' @param id_var_name A string of the id variable name.
 #' @param sg_var_name A string of the sudden gains variable name.
-#' @param first_sess_sg Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE
+#' @param identify_sg_1to2 Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE
 
 
 #' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
 #' @export
 
-identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = TRUE) {
+identify_sg <- function(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2 = FALSE) {
 
   # Load data ----
   # data object is the dataframe with id as a unique identifier and all session to session variables
@@ -71,12 +71,12 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = 
       # Calculate 3rd criterion for no missing at pre or post
       if (sum_n_pre == 3 & sum_n_post == 3) {
         crit3[i, j - 2] <-
-          mean_pre - mean_post > 2.776 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (3 + 3 - 2))
+          mean_pre - mean_post > 2.776 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (3 + 3 - 2))
       } else if (sum_n_pre == 2 &
                  sum_n_post == 3) {
         # Adjusting critical value for missing value in pregain mean
         crit3[i, j - 2] <-
-          mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (2 + 3 - 2))
+          mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (2 + 3 - 2))
       } else if (sum_n_pre == 3 &
                  sum_n_post == 2) {
         # Adjusting critical value for one missing value in postgain mean
@@ -104,7 +104,7 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = 
 
     sg_col_names <- base::c()
     for (i in 1:(base::ncol(df)-3)) {
-      sg_col_names[i] <- base::paste("sg_",i,"to",i+1, sep = "")
+      sg_col_names[i] <- base::paste("sg_", i, "to", i + 1, sep = "")
     }
   }
 
@@ -113,7 +113,7 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = 
 
   sg_col_names <- base::c()
   for (i in 1:(base::ncol(df)-3)) {
-    sg_col_names[i] <- base::paste("sg_",i+1,"to",i+2, sep = "")
+    sg_col_names[i] <- base::paste("sg_", i + 1, "to", i + 2, sep = "")
   }
 }
 
@@ -133,17 +133,20 @@ identify_sg <- function(data, cutoff, id_var_name, sg_var_name, first_sess_sg = 
 
 
 
-  if (first_sess_sg == TRUE) {
+  if (identify_sg_1to2 == TRUE) {
     data %>%
-      dplyr::left_join(data_crit123, by = id_var_name)
-  } else if (first_sess_sg == FALSE) {
+      dplyr::left_join(data_crit123, by = id_var_name) %>%
+        as.tibble()
+  } else if (identify_sg_1to2 == FALSE) {
     if (sum(str_detect(names(data), "[:alpha:]0")) == 1) {
       data %>%
         dplyr::left_join(data_crit123, by = id_var_name) %>%
-        select(-sg_1to2)
+        select(-sg_1to2) %>%
+        as.tibble()
     } else if (sum(str_detect(names(data), "[:alpha:]0")) == 0) {
       data %>%
-        dplyr::left_join(data_crit123, by = id_var_name)
+        dplyr::left_join(data_crit123, by = id_var_name) %>%
+        as.tibble()
     }
 
   }

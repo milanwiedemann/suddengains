@@ -8,13 +8,13 @@
 #' @return A dataset with one row per sudden gain.
 #' @export
 
-create_bysg <- function(data, cutoff, id_var_name, sg_var_name){
+create_bysg <- function(data, cutoff, id_var_name, sg_var_name, var_start, identify_sg_1to2 = FALSE, include_s0_extract = FALSE){
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
 
   # Run identify_sg function first to find positions of gain
-  data_crit123 <- suddengains::identify_sg(data, cutoff, id_var_name, sg_var_name)
+  data_crit123 <- suddengains::identify_sg(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2)
 
   # data_crit123_sg_var_name <- data_crit123 %>%
   #   select(id, starts_with(sg_var_name))
@@ -41,7 +41,7 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_name){
 
   id_multiple <- data_bysg %>%
     dplyr::select(id, sg_freq_byperson) %>%
-    dplyr::filter(sg_freq_byperson>1) %>%
+    dplyr::filter(sg_freq_byperson > 1) %>%
     dplyr::arrange(dplyr::desc(sg_freq_byperson), id) %>%
     base::unique()
 
@@ -97,12 +97,12 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_name){
   data_bysg <- data_bysg %>%
     dplyr::left_join(data_in, by = "id")
 
-  data_bysg <- suddengains::extract_scores(data_bysg, "pds")
+  data_bysg <- suddengains::extract_scores(data_bysg, "pds", include_s0_extract)
 
 
   data_bysg <- data_bysg %>%
     dplyr::mutate(sg_magnitude = sg_pds_pre1 - sg_pds_post1, # compute the magnitude of the gain
-           pds_change_total = pds_s0 - pds_end,
+           pds_change_total = !!rlang::sym(var_start) - pds_end,
            sg_change_proportion = sg_magnitude / pds_change_total, # compute the percentage drop in pds symptoms accounted for by the gain
            sg_reversal_value = sg_pds_post1 + (sg_magnitude / 2) # compute the critical value to calculate reversals in next step
     )
@@ -174,5 +174,5 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_name){
 
   data_bysg$sg_reversal[base::is.na(data_bysg$sg_reversal)] <- 0
 
-  data_bysg
+  as.tibble(data_bysg)
 }

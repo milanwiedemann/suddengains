@@ -6,7 +6,7 @@
 #' @return A full dataset with all participants, the earliest gain per person
 #' @export
 
-create_byperson <- function(data, bysg_data){
+create_byperson <- function(data, bysg_data) {
 
 data_byperson_sgonly <- bysg_data %>%
   dplyr::group_by(id) %>%

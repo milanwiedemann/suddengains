@@ -48,6 +48,8 @@ plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, 
 #' Plot average magnitude of sudden gain or another variable around the sudden gain
 #'
 #' @param data A matched \code{byperson} dataset with variable sg_crit123 (0,1) as group variable.
+#' @param var_group Name of group variable.
+#' @param group_label A c() of string as labels for groups ordered consistent with numbering of group in variable.
 #' @param ylabel A string as label for y-Axis.
 #' @param start A string of the variable name with scores at the start of treatment.
 #' @param pre3 A string of the pre3 variable name.
@@ -60,20 +62,20 @@ plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, 
 #' @return A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
 #' @export
 
-plot_sg_group <- function(data, ylabel, pre, post, start, pre3, pre2, pre1, post1, post2, post3, end){
+plot_sg_group <- function(data, var_group, group_label, ylabel, pre, post, start, pre3, pre2, pre1, post1, post2, post3, end){
 
   plot_sg_m_matched <- data %>%
-    dplyr::select(sg_crit123,
+    dplyr::select(var_group,
                   start, starts_with(pre), starts_with(post), end) %>%
-    dplyr::mutate(sg_crit123 = factor(sg_crit123, levels = c(0, 1), labels = c("Matched patients without SG", "Patients with SG"))) %>%
-    reshape2::melt(id = c("sg_crit123"), na.rm = TRUE)
+    dplyr::mutate(var_group = factor(var_group, levels = c(0, 1), labels = c("Matched patients without SG", "Patients with SG"))) %>%
+    reshape2::melt(id = c(var_group), na.rm = TRUE)
 
-  ggplot2::ggplot(plot_sg_m_matched, aes(x = variable, y = value, colour = sg_crit123, shape = sg_crit123)) +
+  ggplot2::ggplot(plot_sg_m_matched, aes(x = variable, y = value, colour = var_group, shape = var_group)) +
     stat_summary(data = plot_sg_m_matched, fun.y = mean, geom = "point", position = position_dodge(width = 0.2)) +
     stat_summary(data = plot_sg_m_matched, fun.data = mean_cl_normal, geom = "errorbar", width = 0.2, fun.args = list(mult = 1.96), position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(start, pre3)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line",linetype = 3, position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(pre3, pre2, pre1, post1, post2, post3)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line",linetype=1, position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(post3, end)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line", linetype = 3, position=position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(start, pre3)), aes(y = value, group = var_group), fun.y = mean, geom = "line",linetype = 3, position = position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(pre3, pre2, pre1, post1, post2, post3)), aes(y = value, group = var_group), fun.y = mean, geom = "line",linetype=1, position = position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(post3, end)), aes(y = value, group = var_group), fun.y = mean, geom = "line", linetype = 3, position=position_dodge(width = 0.2)) +
     theme_classic() +
     theme(text = element_text(size = 12)) +
     scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +

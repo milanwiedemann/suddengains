@@ -10,14 +10,15 @@
 #' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
 #' @export
 
-count_intervals <- function(data, cutoff, id_var_name, sg_var_name, analysed = analyzed, analyzed = analysed) {
-  data <- suddengains::identify_sg(data, cutoff, id_var_name, sg_var_name)
+count_intervals <- function(data, cutoff, id_var_name, sg_var_name, analysed = TRUE, identify_sg_1to2 = FALSE) {
 
-  if (analysed == TRUE | analyzed == TRUE) {
+  data <- suddengains::identify_sg(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2)
+
+  if (analysed == TRUE) {
   sum <- sum(!is.na(select(data, starts_with("sg_"))))
   }
 
-  if (analysed == FALSE | analyzed == FALSE) {
+  if (analysed == FALSE) {
     sum <- sum(is.na(select(data, starts_with("sg_"))))
   }
 

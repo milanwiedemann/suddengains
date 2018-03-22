@@ -4,7 +4,7 @@
 \alias{identify_sg}
 \title{Identify sudden gains in a wide dataset.}
 \usage{
-identify_sg(data, cutoff, id_var_name, sg_var_name, first_sess_sg = TRUE)
+identify_sg(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
@@ -15,7 +15,7 @@ identify_sg(data, cutoff, id_var_name, sg_var_name, first_sess_sg = TRUE)
 
 \item{sg_var_name}{A string of the sudden gains variable name.}
 
-\item{first_sess_sg}{Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE}
+\item{identify_sg_1to2}{Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE}
 }
 \value{
 A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.

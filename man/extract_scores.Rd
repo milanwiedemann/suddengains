@@ -4,7 +4,7 @@
 \alias{extract_scores}
 \title{Extract variables around the sudden gain}
 \usage{
-extract_scores(data, var_name)
+extract_scores(data, var_name, include_s0_extract = FALSE)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}

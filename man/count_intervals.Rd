@@ -4,8 +4,8 @@
 \alias{count_intervals}
 \title{Number of between session intervals analysed for sudden gains}
 \usage{
-count_intervals(data, cutoff, id_var_name, sg_var_name, analysed = analyzed,
-  analyzed = analysed)
+count_intervals(data, cutoff, id_var_name, sg_var_name, analysed = TRUE,
+  identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}

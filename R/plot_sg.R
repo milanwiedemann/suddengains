@@ -13,12 +13,11 @@
 #' @return A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
 #' @export
 
-plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
+plot_sg <- function(data, var_sg, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
 
   plot_data <- data %>%
-  dplyr::filter(sg_crit123 == 1) %>%
     dplyr::select(
-      id,
+      var_sg,
       start_fun = start,
       pre3_fun = pre3,
       pre2_fun = pre2,
@@ -27,7 +26,10 @@ plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, 
       post2_fun = post2,
       post3_fun = post3,
       end_fun = end) %>%
-    reshape2::melt(id = c("id"), na.rm = FALSE)
+    tidyr::gather(variable, value, -var_sg) %>%
+    dplyr::mutate(variable = factor(variable,
+                                    levels = c("start_fun", "pre3_fun", "pre2_fun", "pre1_fun", "post1_fun", "post2_fun", "post3_fun", "end_fun")))
+
 
   ggplot2::ggplot(data = plot_data, aes(x = variable,
                         y = value)) +
@@ -62,21 +64,23 @@ plot_sg <- function(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, 
 #' @return A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
 #' @export
 
-plot_sg_group <- function(data, group_labels, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
+plot_sg_group <- function(data, var_group, group_levels, group_labels, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end){
 
-  plot_sg_m_matched <- data %>%
-    dplyr::select(sg_crit123,
+  plot_sg_group <- data %>%
+    dplyr::select(var_group,
                   start, pre3, pre2, pre1, post1, post2, post3, end) %>%
-    dplyr::mutate(sg_crit123 = factor(sg_crit123, levels = c(0, 1), labels = group_labels)) %>%
-    tidyr::gather(variable, value, -c(sg_crit123)) %>%
-    dplyr::mutate(variable = factor(variable, levels = c(start, pre3, pre2, pre1, post1, post2, post3, end)))
+    tidyr::gather(variable, value, -var_group) %>%
+    dplyr::mutate(variable = factor(variable, levels = c(start, pre3, pre2, pre1, post1, post2, post3, end))) %>%
+    dplyr::mutate(var_group = factor(!!rlang::sym(var_group)))
 
-  ggplot2::ggplot(plot_sg_m_matched, aes(x = variable, y = value, colour = sg_crit123, shape = sg_crit123)) +
-    stat_summary(data = plot_sg_m_matched, fun.y = mean, geom = "point", position = position_dodge(width = 0.2)) +
-    stat_summary(data = plot_sg_m_matched, fun.data = mean_cl_normal, geom = "errorbar", width = 0.2, fun.args = list(mult = 1.96), position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(start, pre3)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line",linetype = 3, position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(pre3, pre2, pre1, post1, post2, post3)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line",linetype=1, position = position_dodge(width = 0.2)) +
-    stat_summary(data = filter(plot_sg_m_matched, variable %in% c(post3, end)), aes(y = value, group = sg_crit123), fun.y = mean, geom = "line", linetype = 3, position=position_dodge(width = 0.2)) +
+  plot_sg_group$var_group <- factor(plot_sg_group$var_group, levels = group_levels, labels = group_labels)
+
+  ggplot2::ggplot(plot_sg_group, aes(x = variable, y = value, colour = var_group, shape = var_group)) +
+    stat_summary(data = plot_sg_group, fun.y = mean, geom = "point", position = position_dodge(width = 0.2)) +
+    stat_summary(data = plot_sg_group, fun.data = mean_cl_normal, geom = "errorbar", width = 0.2, fun.args = list(mult = 1.96), position = position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_group, variable %in% c(start, pre3)), aes(y = value, group = var_group), fun.y = mean, geom = "line",linetype = 3, position = position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_group, variable %in% c(pre3, pre2, pre1, post1, post2, post3)), aes(y = value, group = var_group), fun.y = mean, geom = "line",linetype=1, position = position_dodge(width = 0.2)) +
+    stat_summary(data = filter(plot_sg_group, variable %in% c(post3, end)), aes(y = value, group = var_group), fun.y = mean, geom = "line", linetype = 3, position=position_dodge(width = 0.2)) +
     theme_classic() +
     theme(text = element_text(size = 12)) +
     scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +

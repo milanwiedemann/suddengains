@@ -1,6 +1,6 @@
 # suddengains: R package for identifying sudden gains in psychological therapies
 
-Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). 
+Identify sudden gains based on the criteria outlined by [Tang and DeRubeis (1999)](http://psycnet.apa.org/buy/1999-01811-008). 
 It applies all three criteria to a dataset while adjusting for missing values. 
 It calculated further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
@@ -15,8 +15,7 @@ First, you need to install the devtools package to download the suddengains pack
 install.packages("devtools")
 ```
 
-
-To install current stable version of suddengains package:
+To install the current stable version of suddengains package:
 
 ```r
 devtools::install_github(repo = "milanwiedemann/suddengains")
@@ -49,7 +48,9 @@ The suddengains package comes with a range of features which can be categorised 
 ## How to use suddengains
 
 Here are a few examples how to use the `suddengains` package.
-You need to be familiar with the [pipe ` %>% `](https://magrittr.tidyverse.org/) operator to understand the examples.
+You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
+
+First, load all needed packages and datasets:
 
 ```r
 # Load packages ----
@@ -74,8 +75,11 @@ data_s0 <- read_csv("~/data_measure_01_s0.csv") %>%
   select(measure_01_item1_s0:measure_01_item22_s0)
 ```
 
+Then define the cut-off value fir the first sudden gains criterion using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004)
+and select all cases in the dataset that provide enough information to aplly the sudden gains criteria.
+
 ```r
-# Define cut-off for first sudden gains criteria using the reliable change index
+# Define cut-off for first sudden gains criterion using the reliable change index
 define_crit1_cutoff(data_sessions = data, 
                     data_item = data_s0)
 
@@ -86,6 +90,7 @@ data_s0 <- select_cases(data_s0) %>%
   left_join(data_s0, by = "id")
 ```
 
+Now, you can use the `create_bysg()` and `create_byperson()` functions to create the dataets.
 
 ```r
 # Create bysg dataset
@@ -104,7 +109,7 @@ data_byperson <- create_byperson(data = data,
                                  bysg_data = data_bysg)
 ```
 
-
+If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_scores()` function:
 
 ```r
 # Extract scores of measure_02 and measure_03 around the sudden gain (measure_01)
@@ -113,10 +118,6 @@ data_byperson <- create_byperson(data = data,
 data_byperson <- extract_scores(data_byperson, "measure_02")
 data_byperson <- extract_scores(data_byperson, "measure_03")
 ```
-
-
-data_identify_sg0_a1 <- identify_sg(data = data_a1_s0, cutoff = 6.705612, id_var_name = "id", sg_var_name = "pds_s", first_sess_sg = T)
-
 
 ## Random notes
 
@@ -128,7 +129,7 @@ some functions wont work if the measure of the variable that the sudden gains ar
 this will conflict with the variables that get created for the bysg and byperson datasets.
 there I think it shold be recommended to rename variables in this special case!
 
-variables for identify sg must be numbered in a specific way. alpha (e.g. 'w' for week or 's' for session) and then session number in digit.
+- variables for identify sg must be numbered in a specific way. alpha (e.g. 'w' for week or 's' for session) and then session number in digit.
 this is important as identify function automaticall checks for s0 intake score. 
-if this is provided it will calculate sg after the first sessoin and name variables in that way starting qwith sg_1to2
+if this is provided it will calculate sg after the first session and name variables in that way starting with sg_1to2
 if s0 is not provided it will name variables starting with sg_2to3

@@ -54,24 +54,28 @@ You need to be familiar with the [pipe ` %>% `](https://magrittr.tidyverse.org/)
 ```r
 # Load packages ----
 library(tidyverse) # Bundle of useful packages for manipulating data
-library(haven) # Package to read SPSS datafiles
+library(haven) # Package to load SPSS datafiles in R
 library(suddengains) # Identify and extract sudden gains
 
 # Load data ----
-
 # Load data with weekly measures from a csv file:
-data <- read_csv("~/data.csv") %>% # Load data from CSV file in wide format
-  select(id, measure_s0:measure_s12, measure_end) # Select ID variable, all weekly measures and a variable with the end of treatment scores
+# Select ID variable, all weekly measures and a variable with the end of treatment scores
+data <- read_csv("~/data.csv") %>% 
+  select(id, measure_s0:measure_s12, measure_end) 
 
 # Load data with weekly measures from a SPSS file:
-data <- read_sav("~/data.sav") %>% # Load data from SPSS file in wide format
-  select(id, measure_s0:measure_s12, measure_end) # Select ID variable, all weekly measures and a variable with the end of treatment scores
+data <- read_sav("~/data.sav") %>% 
+  select(id, measure_s0:measure_s12, measure_end) 
+
 
 # Load item by item data for sudden gains measure from baseline
-data_s0 <- read_csv("~/data_measure_s0.csv") %>% 
-  select(measure_item1_s0:measure_item22_s0) # Select all item by item variables for the sudden gains measure
+# Select all item by item variables for the sudden gains measure
+data_s0 <- read_csv("~/data_measure_01_s0.csv") %>% 
+  select(measure_01_item1_s0:measure_01_item22_s0)
+```
 
-# Define cut-off for first sudden gains criteria using the reliable change index based on suggestions by Stiles et al. (2003)
+```r
+# Define cut-off for first sudden gains criteria using the reliable change index
 define_crit1_cutoff(data_sessions = data, 
                     data_item = data_s0)
 
@@ -80,6 +84,34 @@ data_s0 <- select_cases(data_s0) %>%
   filter(sg_select == 1) %>%
   select(id) %>%
   left_join(data_s0, by = "id")
+```
+
+
+```r
+# Create bysg dataset
+data_bysg <- create_bysg(data = data, 
+                         # The value for 'cutoff' comes from the define_crit1_cutoff() function
+                         cutoff = 6.705612,
+                         id_var_name = "id", 
+                         sg_var_name = "measure_01_s", 
+                         var_start = "measure_01_s0",
+                         identify_sg_1to2 = FALSE,
+                         include_s0_extract = TRUE)
+
+# Create byperson dataset
+# This function automatically selects the first sudden gain in case of multiple sudden gains
+data_byperson <- create_byperson(data = data, 
+                                 bysg_data = data_bysg)
+```
+
+
+
+```r
+# Extract scores of measure_02 and measure_03 around the sudden gain (measure_01)
+# The scores will be added to the byperson dataframe
+
+data_byperson <- extract_scores(data_byperson, "measure_02")
+data_byperson <- extract_scores(data_byperson, "measure_03")
 ```
 
 

@@ -1,46 +1,95 @@
 # suddengains: R package for identifying sudden gains in psychological therapies
 
-One Paragraph of project description goes here
+Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). 
+It applies all three criteria to a dataset while adjusting for missing values. 
+It calculated further variables that are of interest. 
+It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
+It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain). 
+See below for more information and examples.
 
-## Getting Started
+## Installation
 
-These instructions will help you to install the suddengains package and explain how to use the main functions.
-
-### Prerequisites
-
-You need to install the devtools package to download the suddengains package from GitHub.
+First, you need to install the devtools package to download the suddengains package from this GitHub repository.
 
 ```r
 install.packages("devtools")
 ```
 
-### Installing
 
 To install current stable version of suddengains package:
 
 ```r
-install_github(repo = "milanwiedemann/suddengains")
+devtools::install_github(repo = "milanwiedemann/suddengains")
 ```
 
 To install the current stable version of suddengains package with updated plot function:
 
+```r
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "fix-plots")
 ```
-install_github(repo = "milanwiedemann/suddengains", ref = "fix-plots")
 
+## Overview of the functions
+
+The suddengains package comes with a range of features which can be categorised into:
+
+1. Functions to identify and extract sudden gains:
+  - `select_cases()`
+  - `define_crit1_cutoff()`
+  - `identify_sg()`
+  
+2. Functinos to creatw datasets for further analysis:
+  - `create_byperson()`
+  - `create_bysg()`
+  - `extract_scores()`
+
+3. Helper functions to visualise and report sudden gains:
+  - `count_intervals()`
+  - `plot_sg()`
+
+## How to use suddengains
+
+Here are a few examples how to use the `suddengains` package.
+You need to be familiar with the [pipe ` %>% `](https://magrittr.tidyverse.org/) operator to understand the examples.
+
+```r
+# Load packages ----
+library(tidyverse) # Bundle of useful packages for manipulating data
+library(haven) # Package to read SPSS datafiles
+library(suddengains) # Identify and extract sudden gains
+
+# Load data ----
+
+# Load data with weekly measures from a csv file:
+data <- read_csv("~/data.csv") %>% # Load data from CSV file in wide format
+  select(id, measure_s0:measure_s12, measure_end) # Select ID variable, all weekly measures and a variable with the end of treatment scores
+
+# Load data with weekly measures from a SPSS file:
+data <- read_sav("~/data.sav") %>% # Load data from SPSS file in wide format
+  select(id, measure_s0:measure_s12, measure_end) # Select ID variable, all weekly measures and a variable with the end of treatment scores
+
+# Load item by item data for sudden gains measure from baseline
+data_s0 <- read_csv("~/data_measure_s0.csv") %>% 
+  select(measure_item1_s0:measure_item22_s0) # Select all item by item variables for the sudden gains measure
+
+# Define cut-off for first sudden gains criteria using the reliable change index based on suggestions by Stiles et al. (2003)
+define_crit1_cutoff(data_sessions = data, 
+                    data_item = data_s0)
+
+# Select all patients providing enough data to identify sudden gains
+data_s0 <- select_cases(data_s0) %>%
+  filter(sg_select == 1) %>%
+  select(id) %>%
+  left_join(data_s0, by = "id")
 ```
 
-## Functions
 
-
-- create_byperson
-- create_bysg
-- count_intervals
+data_identify_sg0_a1 <- identify_sg(data = data_a1_s0, cutoff = 6.705612, id_var_name = "id", sg_var_name = "pds_s", first_sess_sg = T)
 
 
 ## Random notes
 
-- [x] this is a complete item
-- [ ] this is an incomplete item
+- [ ] Add feature to identify "sudden losses" as part of the `identify_sg(..., suddenlosses = TRUE)` function with a 
+- [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
 
 - need to tidy this up at some point!
 some functions wont work if the measure of the variable that the sudden gains are being analysed on starts with "sg".

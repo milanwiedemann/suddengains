@@ -121,6 +121,7 @@ data_byperson <- extract_scores(data_byperson, "measure_03")
 
 ## Random notes
 
+- [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values
 - [ ] Add feature to identify "sudden losses" as part of the `identify_sg(..., suddenlosses = TRUE)` function with a 
 - [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
 

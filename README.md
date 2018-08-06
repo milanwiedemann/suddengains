@@ -1,4 +1,4 @@
-# suddengains: R package for identifying sudden gains in psychological therapies
+# suddengains: An R package for identifying sudden gains in psychological therapies
 
 Identify sudden gains based on the criteria outlined by [Tang and DeRubeis (1999)](http://psycnet.apa.org/buy/1999-01811-008). 
 It applies all three criteria to a dataset while adjusting for missing values. 

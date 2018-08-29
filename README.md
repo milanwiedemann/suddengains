@@ -9,7 +9,7 @@ These [slides](https://docs.google.com/presentation/d/14OcAsBl8PIoIw5-eNO-_1uAXq
 
 ## Installation
 
-First, you need to install the devtools package to download the suddengains package from this GitHub repository.
+First, you need to install the devtools package to download the `suddengains` package from this GitHub repository.
 
 ```r
 install.packages("devtools")
@@ -23,7 +23,7 @@ devtools::install_github(repo = "milanwiedemann/suddengains")
 
 ## Overview of the functions
 
-The suddengains package comes with a range of features which can be categorised into:
+The `suddengains` package comes with a range of features which can be categorised into:
 
 1. Functions to identify and extract sudden gains:
   - `select_cases()`: stable
@@ -42,7 +42,7 @@ The suddengains package comes with a range of features which can be categorised 
   - `plot_sg()`: stable
   - `plot_sg_group()`: stable
 
-## How to use suddengains
+## How to use `suddengains`
 
 Here are a few examples how to use the `suddengains` package.
 You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.

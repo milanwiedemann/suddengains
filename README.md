@@ -5,7 +5,7 @@ It applies all three criteria to a dataset while adjusting for missing values.
 It calculated further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
 It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain). 
-See below for more information and examples.
+These [slides](https://docs.google.com/presentation/d/14OcAsBl8PIoIw5-eNO-_1uAXqfLHQcEGBT7M0MUWE9E/edit?usp=sharing) illustrate some functions of the `suddengains` package and some help how to use the package are shown below.
 
 ## Installation
 
@@ -15,16 +15,10 @@ First, you need to install the devtools package to download the suddengains pack
 install.packages("devtools")
 ```
 
-To install the current stable version of suddengains package:
+To install the current stable version of `suddengains` package:
 
 ```r
 devtools::install_github(repo = "milanwiedemann/suddengains")
-```
-
-To install the current stable version of suddengains package with updated plot function:
-
-```r
-devtools::install_github(repo = "milanwiedemann/suddengains", ref = "fix-plots")
 ```
 
 ## Overview of the functions
@@ -32,18 +26,21 @@ devtools::install_github(repo = "milanwiedemann/suddengains", ref = "fix-plots")
 The suddengains package comes with a range of features which can be categorised into:
 
 1. Functions to identify and extract sudden gains:
-  - `select_cases()`
-  - `define_crit1_cutoff()`
-  - `identify_sg()`
+  - `select_cases()`: stable
+  - `define_crit1_cutoff()`: stable
+  - `identify_sg()`: stable
+  - `identify_sl()`: stable
+
   
 2. Functinos to creatw datasets for further analysis:
-  - `create_byperson()`
-  - `create_bysg()`
-  - `extract_scores()`
+  - `extract_scores()`: stable
+  - `create_byperson()`: work in progress
+  - `create_bysg()`: work in progress
 
 3. Helper functions to visualise and report sudden gains:
-  - `count_intervals()`
-  - `plot_sg()`
+  - `count_intervals()`: stable
+  - `plot_sg()`: stable
+  - `plot_sg_group()`: stable
 
 ## How to use suddengains
 

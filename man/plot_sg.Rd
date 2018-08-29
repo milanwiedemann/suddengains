@@ -4,7 +4,7 @@
 \alias{plot_sg}
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
-plot_sg(data, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end)
+plot_sg(data, var_sg, ylabel, start, pre3, pre2, pre1, post1, post2, post3, end)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}

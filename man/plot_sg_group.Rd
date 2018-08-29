@@ -4,11 +4,13 @@
 \alias{plot_sg_group}
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
-plot_sg_group(data, group_labels, ylabel, start, pre3, pre2, pre1, post1, post2,
-  post3, end)
+plot_sg_group(data, var_group, group_levels, group_labels, ylabel, start, pre3,
+  pre2, pre1, post1, post2, post3, end)
 }
 \arguments{
 \item{data}{A matched \code{byperson} dataset with variable sg_crit123 (0,1) as group variable.}
+
+\item{var_group}{Name of group variable.}
 
 \item{group_labels}{A c() of string as labels for groups ordered consistent with numbering of group in variable.}
 
@@ -29,8 +31,6 @@ plot_sg_group(data, group_labels, ylabel, start, pre3, pre2, pre1, post1, post2,
 \item{post3}{A string of the post3 variable name.}
 
 \item{end}{A string of the variable name with scores at the end of treatment.}
-
-\item{var_group}{Name of group variable.}
 }
 \value{
 A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.

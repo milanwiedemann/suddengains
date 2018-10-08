@@ -116,18 +116,12 @@ data_byperson <- extract_scores(data_byperson, "measure_02")
 data_byperson <- extract_scores(data_byperson, "measure_03")
 ```
 
-## Random notes
+## TODO
 
 - [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values
-- [ ] Add feature to identify "sudden losses" as part of the `identify_sg(..., suddenlosses = TRUE)` function with a 
 - [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
 
-- need to tidy this up at some point!
-some functions wont work if the measure of the variable that the sudden gains are being analysed on starts with "sg".
-this will conflict with the variables that get created for the bysg and byperson datasets.
-there I think it shold be recommended to rename variables in this special case!
-
 - variables for identify sg must be numbered in a specific way. alpha (e.g. 'w' for week or 's' for session) and then session number in digit.
-this is important as identify function automaticall checks for s0 intake score. 
-if this is provided it will calculate sg after the first session and name variables in that way starting with sg_1to2
-if s0 is not provided it will name variables starting with sg_2to3
+  - this is important as identify function automaticall checks for s0 intake score. 
+  - if this is provided it will calculate sg after the first session and name variables in that way starting with sg_1to2
+  - if s0 is not provided it will name variables starting with sg_2to3

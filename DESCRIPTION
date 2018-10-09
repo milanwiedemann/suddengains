@@ -1,7 +1,7 @@
 Package: suddengains
 Title: Identify Sudden Gains in Psychological Therapies
 Date: 2018-02-08
-Version: 0.0.0.9001
+Version: 0.0.1
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre")),
   person("Graham M", "Thew", role = "ctb"))

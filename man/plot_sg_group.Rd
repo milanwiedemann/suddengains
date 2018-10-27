@@ -4,8 +4,8 @@
 \alias{plot_sg_group}
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
-plot_sg_group(data, var_group, group_levels, group_labels, ylabel, start, pre3,
-  pre2, pre1, post1, post2, post3, end)
+plot_sg_group(data, var_group, group_levels, group_labels, ylabel, start,
+  pre3, pre2, pre1, post1, post2, post3, end)
 }
 \arguments{
 \item{data}{A matched \code{byperson} dataset with variable sg_crit123 (0,1) as group variable.}

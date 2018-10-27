@@ -4,7 +4,8 @@
 \alias{identify_sl}
 \title{Identify sudden loss in a wide dataset.}
 \usage{
-identify_sl(data, cutoff, id_var_name, sl_var_name, identify_sl_1to2 = FALSE)
+identify_sl(data, cutoff, id_var_name, sl_var_name,
+  identify_sl_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}

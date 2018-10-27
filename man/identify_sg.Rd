@@ -4,7 +4,8 @@
 \alias{identify_sg}
 \title{Identify sudden gains in a wide dataset.}
 \usage{
-identify_sg(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2 = FALSE)
+identify_sg(data, cutoff, id_var_name, sg_var_name,
+  identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}

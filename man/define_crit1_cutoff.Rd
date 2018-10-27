@@ -2,18 +2,22 @@
 % Please edit documentation in R/define_crit1_cutoff.R
 \name{define_crit1_cutoff}
 \alias{define_crit1_cutoff}
-\title{Define the Cut-off for SG Criterion 1 using the RCI Formula}
+\title{Define the Cut-off for SG Criterion 1 using modified RCI Formula}
 \usage{
-define_crit1_cutoff(data_sessions, data_item)
+define_crit1_cutoff(data_sessions, data_item, pre_var_name, post_var_name)
 }
 \arguments{
 \item{data_sessions}{A dataset in wide format with values for pre _s0 and post treatment _end}
 
 \item{data_item}{A dataset in item-by-item scores for the SG measure}
+
+\item{pre_var_name}{String, variable name of the pretreatment scores}
+
+\item{post_var_name}{String, variable name of the postreatment scores}
 }
 \value{
-A list with all calculated variables using formulate for RCI including cut-off
+A list with all calculated variables using modified formula for RCI including cut-off
 }
 \description{
-Define the Cut-off for SG Criterion 1 using the RCI Formula
+Define the Cut-off for SG Criterion 1 using modified RCI Formula
 }

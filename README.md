@@ -37,7 +37,7 @@ The `suddengains` package comes with a range of features which can be categorise
 
   
 2. Functinos to creatw datasets for further analysis:
-  - `extract_scores()`: stable
+  - `extract_scores()`: work in progress
   - `create_byperson()`: work in progress
   - `create_bysg()`: work in progress
 

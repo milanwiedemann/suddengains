@@ -1,5 +1,5 @@
 # suddengains: An R package for identifying sudden gains in psychological therapies
-[![last-change](https://img.shields.io/badge/last%20change-2018--10--27-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2018--10--27-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![suddengains-version](https://img.shields.io/badge/Version-0.0.1-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.3-brightgreen.svg)](https://cran.r-project.org/)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)

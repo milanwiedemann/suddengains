@@ -122,10 +122,8 @@ data_byperson <- extract_scores(data_byperson, "measure_03")
 
 ## TODO
 
-- [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values
+- [ ] For identify sg  / sl add option to specify which variables from dataset should be used and then send these variables to a rename function so that all the code is independent from variable names in a specific dataset
+- [ ] For define_crit1_cutoff(), add option to input internal consistency by hand, so that it doesnt have to be calculated on item by item data
+- [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values (BDI data with cut-off 7?)
 - [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
 
-- variables for identify sg must be numbered in a specific way. alpha (e.g. 'w' for week or 's' for session) and then session number in digit.
-  - this is important as identify function automaticall checks for s0 intake score. 
-  - if this is provided it will calculate sg after the first session and name variables in that way starting with sg_1to2
-  - if s0 is not provided it will name variables starting with sg_2to3

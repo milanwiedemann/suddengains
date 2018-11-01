@@ -2,11 +2,14 @@
 #'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
 #' @param bysg_data A \code{bysg} dataset.
+#' @param multiple_sg_select String indicating whether to select the \code{earliest} or \code{largest} sudden gain if multiple gains per person.
 
 #' @return A full dataset with all participants, the earliest gain per person
 #' @export
 
-create_byperson <- function(data, bysg_data) {
+create_byperson <- function(data, bysg_data, multiple_sg_select) {
+
+  # TODO ADD IF ELSE TO ADD OPTION FOR SELECTING "EARLIEST" OR "LARGEST" GAINS
 
 data_byperson_sgonly <- bysg_data %>%
   dplyr::group_by(id) %>%

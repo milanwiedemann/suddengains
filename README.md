@@ -30,7 +30,7 @@ devtools::install_github(repo = "milanwiedemann/suddengains")
 The `suddengains` package comes with a range of features which can be categorised into:
 
 1. Functions to identify and extract sudden gains:
-  - `select_cases()`: stable
+  - `select_cases()`: work in progress
   - `define_crit1_cutoff()`: stable
   - `identify_sg()`: stable
   - `identify_sl()`: stable

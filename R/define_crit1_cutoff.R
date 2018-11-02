@@ -9,6 +9,8 @@
 
 define_crit1_cutoff <- function(data_sessions, data_item, pre_var_name, post_var_name) {
 
+  # TODO ADD ARGUMENT TO SPECIFY RELIABILITY OF SCALE, so that this doesnt have to be calculated on item by item data
+
   # Create vectors of variables used in this function
   pre_scores <- dplyr::pull(data_sessions, pre_var_name)
   post_scores <- dplyr::pull(data_sessions, post_var_name)

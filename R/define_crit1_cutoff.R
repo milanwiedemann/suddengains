@@ -4,10 +4,11 @@
 #' @param data_item A dataset in item-by-item scores for the SG measure
 #' @param pre_var_name String, variable name of the pretreatment scores
 #' @param post_var_name String, variable name of the postreatment scores
+#' @param reliability Numeric between 0 and 1 indicating reliability of the scale, function not implemented yet
 #' @return A list with all calculated variables using modified formula for RCI including cut-off
 #' @export
 
-define_crit1_cutoff <- function(data_sessions, data_item, pre_var_name, post_var_name) {
+define_crit1_cutoff <- function(data_sessions, data_item, pre_var_name, post_var_name, reliability) {
 
   # TODO ADD ARGUMENT TO SPECIFY RELIABILITY OF SCALE, so that this doesnt have to be calculated on item by item data
 

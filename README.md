@@ -126,4 +126,5 @@ data_byperson <- extract_scores(data_byperson, "measure_03")
 - [ ] For define_crit1_cutoff(), add option to input internal consistency by hand, so that it doesnt have to be calculated on item by item data
 - [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values (BDI data with cut-off 7?)
 - [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
+- [ ] Add function to export bysg or byperson dataset into other formats (SPSS, Excel, csv).
 

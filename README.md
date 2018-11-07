@@ -36,7 +36,7 @@ The `suddengains` package comes with a range of features which can be categorise
   - `identify_sl()`: stable
 
   
-2. Functinos to creatw datasets for further analysis:
+2. Functions to create datasets for further analysis:
   - `extract_scores()`: work in progress
   - `create_byperson()`: work in progress
   - `create_bysg()`: work in progress

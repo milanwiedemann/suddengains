@@ -6,7 +6,7 @@
 
 Identify sudden gains based on the criteria outlined by [Tang and DeRubeis (1999)](http://psycnet.apa.org/buy/1999-01811-008). 
 It applies all three criteria to a dataset while adjusting for missing values. 
-It calculated further variables that are of interest. 
+It calculates further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
 It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain). 
 These [slides](https://docs.google.com/presentation/d/14OcAsBl8PIoIw5-eNO-_1uAXqfLHQcEGBT7M0MUWE9E/edit?usp=sharing) illustrate some functions of the `suddengains` package and some help how to use the package are shown below.
@@ -34,7 +34,6 @@ The `suddengains` package comes with a range of features which can be categorise
   - `define_crit1_cutoff()`: stable
   - `identify_sg()`: stable
   - `identify_sl()`: stable
-
   
 2. Functions to create datasets for further analysis:
   - `extract_scores()`: work in progress
@@ -51,7 +50,7 @@ The `suddengains` package comes with a range of features which can be categorise
 Here are a few examples how to use the `suddengains` package.
 You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
 
-First, load all needed packages and datasets:
+First, load all required packages and datasets:
 
 ```r
 # Load packages ----
@@ -70,14 +69,14 @@ data <- read_sav("~/data.sav") %>%
   select(id, measure_s0:measure_s12, measure_end) 
 
 
-# Load item by item data for sudden gains measure from baseline
-# Select all item by item variables for the sudden gains measure
+# Load item-by-item data for sudden gains measure from baseline
+# Select all item-by-item variables for the sudden gains measure
 data_s0 <- read_csv("~/data_measure_01_s0.csv") %>% 
   select(measure_01_item1_s0:measure_01_item22_s0)
 ```
 
-Then define the cut-off value fir the first sudden gains criterion using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004)
-and select all cases in the dataset that provide enough information to aplly the sudden gains criteria.
+Then define the cut-off value for the first sudden gains criterion using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004)
+and select all cases in the dataset that provide enough information to apply the sudden gains criteria.
 
 ```r
 # Define cut-off for first sudden gains criterion using the reliable change index
@@ -91,7 +90,7 @@ data_s0 <- select_cases(data_s0) %>%
   left_join(data_s0, by = "id")
 ```
 
-Now, you can use the `create_bysg()` and `create_byperson()` functions to create the dataets.
+Now, you can use the `create_bysg()` and `create_byperson()` functions to create the datasets.
 
 ```r
 # Create bysg dataset
@@ -105,7 +104,7 @@ data_bysg <- create_bysg(data = data,
                          include_s0_extract = TRUE)
 
 # Create byperson dataset
-# This function automatically selects the first sudden gain in case of multiple sudden gains
+# This function automatically selects the first sudden gain in cases of multiple sudden gains
 data_byperson <- create_byperson(data = data, 
                                  bysg_data = data_bysg)
 ```

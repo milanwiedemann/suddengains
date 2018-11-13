@@ -97,6 +97,7 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_name, var_start, ident
   data_bysg <- data_bysg %>%
     dplyr::left_join(data_in, by = "id")
 
+
   data_bysg <- suddengains::extract_scores(data_bysg, "pds", include_s0_extract)
 
 

@@ -20,6 +20,7 @@ data_byperson_sgonly <- bysg_data %>%
   dplyr::filter(sg_session_n == min(sg_session_n)) %>%
   dplyr::ungroup() %>%
   dplyr::select(id, id_sg, sg_crit123, sg_freq_byperson, sg_session_n,
+                # TODO change this part so not dependent on variable names (pds)
          sg_pds_pre3, sg_pds_pre2, sg_pds_pre1, sg_pds_post1, sg_pds_post2, sg_pds_post3,
          sg_magnitude, pds_change_total, sg_change_proportion, sg_reversal_value, sg_reversal_byperson)
 
@@ -30,6 +31,7 @@ data_byperson$sg_crit123[is.na(data_byperson$sg_crit123)] <- 0
 
 data_byperson <- data_byperson %>%
   dplyr::select(id, id_sg, sg_crit123, sg_freq_byperson, sg_session_n,
+                # TODO change this part so not dependent on variable names (pds)
          sg_pds_pre3, sg_pds_pre2, sg_pds_pre1, sg_pds_post1, sg_pds_post2, sg_pds_post3,
          sg_magnitude, pds_change_total, sg_change_proportion, sg_reversal_value, sg_reversal_byperson)
 

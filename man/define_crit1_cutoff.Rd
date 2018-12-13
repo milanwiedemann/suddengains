@@ -4,7 +4,8 @@
 \alias{define_crit1_cutoff}
 \title{Define the Cut-off for SG Criterion 1 using modified RCI Formula}
 \usage{
-define_crit1_cutoff(data_sessions, data_item, pre_var_name, post_var_name)
+define_crit1_cutoff(data_sessions, data_item, pre_var_name, post_var_name,
+  reliability)
 }
 \arguments{
 \item{data_sessions}{A dataset in wide format with values for pre _s0 and post treatment _end}
@@ -14,6 +15,8 @@ define_crit1_cutoff(data_sessions, data_item, pre_var_name, post_var_name)
 \item{pre_var_name}{String, variable name of the pretreatment scores}
 
 \item{post_var_name}{String, variable name of the postreatment scores}
+
+\item{reliability}{Numeric between 0 and 1 indicating reliability of the scale, function not implemented yet}
 }
 \value{
 A list with all calculated variables using modified formula for RCI including cut-off

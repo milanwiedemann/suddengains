@@ -15,12 +15,12 @@ count_intervals <- function(data, cutoff, id_var_name, sg_var_name, analysed = T
   data <- suddengains::identify_sg(data, cutoff, id_var_name, sg_var_name, identify_sg_1to2)
 
   if (analysed == TRUE) {
-  sum <- sum(!is.na(select(data, starts_with("sg_"))))
+    sg_sess_sum <- sum(!is.na(dplyr::select(data, dplyr::starts_with("sg_"))))
   }
 
   if (analysed == FALSE) {
-    sum <- sum(is.na(select(data, starts_with("sg_"))))
+    sg_sess_sum <- sum(is.na(dplyr::select(data, dplyr::starts_with("sg_"))))
   }
 
-  sum
+  sg_sess_sum
 }

@@ -4,12 +4,14 @@
 \alias{create_byperson}
 \title{Create a dataset with one gain per person (at the moment this selects the earliest gain), referred to as \code{byperson} dataset}
 \usage{
-create_byperson(data, bysg_data)
+create_byperson(data, bysg_data, multiple_sg_select)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
 
 \item{bysg_data}{A \code{bysg} dataset.}
+
+\item{multiple_sg_select}{String indicating whether to select the \code{earliest} or \code{largest} sudden gain if multiple gains per person.}
 }
 \value{
 A full dataset with all participants, the earliest gain per person

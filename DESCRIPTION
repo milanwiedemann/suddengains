@@ -1,7 +1,7 @@
 Package: suddengains
 Title: Identify Sudden Gains in Psychological Therapies
 Date: 2018-02-08
-Version: 0.0.1
+Version: 0.0.1.9901
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre")),
   person("Graham M", "Thew", role = "ctb"))
@@ -26,4 +26,4 @@ Suggests:
     ggplot2 (>= 2.2.1),
     reshape2 (>= 1.4.3),
     readr (>= 1.1.1)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

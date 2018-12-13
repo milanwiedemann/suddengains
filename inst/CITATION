@@ -1,8 +1,8 @@
 utils::citEntry(
   "manual"
-  , "Wiedemann, M., Thew, G. R. & Stott, R. (2018). suddengains: An R package to identify sudden gains in psychological therapies. R package version 0.0.1, retrieved from https://github.com/milanwiedemann/suddengains"
-  , author = c("Milan Wiedemann and Graham R Thew and Richard Stott")
-  , title = "{suddengains}: {An} {R} package to identify sudden gains in psychological therapies"
+  , "Wiedemann, M., Thew, G. R., Stott, R. $ Ehlers A. (2018). suddengains: An R package to identify sudden gains in longitudinal data. R package version 0.0.1, retrieved from https://github.com/milanwiedemann/suddengains"
+  , author = c("Milan Wiedemann and Graham R Thew and Richard Stott and Anke Ehlers")
+  , title = "{suddengains}: {An} {R} package to identify sudden gains in longitudinal data"
   , year = "2018"
   , note = "R package version 0.0.1"
   , url = "https://github.com/milanwiedemann/suddengains"

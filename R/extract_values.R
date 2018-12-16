@@ -8,7 +8,7 @@
 #' @return A wide dataset with values for \code{var_name} around the sudden gain.
 #' @export
 
-extract_scores <- function(data, id_var_name, extract_var_list, extract_var_name, include_s0_extract = FALSE) {
+extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, include_s0_extract = FALSE) {
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted

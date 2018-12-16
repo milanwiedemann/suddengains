@@ -64,5 +64,6 @@ create_byperson <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var
     tidyr::replace_na(list(sg_crit123 = 0, sg_freq_byperson = 0))
 
   # Return dataset
-  data_byperson
+  data_byperson %>%
+      dplyr::arrange(!! rlang::sym(id_var_name))
   }

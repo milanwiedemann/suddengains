@@ -39,7 +39,7 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_nam
     left_join(select(data_in, id_var_name, sg_var_list), by = id_var_name)
 
   # Extract scores of the sudden gains measure around the sudden gain ----
-  data_extract <- suddengains::extract_scores(data_bysg,
+  data_extract <- suddengains::extract_values(data_bysg,
                                               id_var_name = "id_sg",
                                               extract_var_list = sg_var_list,
                                               extract_var_name = sg_var_name,
@@ -100,5 +100,8 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_nam
 
 
   # Return tibble
-  as.tibble(data_bysg)
+
+  data_bysg %>%
+      tibble::as.tibble() %>%
+      dplyr::arrange(!! rlang::sym(id_var_name))
 }

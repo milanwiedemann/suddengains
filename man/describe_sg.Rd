@@ -4,11 +4,13 @@
 \alias{describe_sg}
 \title{Show descriptives for the sudden gains datasets}
 \usage{
-describe_sg(data)
+describe_sg(data, sg_data_structure)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
+
+\item{sg_data_structure}{String indicating whether the provided data is a \code{bysg} or \code{byperson} dataset.}
 }
 \description{
-Show descriptives for the sudden gains datasets
+Some numbers (percentages) will be different depending wich dataset is selected, because if multiple gains in bysg only one will be selected for further analyses.
 }

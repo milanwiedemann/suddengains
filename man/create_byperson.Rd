@@ -4,14 +4,16 @@
 \alias{create_byperson}
 \title{Create a dataset with one gain per person (at the moment this selects the earliest gain), referred to as \code{byperson} dataset}
 \usage{
-create_byperson(data, bysg_data, multiple_sg_select)
+create_byperson(data, cutoff, id_var_name, sg_var_list, tx_start_var_name,
+  tx_end_var_name, sg_var_name, multiple_sg_select = "first",
+  identify_sg_1to2 = FALSE, include_s0_extract = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
 
-\item{bysg_data}{A \code{bysg} dataset.}
+\item{multiple_sg_select}{String indicating whether to select the \code{earliest}, \code{latest} or \code{largest}  \code{smallest} sudden gain if multiple gains per person. when two sudden gains are the same size and smalles or largest is selcted then the first gain of the will be selected using a secon filter command}
 
-\item{multiple_sg_select}{String indicating whether to select the \code{earliest} or \code{largest} sudden gain if multiple gains per person.}
+\item{bysg_data}{A \code{bysg} dataset.}
 }
 \value{
 A full dataset with all participants, the earliest gain per person

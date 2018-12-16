@@ -4,7 +4,7 @@
 \alias{count_intervals}
 \title{Number of between session intervals analysed for sudden gains}
 \usage{
-count_intervals(data, cutoff, id_var_name, sg_var_name, analysed = TRUE,
+count_intervals(data, cutoff, id_var_name, sg_var_list, analysed = TRUE,
   identify_sg_1to2 = FALSE)
 }
 \arguments{
@@ -14,12 +14,14 @@ count_intervals(data, cutoff, id_var_name, sg_var_name, analysed = TRUE,
 
 \item{id_var_name}{A string of the id variable name.}
 
-\item{sg_var_name}{A string of the sudden gains variable name.}
+\item{sg_var_list}{TODO.}
 
-\item{analysed}{A logical indicating wheter sum of analysed or not analysed session should be reported.}
+\item{analysed}{Logical, indicating whether sum of analysed or not analysed intervals should be reported. Analysed referrs to whether all three sudden gains criteria could be applied to a certain interval.}
+
+\item{identify_sg_1to2}{Logical, indicating whether first session gains should be included, this is only possible if baseline scores are included in \code{sg_var_list}.}
 }
 \value{
-A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+Count of how many intervals were analysed for all three sudden gains criteria.
 }
 \description{
 Number of between session intervals analysed for sudden gains

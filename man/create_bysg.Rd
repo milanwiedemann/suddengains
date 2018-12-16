@@ -4,8 +4,9 @@
 \alias{create_bysg}
 \title{Create a dataset with one gain per row, referred to as \code{bysg} dataset}
 \usage{
-create_bysg(data, cutoff, id_var_name, sg_var_name, var_start,
-  identify_sg_1to2 = FALSE, include_s0_extract = FALSE)
+create_bysg(data, cutoff, id_var_name, sg_var_list, tx_start_var_name,
+  tx_end_var_name, sg_var_name, identify_sg_1to2 = FALSE,
+  include_s0_extract = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}

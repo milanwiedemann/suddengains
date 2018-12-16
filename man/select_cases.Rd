@@ -4,7 +4,8 @@
 \alias{select_cases}
 \title{Select sample with enough available data to identify sudden gains}
 \usage{
-select_cases(data)
+select_cases(data, id_var_name, sg_var_list, method, min_sess_num,
+  return_id_lgl = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}

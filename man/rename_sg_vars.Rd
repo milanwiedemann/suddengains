@@ -4,12 +4,13 @@
 \alias{rename_sg_vars}
 \title{Rename variables for extracting variables in sudden gians package}
 \usage{
-rename_sg_vars(data, sg_var_list, new_var_str = "temp_var_")
+rename_sg_vars(data, rename_var_list, new_var_str = "temp_var_",
+  start_numbering = 1)
 }
 \arguments{
 \item{data}{Dataframe in wide format}
 
-\item{sg_var_list}{List of variables measuring first construct}
+\item{rename_var_list}{List of variables measuring first construct}
 }
 \value{
 Dataframe in wide format with renamed variables

@@ -5,7 +5,8 @@
 \title{Identify sudden gains in a wide dataset.}
 \usage{
 identify_sg(data, cutoff, id_var_name, sg_var_list,
-  identify_sg_1to2 = FALSE)
+  identify_sg_1to2 = FALSE, crit123_details = FALSE,
+  name_crit123_details = "data_crit123_details")
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
@@ -14,11 +15,13 @@ identify_sg(data, cutoff, id_var_name, sg_var_list,
 
 \item{id_var_name}{A string of the id variable name.}
 
-\item{identify_sg_1to2}{Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE}
+\item{sg_var_list}{A LIST of the variable names for sudden gains analysis, if first session gains should be analysed simply add session 0 at the beginning of the list.}
 
-\item{sg_var_name}{A string of the sudden gains variable name.}
+\item{identify_sg_1to2}{Logical value to indicate whether first session gains should be in dataset,
+simply include s0 before before all the other variables in sg_var_list, it will simply change the way
+variables are named but this is super important for calculating which session sudden gain is in and also for extracting stuff later}
 
-\item{sg_var_s0}{String, if identify_sg_1to2 = TRUE give string for intake session here}
+\item{crit123_details}{Logical, if crit123_details = TRUE a dataframe will be written to global environment}
 }
 \value{
 A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.

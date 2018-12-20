@@ -22,7 +22,7 @@ describe_sg <- function(data, sg_data_structure) {
 
         # Multiple gains ----
         # results$sg_multiple_n <- summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE))[[1]]
-        results$sg_multible_pct <- round(summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE)) / summarise(data, n()) * 100, 2) %>% .[[1]]
+        results$sg_multiple_pct <- round(summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE)) / summarise(data, n()) * 100, 2) %>% .[[1]]
 
         # Reversals ----
         results$sg_reversal_n <- summarise(data, sum(sg_reversal, na.rm = TRUE))[[1]]
@@ -45,7 +45,7 @@ describe_sg <- function(data, sg_data_structure) {
 
         # Multiple gains ----
         results$sg_multiple_n <- summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE))[[1]]
-        results$sg_multible_pct <- round(summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE)) / summarise(data, n()) * 100, 2) %>% .[[1]]
+        results$sg_multiple_pct <- round(summarise(data, sum(sg_freq_byperson > 1, na.rm = TRUE)) / summarise(data, n()) * 100, 2) %>% .[[1]]
 
         # Reversals ----
         results$sg_reversal_n <- summarise(data, sum(sg_reversal, na.rm = TRUE))[[1]]

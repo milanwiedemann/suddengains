@@ -2,13 +2,13 @@
 #'
 #' @param data_sessions A dataset in wide format with values for pre _s0 and post treatment _end
 #' @param data_item A dataset in item-by-item scores for the SG measure
-#' @param pre_var_name String, variable name of the pretreatment scores
-#' @param post_var_name String, variable name of the postreatment scores
+#' @param tx_start_var_name String, variable name of the pretreatment scores
+#' @param tx_end_var_name String, variable name of the postreatment scores
 #' @param reliability Numeric between 0 and 1 indicating reliability of the scale, function not implemented yet
 #' @return A list with all calculated variables using modified formula for RCI including cut-off
 #' @export
 
-define_crit1_cutoff <- function(data_sessions, data_item, pre_var_name, post_var_name, reliability) {
+define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_end_var_name, reliability) {
 
   if (base::is.null(data_item) == TRUE & base::is.null(reliability) == TRUE) {
     stop("No information about relaiaiaiaibility given. \n
@@ -29,8 +29,8 @@ define_crit1_cutoff <- function(data_sessions, data_item, pre_var_name, post_var
   # TODO ADD ARGUMENT TO SPECIFY RELIABILITY OF SCALE, so that this doesnt have to be calculated on item by item data
 
   # Create vectors of variables used in this function
-  pre_scores <- dplyr::pull(data_sessions, pre_var_name)
-  post_scores <- dplyr::pull(data_sessions, post_var_name)
+  pre_scores <- dplyr::pull(data_sessions, tx_start_var_name)
+  post_scores <- dplyr::pull(data_sessions, tx_end_var_name)
 
   # Calculate mean pds change score
   mean_change_score <- base::mean(pre_scores, na.rm = TRUE) - base::mean(post_scores, na.rm = TRUE)

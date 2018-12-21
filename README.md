@@ -106,10 +106,10 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           |   X   | **X** |   X   |   X   |   -   |   -   |
-| 2.           |   X   | **X** |   X   |   -   |   X   |   -   |
-| 3.           |   X   |   -   | **X** |   X   |   X   |   -   |
-| 4.           |   X   |   -   | **X** |   X   |   -   |   X   |
+| 1.           |   x   | **X** |   x   |   x   |   -   |   -   |
+| 2.           |   x   | **X** |   x   |   -   |   x   |   -   |
+| 3.           |   x   |   -   | **X** |   x   |   x   |   -   |
+| 4.           |   x   |   -   | **X** |   x   |   -   |   x   |
 
 *Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; -  = Missing data. Bold **X** represent the pregain session for each pattern.
 

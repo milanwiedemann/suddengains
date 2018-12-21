@@ -48,9 +48,8 @@ The `suddengains` package comes with a range of features which can be categorise
 ## How to use `suddengains`
 
 Here are a few examples how to use the `suddengains` package.
-You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
-
-First, load all required packages and datasets:
+First, load all required packages and datasets.
+This package also contains two sample data sets with made up data to test and illustrate the functions.
 
 ```r
 # Load packages ----
@@ -151,7 +150,8 @@ byperson <- create_byperson(data = sgdata,
                             multiple_sg_select = "first")
 ```
 
-If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_values()` function:
+If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_values()` function. 
+You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
 
 ```r
 # Extract values of PDS values around the sudden gain (BDI)

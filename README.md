@@ -73,17 +73,24 @@ Then define the cut-off value for the first sudden gains criterion using the rel
 # Define cut-off for first sudden gains criterion using the reliable change index
 define_crit1_cutoff(data_sessions = sgdata,
                     data_item = NULL,
-                    pre_var_name = "bdi_s0",
-                    post_var_name = "bdi_s12",
+                    tx_start_var_name = "bdi_s0",
+                    tx_end_var_name = "bdi_s12",
                     reliability = .85)
 ```
 
-Next, select all cases for the sudden gains analysis.
+Next, select all cases for the sudden gains analysis. 
+The package currently implements two methods to select cases:
+1. Select all cases with a minimum number of repeated measurements available: `method = "min_sess"`
+1. Select all that provide enough data to apply the three sudden gains criteria: `method = "pattern"`
 
 ```r
-# Select all cases with a minimum of available values over the whole course of repeated measurements
-select_cases(sgdata, "id", bdi_var_list_s0_to_s12, method = "min_sess", min_sess_num = 9, return_id_lgl = TRUE)
-
+# 1. Select all cases with a minimum of available values over the whole course of repeated measurements
+select_cases(data = sgdata, 
+             id_var_name = "id", 
+             sg_var_list = bdi_var_list_s0_to_s12, 
+             method = "min_sess", 
+             min_sess_num = 9, 
+             return_id_lgl = TRUE)
 ```
 
 An alternative option is to select all cases where it is possible to apply all three sudden gains criteria. 
@@ -91,17 +98,21 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|----|----|----|----|----|----|
-| 1.           |[x] |[x] |[x] |[x] | [] | [] |
-| 2.           |[x] |[x] |[x] |[]  |[x] | [] |
-| 3.           |[x] | [] |[x] |[x] |[x] | [] |
-| 4.           |[x] | [] |[x] |[x] | [] |[x] |
-*Note:* x<sub>1 to x<sub>6 are consecutive data points of the primary outcome measure. [x] = Available data; [] = Missing data.
+| 1.           | x  | x  | x  | x  |*NA*|*NA*|
+| 2.           | x  | x  | x  |*NA*| x  |*NA*|
+| 3.           | x  |*NA*| x  | x  | x  |*NA*|
+| 4.           | x  |*NA*| x  | x  |*NA*| x  |
+
+*Note:* x<sub>1 to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; *NA* = Missing data.
 
 ```r
-# Select all patients providing enough data to identify sudden gains ----
-
-select_cases(sgdata, "id", bdi_var_list_s0_to_s12, method = "pattern", return_id_lgl = FALSE)
-
+# 2. Select all patients providing enough data to identify sudden gains ----
+select_cases(data = sgdata, 
+             id_var_name = "id", 
+             sg_var_list = bdi_var_list_s0_to_s12, 
+             method = "pattern", 
+             return_id_lgl = FALSE
+             )
 ```
 
 Now, you can use the `create_bysg()` and `create_byperson()` functions to create the datasets.

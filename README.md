@@ -62,11 +62,19 @@ library(suddengains)
 # Two example data sets get loaded together with the suddengains package
 
 # The data sets have identical data, "sgdata_bad" has inconsistent variable names 
-sgdata
-sgdata_bad
+View(sgdata)
+View(sgdata_bad)
+
+# Create vectors with all variable names as input argument for the functions
+# This is not neccessary, but saves some time typing
+bdi_var_list_s0_to_s12 <- c("bdi_s0", "bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", "bdi_s5", "bdi_s6", 
+                            "bdi_s7", "bdi_s8", "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12")
+
+pds_var_list_s0_to_s12 <- c("pds_s0", "pds_s1", "pds_s2", "pds_s3", "pds_s4", "pds_s5", "pds_s6", 
+                            "pds_s7", "pds_s8", "pds_s9", "pds_s10", "pds_s11", "pds_s12")
 ```
 
-Then define the cut-off value for the first sudden gains criterion using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004).
+The cut-off value for the first sudden gains criterion can be calculated using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004).
 The function has the option to calculate Chronbach's a based in item-by-item data if provided, or alternatively the reliability of the measure can be specified.
 
 ```r
@@ -98,12 +106,12 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           | **X** | **X** | **X** | **X** |   -   |   -   |
-| 2.           | **X** | **X** | **X** |   -   | **X** |   -   |
-| 3.           | **X** |   -   | **X** | **X** | **X** |   -   |
-| 4.           | **X** |   -   | **X** | **X** |   -   | **X** |
+| 1.           |   X   | **X** |   X   |   X   |   -   |   -   |
+| 2.           |   X   | **X** |   X   |   -   |   X   |   -   |
+| 3.           |   X   |   -   | **X** |   X   |   X   |   -   |
+| 4.           |   X   |   -   | **X** |   X   |   -   |   X   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; -  = Missing data.
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; -  = Missing data. Bold **X** represent the pregain session for each pattern.
 
 ```r
 # 2. Select all patients providing enough data to identify sudden gains ----
@@ -118,6 +126,7 @@ Now, you can use the `create_bysg()` and `create_byperson()` functions to create
 
 ```r
 # Create bysg dataset
+# This data set has one row per gain and creates a new ID variable for each sudden gain
 bysg <- create_bysg(data = sgdata,
                     cutoff = 7,
                     id_var_name = "id",
@@ -145,26 +154,26 @@ byperson <- create_byperson(data = sgdata,
 If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_values()` function:
 
 ```r
-# Extract scores of measure_02 and measure_03 around the sudden gain (measure_01)
-# For bysg dataset add pds variables first
+# Extract values of PDS values around the sudden gain (BDI)
+# For bysg dataset add PDS variables need to be added from the main data set first
 bysg <- bysg %>%
     left_join(select(sgdata, id, starts_with("pds")), by = "id")
 
-# Extract scores for bysg dataset
+# Extract scores for bysg dataset and save to new dataframe
 pds_extract_bysg <- extract_values(data = bysg,
                                    id_var_name = "id_sg",
                                    extract_var_list = pds_var_list_s0_to_s12,
                                    extract_var_name = "pds",
                                    include_s0_extract = TRUE)
 
-# Extract scores for byperson dataset
+# Extract scores for byperson dataset and save to new dataframe
 pds_extract_byperson <- extract_values(data = byperson,
                                        id_var_name = "id",
                                        extract_var_list = pds_var_list_s0_to_s12,
                                        extract_var_name = "pds",
                                        include_s0_extract = TRUE)
 
-# Join extracted pds scores with main bysg and byperson dataset
+# Now join the extracted PDS scores with main bysg and byperson dataset
 bysg <- bysg %>%
     left_join(pds_extract_bysg, by = "id_sg")
 
@@ -174,7 +183,6 @@ byperson <- byperson %>%
 
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
 
-
 ```r
 plot_sg(data = bysg,
         tx_start_var_name = "bdi_s0",
@@ -182,7 +190,11 @@ plot_sg(data = bysg,
         sg_pre_post_var_list = c("sg_bdi_2n", "sg_bdi_1n", "sg_bdi_n", 
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylabel = "BDI")
+```
 
+![](https://drive.google.com/open?id=1jaA2eKMlDx32xcYIQNjnij8FiEDM-LO6)
+
+```r
 plot_sg(data = bysg,
         tx_start_var_name = "pds_s1",
         tx_end_var_name = "pds_s12",
@@ -190,6 +202,8 @@ plot_sg(data = bysg,
                                  "sg_pds_n1", "sg_pds_n2", "sg_pds_n3"),
         ylabel = "PDS")
 ```
+
+![](https://drive.google.com/open?id=1ukP5aqiifKLGJS2l6ve71tE6llEuItdY)
 
 ## TODO
 - [x] For identify sg  / sl add option to specify which variables from data set should be used and then send these variables to a rename function so that all the code is independent from variable names in a specific data set

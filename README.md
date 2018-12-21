@@ -182,6 +182,7 @@ byperson <- byperson %>%
 ```
 
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
+Here is code to create a figure of the average gain magnitude.
 
 ```r
 plot_sg(data = bysg,
@@ -193,6 +194,8 @@ plot_sg(data = bysg,
 ```
 
 ![](https://dl.dropboxusercontent.com/s/fpjvbgg9yizji9z/sg-bdi-average-magnitude.png)
+
+Here is code to create a figure of the average change of PDS scores around the sudden gain on the BDI.
 
 ```r
 plot_sg(data = bysg,

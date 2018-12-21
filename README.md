@@ -98,12 +98,12 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           | **X** | **X** | **X** | **X** | *NA*  | *NA*  |
-| 2.           | **X** | **X** | **X** | *NA*  | **X** | *NA*  |
-| 3.           | **X** | *NA*  | **X** | **X** | **X** | *NA*  |
-| 4.           | **X** | *NA*  | **X** | **X** | *NA*  | **X** |
+| 1.           | **X** | **X** | **X** | **X** |   -   |   -   |
+| 2.           | **X** | **X** | **X** |   -   | **X** |   -   |
+| 3.           | **X** |   -   | **X** | **X** | **X** |   -   |
+| 4.           | **X** |   -   | **X** | **X** |   -   | **X** |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; *NA* = Missing data.
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; -  = Missing data.
 
 ```r
 # 2. Select all patients providing enough data to identify sudden gains ----

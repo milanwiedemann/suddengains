@@ -192,7 +192,7 @@ plot_sg(data = bysg,
         ylabel = "BDI")
 ```
 
-![](https://drive.google.com/open?id=1jaA2eKMlDx32xcYIQNjnij8FiEDM-LO6)
+![](https://dl.dropboxusercontent.com/s/fpjvbgg9yizji9z/sg-bdi-average-magnitude.png)
 
 ```r
 plot_sg(data = bysg,
@@ -203,7 +203,7 @@ plot_sg(data = bysg,
         ylabel = "PDS")
 ```
 
-![](https://drive.google.com/open?id=1ukP5aqiifKLGJS2l6ve71tE6llEuItdY)
+![](https://dl.dropboxusercontent.com/s/0vvsrchayci92e9/sg-bdi-everage-change-pds.png)
 
 ## TODO
 - [x] For identify sg  / sl add option to specify which variables from data set should be used and then send these variables to a rename function so that all the code is independent from variable names in a specific data set

@@ -7,7 +7,7 @@
 #' @return A full dataset with all participants, the earliest gain per person
 #' @export
 
-create_byperson <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select = "first", identify_sg_1to2 = FALSE, include_s0_extract = FALSE) {
+create_byperson <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select, sg_crit2_pct = .25, identify_sg_1to2 = FALSE, include_s0_extract = FALSE) {
 
   data_bysg <- create_bysg(data = data,
                            cutoff = cutoff,
@@ -16,6 +16,7 @@ create_byperson <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var
                            tx_end_var_name = tx_end_var_name,
                            sg_var_list = sg_var_list,
                            sg_var_name = sg_var_name,
+                           sg_crit2_pct = sg_crit2_pct,
                            identify_sg_1to2 = identify_sg_1to2,
                            include_s0_extract = include_s0_extract)
 

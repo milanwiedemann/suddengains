@@ -1,7 +1,7 @@
 #' Plot average magnitude of sudden gain or another variable around the sudden gain
 #'
 #' @param data A \code{bysg} or \code{byperson} dataset.
-#' @param ylabel A string as label for y-Axis.
+#' @param ylab A string as label for y-Axis.
 #' @param start A string of the variable name with scores at the start of treatment.
 #' @param pre3 A string of the pre3 variable name.
 #' @param pre2 A string of the pre2 variable name.
@@ -18,8 +18,8 @@ plot_sg <-
              tx_start_var_name,
              tx_end_var_name,
              sg_pre_post_var_list,
-             ylabel,
-             xlabel = "Session") {
+             ylab,
+             xlab = "Session") {
 
         # Save variable names to individual objecs
         pre3 <- sg_pre_post_var_list[1]
@@ -104,7 +104,7 @@ plot_sg <-
             theme_classic() +
             theme(text = element_text(size = 12)) +
             scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +
-            xlab(xlabel) + ylab(ylabel)
+            xlab(xlab) + ylab(ylab)
     }
 
 
@@ -115,7 +115,7 @@ plot_sg <-
 #' @param data A matched \code{byperson} dataset with variable sg_crit123 (0,1) as group variable.
 #' @param var_group Name of group variable.
 #' @param group_labels A c() of string as labels for groups ordered consistent with numbering of group in variable.
-#' @param ylabel A string as label for y-Axis.
+#' @param ylab A string as label for y-Axis.
 #' @param start A string of the variable name with scores at the start of treatment.
 #' @param pre3 A string of the pre3 variable name.
 #' @param pre2 A string of the pre2 variable name.
@@ -132,7 +132,7 @@ plot_sg_group <-
              var_group,
              group_levels,
              group_labels,
-             ylabel,
+             ylab,
              start,
              pre3,
              pre2,
@@ -209,7 +209,7 @@ plot_sg_group <-
             scale_x_discrete(labels = c("Start", "N-2", "N-1", "N", "N+1", "N+2", "N+3", "End")) +
             labs(
                 x = "Session",
-                y = ylabel,
+                y = ylab,
                 colour = "",
                 shape = ""
             )

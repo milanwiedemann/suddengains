@@ -6,6 +6,7 @@
 #' @param cutoff A number specifying the cut-off for criterion 1.
 #' @param id_var_name A string of the id variable name.
 #' @param sg_var_list A LIST of the variable names for sudden gains analysis, if first session gains should be analysed simply add session 0 at the beginning of the list.
+#' @param sg_crit2_pct Numeric, percentage of drop second criteria sudden gains
 #' @param identify_sg_1to2 Logical value to indicate whether first session gains should be in dataset,
 #' simply include s0 before before all the other variables in sg_var_list, it will simply change the way
 #' variables are named but this is super important for calculating which session sudden gain is in and also for extracting stuff later
@@ -20,6 +21,7 @@ identify_sg <-
              cutoff,
              id_var_name,
              sg_var_list,
+             sg_crit2_pct = .25,
              identify_sg_1to2 = FALSE,
              crit123_details = FALSE,
              name_crit123_details = "data_crit123_details") {
@@ -36,20 +38,17 @@ identify_sg <-
             dplyr::select(2:base::ncol(data_select))
 
         # Create one empty dataframe for each sudden gains criterion
-        crit1 <-
-            base::data.frame(base::matrix(
+        crit1 <- base::data.frame(base::matrix(
+                NA,
+                nrow = base::nrow(data_loop),
+                ncol = base::ncol(data_loop) - 3
+                ))
+        crit2 <- base::data.frame(base::matrix(
                 NA,
                 nrow = base::nrow(data_loop),
                 ncol = base::ncol(data_loop) - 3
             ))
-        crit2 <-
-            base::data.frame(base::matrix(
-                NA,
-                nrow = base::nrow(data_loop),
-                ncol = base::ncol(data_loop) - 3
-            ))
-        crit3 <-
-            base::data.frame(base::matrix(
+        crit3 <- base::data.frame(base::matrix(
                 NA,
                 nrow = base::nrow(data_loop),
                 ncol = base::ncol(data_loop) - 3
@@ -62,58 +61,41 @@ identify_sg <-
             for (col_j in 3:(base::ncol(data_loop) - 1)) {
 
                 # Check 1st sudden gains criterion
-                crit1[row_i, col_j - 2] <-
-                    (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= cutoff)
+                crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= cutoff)
 
                 # Check 2nd sudden gains criterion
-                crit2[row_i, col_j - 2] <-
-                    (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= .25 * data_loop[row_i, col_j - 1])
+                crit2[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit2_pct * data_loop[row_i, col_j - 1])
 
                 # Check 3rd sudden gains criterion
 
                 # First, create pre and post indices for 3rd criterion
-                pre_indices <-
-                    base::max(1, col_j - 3):(col_j - 1) # Create index for pregain
-                post_indices <-
-                    col_j:min(base::ncol(data_loop), col_j + 2) # Create index for postgain
+                pre_indices <- base::max(1, col_j - 3):(col_j - 1) # Create index for pregain
+                post_indices <- col_j:min(base::ncol(data_loop), col_j + 2) # Create index for postgain
 
                 # Define pre and post mean, sdn and number of available data points for 3rd criterion
-                mean_pre <-
-                    base::mean(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
-                mean_post <-
-                    base::mean(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
-                sd_pre <-
-                    stats::sd(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
-                sd_post <-
-                    stats::sd(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
-                sum_n_pre <-
-                    base::sum(!is.na(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
-                sum_n_post <-
-                    base::sum(!is.na(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+                mean_pre <- base::mean(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
+                mean_post <- base::mean(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+                sd_pre <- stats::sd(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
+                sd_post <- stats::sd(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+                sum_n_pre <- base::sum(!is.na(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
+                sum_n_post <- base::sum(!is.na(data_loop[row_i, base::c(post_indices)]), na.rm = T)
 
                 # Check 3rd criterion for no missing at pre or post
 
                 if (sum_n_pre == 3 & sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <-
-                        mean_pre - mean_post > 2.776 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (3 + 3 - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 2.776 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (3 + 3 - 2))
 
                     # Adjust critical value for 1 missing value in pregain mean
-                } else if (sum_n_pre == 2 &
-                           sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <-
-                        mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (2 + 3 - 2))
+                } else if (sum_n_pre == 2 & sum_n_post == 3) {
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (2 + 3 - 2))
 
                     # Adjust critical value for 1 missing value in postgain mean
-                } else if (sum_n_pre == 3 &
-                           sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <-
-                        mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (3 + 2 - 2))
+                } else if (sum_n_pre == 3 & sum_n_post == 2) {
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (3 + 2 - 2))
 
                     # Adjust critical value for 1 missing value pregain and 1 missing value postgain
-                } else if (sum_n_pre == 2 &
-                           sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <-
-                        mean_pre - mean_post > 4.303 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (2 + 2 - 2))
+                } else if (sum_n_pre == 2 & sum_n_post == 2) {
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 4.303 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (2 + 2 - 2))
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {
                     crit3[row_i, col_j - 2] <- NA
                 }
@@ -136,12 +118,9 @@ identify_sg <-
             for (i in 1:(base::ncol(data_loop) - 3)) {
                 sg_col_names[i] <- base::paste0("sg_", i + 1, "to", i + 2)
 
-                sg_col_names_crit1[i] <-
-                    base::paste0("sg_crit1_", i + 1, "to", i + 2)
-                sg_col_names_crit2[i] <-
-                    base::paste0("sg_crit2_", i + 1, "to", i + 2)
-                sg_col_names_crit3[i] <-
-                    base::paste0("sg_crit3_", i + 1, "to", i + 2)
+                sg_col_names_crit1[i] <- base::paste0("sg_crit1_", i + 1, "to", i + 2)
+                sg_col_names_crit2[i] <- base::paste0("sg_crit2_", i + 1, "to", i + 2)
+                sg_col_names_crit3[i] <- base::paste0("sg_crit3_", i + 1, "to", i + 2)
             }
 
             # If identify_sg_1to2 is FALSE, sg variables will start with "sg_2to3"
@@ -149,12 +128,9 @@ identify_sg <-
             for (i in 1:(base::ncol(data_loop) - 3)) {
                 sg_col_names[i] <- base::paste0("sg_", i, "to", i + 1)
 
-                sg_col_names_crit1[i] <-
-                    base::paste0("sg_crit1_", i, "to", i + 1)
-                sg_col_names_crit2[i] <-
-                    base::paste0("sg_crit2_", i, "to", i + 1)
-                sg_col_names_crit3[i] <-
-                    base::paste0("sg_crit3_", i, "to", i + 1)
+                sg_col_names_crit1[i] <- base::paste0("sg_crit1_", i, "to", i + 1)
+                sg_col_names_crit2[i] <- base::paste0("sg_crit2_", i, "to", i + 1)
+                sg_col_names_crit3[i] <- base::paste0("sg_crit3_", i, "to", i + 1)
             }
 
         }

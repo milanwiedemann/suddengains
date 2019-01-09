@@ -8,7 +8,7 @@
 #' @return A wide dataset with values for \code{var_name} around the sudden gain.
 #' @export
 
-extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, include_s0_extract = FALSE) {
+extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, include_s0_extract = FALSE, combine_datasets = TRUE) {
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
@@ -56,7 +56,17 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
     base::names(data_extract)[base::names(data_extract) == "x_n_post3"] <- paste0("sg_", extract_var_name, "_n3")
 
     # # making sure that all implicitly missing values are explicit
-    data_extract %>%
+    data_extract_join <- data_extract %>%
       tidyr::complete(id_var_name = id_list)
+
+    if (combine_datasets == TRUE) {
+        data %>%
+            left_join(data_extract_join, by = id_var_name)
+
+    } else if (combine_datasets == FALSE) {
+        data_extract_join
+    }
+
+
 
     }

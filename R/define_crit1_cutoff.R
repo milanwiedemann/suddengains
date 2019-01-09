@@ -64,5 +64,6 @@ define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_
                  sdiff = sdiff,
                  crit1_cutoff = crit1_cutoff)
 
+  # Return output as list in console
   output
 }

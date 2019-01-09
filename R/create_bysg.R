@@ -8,13 +8,18 @@
 #' @return A dataset with one row per sudden gain.
 #' @export
 
-create_bysg <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, identify_sg_1to2 = FALSE, include_s0_extract = FALSE) {
+create_bysg <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = .25, identify_sg_1to2 = FALSE, include_s0_extract = FALSE) {
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
 
   # Run identify_sg function first to find positions of gain
-  data_crit123 <- suddengains::identify_sg(data = data, id_var_name = id_var_name, cutoff = cutoff, sg_var_list = sg_var_list, identify_sg_1to2 = identify_sg_1to2)
+  data_crit123 <- suddengains::identify_sg(data = data,
+                                           id_var_name = id_var_name,
+                                           cutoff = cutoff,
+                                           sg_var_list = sg_var_list,
+                                           sg_crit2_pct = sg_crit2_pct,
+                                           identify_sg_1to2 = identify_sg_1to2)
 
   # Set missings to zero to calculate in next step
   data_crit123[base::is.na(data_crit123)] <- 0
@@ -43,7 +48,8 @@ create_bysg <- function(data, cutoff, id_var_name, sg_var_list, tx_start_var_nam
                                               id_var_name = "id_sg",
                                               extract_var_list = sg_var_list,
                                               extract_var_name = sg_var_name,
-                                              include_s0_extract = include_s0_extract
+                                              include_s0_extract = include_s0_extract,
+                                              combine_datasets = FALSE
                                               )
 
   # Combine the extracted scores with the bysg dataset

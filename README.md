@@ -209,9 +209,5 @@ plot_sg(data = bysg,
 ![](https://dl.dropboxusercontent.com/s/0vvsrchayci92e9/sg-bdi-everage-change-pds.png)
 
 ## TODO
-- [x] For identify sg  / sl add option to specify which variables from data set should be used and then send these variables to a rename function so that all the code is independent from variable names in a specific data set
-- [x] For define_crit1_cutoff(), add option to input internal consistency by hand, so that it doesn't have to be calculated on item by item data
-- [x] Add sample data set, this should include cases where critical value gets adjusted due to missing values (BDI data with cut-off 7?)
-- [x] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
-- [ ] Add function or description to export bysg or byperson dataset into other formats (SPSS, Excel, csv).
+- [ ] In a future update variables names created by the function create_bysg and create_byperson will indicate whether they are referring to sudden gains (sg) or sudden losses (sl)
 

@@ -8,7 +8,7 @@
 #' @return A wide dataset with values for \code{var_name} around the sudden gain.
 #' @export
 
-extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, include_s0_extract = FALSE, combine_datasets = TRUE) {
+extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, start_numbering = 1, add_to_data = TRUE) {
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
@@ -19,13 +19,7 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
     select(id_var_name, sg_session_n, extract_var_list)
 
   # Rename variables so I can use my extract approach
-
-  if (include_s0_extract == FALSE) {
-    data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = 1)
-  } else if (include_s0_extract == TRUE) {
-    data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = 0)
-  }
-
+  data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = start_numbering)
 
 
   data_extract <- data_extract %>%
@@ -59,11 +53,11 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
     data_extract_join <- data_extract %>%
       tidyr::complete(id_var_name = id_list)
 
-    if (combine_datasets == TRUE) {
+    if (add_to_data == TRUE) {
         data %>%
             left_join(data_extract_join, by = id_var_name)
 
-    } else if (combine_datasets == FALSE) {
+    } else if (add_to_data == FALSE) {
         data_extract_join
     }
 

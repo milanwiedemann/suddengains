@@ -1,7 +1,9 @@
 #' Number of between session intervals analysed for sudden gains
 #'
+#' @description I want  this to be different fomr title. Number of between session intervals analysed for sudden gains
+#'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
-#' @param cutoff A number specifying the cut-off for criterion 1.
+#' @param sg_crit1_cutoff A number specifying the cut-off for criterion 1.
 #' @param id_var_name A string of the id variable name.
 #' @param sg_var_list TODO.
 #' @param analysed Logical, indicating whether sum of analysed or not analysed intervals should be reported. Analysed referrs to whether all three sudden gains criteria could be applied to a certain interval.
@@ -12,7 +14,7 @@
 
 count_intervals <-
     function(data,
-             cutoff,
+             sg_crit1_cutoff,
              id_var_name,
              sg_var_list,
              identify_sg_1to2 = FALSE) {
@@ -20,7 +22,7 @@ count_intervals <-
         # First, run identify_sg() function to identify sudden gains and store results
         data_sg <- suddengains::identify_sg(
             data = data,
-            cutoff = cutoff,
+            sg_crit1_cutoff = sg_crit1_cutoff,
             id_var_name = id_var_name,
             sg_var_list = sg_var_list,
             identify_sg_1to2 = identify_sg_1to2

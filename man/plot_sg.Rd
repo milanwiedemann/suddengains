@@ -5,12 +5,12 @@
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
 plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
-  ylabel, xlabel = "Session")
+  ylab, xlab = "Session")
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
 
-\item{ylabel}{A string as label for y-Axis.}
+\item{ylab}{A string as label for y-Axis.}
 
 \item{start}{A string of the variable name with scores at the start of treatment.}
 

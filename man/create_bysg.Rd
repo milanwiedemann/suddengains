@@ -2,24 +2,52 @@
 % Please edit documentation in R/create_bysg.R
 \name{create_bysg}
 \alias{create_bysg}
-\title{Create a dataset with one gain per row, referred to as \code{bysg} dataset}
+\title{Create a data set with one row for each sudden gain/loss}
 \usage{
-create_bysg(data, cutoff, id_var_name, sg_var_list, tx_start_var_name,
-  tx_end_var_name, sg_var_name, identify_sg_1to2 = FALSE,
-  include_s0_extract = FALSE)
+create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
+  tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = 0.25,
+  identify = "sg", identify_sg_1to2 = FALSE)
 }
 \arguments{
-\item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
+\item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
 
-\item{cutoff}{A number specifying the cut-off for criterion 1.}
+\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.}
 
-\item{id_var_name}{A string of the id variable name.}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{sg_var_name}{A string of the sudden gains variable name.}
+\item{sg_var_list}{List, specifying the variable names of each measurement point sequentially.}
+
+\item{tx_start_var_name}{String, specifying the variable name of the first measurement point of the intervention.}
+
+\item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
+
+\item{sg_var_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
+
+\item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.}
+
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.}
+
+\item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 }
 \value{
-A dataset with one row per sudden gain.
+A wide data set with one row per sudden gain/loss.
 }
 \description{
-Create a dataset with one gain per row, referred to as \code{bysg} dataset
+This function produces a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
+The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
+}
+\examples{
+create_bysg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            id_var_name = "id",
+            tx_start_var_name = "bdi_s1",
+            tx_end_var_name = "bdi_s12",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+                            "bdi_s4", "bdi_s5", "bdi_s6",
+                            "bdi_s7", "bdi_s8", "bdi_s9",
+                            "bdi_s10", "bdi_s11", "bdi_s12"),
+            sg_var_name = "bdi")
+
 }

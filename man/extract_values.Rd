@@ -5,16 +5,16 @@
 \title{Extract variables around the sudden gain}
 \usage{
 extract_values(data, id_var_name, extract_var_list, extract_var_name,
-  include_s0_extract = FALSE)
+  start_numbering = 1, add_to_data = TRUE)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.}
 
 \item{id_var_name}{ID string, this is either normal id (for byperson datasets) or sg_id (for bysg datasets)}
 
-\item{include_s0_extract}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
-
 \item{sg_var_list}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
+
+\item{include_s0_extract}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
 }
 \value{
 A wide dataset with values for \code{var_name} around the sudden gain.

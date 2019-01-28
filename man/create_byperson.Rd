@@ -2,22 +2,57 @@
 % Please edit documentation in R/create_byperson.R
 \name{create_byperson}
 \alias{create_byperson}
-\title{Create a dataset with one gain per person (at the moment this selects the earliest gain), referred to as \code{byperson} dataset}
+\title{Create a data set with one gain per person}
 \usage{
-create_byperson(data, cutoff, id_var_name, sg_var_list, tx_start_var_name,
-  tx_end_var_name, sg_var_name, multiple_sg_select = "first",
-  identify_sg_1to2 = FALSE, include_s0_extract = FALSE)
+create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
+  tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select,
+  identify = "sg", sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE)
 }
 \arguments{
-\item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
+\item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
 
-\item{multiple_sg_select}{String indicating whether to select the \code{earliest}, \code{latest} or \code{largest}  \code{smallest} sudden gain if multiple gains per person. when two sudden gains are the same size and smalles or largest is selcted then the first gain of the will be selected using a secon filter command}
+\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.}
 
-\item{bysg_data}{A \code{bysg} dataset.}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
+
+\item{sg_var_list}{List, specifying the variable names of each measurement point sequentially.}
+
+\item{tx_start_var_name}{String, specifying the variable name of the first measurement point of the intervention.}
+
+\item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
+
+\item{sg_var_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
+
+\item{multiple_sg_select}{String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
+Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.}
+
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.}
+
+\item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.}
+
+\item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 }
 \value{
-A full dataset with all participants, the earliest gain per person
+A wide data set with one row per case in \code{data}.
 }
 \description{
-Create a dataset with one gain per person (at the moment this selects the earliest gain), referred to as \code{byperson} dataset
+This function produces a wide data set with one row for each case in \code{data}.
+The data set includes variables indicating whether each case experienced a sudden gain/loss or not,
+values around the period of each gain/loss, and descriptives.
+For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
+}
+\examples{
+create_byperson(data = sgdata,
+                sg_crit1_cutoff = 7,
+                id_var_name = "id",
+                tx_start_var_name = "bdi_s1",
+                tx_end_var_name = "bdi_s12",
+                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+                                "bdi_s4", "bdi_s5", "bdi_s6",
+                                "bdi_s7", "bdi_s8", "bdi_s9",
+                                "bdi_s10", "bdi_s11", "bdi_s12"),
+                sg_var_name = "bdi",
+                multiple_sg_select = "largest")
 }

@@ -4,7 +4,7 @@
 \alias{plot_sg_group}
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
-plot_sg_group(data, var_group, group_levels, group_labels, ylabel, start,
+plot_sg_group(data, var_group, group_levels, group_labels, ylab, start,
   pre3, pre2, pre1, post1, post2, post3, end)
 }
 \arguments{
@@ -14,7 +14,7 @@ plot_sg_group(data, var_group, group_levels, group_labels, ylabel, start,
 
 \item{group_labels}{A c() of string as labels for groups ordered consistent with numbering of group in variable.}
 
-\item{ylabel}{A string as label for y-Axis.}
+\item{ylab}{A string as label for y-Axis.}
 
 \item{start}{A string of the variable name with scores at the start of treatment.}
 

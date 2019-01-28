@@ -6,9 +6,8 @@
 
 select_cases <- function(data, id_var_name, sg_var_list, method, min_sess_num, return_id_lgl = FALSE) {
 
-
   data_select <- data %>%
-    select(id_var_name, sg_var_list) %>%
+    dplyr::select(id_var_name, sg_var_list) %>%
     dplyr::arrange(!! rlang::sym(id_var_name))
 
 
@@ -19,35 +18,35 @@ select_cases <- function(data, id_var_name, sg_var_list, method, min_sess_num, r
     data_pattern <- !is.na(data_select[ , 2:(length(sg_var_list) + 1)])
 
     # Get list of IDs
-    id_list <- select(data_select, id_var_name)
+    id_list <- dplyr::select(data_select, id_var_name)
 
     # Combine IDs with data pattern
-    data_pattern <- cbind(id_list, data_pattern)
+    data_pattern <- base::cbind(id_list, data_pattern)
 
 
 
     # LALALA test this
     data_out <- data_pattern %>%
-      as.tibble() %>%
-      unite("pattern", sg_var_list, sep = " ") %>%
-      mutate(sg_pattern_1 = str_detect(pattern, "TRUE TRUE TRUE TRUE"),
-             sg_pattern_2 = str_detect(pattern, "TRUE TRUE TRUE FALSE TRUE"),
-             sg_pattern_3 = str_detect(pattern, "TRUE FALSE TRUE TRUE TRUE"),
-             sg_pattern_4 = str_detect(pattern, "TRUE FALSE TRUE TRUE FALSE TRUE"),
+        tibble::as.tibble() %>%
+        tidyr::unite("pattern", sg_var_list, sep = " ") %>%
+        dplyr::mutate(sg_pattern_1 = stringr::str_detect(pattern, "TRUE TRUE TRUE TRUE"),
+             sg_pattern_2 = stringr::str_detect(pattern, "TRUE TRUE TRUE FALSE TRUE"),
+             sg_pattern_3 = stringr::str_detect(pattern, "TRUE FALSE TRUE TRUE TRUE"),
+             sg_pattern_4 = stringr::str_detect(pattern, "TRUE FALSE TRUE TRUE FALSE TRUE"),
 
-             sg_select = if_else(condition = (sg_pattern_1 == TRUE | sg_pattern_2 == TRUE | sg_pattern_3 == TRUE | sg_pattern_4 == TRUE), TRUE, FALSE)) %>%
+             sg_select = dplyr::if_else(condition = (sg_pattern_1 == TRUE | sg_pattern_2 == TRUE | sg_pattern_3 == TRUE | sg_pattern_4 == TRUE), TRUE, FALSE)) %>%
       # Only
-      select(id_var_name, sg_select)
+        dplyr::select(id_var_name, sg_select)
 
     } else if (method == "min_sess") {
 
     # LALALA test this
 
-    data_select$nvalid <- rowSums(!is.na(data_select[ , 2:(length(sg_var_list) + 1)]))
+    data_select$nvalid <- base::rowSums(!is.na(data_select[ , 2:(length(sg_var_list) + 1)]))
 
     data_out <- data_select %>%
-      mutate(sg_select = if_else(nvalid >= min_sess_num, TRUE, FALSE)) %>%
-      select(id_var_name, sg_select)
+        dplyr::mutate(sg_select = dplyr::if_else(nvalid >= min_sess_num, TRUE, FALSE)) %>%
+        dplyr::select(id_var_name, sg_select)
     }
 
 
@@ -58,7 +57,7 @@ select_cases <- function(data, id_var_name, sg_var_list, method, min_sess_num, r
     } else if (return_id_lgl == FALSE) {
 
       data_out <- data %>%
-        left_join(data_out, by = id_var_name)
+          dplyr::left_join(data_out, by = id_var_name)
 
       # Return data out, with all input variables from data and lgl select variabl
       return(data_out)

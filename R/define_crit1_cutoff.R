@@ -43,13 +43,13 @@ define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_
 
   # Calculate Cronbach's alpha at baseline using psych package
   if (base::exists("reliability") == TRUE) {
-    alpha_pre <- reliability
+    reliability <- reliability
   } else if (base::exists("reliability") == FALSE) {
-  alpha_pre <- psych::alpha(data_item)[[1]]$raw_alpha
+  reliability <- psych::alpha(data_item)[[1]]$raw_alpha
   }
 
   # Calculate standard error of measurement
-  standard_error_measurement <- standard_deviation_pre * base::sqrt(1 - alpha_pre)
+  standard_error_measurement <- standard_deviation_pre * base::sqrt(1 - reliability)
 
   # Calculate the standard error of the differences between two test scores
   sdiff <- base::sqrt(2 * (standard_error_measurement ^ 2))
@@ -59,7 +59,7 @@ define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_
 
   output <- list(mean_change_score = mean_change_score,
                  standard_deviation_pre = standard_deviation_pre,
-                 alpha_pre = alpha_pre,
+                 reliability = reliability,
                  standard_error_measurement = standard_error_measurement,
                  sdiff = sdiff,
                  sg_crit1_cutoff = sg_crit1_cutoff)

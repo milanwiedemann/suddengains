@@ -55,14 +55,14 @@ define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_
   sdiff <- base::sqrt(2 * (standard_error_measurement ^ 2))
 
   # Calculate RCI using mean change
-  crit1_cutoff <- (mean_change_score / sdiff) * 1.96
+  sg_crit1_cutoff <- (mean_change_score / sdiff) * 1.96
 
   output <- list(mean_change_score = mean_change_score,
                  standard_deviation_pre = standard_deviation_pre,
                  alpha_pre = alpha_pre,
                  standard_error_measurement = standard_error_measurement,
                  sdiff = sdiff,
-                 crit1_cutoff = crit1_cutoff)
+                 sg_crit1_cutoff = sg_crit1_cutoff)
 
   # Return output as list in console
   output

@@ -1,20 +1,41 @@
-#' Create a dataset with one gain per row, referred to as \code{bysg} dataset
+#' Create a data set with one row for each sudden gain/loss
 #'
-#' @param data A dataset in wide format with an id variable and the sudden gains variables.
-#' @param sg_crit1_cutoff A number specifying the cut-off for criterion 1.
-#' @param id_var_name A string of the id variable name.
-#' @param sg_var_name A string of the sudden gains variable name.
-
-#' @return A dataset with one row per sudden gain.
+#' @description This function produces a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
+#' The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
+#'
+#' @param data A data set in wide format including an ID variable and variables for each measurement point.
+#' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
+#' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
+#' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
+#' @param sg_var_name String, specifying the name of the measure used to identify sudden gains/losses.
+#' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
+#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.
+#' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+#' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
+#'
+#' @return A wide data set with one row per sudden gain/loss.
 #' @export
-
+#'
+#' @examples create_bysg(data = sgdata,
+#'             sg_crit1_cutoff = 7,
+#'             id_var_name = "id",
+#'             tx_start_var_name = "bdi_s1",
+#'             tx_end_var_name = "bdi_s12",
+#'             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+#'                             "bdi_s4", "bdi_s5", "bdi_s6",
+#'                             "bdi_s7", "bdi_s8", "bdi_s9",
+#'                             "bdi_s10", "bdi_s11", "bdi_s12"),
+#'             sg_var_name = "bdi")
+#'
 create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = .25, identify = "sg", identify_sg_1to2 = FALSE) {
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
 
   # Run identify_sg function first to find positions of gain
-
   if (identify == "sg") {
       data_crit123 <- suddengains::identify_sg(data = data,
                                                id_var_name = id_var_name,
@@ -75,7 +96,6 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     dplyr::left_join(data_extract, by = "id_sg")
 
   # Calculate descriptive sudden gains variables ----
-
   # Create varialbe names for mutate command here
   tx_change <- paste("sg", sg_var_name, "tx", "change", sep = "_")
   var_x_n <- paste("sg", sg_var_name, "n", sep = "_")
@@ -120,7 +140,6 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     dplyr::left_join(sg_reversal, by = "id_sg")
 
   # Return tibble
-
   data_bysg %>%
       tibble::as.tibble() %>%
       dplyr::arrange(!! rlang::sym(id_var_name))

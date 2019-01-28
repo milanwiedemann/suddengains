@@ -1,7 +1,9 @@
 #' Rename variables for extracting variables in sudden gians package
 #'
 #' @param data Dataframe in wide format
-#' @param rename_var_list List of variables measuring first construct
+#' @param rename_var_list List of variables to be ranamed
+#' @param new_var_str TODO
+#' @param start_numbering TODO
 #' @return Dataframe in wide format with renamed variables
 #' @export
 

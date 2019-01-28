@@ -12,12 +12,16 @@ extract_values(data, id_var_name, extract_var_list, extract_var_name,
 
 \item{id_var_name}{ID string, this is either normal id (for byperson datasets) or sg_id (for bysg datasets)}
 
-\item{sg_var_list}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
+\item{extract_var_list}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
 
-\item{include_s0_extract}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
+\item{extract_var_name}{TODO}
+
+\item{start_numbering}{TODO}
+
+\item{add_to_data}{TODO}
 }
 \value{
-A wide dataset with values for \code{var_name} around the sudden gain.
+A wide dataset with values for \code{extract_var_name} around the sudden gain.
 }
 \description{
 Extract variables around the sudden gain

@@ -12,7 +12,6 @@
 #' @param sg_var_name String, specifying the name of the measure used to identify sudden gains/losses.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
-#' TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #'

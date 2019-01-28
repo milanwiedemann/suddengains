@@ -11,6 +11,9 @@ describe_sg(data, sg_data_structure)
 
 \item{sg_data_structure}{String indicating whether the provided data is a \code{bysg} or \code{byperson} dataset.}
 }
+\value{
+todo
+}
 \description{
 Some numbers (percentages) will be different depending wich dataset is selected, because if multiple gains in bysg only one will be selected for further analyses.
 }

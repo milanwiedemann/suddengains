@@ -1,15 +1,11 @@
 #' Plot average magnitude of sudden gain or another variable around the sudden gain
 #'
 #' @param data A \code{bysg} or \code{byperson} dataset.
-#' @param ylab A string as label for y-Axis.
-#' @param start A string of the variable name with scores at the start of treatment.
-#' @param pre3 A string of the pre3 variable name.
-#' @param pre2 A string of the pre2 variable name.
-#' @param pre1 A string of the pre1 variable name.
-#' @param post1 A string of the post1 variable name.
-#' @param post2 A string of the post2 variable name.
-#' @param post3 A string of the post3 variable name.
-#' @param end A string of the variable name with scores at the end of treatment.
+#' @param tx_start_var_name TODO
+#' @param tx_end_var_name TODO
+#' @param sg_pre_post_var_list TODO, list of all 3 variable names befor and 3 after the gain
+#' @param ylab TODO
+#' @param xlab TODO
 #' @return A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
 #' @export
 

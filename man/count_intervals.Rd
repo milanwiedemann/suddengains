@@ -17,11 +17,13 @@ count_intervals(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 \item{sg_var_list}{TODO.}
 
 \item{identify_sg_1to2}{Logical, indicating whether first session gains should be included, this is only possible if baseline scores are included in \code{sg_var_list}.}
-
-\item{analysed}{Logical, indicating whether sum of analysed or not analysed intervals should be reported. Analysed referrs to whether all three sudden gains criteria could be applied to a certain interval.}
 }
 \value{
-Count of how many intervals were analysed for all three sudden gains criteria.
+List with values for:
+total_between_sess_intervals,
+total_between_sess_intervals_sg,
+sg_sess_sum_analysed,
+sg_sess_sum_not_analysed
 }
 \description{
 I want  this to be different fomr title. Number of between session intervals analysed for sudden gains

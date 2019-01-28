@@ -10,23 +10,15 @@ plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
 
-\item{ylab}{A string as label for y-Axis.}
+\item{tx_start_var_name}{TODO}
 
-\item{start}{A string of the variable name with scores at the start of treatment.}
+\item{tx_end_var_name}{TODO}
 
-\item{pre3}{A string of the pre3 variable name.}
+\item{sg_pre_post_var_list}{TODO, list of all 3 variable names befor and 3 after the gain}
 
-\item{pre2}{A string of the pre2 variable name.}
+\item{ylab}{TODO}
 
-\item{pre1}{A string of the pre1 variable name.}
-
-\item{post1}{A string of the post1 variable name.}
-
-\item{post2}{A string of the post2 variable name.}
-
-\item{post3}{A string of the post3 variable name.}
-
-\item{end}{A string of the variable name with scores at the end of treatment.}
+\item{xlab}{TODO}
 }
 \value{
 A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.

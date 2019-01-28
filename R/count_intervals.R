@@ -6,10 +6,13 @@
 #' @param sg_crit1_cutoff A number specifying the cut-off for criterion 1.
 #' @param id_var_name A string of the id variable name.
 #' @param sg_var_list TODO.
-#' @param analysed Logical, indicating whether sum of analysed or not analysed intervals should be reported. Analysed referrs to whether all three sudden gains criteria could be applied to a certain interval.
 #' @param identify_sg_1to2 Logical, indicating whether first session gains should be included, this is only possible if baseline scores are included in \code{sg_var_list}.
 
-#' @return Count of how many intervals were analysed for all three sudden gains criteria.
+#' @return List with values for:
+#' total_between_sess_intervals,
+#' total_between_sess_intervals_sg,
+#' sg_sess_sum_analysed,
+#' sg_sess_sum_not_analysed
 #' @export
 
 count_intervals <-

@@ -209,5 +209,5 @@ plot_sg(data = bysg,
 ![](https://dl.dropboxusercontent.com/s/0vvsrchayci92e9/sg-bdi-everage-change-pds.png)
 
 ## TODO
-- [ ] In a future update variables names created by the function create_bysg and create_byperson will indicate whether they are referring to sudden gains (sg) or sudden losses (sl)
+- [ ] In a future update variables names created by the functions create_bysg and create_byperson will indicate whether they are referring to sudden gains (sg) or sudden losses (sl)
 

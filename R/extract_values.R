@@ -2,10 +2,12 @@
 #'
 #' @param data A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.
 #' @param id_var_name ID string, this is either normal id (for byperson datasets) or sg_id (for bysg datasets)
-#' @param sg_var_list A string of the variable name which numbers numbers need to get extracted around the sudden gain.
-#' @param include_s0_extract A string of the variable name which numbers numbers need to get extracted around the sudden gain.
+#' @param extract_var_list A string of the variable name which numbers numbers need to get extracted around the sudden gain.
+#' @param extract_var_name TODO
+#' @param start_numbering TODO
+#' @param add_to_data TODO
 
-#' @return A wide dataset with values for \code{var_name} around the sudden gain.
+#' @return A wide dataset with values for \code{extract_var_name} around the sudden gain.
 #' @export
 
 extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, start_numbering = 1, add_to_data = TRUE) {

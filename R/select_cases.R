@@ -1,6 +1,11 @@
 #' Select sample with enough available data to identify sudden gains
 #'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
+#' @param id_var_name TODO
+#' @param sg_var_list TODO
+#' @param method String, select method  \code{pattern} or  \code{min_sess}
+#' @param min_sess_num Numberic, minimum of avalable sessions
+#' @param return_id_lgl Logical, if ture return ids with variable indicating whether case meets the selection method
 #' @return A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 #' @export
 
@@ -9,8 +14,6 @@ select_cases <- function(data, id_var_name, sg_var_list, method, min_sess_num, r
   data_select <- data %>%
     dplyr::select(id_var_name, sg_var_list) %>%
     dplyr::arrange(!! rlang::sym(id_var_name))
-
-
 
   if (method == "pattern") {
 
@@ -48,7 +51,6 @@ select_cases <- function(data, id_var_name, sg_var_list, method, min_sess_num, r
         dplyr::mutate(sg_select = dplyr::if_else(nvalid >= min_sess_num, TRUE, FALSE)) %>%
         dplyr::select(id_var_name, sg_select)
     }
-
 
   if (return_id_lgl == TRUE) {
   # Return data out, only id with TRUE or FALSE

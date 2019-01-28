@@ -3,6 +3,7 @@
 #' Some numbers (percentages) will be different depending wich dataset is selected, because if multiple gains in bysg only one will be selected for further analyses.
 #' @param data A \code{bysg} or \code{byperson} dataset.
 #' @param sg_data_structure String indicating whether the provided data is a \code{bysg} or \code{byperson} dataset.
+#' @return todo
 #' @export
 
 describe_sg <- function(data, sg_data_structure) {

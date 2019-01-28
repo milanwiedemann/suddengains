@@ -29,10 +29,16 @@
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"),
 #'             sg_var_name = "bdi")
 #'
-create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = .25, identify = "sg", identify_sg_1to2 = FALSE) {
+create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
+
+    # Check arguments
+    identify <- match.arg(identify)
+
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
+
+
 
   # Run identify_sg function first to find positions of gain
   if (identify == "sg") {
@@ -118,7 +124,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   sg_reversal <- data_bysg %>%
     dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
-    suddengains::rename_sg_vars(sg_var_list, start_numbering = 0) %>%
+    suddengains:::rename_sg_vars(sg_var_list, start_numbering = 0) %>%
     tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
     dplyr::mutate(time_num = as.numeric(str_extract(time_str, "\\d+"))) %>%
     dplyr::select(-time_str) %>%

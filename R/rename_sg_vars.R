@@ -5,7 +5,6 @@
 #' @param new_var_str TODO
 #' @param start_numbering TODO
 #' @return Dataframe in wide format with renamed variables
-#' @export
 
 rename_sg_vars <- function(data, rename_var_list, new_var_str = "temp_var_", start_numbering = 1){
 

@@ -4,7 +4,7 @@
 \alias{describe_sg}
 \title{Show descriptives for the sudden gains datasets}
 \usage{
-describe_sg(data, sg_data_structure)
+describe_sg(data, sg_data_structure = c("bysg", "byperson"))
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}

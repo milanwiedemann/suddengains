@@ -36,7 +36,10 @@
 #'                 multiple_sg_select = "largest")
 create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select, identify = "sg", sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
 
-  data_bysg <- create_bysg(data = data,
+    # Check arguments
+    identify <- match.arg(identify)
+
+    data_bysg <- create_bysg(data = data,
                            sg_crit1_cutoff = sg_crit1_cutoff,
                            id_var_name = id_var_name,
                            tx_start_var_name = tx_start_var_name,

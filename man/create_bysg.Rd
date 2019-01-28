@@ -6,7 +6,7 @@
 \usage{
 create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
   tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = 0.25,
-  identify = "sg", identify_sg_1to2 = FALSE)
+  identify = c("sg", "sl"), identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}

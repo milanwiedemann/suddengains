@@ -6,8 +6,12 @@
 #' @return todo
 #' @export
 
-describe_sg <- function(data, sg_data_structure) {
+describe_sg <- function(data, sg_data_structure = c("bysg", "byperson")) {
 
+    # Check arguments for sg_data_structure
+    sg_data_structure <- match.arg(sg_data_structure)
+
+    # Create list to write results
     results <- list()
 
     if (sg_data_structure == "bysg") {
@@ -58,7 +62,6 @@ describe_sg <- function(data, sg_data_structure) {
 
     }
 
-
-
+    # Return descriptives
     print(results)
 }

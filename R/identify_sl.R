@@ -1,20 +1,27 @@
-#' @title Identify sudden losses in a wide dataset.
+#' @title Identify sudden losses.
 #'
-#' @description Function identify sudden losses in a wide dataset. automatically checks whether first session losses are calculated by analysing the variable names looking for session with 0 (intake) before a letter.
+#' @description Function to identify sudden losses in longitudinal data structured in wide format.
 #'
-#' @param data A dataset in wide format with an id variable and the sudden losses variables.
-#' @param id_var_name A string of the id variable name.
-#' @param sg_var_list A LIST of the variable names for sudden losses analysis, if first session losses should be analysed simply add session 0 at the beginning of the list.
-#' @param sg_crit1_cutoff A number specifying the cut-off for criterion 1.
-#' @param sg_crit2_pct Numeric, percentage of drop second criteria sudden losses.
-#' @param identify_sg_1to2 Logical value to indicate whether first session losses should be in dataset,
-#' simply include s0 before before all the other variables in sg_var_list, it will simply change the way
-#' variables are named but this is super important for calculating which session sudden gain is in and also for extracting stuff later.
-#' @param crit123_details Logical, if crit123_details = TRUE a dataframe will be written to global environment.
-#' @param name_crit123_details String, if crit123_details = TRUE a dataframe will with the name of this argument will be written to the global environment.
+#' @param data A data set in wide format including an ID variable and variables for each measurement point.
+#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
+#' @param sg_crit1_cutoff Numeric, specifying the negative cut-off value to be used for the first sudden losses criterion (see Examples below).
+#' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden losses criterion.
+#' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+#' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
+#' @param crit123_details Logical, if set to \code{TRUE} a dataframe will be wriiten to the global environment with information about which of the three criteria are met for each session to session interval for all cases.
+#' @param name_crit123_details String, specifying the name of the dataframe produced if \code{crit123_details} is set to \code{TRUE}.
 
-
-#' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+#' @return A wide data set indicating whether sudden losses are present for each session to session interval for all cases in \code{data}.
+#' @examples identify_sl(data = sgdata,
+#'             # Negative cut-off value to identify sudden losses
+#'             sg_crit1_cutoff = -7,
+#'             id_var_name = "id",
+#'             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+#'                             "bdi_s4", "bdi_s5", "bdi_s6",
+#'                             "bdi_s7", "bdi_s8", "bdi_s9",
+#'                             "bdi_s10", "bdi_s11", "bdi_s12"),
+#'            identify_sg_1to2 = FALSE)
 #' @export
 
 identify_sl <-
@@ -22,7 +29,7 @@ identify_sl <-
              id_var_name,
              sg_var_list,
              sg_crit1_cutoff,
-             sg_crit2_pct,
+             sg_crit2_pct = .25,
              identify_sg_1to2 = FALSE,
              crit123_details = FALSE,
              name_crit123_details = "data_crit123_details") {

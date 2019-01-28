@@ -1,26 +1,33 @@
-#' @title Identify sudden gains in a wide dataset.
+#' @title Identify sudden gains.
 #'
-#' @description Function identify sudden gains in a wide dataset. automatically checks whether first session gains are calculated by analysing the variable names looking for session with 0 (intake) before a letter.
+#' @description Function to identify sudden gains in longitudinal data structured in wide format.
 #'
-#' @param data A dataset in wide format with an id variable and the sudden gains variables.
-#' @param cutoff A number specifying the cut-off for criterion 1.
-#' @param id_var_name A string of the id variable name.
-#' @param sg_var_list A LIST of the variable names for sudden gains analysis, if first session gains should be analysed simply add session 0 at the beginning of the list.
-#' @param sg_crit2_pct Numeric, percentage of drop second criteria sudden gains
-#' @param identify_sg_1to2 Logical value to indicate whether first session gains should be in dataset,
-#' simply include s0 before before all the other variables in sg_var_list, it will simply change the way
-#' variables are named but this is super important for calculating which session sudden gain is in and also for extracting stuff later
-#' @param crit123_details Logical, if crit123_details = TRUE a dataframe will be written to global environment
+#' @param data A data set in wide format including an ID variable and variables for each measurement point.
+#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
+#' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains criterion.
+#' @param identify_sg_1to2 Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
+#' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
+#' @param crit123_details Logical, if set to \code{TRUE} a dataframe will be wriiten to the global environment with information about which of the three criteria are met for each session to session interval for all cases.
+#' @param name_crit123_details String, specifying the name of the dataframe produced if \code{crit123_details} is set to \code{TRUE}.
 
-
-#' @return A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+#' @return A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.
+#' @examples identify_sg(data = sgdata,
+#'             sg_crit1_cutoff = 7,
+#'             id_var_name = "id",
+#'             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+#'                             "bdi_s4", "bdi_s5", "bdi_s6",
+#'                             "bdi_s7", "bdi_s8", "bdi_s9",
+#'                             "bdi_s10", "bdi_s11", "bdi_s12"),
+#'            identify_sg_1to2 = FALSE)
 #' @export
 
 identify_sg <-
     function(data,
-             cutoff,
              id_var_name,
              sg_var_list,
+             sg_crit1_cutoff,
              sg_crit2_pct = .25,
              identify_sg_1to2 = FALSE,
              crit123_details = FALSE,
@@ -61,7 +68,7 @@ identify_sg <-
             for (col_j in 3:(base::ncol(data_loop) - 1)) {
 
                 # Check 1st sudden gains criterion
-                crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= cutoff)
+                crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit1_cutoff)
 
                 # Check 2nd sudden gains criterion
                 crit2[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit2_pct * data_loop[row_i, col_j - 1])

@@ -24,15 +24,7 @@
 #'            identify_sg_1to2 = FALSE)
 #' @export
 
-identify_sl <-
-    function(data,
-             id_var_name,
-             sg_var_list,
-             sg_crit1_cutoff,
-             sg_crit2_pct = .25,
-             identify_sg_1to2 = FALSE,
-             crit123_details = FALSE,
-             name_crit123_details = "data_crit123_details") {
+identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, identify_sg_1to2 = FALSE, crit123_details = FALSE, name_crit123_details = "data_crit123_details") {
 
         # Select data for identifying sudden losses
         # Only ID variable and sudden losses variables needed
@@ -46,21 +38,20 @@ identify_sl <-
             dplyr::select(2:base::ncol(data_select))
 
         # Create one empty dataframe for each sudden losses criterion
-        crit1 <- base::data.frame(base::matrix(
-            NA,
-            nrow = base::nrow(data_loop),
-            ncol = base::ncol(data_loop) - 3
-        ))
-        crit2 <- base::data.frame(base::matrix(
-            NA,
-            nrow = base::nrow(data_loop),
-            ncol = base::ncol(data_loop) - 3
-        ))
-        crit3 <- base::data.frame(base::matrix(
-            NA,
-            nrow = base::nrow(data_loop),
-            ncol = base::ncol(data_loop) - 3
-        ))
+        crit1 <- base::data.frame(base::matrix(NA,
+                                               nrow = base::nrow(data_loop),
+                                               ncol = base::ncol(data_loop) - 3)
+                                  )
+
+        crit2 <- base::data.frame(base::matrix(NA,
+                                               nrow = base::nrow(data_loop),
+                                               ncol = base::ncol(data_loop) - 3)
+                                  )
+
+        crit3 <- base::data.frame(base::matrix(NA,
+                                               nrow = base::nrow(data_loop),
+                                               ncol = base::ncol(data_loop) - 3)
+                                  )
 
         # Iterate through all rows
         for (row_i in 1:base::nrow(data_loop)) {
@@ -83,8 +74,10 @@ identify_sl <-
                 # Define pre and post mean, sdn and number of available data points for 3rd criterion
                 mean_pre <- base::mean(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
                 mean_post <- base::mean(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+
                 sd_pre <- stats::sd(base::as.matrix(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
                 sd_post <- stats::sd(base::as.matrix(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+
                 sum_n_pre <- base::sum(!is.na(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
                 sum_n_post <- base::sum(!is.na(data_loop[row_i, base::c(post_indices)]), na.rm = T)
 
@@ -140,7 +133,6 @@ identify_sl <-
                 sg_col_names_crit2[i] <- base::paste0("sl_crit2_", i, "to", i + 1)
                 sg_col_names_crit3[i] <- base::paste0("sl_crit3_", i, "to", i + 1)
             }
-
         }
 
         # Name sudden losses variables of main datafile

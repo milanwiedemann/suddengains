@@ -10,15 +10,17 @@ extract_values(data, id_var_name, extract_var_list, extract_var_name,
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.}
 
-\item{id_var_name}{ID string, this is either normal id (for byperson datasets) or sg_id (for bysg datasets)}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
 \item{extract_var_list}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
 
-\item{extract_var_name}{TODO}
+\item{extract_var_name}{String, specifying the name of the measure being used to extract values from.}
 
-\item{start_numbering}{TODO}
+\item{start_numbering}{Numeric, set to by default 1.
+Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.}
 
-\item{add_to_data}{TODO}
+\item{add_to_data}{Logical, if set to \code{TRUE}, the extracted values are added as new variables to the input dataset.
+If set to false, only the ID variable and all extracted values will be returned.}
 }
 \value{
 A wide dataset with values for \code{extract_var_name} around the sudden gain.

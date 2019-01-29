@@ -5,23 +5,31 @@
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
 plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
-  ylab, xlab = "Session")
+  ylab, xlab, group_var_name = NULL, group_levels = NULL,
+  group_labels = NULL)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
 
-\item{tx_start_var_name}{TODO}
+\item{tx_start_var_name}{String, specifying the variable name of the first measurement point of the intervention.}
 
-\item{tx_end_var_name}{TODO}
+\item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
 
-\item{sg_pre_post_var_list}{TODO, list of all 3 variable names befor and 3 after the gain}
+\item{sg_pre_post_var_list}{List, specifying the variable names of the 3 measurement points before,
+and the 3 after the sudden gain, for the measure being plotted.}
 
-\item{ylab}{TODO}
+\item{ylab}{String, specifying the label for the y axis i.e. the name of the measure being plotted.}
 
-\item{xlab}{TODO}
+\item{xlab}{String, specifying the label for the x axis, e.g. \code{"Session"}.}
+
+\item{group_var_name}{String, specifying the variable name of the group variable.}
+
+\item{group_levels}{List, specifying the levels as numeric for the groups in \code{group_var_name}.}
+
+\item{group_labels}{List, specifying the label names as strings for the groups in \code{group_var_name}.}
 }
 \value{
-A plot of the average gain around or changes in scores of another questionnaire around the sudden gain.
+A plot of the mean values around the sudden gain, for the measure specified.
 }
 \description{
 Plot average magnitude of sudden gain or another variable around the sudden gain

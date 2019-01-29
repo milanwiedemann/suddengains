@@ -2,8 +2,22 @@
 #'
 #' Some numbers (percentages) will be different depending wich dataset is selected, because if multiple gains in bysg only one will be selected for further analyses.
 #' @param data A \code{bysg} or \code{byperson} dataset.
-#' @param sg_data_structure String indicating whether the provided data is a \code{bysg} or \code{byperson} dataset.
-#' @return todo
+#' @param sg_data_structure String, indicating whether the input data is a \code{bysg} or \code{byperson} dataset.
+#' @return A list, showing basic descriptive statistics for sudden gains within the dataset specified.
+#' Note that some numbers (e.g. percentages) will be different depending which dataset is selected, because where a participant has multiple gains, only one is selected for the \code{byperson} dataset.
+#' The list includes values for:
+#'   \itemize{
+#'     \item{total_n}{: number of rows in input dataset}
+#'     \item{sg_total_n}{: total number of sudden gains}
+#'     \item{sg_n}{: number of people who experienced a sudden gain (byperson dataset only)}
+#'     \item{sg_pct}{: percentage of people in the input dataset who experienced a sudden gain}
+#'     \item{sg_multiple_n}{: number of people who experienced a sudden gain (byperson dataset only)}
+#'     \item{sg_multiple_pct}{: percentage of people in the input dataset who experienced more than one sudden gain}
+#'     \item{sg_reversal_n}{: number of sudden gains that later meets criteria for a reversal}
+#'     \item{sg_reversal_pct}{: percentage of sudden gains that later meets criteria for a reversal}
+#'     \item{sg_magnitude_m}{: mean magnitude of the sudden gains observed}
+#'     \item{sg_magnitude_sd}{: standard deviation of the magnitude of the sudden gains observed}
+#'     }
 #' @export
 
 describe_sg <- function(data, sg_data_structure = c("bysg", "byperson")) {

@@ -10,6 +10,7 @@
 #' @param sg_pre_post_var_list List, specifying the variable names of the 3 measurement points before,
 #' and the 3 after the sudden gain, for the measure being plotted.
 #' @param group_var_name String, specifying the variable name of the group variable.
+#' @param colour String, specifying the colour(s) of the plot. Default is ...
 #' @param group_levels List, specifying the levels as numeric for the groups in \code{group_var_name}.
 #' @param group_labels List, specifying the label names as strings for the groups in \code{group_var_name}.
 #' @param ylab String, specifying the label for the y axis i.e. the name of the measure being plotted.
@@ -17,15 +18,42 @@
 #' @return A plot of the mean values around the sudden gain, for the measure specified.
 #' @export
 
-plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list, ylab, xlab, group_var_name = NULL, group_levels = NULL, group_labels = NULL) {
+plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list, ylab, xlab, colour = NULL, group_var_name = NULL, group_levels = NULL, group_labels = NULL) {
 
-        # Save variable names to individual objecs
+        # Save variable names to individual objects
         pre3 <- sg_pre_post_var_list[1]
         pre2 <- sg_pre_post_var_list[2]
         pre1 <- sg_pre_post_var_list[3]
         post1 <- sg_pre_post_var_list[4]
         post2 <- sg_pre_post_var_list[5]
         post3 <- sg_pre_post_var_list[6]
+
+        # # Set colour
+        # if (is.null(colour)) {
+        #
+        #     colour <- c(
+        #                 "#440154FF",
+        #                 "#39568CFF",
+        #                 "#1F968BFF",
+        #                 "#73D055FF",
+        #                 "#481567FF",
+        #                 "#33638DFF",
+        #                 "#20A387FF",
+        #                 "#95D840FF",
+        #                 "#482677FF",
+        #                 "#2D708EFF",
+        #                 "#29AF7FFF",
+        #                 "#B8DE29FF",
+        #                 "#453781FF",
+        #                 "#287D8EFF",
+        #                 "#3CBB75FF",
+        #                 "#DCE319FF",
+        #                 "#404788FF",
+        #                 "#238A8DFF",
+        #                 "#55C667FF",
+        #                 "#FDE725FF"
+        #                 )
+        #     }
 
         # Check if group vars are specified
         if (is.null(group_var_name) && is.null(group_levels) && is.null(group_labels)) {
@@ -94,7 +122,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
         # Add means
         ggplot2::stat_summary(fun.y = mean,
                               geom = "point",
-                              # colour = "#00BFC4",
+                              # colour = colour,
                               position = position_dodge(width = 0.2)) +
 
         # Add 95pct CIs
@@ -102,7 +130,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
                               geom = "errorbar",
                               fun.args = list(mult = 1.96),
                               width = 0.1,
-                              # colour = "#00BFC4",
+                              # colour = colour,
                               position = position_dodge(width = 0.2)) +
 
         # Add dotted line from start value to pre-pre-pre gain value
@@ -111,7 +139,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
                               fun.y = mean,
                               geom = "line",
                               linetype = 3,
-                              # colour = "#00BFC4",
+                              # colour = colour,
                               position = position_dodge(width = 0.2)) +
 
         ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% c("pre3_fun", "pre2_fun", "pre1_fun",
@@ -120,7 +148,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
                               fun.y = mean,
                               geom = "line",
                               linetype = 1,
-                              # colour = "#00BFC4",
+                              # colour = colour,
                               position = position_dodge(width = 0.2)) +
 
         # Add dotted line from post-post-post gain value to end value
@@ -129,7 +157,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
                               fun.y = mean,
                               geom = "line",
                               linetype = 3,
-                              # colour = "#00BFC4",
+                              # colour = colour,
                               position = position_dodge(width = 0.2)) +
 
         # Add scale for x axis
@@ -145,5 +173,7 @@ plot_sg <- function(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_li
 
         # Make plot look APAish
         ggplot2::theme_classic() +
-        ggplot2::theme(text = element_text(size = 12))
+        ggplot2::theme(text = element_text(size = 12)) +
+
+        scale_colour_viridis_d(option = "D")
     }

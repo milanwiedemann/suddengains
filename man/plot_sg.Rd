@@ -5,8 +5,8 @@
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
 plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
-  ylab, xlab, group_var_name = NULL, group_levels = NULL,
-  group_labels = NULL)
+  ylab, xlab, colour = NULL, group_var_name = NULL,
+  group_levels = NULL, group_labels = NULL)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
@@ -21,6 +21,8 @@ and the 3 after the sudden gain, for the measure being plotted.}
 \item{ylab}{String, specifying the label for the y axis i.e. the name of the measure being plotted.}
 
 \item{xlab}{String, specifying the label for the x axis, e.g. \code{"Session"}.}
+
+\item{colour}{String, specifying the colour(s) of the plot. Default is ...}
 
 \item{group_var_name}{String, specifying the variable name of the group variable.}
 

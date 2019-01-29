@@ -32,5 +32,7 @@ and the 3 after the sudden gain, for the measure being plotted.}
 A plot of the mean values around the sudden gain, for the measure specified.
 }
 \description{
-Plot average magnitude of sudden gain or another variable around the sudden gain
+Generates a plot of the mean values around the sudden gain.
+This can be used to plot the primary outcome or secondary measures.
+The parameters starting with "group" allow to plot the average gain magnitude by group.
 }

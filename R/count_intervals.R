@@ -3,7 +3,6 @@
 #' @description Calculates the number of between-session intervals present in the data set, the number that could feasibly be analysed for sudden gains (given the pattern of any missing data), and the number of gain intervals found.
 #'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
-#' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
@@ -17,11 +16,11 @@
 #'     }
 #' @export
 
-count_intervals <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, identify_sg_1to2 = FALSE) {
+count_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE) {
 
     # First, run identify_sg() function to identify sudden gains and store results
     data_sg <- suddengains::identify_sg(data = data,
-                                        sg_crit1_cutoff = sg_crit1_cutoff,
+                                        sg_crit1_cutoff = 1,
                                         id_var_name = id_var_name,
                                         sg_var_list = sg_var_list,
                                         identify_sg_1to2 = identify_sg_1to2

@@ -4,13 +4,10 @@
 \alias{count_intervals}
 \title{Number of between session intervals analysed for sudden gains}
 \usage{
-count_intervals(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  identify_sg_1to2 = FALSE)
+count_intervals(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
-
-\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.}
 
 \item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 

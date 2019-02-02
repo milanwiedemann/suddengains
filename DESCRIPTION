@@ -25,5 +25,8 @@ Suggests:
     ggplot2 (>= 2.2.1),
     psych (>= 1.7.8),
     reshape2 (>= 1.4.3),
-    readr (>= 1.1.1)
+    readr (>= 1.1.1),
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

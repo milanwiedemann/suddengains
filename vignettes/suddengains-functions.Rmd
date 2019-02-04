@@ -6,7 +6,7 @@ author:
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{An example using the suddengains R package to analyse sudden gains}
+  %\VignetteIndexEntry{Using the suddengains R package to analyse sudden gains}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: ["references.bib", "r-references.bib"]
@@ -31,8 +31,10 @@ library(DT)
 
 # Introduction
 
-This vignette shows how the suddengains R package can be used to help with the methodology of a research study looking at sudden gains as described by @Tang1999.
-More about the theoretical background of this package and why it might be helpful can be found in our preprint XXX.
+This vignette shows how the suddengains R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
+More about the theoretical background of this package and why it might be helpful can be found in our preprint @R-suddengains.
+
+The following describes the data and the main functions of the package trying to follow the sequence of a regular sudden gains study.
 
 # Data
 
@@ -109,6 +111,7 @@ select_cases(data = sgdata,
 ```
 
 The following code shows how to select cases based on the `"pattern"` method and save them as an object called `sgdata_select`.
+<!-- TODO: ADD TABLE WITH MORE DETAILS ABOUT WHAT THE PATTERN IS. -->
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,
@@ -123,6 +126,7 @@ sgdata_select <- select_cases(data = sgdata,
 
 The `count_intervals` function provides a summary of between session intervals that were and weren't analysed for sudden gains.
 For more info see the help file of this function.
+Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
 
 ```{r}
 count_intervals(data = sgdata_select,
@@ -134,6 +138,8 @@ count_intervals(data = sgdata_select,
 ```
 
 # Define cut-off
+
+This function follows suggestions from @Stiles2003 using the RCT [@Jacobson1991].
 
 ```{r}
 # Test define_crit1_cutoff function ----
@@ -168,6 +174,7 @@ This will allow to identify sudden gains after session 1, provided data from the
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
+            sg_crit2_pct = .25,
             id_var_name = "id",
             sg_var_list = c("bdi_s0", 
                             "bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -178,7 +185,7 @@ identify_sg(data = sgdata,
 ```
 
 To identify sudden losses, you can use the `identify_sl` function.
-All arguments are the same as in the `identif_ysg` function, but the `sg_crit1_cutoff` has to be set to be a negative value.
+All arguments are the same as in the `identify_sg` function, but the `sg_crit1_cutoff` has to be set to be a negative value.
 
 ```{r, eval = FALSE}
 identify_sl(data = sgdata,
@@ -187,7 +194,8 @@ identify_sl(data = sgdata,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
-                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12")
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = TRUE
             )
 ```
 
@@ -352,32 +360,57 @@ datatable(bysg_rq,
 
 # Plots of average change around sudden gains
 
-## Depression symptoms
+The plots are created using the *ggplot* R-package [@R-ggplot2] in five main steps:
 
-```{r}
+1. Means for all time points and points
+1. 95% confidence intervals for all time points
+1. Dotted line between the first two values
+1. Straight line betwenn all 5 values around the gain
+1. Dotted line between the last two values
+
+Each plot will automatically return a warning message about how many missing values were present for each of these five components in the above order.
+
+```{r, fig.show = 'hold'}
+# Create plot of average change in depression symptoms around the gain
 plot_sg_bdi <- plot_sg(data = bysg,
                        tx_start_var_name = "bdi_s1",
                        tx_end_var_name = "bdi_s12",
                        sg_pre_post_var_list = c("sg_bdi_2n", "sg_bdi_1n", "sg_bdi_n",
                                                 "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
-                       ylab = "BDI", xlab = "Session")
+                       ylab = "BDI", xlab = "Session",
+                       colour = "#239b89ff")
 
-plot_sg_bdi
-```
-
-## A secondary outcome or process measure
-
-```{r}
+# Create plot of average change in rumination around the gain
 plot_sg_rq <- plot_sg(data = bysg_rq,
                        tx_start_var_name = "rq_s1",
                        tx_end_var_name = "rq_s12",
                        sg_pre_post_var_list = c("sg_rq_2n", "sg_rq_1n", "sg_rq_n",
                                                 "sg_rq_n1", "sg_rq_n2", "sg_rq_n3"),
-                       ylab = "RQ", xlab = "Session")
+                       ylab = "RQ", xlab = "Session",
+                       colour = "#440154FF") 
 
-plot_sg_rq
+
+# It is possible apply other ggplot2 functions to the plot now,
+# e.g. y axis scale, or x axis labels ...
+
+plot_sg_bdi <- plot_sg_bdi + 
+               coord_cartesian(ylim = c(0, 50))
+
+plot_sg_rq <- plot_sg_rq + 
+              scale_x_discrete(labels = c("First", "n-2", "n-1", "n",
+                                          "n+1", "n+2", "n+3", "Last"))
+
+plot_sg_bdi
+plot_sg_rq 
 ```
 
+
 # Summarise some descriptive statistics
+
+```{r}
+# Describe sg ----
+describe_sg(data = bysg, 
+            sg_data_structure = "bysg")
+```
 
 # References

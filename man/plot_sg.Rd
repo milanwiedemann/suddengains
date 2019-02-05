@@ -15,7 +15,7 @@ plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
 
 \item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
 
-\item{sg_pre_post_var_list}{List, specifying the variable names of the 3 measurement points before,
+\item{sg_pre_post_var_list}{Vector, specifying the variable names of the 3 measurement points before,
 and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{ylab}{String, specifying the label for the y axis i.e. the name of the measure being plotted.}
@@ -26,9 +26,9 @@ and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{group_var_name}{String, specifying the variable name of the group variable.}
 
-\item{group_levels}{List, specifying the levels as numeric for the groups in \code{group_var_name}.}
+\item{group_levels}{Vector, specifying the levels as numeric for the groups in \code{group_var_name}.}
 
-\item{group_labels}{List, specifying the label names as strings for the groups in \code{group_var_name}.}
+\item{group_labels}{Vector, specifying the label names as strings for the groups in \code{group_var_name}.}
 }
 \value{
 A plot of the mean values around the sudden gain, for the measure specified.

@@ -4,7 +4,7 @@
 #'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
-#' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
+#' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #' @return List with values for:

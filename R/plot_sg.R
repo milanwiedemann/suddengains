@@ -7,12 +7,12 @@
 #' @param data A \code{bysg} or \code{byperson} dataset.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
-#' @param sg_pre_post_var_list List, specifying the variable names of the 3 measurement points before,
+#' @param sg_pre_post_var_list Vector, specifying the variable names of the 3 measurement points before,
 #' and the 3 after the sudden gain, for the measure being plotted.
 #' @param group_var_name String, specifying the variable name of the group variable.
 #' @param colour String, specifying the colour(s) of the plot. Default is ...
-#' @param group_levels List, specifying the levels as numeric for the groups in \code{group_var_name}.
-#' @param group_labels List, specifying the label names as strings for the groups in \code{group_var_name}.
+#' @param group_levels Vector, specifying the levels as numeric for the groups in \code{group_var_name}.
+#' @param group_labels Vector, specifying the label names as strings for the groups in \code{group_var_name}.
 #' @param ylab String, specifying the label for the y axis i.e. the name of the measure being plotted.
 #' @param xlab String, specifying the label for the x axis, e.g. \code{"Session"}.
 #' @return A plot of the mean values around the sudden gain, for the measure specified.

@@ -14,7 +14,7 @@ identify_sl(data, id_var_name, sg_var_list, sg_crit1_cutoff,
 
 \item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{sg_var_list}{List, specifying the variable names of each measurement point sequentially.}
+\item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
 \item{sg_crit1_cutoff}{Numeric, specifying the negative cut-off value to be used for the first sudden losses criterion (see Examples below).}
 

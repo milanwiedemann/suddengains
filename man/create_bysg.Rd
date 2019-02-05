@@ -15,7 +15,7 @@ create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 
 \item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{sg_var_list}{List, specifying the variable names of each measurement point sequentially.}
+\item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
 \item{tx_start_var_name}{String, specifying the variable name of the first measurement point of the intervention.}
 

@@ -8,7 +8,7 @@
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
-#' @param sg_var_list List, specifying the variable names of each measurement point sequentially.
+#' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
 #' @param sg_var_name String, specifying the name of the measure used to identify sudden gains/losses.

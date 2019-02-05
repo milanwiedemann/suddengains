@@ -12,7 +12,7 @@ extract_values(data, id_var_name, extract_var_list, extract_var_name,
 
 \item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{extract_var_list}{A string of the variable name which numbers numbers need to get extracted around the sudden gain.}
+\item{extract_var_list}{Vector, specifying the variable names of session to session scores to extract from.}
 
 \item{extract_var_name}{String, specifying the name of the measure being used to extract values from.}
 

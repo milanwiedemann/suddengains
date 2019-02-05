@@ -2,7 +2,7 @@
 #'
 #' @param data A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
-#' @param extract_var_list A string of the variable name which numbers numbers need to get extracted around the sudden gain.
+#' @param extract_var_list Vector, specifying the variable names of session to session scores to extract from.
 #' @param extract_var_name String, specifying the name of the measure being used to extract values from.
 #' @param start_numbering Numeric, set to by default 1.
 #' Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.

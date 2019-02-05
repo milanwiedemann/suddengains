@@ -62,6 +62,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   data_crit123[base::is.na(data_crit123)] <- 0
 
 
+  # Start creating bysg dataset
   data_bysg <- data_crit123 %>%
     dplyr::select(!! rlang::sym(id_var_name), dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
     tidyr::gather(key = "session", value = "sg_crit123", -!! rlang::sym(id_var_name)) %>%
@@ -77,8 +78,23 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     dplyr::select(!! rlang::sym(id_var_name), id_sg, everything()) %>%
     dplyr::ungroup()
 
+  # Select variables for further calculations from data
+
+  # First check if tx_start_var_name and tx_end_var_name are in sg_var_list, if not add them
+  if (tx_start_var_name %in% sg_var_list == TRUE) {
+      sg_var_select <- c(id_var_name, sg_var_list)
+  } else if (tx_start_var_name %in% sg_var_list == FALSE) {
+      sg_var_select <- c(id_var_name, tx_start_var_name, sg_var_list)
+  }
+
+  if (tx_end_var_name %in% sg_var_list == TRUE) {
+      sg_var_select <- c(sg_var_select)
+  } else if (tx_end_var_name %in% sg_var_list == FALSE) {
+      sg_var_select <- c(sg_var_select, tx_end_var_name)
+  }
+
   data_bysg <- data_bysg %>%
-      dplyr::left_join(dplyr::select(data_in, id_var_name, sg_var_list), by = id_var_name)
+      dplyr::left_join(dplyr::select(data_in, sg_var_select), by = id_var_name)
 
   # Set start value for numbering to extract the correct values around the gain
   if (identify_sg_1to2 == TRUE) {

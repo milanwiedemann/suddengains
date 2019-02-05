@@ -8,23 +8,23 @@
 #' @return A list with all calculated variables using modified formula for RCI including cut-off
 #' @export
 
-define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_end_var_name, reliability) {
+define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_name, data_item = NULL, reliability = NULL) {
 
   if (base::is.null(data_item) == TRUE & base::is.null(reliability) == TRUE) {
-    stop("No information about relaiaiaiaibility given. \n
+    stop("No information about reliability given. \n
          One of the two arguments must be used: \n
          1. 'data_item', provide item by item data of baseline questionnaire to calculate Cronbach's alpha \n
          2. 'reliability' set the reliability manually.")
   }
 
   if (base::is.null(data_item) == FALSE & base::is.null(reliability) == FALSE) {
-    stop("You can only use one argument to define the relaiaiaiaibility that will be used to calculate the cut_off. \n
+    stop("You can only use one argument to define the reliability that will be used to calculate the cut off. \n
          Set either 'data_item or the 'reliability' argument to NULL.")
   }
 
-  if (reliability > 1 | reliability < 0) {
-    stop("Relaiaiaiaibility has to be between 0 and 1!")
-  }
+  # if (base::is.null(data_item) == TRUE & reliability > 1 | reliability < 0) {
+  #   stop("Reliability has to be between 0 and 1!")
+  # }
 
   # TODO ADD ARGUMENT TO SPECIFY RELIABILITY OF SCALE, so that this doesnt have to be calculated on item by item data
 
@@ -42,9 +42,9 @@ define_crit1_cutoff <- function(data_sessions, data_item, tx_start_var_name, tx_
   standard_deviation_pre <- stats::sd(pre_scores, na.rm = TRUE)
 
   # Calculate Cronbach's alpha at baseline using psych package
-  if (base::exists("reliability") == TRUE) {
+  if (base::is.null(reliability) == FALSE) {
     reliability <- reliability
-  } else if (base::exists("reliability") == FALSE) {
+  } else if (base::is.null(reliability) == TRUE) {
   reliability <- psych::alpha(data_item)[[1]]$raw_alpha
   }
 

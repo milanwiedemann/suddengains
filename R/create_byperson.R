@@ -19,7 +19,9 @@
 #' TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.
 #' @param multiple_sg_select String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
-
+#' @param multiple_sg_select_start Numeric, specifying the first session to be included in the \code{multiple_sg_select} filter.
+#' @param multiple_sg_select_end Numeric, specifying the last session to be included in the \code{multiple_sg_select} filter.
+#'
 #' @return  A wide data set with one row per case in \code{data}.
 #' @export
 #'
@@ -34,9 +36,10 @@
 #'                                 "bdi_s10", "bdi_s11", "bdi_s12"),
 #'                 sg_var_name = "bdi",
 #'                 multiple_sg_select = "largest")
-create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select, identify = "sg", sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
+create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select = c("first", "last", "smalles", "largest"), multiple_sg_select_start, multiple_sg_select_end, identify = c("sg", "sl"), sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
 
     # Check arguments
+    multiple_sg_select <- match.arg(multiple_sg_select)
     identify <- match.arg(identify)
 
     data_bysg <- create_bysg(data = data,
@@ -57,6 +60,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
     bysg_data_select <- data_bysg %>%
       dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+      dplyr::filter(sg_session_n >= multiple_sg_select_start) %>%
+      dplyr::filter(sg_session_n <= multiple_sg_select_end) %>%
       dplyr::filter(sg_session_n == min(sg_session_n)) %>%
       dplyr::ungroup()
 
@@ -65,6 +70,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
       bysg_data_select <- data_bysg %>%
         dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
         dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+        dplyr::filter(sg_session_n >= multiple_sg_select_start) %>%
+        dplyr::filter(sg_session_n <= multiple_sg_select_end) %>%
         dplyr::filter(sg_session_n == max(sg_session_n)) %>%
         dplyr::ungroup()
 
@@ -73,6 +80,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
         bysg_data_select <- data_bysg %>%
           dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
           dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+          dplyr::filter(sg_session_n >= multiple_sg_select_start) %>%
+          dplyr::filter(sg_session_n <= multiple_sg_select_end) %>%
           dplyr::filter(sg_magnitude == min(sg_magnitude)) %>%
           dplyr::filter(sg_session_n == min(sg_session_n)) %>%
           dplyr::ungroup()
@@ -82,11 +91,13 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
           bysg_data_select <- data_bysg %>%
             dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
             dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+            dplyr::filter(sg_session_n >= multiple_sg_select_start) %>%
+            dplyr::filter(sg_session_n <= multiple_sg_select_end) %>%
             dplyr::filter(sg_magnitude == max(sg_magnitude)) %>%
             dplyr::filter(sg_session_n == min(sg_session_n)) %>%
             dplyr::ungroup()
 
-          }
+        }
 
 
   # Join dataset

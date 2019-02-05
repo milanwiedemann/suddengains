@@ -5,8 +5,10 @@
 \title{Create a data set with one gain per person}
 \usage{
 create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select,
-  identify = "sg", sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE)
+  tx_start_var_name, tx_end_var_name, sg_var_name,
+  multiple_sg_select = c("first", "last", "smalles", "largest"),
+  multiple_sg_select_start, multiple_sg_select_end, identify = c("sg",
+  "sl"), sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -25,6 +27,10 @@ create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 
 \item{multiple_sg_select}{String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.}
+
+\item{multiple_sg_select_start}{Numeric, specifying the first session to be included in the \code{multiple_sg_select} filter.}
+
+\item{multiple_sg_select_end}{Numeric, specifying the last session to be included in the \code{multiple_sg_select} filter.}
 
 \item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
 TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.}

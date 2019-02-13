@@ -281,8 +281,7 @@ byperson_first <- create_byperson(data = sgdata,
                                                   "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                                   sg_var_name = "bdi",
                                   identify_sg_1to2 = FALSE,
-                                  multiple_sg_select = "first"
-                                  )
+                                  multiple_sg_select = "first")
 ```
 
 ```{r, echo = FALSE}

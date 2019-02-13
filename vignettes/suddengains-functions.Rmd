@@ -1,12 +1,12 @@
 ---
-title: "Using the suddengains R package to analyse sudden gains"
+title: "A detailed example of how to use the suddengains R package"
 author: 
   - name: "Milan Wiedemann"
   - name: "Graham R Thew"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using the suddengains R package to analyse sudden gains}
+  %\VignetteIndexEntry{A detailed example of how to use the suddengains R package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: ["references.bib", "r-references.bib"]
@@ -31,14 +31,15 @@ library(DT)
 
 # Introduction
 
-This vignette shows how the suddengains R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
-More about the theoretical background of this package and why it might be helpful can be found in our preprint @R-suddengains.
+This vignette shows how the *suddengains* R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
+More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
 
-The following describes the data and the main functions of the package trying to follow the sequence of a regular sudden gains study.
+The following vignette describes the data and the main functions of the package following the main steps of a regular sudden gains study.
 
 # Data
 
 Below are two interactive tables of the depression symptoms and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
+The data is automatically loaded together with the package when running `library(suddengains)`.
 
 ## Depression symptoms
 
@@ -82,7 +83,9 @@ datatable(sgdata_rq,
           )
 ```
 
-# Select cases
+# Preparation of data
+
+## Select cases
 
 The package offers two methods to select cases for the sudden gains studies.
 
@@ -111,7 +114,16 @@ select_cases(data = sgdata,
 ```
 
 The following code shows how to select cases based on the `"pattern"` method and save them as an object called `sgdata_select`.
-<!-- TODO: ADD TABLE WITH MORE DETAILS ABOUT WHAT THE PATTERN IS. -->
+This function goes through the data and selects all cases with at least one of the following data patterns.
+
+| Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
+|:------------:|-------|-------|-------|-------|-------|-------|
+| 1.           |   x   | **X** |   x   |   x   |       |       |
+| 2.           |   x   |   x   | **X** |       |   x   |       |
+| 3.           |   x   |       | **X** |   x   |   x   |       |
+| 4.           |   x   |       | **X** |   x   |       |   x   |
+
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; Empty cell = Missing data. Bold **X** represent the pregain session for each "pattern".
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,
@@ -137,7 +149,9 @@ count_intervals(data = sgdata_select,
                 identify_sg_1to2 = FALSE)
 ```
 
-# Define cut-off
+# Identification of sudden gains
+
+## Define cut-off
 
 This function follows suggestions from @Stiles2003 using the RCT [@Jacobson1991].
 
@@ -151,7 +165,7 @@ define_crit1_cutoff(data_sessions = sgdata,
 
 ```
 
-# Identify sudden gains and losses
+## Identify sudden gains and losses
 
 To simply identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
 The functions return a data frame indicating for each between session interval whether a sudden gain/loss was identified.
@@ -199,7 +213,7 @@ identify_sl(data = sgdata,
             )
 ```
 
-# Create datasets
+# Create datasets for further analysis
 
 ## All gains: One row per gain
 In the suddengains R package we refer to this as "bysg" (by sudden gain).
@@ -262,13 +276,11 @@ datatable(bysl,
           )
 ```
 
-
-
 ## All cases: One row per case
 
-In the suddengains R package we refer to this as byperson (by person).
+In the *suddengains* R package we refer to this as byperson (by person).
 This data set includes all cases with and all cases without sudden gains.
-If multiple sudden gains were experienced by a cases, the argument `multiple_sg_select = "first"` can be used to specify which gain to select, in this case the first. 
+If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` can be used to specify which gain to select, in the example below the first gain will be slected.
 
 ```{r}
 byperson_first <- create_byperson(data = sgdata,
@@ -295,6 +307,10 @@ datatable(byperson_first,
               )
           )
 ```
+
+Depending on the research questions it might be of interest to select the largest gain, see the example below.
+Notice how the selected gain for ID 5 is different depending on how to handle multiple gains.
+The first gain experienced by ID 5 is from session 3 to 4, whereas the largest gain was experienced from session 8 to 9.
 
 ```{r}
 byperson_largest <- create_byperson(data = sgdata,
@@ -367,9 +383,7 @@ The plots are created using the *ggplot* R-package [@R-ggplot2] in five main ste
 1. Straight line betwenn all 5 values around the gain
 1. Dotted line between the last two values
 
-Each plot will automatically return a warning message about how many missing values were present for each of these five components in the above order.
-
-```{r, fig.show = 'hold'}
+```{r}
 # Create plot of average change in depression symptoms around the gain
 plot_sg_bdi <- plot_sg(data = bysg,
                        tx_start_var_name = "bdi_s1",
@@ -398,11 +412,21 @@ plot_sg_bdi <- plot_sg_bdi +
 plot_sg_rq <- plot_sg_rq + 
               scale_x_discrete(labels = c("First", "n-2", "n-1", "n",
                                           "n+1", "n+2", "n+3", "Last"))
+```
 
+Each plot will automatically return a warning message about how many missing values were present for each of these five components mentiond above.
+The error messages from the BDI plot can be interpreted the following way:
+
+1. *Means for all time points and points*: There are **12 missing values** overall 
+1. *95% confidence intervals for all time points:* There are **12 missing values** overall
+1. *Dotted line between the first two values:* There are **8 missing values** at session `tx_start_var_name` and the *first* variable specified in `sg_pre_post_var_list` together
+1. *Straight line betwenn all 5 values around the gain:* There are **11 missing values** together in all variables specified in `sg_pre_post_var_list`
+1. *Dotted line between the last two values:* There is **1 missing values** at session `tx_end_var_name` and the *last* variable specified in `sg_pre_post_var_list`
+
+```{r, fig.show = 'hold'}
 plot_sg_bdi
 plot_sg_rq 
 ```
-
 
 # Summarise some descriptive statistics
 

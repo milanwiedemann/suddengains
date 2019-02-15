@@ -2,25 +2,44 @@
 % Please edit documentation in R/identify_sg.R
 \name{identify_sg}
 \alias{identify_sg}
-\title{Identify sudden gains in a wide dataset.}
+\title{Identify sudden gains.}
 \usage{
-identify_sg(data, cutoff, id_var_name, sg_var_name,
-  identify_sg_1to2 = FALSE)
+identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
+  sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE,
+  crit123_details = FALSE,
+  name_crit123_details = "data_crit123_details")
 }
 \arguments{
-\item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
+\item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
 
-\item{cutoff}{A number specifying the cut-off for criterion 1.}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{id_var_name}{A string of the id variable name.}
+\item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
-\item{sg_var_name}{A string of the sudden gains variable name.}
+\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.}
 
-\item{identify_sg_1to2}{Logical value to indicate whether first session gains should be in dataset, works only if s0 variable is provided, default is TRUE}
+\item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains criterion.}
+
+\item{identify_sg_1to2}{Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
+If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
+
+\item{crit123_details}{Logical, if set to \code{TRUE} a dataframe will be wriiten to the global environment with information about which of the three criteria are met for each session to session interval for all cases.}
+
+\item{name_crit123_details}{String, specifying the name of the dataframe produced if \code{crit123_details} is set to \code{TRUE}.}
 }
 \value{
-A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.
 }
 \description{
-Function identify sudden gains in a wide dataset. automatically checks whether first session gains are calculated by analysing the variable names looking for session with 0 (intake) before a letter.
+Function to identify sudden gains in longitudinal data structured in wide format.
+}
+\examples{
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+                            "bdi_s4", "bdi_s5", "bdi_s6",
+                            "bdi_s7", "bdi_s8", "bdi_s9",
+                            "bdi_s10", "bdi_s11", "bdi_s12"),
+           identify_sg_1to2 = FALSE)
 }

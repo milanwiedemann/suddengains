@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
-[![last-change](https://img.shields.io/badge/Last%20change-2018--10--27-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
-[![suddengains-version](https://img.shields.io/badge/Version-0.0.1-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--02--13-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![suddengains-version](https://img.shields.io/badge/Version-0.0.2.0000-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.3-brightgreen.svg)](https://cran.r-project.org/)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)
 
@@ -8,8 +8,7 @@ Identify sudden gains based on the criteria outlined by [Tang and DeRubeis (1999
 It applies all three criteria to a dataset while adjusting for missing values. 
 It calculates further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
-It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain). 
-These [slides](https://docs.google.com/presentation/d/14OcAsBl8PIoIw5-eNO-_1uAXqfLHQcEGBT7M0MUWE9E/edit?usp=sharing) illustrate some functions of the `suddengains` package and some help how to use the package are shown below.
+It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain).
 
 ## Installation
 
@@ -19,10 +18,10 @@ First, you need to install the devtools package to download the `suddengains` pa
 install.packages("devtools")
 ```
 
-To install the current stable version of `suddengains` package:
+To install the developement version of `suddengains` package:
 
 ```r
-devtools::install_github(repo = "milanwiedemann/suddengains")
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
 ```
 
 ## Overview of the functions
@@ -30,100 +29,171 @@ devtools::install_github(repo = "milanwiedemann/suddengains")
 The `suddengains` package comes with a range of features which can be categorised into:
 
 1. Functions to identify and extract sudden gains:
-  - `select_cases()`: work in progress
-  - `define_crit1_cutoff()`: stable
+  - `select_cases()`: stable
+  - `define_crit1_cutoff()`: testing
   - `identify_sg()`: stable
-  - `identify_sl()`: stable
+  - `identify_sl()`: testing
   
 2. Functions to create datasets for further analysis:
-  - `extract_scores()`: work in progress
-  - `create_byperson()`: work in progress
-  - `create_bysg()`: work in progress
+  - `extract_values()`: stable
+  - `create_byperson()`: stable
+  - `create_bysg()`: stable
 
 3. Helper functions to visualise and report sudden gains:
   - `count_intervals()`: stable
   - `plot_sg()`: stable
   - `plot_sg_group()`: stable
+  - `describe_sg()`: testing
 
 ## How to use `suddengains`
 
 Here are a few examples how to use the `suddengains` package.
-You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
-
-First, load all required packages and datasets:
+First, load all required packages and datasets.
+This package also contains two sample data sets with made up data to test and illustrate the functions.
 
 ```r
 # Load packages ----
-library(tidyverse) # Bundle of useful packages for manipulating data
-library(haven) # Package to load SPSS datafiles in R
-library(suddengains) # Identify and extract sudden gains
+library(devtools)
+library(tidyverse)
+library(suddengains)
 
 # Load data ----
-# Load data with weekly measures from a csv file:
-# Select ID variable, all weekly measures and a variable with the end of treatment scores
-data <- read_csv("~/data.csv") %>% 
-  select(id, measure_s0:measure_s12, measure_end) 
+# Two example data sets get loaded together with the suddengains package
 
-# Load data with weekly measures from a SPSS file:
-data <- read_sav("~/data.sav") %>% 
-  select(id, measure_s0:measure_s12, measure_end) 
-
-
-# Load item-by-item data for sudden gains measure from baseline
-# Select all item-by-item variables for the sudden gains measure
-data_s0 <- read_csv("~/data_measure_01_s0.csv") %>% 
-  select(measure_01_item1_s0:measure_01_item22_s0)
+# The data sets have identical data, "sgdata_bad" has inconsistent variable names 
+View(sgdata)
+View(sgdata_bad)
 ```
 
-Then define the cut-off value for the first sudden gains criterion using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004)
-and select all cases in the dataset that provide enough information to apply the sudden gains criteria.
+The cut-off value for the first sudden gains criterion can be calculated using the reliable change index based on suggestions from [Stiles et al. (2003)](http://psycnet.apa.org/buy/2003-01069-004).
+The function has the option to calculate Chronbach's a based in item-by-item data if provided, or alternatively the reliability of the measure can be specified.
 
 ```r
 # Define cut-off for first sudden gains criterion using the reliable change index
-define_crit1_cutoff(data_sessions = data, 
-                    data_item = data_s0)
-
-# Select all patients providing enough data to identify sudden gains
-data_s0 <- select_cases(data_s0) %>%
-  filter(sg_select == 1) %>%
-  select(id) %>%
-  left_join(data_s0, by = "id")
+define_crit1_cutoff(data_sessions = sgdata,
+                    data_item = NULL,
+                    tx_start_var_name = "bdi_s0",
+                    tx_end_var_name = "bdi_s12",
+                    reliability = 0.93)
 ```
 
-Now, you can use the `create_bysg()` and `create_byperson()` functions to create the datasets.
+Next, select all cases for the sudden gains analysis. 
+The package currently implements two methods to select cases:
+1. Select all cases with a minimum number of repeated measurements available: `method = "min_sess"`
+1. Select all that provide enough data to apply the three sudden gains criteria: `method = "pattern"`
+
+```r
+# 1. Select all cases with a minimum of available values over the whole course of repeated measurements
+select_cases(data = sgdata, 
+             id_var_name = "id", 
+             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+             method = "min_sess", 
+             min_sess_num = 9, 
+             return_id_lgl = TRUE)
+```
+
+An alternative option is to select all cases where it is possible to apply all three sudden gains criteria. 
+This function goes through the data and selects all cases with at least one of the following data patterns.
+
+| Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
+|:------------:|-------|-------|-------|-------|-------|-------|
+| 1.           |   x   | **X** |   x   |   x   |       |       |
+| 2.           |   x   |   x   | **X** |       |   x   |       |
+| 3.           |   x   |       | **X** |   x   |   x   |       |
+| 4.           |   x   |       | **X** |   x   |       |   x   |
+
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; Empty cell = Missing data. Bold **X** represent the pregain session for each pattern.
+
+```r
+# 2. Select all patients providing enough data to identify sudden gains ----
+select_cases(data = sgdata, 
+             id_var_name = "id", 
+             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+             method = "pattern", 
+             return_id_lgl = FALSE)
+```
+
+Now, you can use the `create_bysg()` and `create_byperson()` functions to create the data sets.
 
 ```r
 # Create bysg dataset
-data_bysg <- create_bysg(data = data, 
-                         # The value for 'cutoff' comes from the define_crit1_cutoff() function
-                         cutoff = 6.705612,
-                         id_var_name = "id", 
-                         sg_var_name = "measure_01_s", 
-                         var_start = "measure_01_s0",
-                         identify_sg_1to2 = FALSE,
-                         include_s0_extract = TRUE)
+# This data set has one row per gain and creates a new ID variable for each sudden gain
+bysg <- create_bysg(data = sgdata,
+                    sg_crit1_cutoff = 7,
+                    id_var_name = "id",
+                    tx_start_var_name = "bdi_s1",
+                    tx_end_var_name = "bdi_s12",
+                    sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                    "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                    "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                    sg_var_name = "bdi",
+                    identify = "sg")
 
 # Create byperson dataset
-# This function automatically selects the first sudden gain in cases of multiple sudden gains
-data_byperson <- create_byperson(data = data, 
-                                 bysg_data = data_bysg)
+# This function can select the "first", "last", "smallest", or "largest" sudden gain in cases of multiple sudden gains using the "multiple_sg_select" argument.
+byperson_first <- create_byperson(data = sgdata,
+                                  sg_crit1_cutoff = 7,
+                                  id_var_name = "id",
+                                  tx_start_var_name = "bdi_s1",
+                                  tx_end_var_name = "bdi_s12",
+                                  sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                                  "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                                  "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                                  sg_var_name = "bdi",
+                                  identify_sg_1to2 = FALSE,
+                                  multiple_sg_select = "first")
 ```
 
-If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_scores()` function:
+If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_values()` function. 
+You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) `%>%` operator to understand the examples.
 
 ```r
-# Extract scores of measure_02 and measure_03 around the sudden gain (measure_01)
-# The scores will be added to the byperson dataframe
+# For bysg dataset select rq variables first
+sgdata_rq <- sgdata %>% 
+    select(id, rq_s0:rq_s12)
 
-data_byperson <- extract_scores(data_byperson, "measure_02")
-data_byperson <- extract_scores(data_byperson, "measure_03")
+# Join them
+bysg_rq <- bysg %>%
+    left_join(sgdata_rq, by = "id")
+
+# Extract scores for bysg dataset
+bysg_rq <- extract_values(data = bysg_rq,
+                          id_var_name = "id_sg",
+                          extract_var_list = c("rq_s1", "rq_s2", "rq_s3", "rq_s4", 
+                                               "rq_s5", "rq_s6", "rq_s7", "rq_s8", 
+                                               "rq_s9", "rq_s10", "rq_s11", "rq_s12"),
+                          extract_var_name = "rq",
+                          add_to_data = TRUE
+                          )
 ```
 
-## TODO
+The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
+Here is code to create a figure of the average gain magnitude.
 
-- [ ] For identify sg  / sl add option to specify which variables from dataset should be used and then send these variables to a rename function so that all the code is independent from variable names in a specific dataset
-- [ ] For define_crit1_cutoff(), add option to input internal consistency by hand, so that it doesnt have to be calculated on item by item data
-- [ ] Add sample dataset, this should include cases where critical value gets adjusted due to missing values (BDI data with cut-off 7?)
-- [ ] Add function that prints all descriptives of sudden gains (e.g. number of gains, average magnitude) and call this `describe_sg()`
-- [ ] Add function to export bysg or byperson dataset into other formats (SPSS, Excel, csv).
+```r
+plot_sg(data = bysg,
+        tx_start_var_name = "bdi_s0",
+        tx_end_var_name = "bdi_s12",
+        sg_pre_post_var_list = c("sg_bdi_2n", "sg_bdi_1n", "sg_bdi_n", 
+                                 "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
+        ylabel = "BDI")
+```
 
+![](https://dl.dropboxusercontent.com/s/fpjvbgg9yizji9z/sg-bdi-average-magnitude.png)
+
+Here is code to create a figure of the average change of PDS scores around the sudden gain on the BDI.
+
+```r
+plot_sg(data = bysg,
+        tx_start_var_name = "pds_s1",
+        tx_end_var_name = "pds_s12",
+        sg_pre_post_var_list = c("sg_pds_2n", "sg_pds_1n", "sg_pds_n", 
+                                 "sg_pds_n1", "sg_pds_n2", "sg_pds_n3"),
+        ylabel = "PDS")
+```
+
+![](https://dl.dropboxusercontent.com/s/0vvsrchayci92e9/sg-bdi-everage-change-pds.png)

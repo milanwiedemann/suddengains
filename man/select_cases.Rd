@@ -4,10 +4,21 @@
 \alias{select_cases}
 \title{Select sample with enough available data to identify sudden gains}
 \usage{
-select_cases(data)
+select_cases(data, id_var_name, sg_var_list, method = c("pattern",
+  "min_sess"), min_sess_num = NULL, return_id_lgl = FALSE)
 }
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
+
+\item{id_var_name}{TODO}
+
+\item{sg_var_list}{TODO}
+
+\item{method}{String, select method  \code{pattern} or  \code{min_sess}}
+
+\item{min_sess_num}{Numberic, minimum of avalable sessions}
+
+\item{return_id_lgl}{Logical, if ture return ids with variable indicating whether case meets the selection method}
 }
 \value{
 A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.

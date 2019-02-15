@@ -1,16 +1,16 @@
 Package: suddengains
-Title: Identify Sudden Gains in Psychological Therapies
-Date: 2018-02-08
-Version: 0.0.1
+Title: Identify Sudden Gains in Longitudinal Data
+Date: 2018-02-11
+Version: 0.0.2
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre")),
-  person("Graham M", "Thew", role = "ctb"))
-Description: Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). It 
-    applies all three criteria to a dataset while adjusting for missing values. It calculated further variables
-    that are of interest. It handles multiple gains by creating two datasets, one structured by sudden gain and 
-    one by participant. It also implements a function to specify which sudden gains to choose in case of multiple gains
-    (earliest or largest gain). See the GitHub repository for more information and examples.
-Depends: R (>= 3.4.3)
+  person("Graham M", "Thew", role = "ctb"),
+  person("Richard", "Stott", role = "ctb"))
+Description: Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999). Sudden losses, defined as the opposite of sudden gains can also be identified. It 
+    applies all three criteria to a dataset while adjusting the third criteria for missing values. It handles multiple gains per person by creating two datasets, one with all sudden gains and 
+    one with one selected sudden gain for each participant. It can extract and plot scores around sudden gains on multiple measures. See the GitHub repository for more information and examples.
+Depends: 
+    R (>= 3.4.3)
 License: GPL-3
 Encoding: UTF-8
 URL: https://github.com/milanwiedemann/suddengains
@@ -20,10 +20,13 @@ Imports:
     dplyr (>= 0.7.4),
     tibble (>= 1.4.2),
     magrittr (>= 1.5),
-    psych (>= 1.7.8),
-    rlang (>= 0.1.6),
+    rlang (>= 0.1.6)
 Suggests:
     ggplot2 (>= 2.2.1),
+    psych (>= 1.7.8),
     reshape2 (>= 1.4.3),
-    readr (>= 1.1.1)
-RoxygenNote: 6.1.0
+    readr (>= 1.1.1),
+    knitr,
+    rmarkdown
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr

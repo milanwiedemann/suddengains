@@ -4,23 +4,27 @@
 \alias{count_intervals}
 \title{Number of between session intervals analysed for sudden gains}
 \usage{
-count_intervals(data, cutoff, id_var_name, sg_var_name, analysed = TRUE,
-  identify_sg_1to2 = FALSE)
+count_intervals(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE)
 }
 \arguments{
-\item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
+\item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
 
-\item{cutoff}{A number specifying the cut-off for criterion 1.}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{id_var_name}{A string of the id variable name.}
+\item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
-\item{sg_var_name}{A string of the sudden gains variable name.}
-
-\item{analysed}{A logical indicating wheter sum of analysed or not analysed session should be reported.}
+\item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 }
 \value{
-A wide dataset indicating at which between session interval a sudden gain occured for each person in \code{data}.
+List with values for:
+  \describe{
+    \item{total_between_sess_intervals}{: The total number of between-session intervals present in the data set}
+    \item{total_between_sess_intervals_sg}{: The total number of gain intervals (i.e. sudden gains) present in the data set}
+    \item{sg_sess_sum_analysed}{: The total number of between-session intervals that could be analysed for sudden gains}
+    \item{sg_sess_sum_not_analysed}{: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data)}
+    }
 }
 \description{
-Number of between session intervals analysed for sudden gains
+Calculates the number of between-session intervals present in the data set, the number that could feasibly be analysed for sudden gains (given the pattern of any missing data), and the number of gain intervals found.
 }

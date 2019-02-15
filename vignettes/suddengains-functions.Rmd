@@ -415,7 +415,7 @@ plot_sg_rq <- plot_sg_rq +
 ```
 
 Each plot will automatically return a warning message about how many missing values were present for each of these five components mentiond above.
-The error messages from the BDI plot can be interpreted the following way:
+The warning messages from the BDI plot can be interpreted the following way:
 
 1. *Means for all time points and points*: There are **12 missing values** overall 
 1. *95% confidence intervals for all time points:* There are **12 missing values** overall

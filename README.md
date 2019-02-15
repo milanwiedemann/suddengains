@@ -149,7 +149,7 @@ byperson_first <- create_byperson(data = sgdata,
 ```
 
 If you are interested in extracting other measures around the time of the sudden gain you can use the  `extract_values()` function. 
-You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) ` %>% ` operator to understand the examples.
+You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) `%>%` operator to understand the examples.
 
 ```r
 # For bysg dataset select rq variables first

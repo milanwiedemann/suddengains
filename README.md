@@ -30,9 +30,9 @@ The `suddengains` package comes with a range of features which can be categorise
 
 1. Functions to identify and extract sudden gains:
   - `select_cases()`: stable
-  - `define_crit1_cutoff()`: testing
+  - `define_crit1_cutoff()`: stable
   - `identify_sg()`: stable
-  - `identify_sl()`: testing
+  - `identify_sl()`: stable
   
 2. Functions to create datasets for further analysis:
   - `extract_values()`: stable
@@ -43,7 +43,7 @@ The `suddengains` package comes with a range of features which can be categorise
   - `count_intervals()`: stable
   - `plot_sg()`: stable
   - `plot_sg_group()`: stable
-  - `describe_sg()`: testing
+  - `describe_sg()`: stable
 
 ## How to use `suddengains`
 

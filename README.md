@@ -21,7 +21,7 @@ install.packages("devtools")
 To install the developement version of `suddengains` package:
 
 ```r
-devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
+devtools::install_github(repo = "milanwiedemann/suddengains")
 ```
 
 ## Overview of the functions

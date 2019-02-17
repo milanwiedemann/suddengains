@@ -16,11 +16,11 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
-  id_list <- select(data, id_var_name)
+  id_list <- dplyr::select(data, id_var_name)
 
   # Select only variables needed to extract scores around sudden gain
   data_in <- data %>%
-    select(id_var_name, sg_session_n, extract_var_list)
+      dplyr::select(id_var_name, sg_session_n, extract_var_list)
 
   # Rename variables so I can use my extract approach
   data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = start_numbering)
@@ -28,7 +28,7 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
 
   data_extract <- data_extract %>%
     tidyr::gather(key = "time_str", value = "value", -!! rlang::sym(id_var_name), -sg_session_n) %>%
-    dplyr::mutate(time_num = as.numeric(str_extract(time_str, "\\d+"))) %>%
+    dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
     dplyr::mutate(index = time_num - sg_session_n) %>%
     dplyr::filter(index >= -2, index <= 3) %>%
     dplyr::mutate(name = dplyr::case_when(

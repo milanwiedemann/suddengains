@@ -71,11 +71,11 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     dplyr::arrange(!! rlang::sym(id_var_name)) %>%
     dplyr::group_by(!! rlang::sym(id_var_name)) %>%
     dplyr::mutate(sg_freq_byperson = sum(sg_crit123, na.rm = TRUE)) %>%
-    dplyr::arrange(desc(sg_freq_byperson)) %>%
+    dplyr::arrange(dplyr::desc(sg_freq_byperson)) %>%
     dplyr::filter(sg_crit123 != 0) %>%
     dplyr::select(-session) %>%
     dplyr::mutate(id_sg = paste0(!! rlang::sym(id_var_name), "_sg_", sg_session_n)) %>%
-    dplyr::select(!! rlang::sym(id_var_name), id_sg, everything()) %>%
+    dplyr::select(!! rlang::sym(id_var_name), id_sg, dplyr::everything()) %>%
     dplyr::ungroup()
 
   # Select variables for further calculations from data
@@ -142,7 +142,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
     suddengains:::rename_sg_vars(sg_var_list, start_numbering = 0) %>%
     tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
-    dplyr::mutate(time_num = as.numeric(str_extract(time_str, "\\d+"))) %>%
+    dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
     dplyr::select(-time_str) %>%
     dplyr::mutate(index = time_num - sg_session_n) %>%
     dplyr::filter(index >= 2) %>%

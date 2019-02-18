@@ -5,8 +5,9 @@
 \title{Plot average magnitude of sudden gain or another variable around the sudden gain}
 \usage{
 plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
-  ylab, xlab, colour = NULL, group_var_name = NULL,
-  group_levels = NULL, group_labels = NULL)
+  ylab, xlab = "Session", colour = "#239b89ff",
+  group_var_name = NULL, group_levels = NULL, group_labels = NULL,
+  group_title = NULL)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
@@ -22,13 +23,18 @@ and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{xlab}{String, specifying the label for the x axis, e.g. \code{"Session"}.}
 
-\item{colour}{String, specifying the colour(s) of the plot. Default is ...}
+\item{colour}{Vector, specifying the string(s) of the colour(s) of the plot.
+In case groups were specified, the order of this vector will apply colours to the plot in the same order as \code{group_levels}.
+WARNING WARNING WARNING, AT THE MOMENT IT IS ONLY POSSIBLE TO SPECIFY ONE COLOUR FOR ALL GROUPS.
+The default at the moment is my favourite colour.}
 
 \item{group_var_name}{String, specifying the variable name of the group variable.}
 
 \item{group_levels}{Vector, specifying the levels as numeric for the groups in \code{group_var_name}.}
 
 \item{group_labels}{Vector, specifying the label names as strings for the groups in \code{group_var_name}.}
+
+\item{group_title}{String, specifying the title that will be used for the groups specified in \code{group_labels}.}
 }
 \value{
 A plot of the mean values around the sudden gain, for the measure specified.

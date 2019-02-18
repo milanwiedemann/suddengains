@@ -30,8 +30,7 @@ Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest
 
 \item{data_is_bysg}{Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.}
 
-\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
-TODO, AT THE MOMENT THIS DOES NOT AFFECT THE VARIABLE NAMES THAT GET CREATED IN THIS FUNCTION.}
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).}
 
 \item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.}
 

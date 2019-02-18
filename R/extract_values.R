@@ -3,16 +3,16 @@
 #' @param data A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param extract_var_list Vector, specifying the variable names of session to session scores to extract from.
-#' @param extract_var_name String, specifying the name of the measure being used to extract values from.
+#' @param extract_measure_name String, specifying the name of the measure being used to extract values from.
 #' @param start_numbering Numeric, set to by default 1.
 #' Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.
 #' @param add_to_data Logical, if set to \code{TRUE}, the extracted values are added as new variables to the input dataset.
 #' If set to false, only the ID variable and all extracted values will be returned.
 
-#' @return A wide dataset with values for \code{extract_var_name} around the sudden gain.
+#' @return A wide dataset with values for \code{extract_measure_name} around the sudden gain.
 #' @export
 
-extract_values <- function(data, id_var_name, extract_var_list, extract_var_name, start_numbering = 1, add_to_data = TRUE) {
+extract_values <- function(data, id_var_name, extract_var_list, extract_measure_name, start_numbering = 1, add_to_data = TRUE) {
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
@@ -46,12 +46,12 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
     dplyr::select(id_var_name, x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
 
     # Rename variables
-    base::names(data_extract)[base::names(data_extract) == "x_n_pre2"] <- paste0("sg_", extract_var_name, "_2n")
-    base::names(data_extract)[base::names(data_extract) == "x_n_pre1"] <- paste0("sg_", extract_var_name, "_1n")
-    base::names(data_extract)[base::names(data_extract) == "x_n"] <- paste0("sg_", extract_var_name, "_n")
-    base::names(data_extract)[base::names(data_extract) == "x_n_post1"] <- paste0("sg_", extract_var_name, "_n1")
-    base::names(data_extract)[base::names(data_extract) == "x_n_post2"] <- paste0("sg_", extract_var_name, "_n2")
-    base::names(data_extract)[base::names(data_extract) == "x_n_post3"] <- paste0("sg_", extract_var_name, "_n3")
+    base::names(data_extract)[base::names(data_extract) == "x_n_pre2"] <- paste0("sg_", extract_measure_name, "_2n")
+    base::names(data_extract)[base::names(data_extract) == "x_n_pre1"] <- paste0("sg_", extract_measure_name, "_1n")
+    base::names(data_extract)[base::names(data_extract) == "x_n"] <- paste0("sg_", extract_measure_name, "_n")
+    base::names(data_extract)[base::names(data_extract) == "x_n_post1"] <- paste0("sg_", extract_measure_name, "_n1")
+    base::names(data_extract)[base::names(data_extract) == "x_n_post2"] <- paste0("sg_", extract_measure_name, "_n2")
+    base::names(data_extract)[base::names(data_extract) == "x_n_post3"] <- paste0("sg_", extract_measure_name, "_n3")
 
     # # making sure that all implicitly missing values are explicit
     data_extract_join <- data_extract %>%
@@ -59,7 +59,7 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_var_name
 
     if (add_to_data == TRUE) {
         data %>%
-            left_join(data_extract_join, by = id_var_name)
+            dplyr::left_join(data_extract_join, by = id_var_name)
 
     } else if (add_to_data == FALSE) {
         data_extract_join

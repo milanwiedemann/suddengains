@@ -9,7 +9,7 @@
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
-#' @param sg_var_name String, specifying the name of the measure used to identify sudden gains/losses.
+#' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
@@ -27,12 +27,12 @@
 #'                             "bdi_s4", "bdi_s5", "bdi_s6",
 #'                             "bdi_s7", "bdi_s8", "bdi_s9",
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"),
-#'             sg_var_name = "bdi")
+#'             sg_measure_name = "bdi")
 #'
-create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
+create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
 
     # Check arguments
-    identify <- match.arg(identify)
+    identify <- base::match.arg(identify)
 
 
   # Before doing anything, save the raw data that was put in function as data argument
@@ -82,9 +82,9 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   # First check if tx_start_var_name and tx_end_var_name are in sg_var_list, if not add them
   if (tx_start_var_name %in% sg_var_list == TRUE) {
-      sg_var_select <- c(id_var_name, sg_var_list)
+      sg_var_select <- base::c(id_var_name, sg_var_list)
   } else if (tx_start_var_name %in% sg_var_list == FALSE) {
-      sg_var_select <- c(id_var_name, tx_start_var_name, sg_var_list)
+      sg_var_select <- base::c(id_var_name, tx_start_var_name, sg_var_list)
   }
 
   if (tx_end_var_name %in% sg_var_list == TRUE) {
@@ -107,7 +107,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   data_extract <- suddengains::extract_values(data_bysg,
                                               id_var_name = "id_sg",
                                               extract_var_list = sg_var_list,
-                                              extract_var_name = sg_var_name,
+                                              extract_measure_name = sg_measure_name,
                                               start_numbering = start_numbering,
                                               add_to_data = FALSE
                                               )
@@ -118,9 +118,9 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   # Calculate descriptive sudden gains variables ----
   # Create varialbe names for mutate command here
-  tx_change <- paste("sg", sg_var_name, "tx", "change", sep = "_")
-  var_x_n <- paste("sg", sg_var_name, "n", sep = "_")
-  var_x_n_post1 <- paste("sg", sg_var_name, "n1", sep = "_")
+  tx_change <- base::paste("sg", sg_measure_name, "tx", "change", sep = "_")
+  var_x_n <- base::paste("sg", sg_measure_name, "n", sep = "_")
+  var_x_n_post1 <- base::paste("sg", sg_measure_name, "n1", sep = "_")
 
   data_bysg <- data_bysg %>%
     dplyr::mutate(sg_magnitude = !! rlang::sym(var_x_n) - !! rlang::sym(var_x_n_post1),
@@ -155,7 +155,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     base::unique() %>%
     dplyr::ungroup() %>%
     tidyr::complete(id_sg = id_sg_list) %>%
-    tidyr::replace_na(list(sg_reversal = 0))
+    tidyr::replace_na(base::list(sg_reversal = 0))
 
   data_bysg <- data_bysg %>%
     dplyr::left_join(sg_reversal, by = "id_sg")

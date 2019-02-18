@@ -130,7 +130,7 @@ bysg <- create_bysg(data = sgdata,
                     sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                     "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                     "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                    sg_var_name = "bdi",
+                    sg_measure_name = "bdi",
                     identify = "sg")
 
 # Create byperson dataset
@@ -143,7 +143,7 @@ byperson_first <- create_byperson(data = sgdata,
                                   sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                                   "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                                   "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                                  sg_var_name = "bdi",
+                                  sg_measure_name = "bdi",
                                   identify_sg_1to2 = FALSE,
                                   multiple_sg_select = "first")
 ```

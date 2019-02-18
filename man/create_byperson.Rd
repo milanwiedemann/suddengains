@@ -5,7 +5,7 @@
 \title{Create a data set with one gain per person}
 \usage{
 create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_var_name,
+  tx_start_var_name, tx_end_var_name, sg_measure_name,
   multiple_sg_select = c("first", "last", "smalles", "largest"),
   data_is_bysg = FALSE, identify = c("sg", "sl"),
   sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE)
@@ -23,7 +23,7 @@ create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 
 \item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
 
-\item{sg_var_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
+\item{sg_measure_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
 
 \item{multiple_sg_select}{String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.}
@@ -57,6 +57,6 @@ create_byperson(data = sgdata,
                                 "bdi_s4", "bdi_s5", "bdi_s6",
                                 "bdi_s7", "bdi_s8", "bdi_s9",
                                 "bdi_s10", "bdi_s11", "bdi_s12"),
-                sg_var_name = "bdi",
+                sg_measure_name = "bdi",
                 multiple_sg_select = "largest")
 }

@@ -5,8 +5,9 @@
 \title{Create a data set with one row for each sudden gain/loss}
 \usage{
 create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_var_name, sg_crit2_pct = 0.25,
-  identify = c("sg", "sl"), identify_sg_1to2 = FALSE)
+  tx_start_var_name, tx_end_var_name, sg_measure_name,
+  sg_crit2_pct = 0.25, identify = c("sg", "sl"),
+  identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -21,7 +22,7 @@ create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 
 \item{tx_end_var_name}{String, specifying the variable name of the last measurement point of the intervention.}
 
-\item{sg_var_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
+\item{sg_measure_name}{String, specifying the name of the measure used to identify sudden gains/losses.}
 
 \item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.}
 
@@ -47,6 +48,6 @@ create_bysg(data = sgdata,
                             "bdi_s4", "bdi_s5", "bdi_s6",
                             "bdi_s7", "bdi_s8", "bdi_s9",
                             "bdi_s10", "bdi_s11", "bdi_s12"),
-            sg_var_name = "bdi")
+            sg_measure_name = "bdi")
 
 }

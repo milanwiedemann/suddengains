@@ -4,7 +4,7 @@
 \alias{extract_values}
 \title{Extract variables around the sudden gain}
 \usage{
-extract_values(data, id_var_name, extract_var_list, extract_var_name,
+extract_values(data, id_var_name, extract_var_list, extract_measure_name,
   start_numbering = 1, add_to_data = TRUE)
 }
 \arguments{
@@ -14,7 +14,7 @@ extract_values(data, id_var_name, extract_var_list, extract_var_name,
 
 \item{extract_var_list}{Vector, specifying the variable names of session to session scores to extract from.}
 
-\item{extract_var_name}{String, specifying the name of the measure being used to extract values from.}
+\item{extract_measure_name}{String, specifying the name of the measure being used to extract values from.}
 
 \item{start_numbering}{Numeric, set to by default 1.
 Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.}
@@ -23,7 +23,7 @@ Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is i
 If set to false, only the ID variable and all extracted values will be returned.}
 }
 \value{
-A wide dataset with values for \code{extract_var_name} around the sudden gain.
+A wide dataset with values for \code{extract_measure_name} around the sudden gain.
 }
 \description{
 Extract variables around the sudden gain

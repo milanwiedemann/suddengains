@@ -11,7 +11,7 @@
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
-#' @param sg_var_name String, specifying the name of the measure used to identify sudden gains/losses.
+#' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
@@ -33,13 +33,13 @@
 #'                                 "bdi_s4", "bdi_s5", "bdi_s6",
 #'                                 "bdi_s7", "bdi_s8", "bdi_s9",
 #'                                 "bdi_s10", "bdi_s11", "bdi_s12"),
-#'                 sg_var_name = "bdi",
+#'                 sg_measure_name = "bdi",
 #'                 multiple_sg_select = "largest")
-create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_var_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
+create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
 
     # Check arguments
-    multiple_sg_select <- match.arg(multiple_sg_select)
-    identify <- match.arg(identify)
+    multiple_sg_select <- base::match.arg(multiple_sg_select)
+    identify <- base::match.arg(identify)
 
 
     # If data_is_bysg arguement is FALSE run the create_bysg function
@@ -53,7 +53,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
                                  tx_start_var_name = tx_start_var_name,
                                  tx_end_var_name = tx_end_var_name,
                                  sg_var_list = sg_var_list,
-                                 sg_var_name = sg_var_name,
+                                 sg_measure_name = sg_measure_name,
                                  sg_crit2_pct = sg_crit2_pct,
                                  identify_sg_1to2 = identify_sg_1to2,
                                  identify = identify)
@@ -72,35 +72,35 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
   if (multiple_sg_select == "first") {
 
     bysg_data_select <- data_bysg %>%
-      dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
+      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-      dplyr::filter(sg_session_n == min(sg_session_n)) %>%
+      dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
       dplyr::ungroup()
 
     } else if (multiple_sg_select == "last") {
 
       bysg_data_select <- data_bysg %>%
-        dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
+        dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
         dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-        dplyr::filter(sg_session_n == max(sg_session_n)) %>%
+        dplyr::filter(sg_session_n == base::max(sg_session_n)) %>%
         dplyr::ungroup()
 
       } else if (multiple_sg_select == "smallest") {
 
         bysg_data_select <- data_bysg %>%
-          dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
+          dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
           dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-          dplyr::filter(sg_magnitude == min(sg_magnitude)) %>%
-          dplyr::filter(sg_session_n == min(sg_session_n)) %>%
+          dplyr::filter(sg_magnitude == base::min(sg_magnitude)) %>%
+          dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
           dplyr::ungroup()
 
         } else if (multiple_sg_select == "largest") {
 
           bysg_data_select <- data_bysg %>%
-            dplyr::select(id_var_name, id_sg, starts_with("sg_")) %>%
+            dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
             dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-            dplyr::filter(sg_magnitude == max(sg_magnitude)) %>%
-            dplyr::filter(sg_session_n == min(sg_session_n)) %>%
+            dplyr::filter(sg_magnitude == base::max(sg_magnitude)) %>%
+            dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
             dplyr::ungroup()
 
         }

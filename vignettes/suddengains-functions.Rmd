@@ -230,7 +230,7 @@ bysg <- create_bysg(data = sgdata,
                     sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                     "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                     "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                    sg_var_name = "bdi",
+                    sg_measure_name = "bdi",
                     identify = "sg")
 ```
 
@@ -259,7 +259,7 @@ bysl <- create_bysg(data = sgdata,
                     sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                     "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                     "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                    sg_var_name = "bdi",
+                    sg_measure_name = "bdi",
                     identify = "sl")
 ```
 
@@ -291,7 +291,7 @@ byperson_first <- create_byperson(data = sgdata,
                                   sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                                   "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                                   "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                                  sg_var_name = "bdi",
+                                  sg_measure_name = "bdi",
                                   identify_sg_1to2 = FALSE,
                                   multiple_sg_select = "first")
 ```
@@ -321,7 +321,7 @@ byperson_largest <- create_byperson(data = sgdata,
                                     sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                                                     "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                                                     "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                                    sg_var_name = "bdi",
+                                    sg_measure_name = "bdi",
                                     identify_sg_1to2 = FALSE,
                                     multiple_sg_select = "largest"
                                     )
@@ -356,7 +356,7 @@ bysg_rq <- extract_values(data = bysg_rq,
                           extract_var_list = c("rq_s1", "rq_s2", "rq_s3", "rq_s4", 
                                                "rq_s5", "rq_s6", "rq_s7", "rq_s8", 
                                                "rq_s9", "rq_s10", "rq_s11", "rq_s12"),
-                          extract_var_name = "rq",
+                          extract_measure_name = "rq",
                           add_to_data = TRUE
                           )
 ```

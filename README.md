@@ -42,7 +42,6 @@ The `suddengains` package comes with a range of features which can be categorise
 3. Helper functions to visualise and report sudden gains:
   - `count_intervals()`: stable
   - `plot_sg()`: stable
-  - `plot_sg_group()`: stable
   - `describe_sg()`: stable
 
 ## How to use `suddengains`
@@ -100,7 +99,7 @@ This function goes through the data and selects all cases with at least one of t
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
 | 1.           |   x   | **X** |   x   |   x   |       |       |
-| 2.           |   x   | **x** |   X   |       |   x   |       |
+| 2.           |   x   | **X** |   x   |       |   x   |       |
 | 3.           |   x   |       | **X** |   x   |   x   |       |
 | 4.           |   x   |       | **X** |   x   |       |   x   |
 
@@ -167,8 +166,7 @@ bysg_rq <- extract_values(data = bysg_rq,
                                                "rq_s5", "rq_s6", "rq_s7", "rq_s8", 
                                                "rq_s9", "rq_s10", "rq_s11", "rq_s12"),
                           extract_var_name = "rq",
-                          add_to_data = TRUE
-                          )
+                          add_to_data = TRUE)
 ```
 
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
@@ -183,17 +181,17 @@ plot_sg(data = bysg,
         ylabel = "BDI")
 ```
 
-![](https://dl.dropboxusercontent.com/s/fpjvbgg9yizji9z/sg-bdi-average-magnitude.png)
+![](https://dl.dropboxusercontent.com/s/vb6nsfstn7eog69/suddengains-plot-bdi.png)
 
 Here is code to create a figure of the average change of PDS scores around the sudden gain on the BDI.
 
 ```r
-plot_sg(data = bysg,
-        tx_start_var_name = "pds_s1",
-        tx_end_var_name = "pds_s12",
-        sg_pre_post_var_list = c("sg_pds_2n", "sg_pds_1n", "sg_pds_n", 
-                                 "sg_pds_n1", "sg_pds_n2", "sg_pds_n3"),
-        ylabel = "PDS")
+plot_sg(data = bysg_rq,
+        tx_start_var_name = "rq_s1",
+        tx_end_var_name = "rq_s12",
+        sg_pre_post_var_list = c("sg_rq_2n", "sg_rq_1n", "sg_rq_n", 
+                                 "sg_rq_n1", "sg_rq_n2", "sg_rq_n3"),
+        ylabel = "RQ")
 ```
 
-![](https://dl.dropboxusercontent.com/s/0vvsrchayci92e9/sg-bdi-everage-change-pds.png)
+![](https://dl.dropboxusercontent.com/s/wt8h93x3v36a88p/suddengains-plot-rq.png)

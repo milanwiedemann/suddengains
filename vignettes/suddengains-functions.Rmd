@@ -1,8 +1,5 @@
 ---
 title: "A detailed example of how to use the suddengains R package"
-author: 
-  - name: "Milan Wiedemann"
-  - name: "Graham R Thew"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -27,7 +24,12 @@ library(tidyverse)
 library(knitr)
 library(DT)
 ```
-    
+
+Please cite as:
+
+```{r}
+citation("suddengains")
+```
 
 # Introduction
 
@@ -119,7 +121,7 @@ This function goes through the data and selects all cases with at least one of t
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
 | 1.           |   x   | **X** |   x   |   x   |       |       |
-| 2.           |   x   | **x** |   X   |       |   x   |       |
+| 2.           |   x   | **X** |   x   |       |   x   |       |
 | 3.           |   x   |       | **X** |   x   |   x   |       |
 | 4.           |   x   |       | **X** |   x   |       |   x   |
 
@@ -133,7 +135,7 @@ sgdata_select <- select_cases(data = sgdata,
                                              "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                               method = "pattern",
                               return_id_lgl = FALSE) %>% 
-                 filter(sg_select == TRUE)
+                 dplyr::filter(sg_select == TRUE)
 ```
 
 The `count_intervals` function provides a summary of between session intervals that were and weren't analysed for sudden gains.
@@ -344,11 +346,11 @@ datatable(byperson_largest,
 ```{r}
 # For bysg dataset select rq variables first
 sgdata_rq <- sgdata %>% 
-    select(id, rq_s0:rq_s12)
+    dplyr::select(id, rq_s0:rq_s12)
 
 # Join them
 bysg_rq <- bysg %>%
-    left_join(sgdata_rq, by = "id")
+    dplyr::left_join(sgdata_rq, by = "id")
 
 # Extract scores for bysg dataset
 bysg_rq <- extract_values(data = bysg_rq,

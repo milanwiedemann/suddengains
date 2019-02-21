@@ -40,8 +40,9 @@ The following vignette describes the data and the main functions of the package 
 
 # Data
 
-Below are two interactive tables of the depression symptoms and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
+Below are two interactive tables of depression and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
 The data is automatically loaded together with the package when running `library(suddengains)`.
+Note that some values for each measure are missing.
 
 ## Depression symptoms
 
@@ -114,6 +115,7 @@ select_cases(data = sgdata,
              min_sess_num = 9,
              return_id_lgl = TRUE)
 ```
+TODO: explain somewhere about the default output of select_cases i.e. the new logical variable that is added to df
 
 The following code shows how to select cases based on the `"pattern"` method and save them as an object called `sgdata_select`.
 This function goes through the data and selects all cases with at least one of the following data patterns.
@@ -125,7 +127,7 @@ This function goes through the data and selects all cases with at least one of t
 | 3.           |   x   |       | **X** |   x   |   x   |       |
 | 4.           |   x   |       | **X** |   x   |       |   x   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Available data; Empty cell = Missing data. Bold **X** represent the pregain session for each "pattern".
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Present data; Empty cell = Missing data. Bold **X** represent the pregain session for each "pattern".
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,
@@ -138,7 +140,7 @@ sgdata_select <- select_cases(data = sgdata,
                  dplyr::filter(sg_select == TRUE)
 ```
 
-The `count_intervals` function provides a summary of between session intervals that were and weren't analysed for sudden gains.
+The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
 For more info see the help file of this function.
 Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
 
@@ -150,6 +152,8 @@ count_intervals(data = sgdata_select,
                                 "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                 identify_sg_1to2 = FALSE)
 ```
+
+TODO: brief overview of the 4 outputs to this (from help file?)
 
 # Identification of sudden gains
 
@@ -166,11 +170,14 @@ define_crit1_cutoff(data_sessions = sgdata,
                     reliability = 0.9)
 
 ```
+TODO: explain output (i.e. the last one is the cutoff, the others are there to confirm the specifications entered)
+
 
 ## Identify sudden gains and losses
 
 To simply identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
-The functions return a data frame indicating for each between session interval whether a sudden gain/loss was identified.
+The functions return a data frame indicating for each between-session interval whether a sudden gain/loss was identified.
+TODO: give example e.g what does sg_2to3 mean? maybe this is obvious...
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -184,8 +191,8 @@ identify_sg(data = sgdata,
 
 ```
 
-To analyse sudden gains after the first session, we included the option to specify a baseline measure in `sg_var_list` (in this example `"bdi_s0"`) and set `identify_sg_1to2 == TRUE`.
-This will allow to identify sudden gains after session 1, provided data from the baseline measure and the first session are available.
+To analyse sudden gains after the first session, we include the option to specify a baseline measure in `sg_var_list` (in this example `"bdi_s0"`) and set `identify_sg_1to2 == TRUE`.
+This will allow the identification of sudden gains immediately after session 1, provided data from the baseline measure and the first session are available.
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -220,7 +227,7 @@ identify_sl(data = sgdata,
 ## All gains: One row per gain
 In the suddengains R package we refer to this as "bysg" (by sudden gain).
 
-Here we see code to create a "bysg" data set identifying sudden gains (specified using the argument `identify = "sg"`) and save it to the object called "bysl".
+Here we see code to create a "bysg" data set identifying sudden gains (specified using the argument `identify = "sg"`) and save it to the object called "bysg".
 The following table shows the output.
 
 ```{r}
@@ -248,6 +255,7 @@ datatable(bysg,
               )
           )
 ```
+TODO: give brief overview of the new variables created and what each one means?
 
 Here we see code to create a "bysg" data set identifying sudden losses (specified using the argument `identify = "sl"`) and save it to the object called "bysl".
 The following table shows the output.
@@ -282,7 +290,7 @@ datatable(bysl,
 
 In the *suddengains* R package we refer to this as byperson (by person).
 This data set includes all cases with and all cases without sudden gains.
-If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` can be used to specify which gain to select, in the example below the first gain will be slected.
+If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` can be used to specify which gain to select; in the example below the first gain will be selected.
 
 ```{r}
 byperson_first <- create_byperson(data = sgdata,
@@ -309,8 +317,9 @@ datatable(byperson_first,
               )
           )
 ```
+TODO: explain any new variables that are unique to the byperson df?
 
-Depending on the research questions it might be of interest to select the largest gain, see the example below.
+Depending on the research questions it might be of interest to select the largest gain, as shown below.
 Notice how the selected gain for ID 5 is different depending on how to handle multiple gains.
 The first gain experienced by ID 5 is from session 3 to 4, whereas the largest gain was experienced from session 8 to 9.
 
@@ -342,6 +351,8 @@ datatable(byperson_largest,
 ```
 
 # Extract values around sudden gains
+
+TODO: intro text here?
 
 ```{r}
 # For bysg dataset select rq variables first
@@ -378,6 +389,8 @@ datatable(bysg_rq,
 # Plots of average change around sudden gains
 
 The plots are created using the *ggplot* R-package [@R-ggplot2] in five main steps:
+
+TODO: ggplot or ggplot2?
 
 1. Means for all time points and points
 1. 95% confidence intervals for all time points
@@ -416,8 +429,8 @@ plot_sg_rq <- plot_sg_rq +
                                           "n+1", "n+2", "n+3", "Last"))
 ```
 
-Each plot will automatically return a warning message about how many missing values were present for each of these five components mentiond above.
-The warning messages from the BDI plot can be interpreted the following way:
+Each plot will automatically return a warning message about how many missing values were present for each of the five components mentioned above.
+The warning messages from the BDI plot can be interpreted as follows:
 
 1. *Means for all time points and points*: There are **12 missing values** overall 
 1. *95% confidence intervals for all time points:* There are **12 missing values** overall
@@ -431,6 +444,8 @@ plot_sg_rq
 ```
 
 # Summarise some descriptive statistics
+
+TODO: intro text, and then an explanation of what each output means (from the help page).
 
 ```{r}
 # Describe sg ----

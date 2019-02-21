@@ -43,7 +43,11 @@ The `suddengains` package comes with a range of features which can be categorise
   - `count_intervals()`: stable
   - `plot_sg()`: stable
   - `describe_sg()`: stable
-
+  
+4. Helper functions to export data sets:
+  - `write_bysg()`: in progress
+  - `write_byperson()`: in progress
+  
 ## How to use `suddengains`
 
 Here are a few examples how to use the `suddengains` package.
@@ -52,14 +56,13 @@ This package also contains two sample data sets with made up data to test and il
 
 ```r
 # Load packages ----
-library(devtools)
 library(tidyverse)
 library(suddengains)
 
 # Load data ----
 # Two example data sets get loaded together with the suddengains package
 
-# The data sets have identical data, "sgdata_bad" has inconsistent variable names 
+# The data sets have identical data, `sgdata_bad` has "messy" variable names 
 View(sgdata)
 View(sgdata_bad)
 ```

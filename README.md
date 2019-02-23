@@ -73,7 +73,7 @@ View(sgdata)
 View(sgdata_bad)
 ```
 
-The cut-off value for the first sudden gains criterion can be calculated using the reliable change index (RCI; Jacobson & Truax, [1991](https://psycnet.apa.org/record/1991-16094-001)) based on suggestions from Stiles et al. [(2003)](http://psycnet.apa.org/buy/2003-01069-004).
+The cut-off value for the first sudden gains criterion can be calculated using the reliable change index (RCI; Jacobson & Truax, [1991](https://psycnet.apa.org/record/1991-16094-001)) based on suggestions from Stiles et al. ([2003](http://psycnet.apa.org/buy/2003-01069-004)).
 The function has the option to calculate Chronbach's a based in item-by-item data if provided, or alternatively the reliability of the measure can be specified.
 
 ```r

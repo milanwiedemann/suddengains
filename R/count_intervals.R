@@ -45,12 +45,12 @@ count_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = F
     # Count number of between session intervals where the three sudden gains criteria could not be applied
     sg_sess_sum_not_analysed <- base::sum(is.na(dplyr::select(data_sg, dplyr::starts_with("sg_"))))
 
-    sg_sess_list <- list(total_between_sess_intervals = total_between_sess_intervals,
+    sg_sess_list <- base::list(total_between_sess_intervals = total_between_sess_intervals,
                          total_between_sess_intervals_sg = total_between_sess_intervals_sg,
                          sg_sess_sum_analysed = sg_sess_sum_analysed,
                          sg_sess_sum_not_analysed = sg_sess_sum_not_analysed)
 
 
     # Return number of between session intervals that were analysed / not analysed for sudden gains
-    return(sg_sess_list)
+    base::return(sg_sess_list)
     }

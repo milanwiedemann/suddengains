@@ -1,12 +1,14 @@
 #' Select sample with enough available data to identify sudden gains
 #'
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
-#' @param id_var_name TODO
-#' @param sg_var_list TODO
-#' @param method String, select method  \code{pattern} or  \code{min_sess}
-#' @param min_sess_num Numberic, minimum of avalable sessions
-#' @param return_id_lgl Logical, if ture return ids with variable indicating whether case meets the selection method
-#' @return A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
+#' @param method String, specifying the method used to select cases: \code{pattern} or \code{min_sess}.
+#' @param min_sess_num Numberic, minimum number of available sessions to be selected.
+#' This argument needs to be specified if \code{method = min_sess}.
+#' @param return_id_lgl Logical, if \code{TRUE} the function returns only the ID variable a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+#' If set to \code{FALSE}
+#' @return A wide dataset or just the id variable containing a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 #' @export
 
 select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "min_sess"), min_sess_num = NULL, return_id_lgl = FALSE) {

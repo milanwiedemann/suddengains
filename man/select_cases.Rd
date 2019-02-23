@@ -10,18 +10,20 @@ select_cases(data, id_var_name, sg_var_list, method = c("pattern",
 \arguments{
 \item{data}{A dataset in wide format with an id variable and the sudden gains variables.}
 
-\item{id_var_name}{TODO}
+\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
-\item{sg_var_list}{TODO}
+\item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
-\item{method}{String, select method  \code{pattern} or  \code{min_sess}}
+\item{method}{String, specifying the method used to select cases: \code{pattern} or \code{min_sess}.}
 
-\item{min_sess_num}{Numberic, minimum of avalable sessions}
+\item{min_sess_num}{Numberic, minimum number of available sessions to be selected.
+This argument needs to be specified if \code{method = min_sess}.}
 
-\item{return_id_lgl}{Logical, if ture return ids with variable indicating whether case meets the selection method}
+\item{return_id_lgl}{Logical, if \code{TRUE} the function returns only the ID variable a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+If set to \code{FALSE}}
 }
 \value{
-A wide dataset a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+A wide dataset or just the id variable containing a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 }
 \description{
 Select sample with enough available data to identify sudden gains

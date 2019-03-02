@@ -28,49 +28,37 @@
 #'
 #' @examples TODO
 #'
-write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
-                           sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
-                           multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE,
-                           format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
 
-
-    # Check arguments
-    identify <- base::match.arg(identify)
-    multiple_sg_select <- base::match.arg(multiple_sg_select)
-    format <- base::match.arg(format)
-
-
-    # Create bysg data object
-    byperson_data <- create_byperson(data = data,
-                                     sg_crit1_cutoff = sg_crit1_cutoff,
-                                     sg_crit2_pct = sg_crit2_pct,
-                                     id_var_name = id_var_name,
-                                     tx_start_var_name = tx_start_var_name,
-                                     tx_end_var_name = tx_end_var_name,
-                                     sg_var_list = sg_var_list,
-                                     identify_sg_1to2 = identify_sg_1to2,
-                                     sg_measure_name = sg_measure_name,
-                                     identify = identify)
-
-
-    # Write bysg data in the specified format
-    if (format == "CSV") {
-
-        readr::write_csv(x = byperson_data, path = path, ...)
-
-    } else if (format == "SPSS") {
-
-        haven::write_sav(data = byperson_data, path = path, ...)
-
-    } else if (format == "Excel") {
-
-        writexl::write_xlsx(x = byperson_data, path = path, ...)
-
-    } else if (format == "STATA") {
-
-        haven::write_dta(data = byperson_data, path = path, version = stata_version)
-
-    }
-
-
-}
+# write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
+#                            sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
+#                            multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE,
+#                            format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
+#
+#     # Check arguments
+#     identify <- base::match.arg(identify)
+#     multiple_sg_select <- base::match.arg(multiple_sg_select)
+#     format <- base::match.arg(format)
+#
+#     # Create bysg data object
+#     byperson_data <- create_byperson(data = data,
+#                                      sg_crit1_cutoff = sg_crit1_cutoff,
+#                                      sg_crit2_pct = sg_crit2_pct,
+#                                      id_var_name = id_var_name,
+#                                      tx_start_var_name = tx_start_var_name,
+#                                      tx_end_var_name = tx_end_var_name,
+#                                      sg_var_list = sg_var_list,
+#                                      identify_sg_1to2 = identify_sg_1to2,
+#                                      sg_measure_name = sg_measure_name,
+#                                      identify = identify)
+#
+#     # Write bysg data in the specified format
+#     if (format == "CSV") {
+#         readr::write_csv(x = byperson_data, path = path, ...)
+#     } else if (format == "SPSS") {
+#         haven::write_sav(data = byperson_data, path = path, ...)
+#     } else if (format == "Excel") {
+#         writexl::write_xlsx(x = byperson_data, path = path, ...)
+#     } else if (format == "STATA") {
+#         haven::write_dta(data = byperson_data, path = path, version = stata_version)
+#     }
+# }

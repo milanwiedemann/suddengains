@@ -1,7 +1,7 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
 [![last-change](https://img.shields.io/badge/Last%20change-2019--02--23-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
-[![Build Status](https://travis-ci.org/user/pkg.svg?branch=master)](https://travis-ci.org/milanwiedemann/suddengains)
+[![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![suddengains-version](https://img.shields.io/badge/Version-0.0.2-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)

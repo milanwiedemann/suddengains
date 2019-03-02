@@ -22,18 +22,7 @@
 #'
 #' @export
 #'
-#' @examples write_bysg(data = sgdata,
-#'            sg_crit1_cutoff = 7,
-#'            id_var_name = "id",
-#'            tx_start_var_name = "bdi_s1",
-#'            tx_end_var_name = "bdi_s12",
-#'            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-#'                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-#'                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-#'            sg_measure_name = "bdi",
-#'            identify = "sg",
-#'            format = "SPSS",
-#'            path = "~/Desktop/bysg_data_excel.sav")
+#' @examples TODO
 #'
 write_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
                        sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,

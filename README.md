@@ -6,8 +6,8 @@
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)
 
-Check out our Preprint describing this package on [PsyArXiv](https://psyarxiv.com/2wa84/).
-We have also created an open [Zotero group](https://www.zotero.org/groups/2280342/suddengains) with research looking at sudden gains. 
+We published a preprint describing this package on [PsyArXiv](https://psyarxiv.com/2wa84/).
+We have also created an open [Zotero group](https://www.zotero.org/groups/2280342/suddengains) collecting all the literature looking at sudden gains in psychological therapies. 
 Please let me know if I missed anything or join the group and add papers yourself.
 
 Identify sudden gains based on the criteria outlined by Tang and DeRubeis ([1999](http://psycnet.apa.org/buy/1999-01811-008)). 
@@ -51,8 +51,8 @@ The `suddengains` package comes with a range of features which can be categorise
   - `describe_sg()`: stable
   
 4. Helper functions to export data sets:
-  - `write_bysg()`: in progress
-  - `write_byperson()`: in progress
+  - `write_bysg()`: testing
+  - `write_byperson()`: testing
   
 ## How to use `suddengains`
 

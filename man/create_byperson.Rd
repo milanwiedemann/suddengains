@@ -58,4 +58,5 @@ create_byperson(data = sgdata,
                                 "bdi_s10", "bdi_s11", "bdi_s12"),
                 sg_measure_name = "bdi",
                 multiple_sg_select = "largest")
+
 }

@@ -20,7 +20,8 @@ knitr::opts_chunk$set(
 ```{r packages, include = FALSE}
 # Load packages
 library(suddengains)
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(knitr)
 library(DT)
 ```
@@ -49,20 +50,17 @@ Note that some values for each measure are missing.
 ```{r data-bdi, echo = FALSE}
 
 sgdata_bdi <- sgdata %>% 
-    select(id, 
-           bdi_s0:bdi_s12, 
-           bdi_fu1:bdi_fu2
-           )
+    dplyr::select(id, 
+                  bdi_s0:bdi_s12, 
+                  bdi_fu1:bdi_fu2
+                  )
     
-datatable(sgdata_bdi,
-          rownames = FALSE,
-          extensions = 'FixedColumns',
-          options = list(
-              pageLength = 5,
-              scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+DT::datatable(sgdata_bdi,
+              rownames = FALSE,
+              extensions = 'FixedColumns',
+              options = list(pageLength = 5,
+                             scrollX = TRUE,
+                             fixedColumns = TRUE))
 ```
 
 ## Rumination 
@@ -70,20 +68,16 @@ datatable(sgdata_bdi,
 ```{r data-rq, echo = FALSE}
 
 sgdata_rq <- sgdata %>% 
-    select(id, 
-           rq_s0:rq_s12, 
-           rq_fu1:rq_fu2
-           )
+    dplyr::select(id, 
+                  rq_s0:rq_s12, 
+                  rq_fu1:rq_fu2)
     
-datatable(sgdata_rq,
-          rownames = FALSE,
-          extensions = 'FixedColumns',
-          options = list(
-              pageLength = 5,
-              scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+DT::datatable(sgdata_rq,
+              rownames = FALSE,
+              extensions = 'FixedColumns',
+              options = list(pageLength = 5,
+                             scrollX = TRUE,
+                             fixedColumns = TRUE))
 ```
 
 # Preparation of data
@@ -186,8 +180,7 @@ identify_sg(data = sgdata,
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = FALSE
-            )
+            identify_sg_1to2 = FALSE)
 
 ```
 
@@ -203,8 +196,7 @@ identify_sg(data = sgdata,
                             "bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = TRUE
-            )
+            identify_sg_1to2 = TRUE)
 ```
 
 To identify sudden losses, you can use the `identify_sl` function.
@@ -218,8 +210,7 @@ identify_sl(data = sgdata,
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = TRUE
-            )
+            identify_sg_1to2 = TRUE)
 ```
 
 # Create datasets for further analysis
@@ -245,15 +236,13 @@ bysg <- create_bysg(data = sgdata,
 
 
 ```{r, echo = FALSE}
-datatable(bysg,
-          rownames = FALSE,
-          extensions = 'FixedColumns',
-          options = list(
-              pageLength = 5,
-              scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+DT::datatable(bysg,
+              rownames = FALSE,
+              extensions = 'FixedColumns',
+              options = list(
+                  pageLength = 5,
+                  scrollX = TRUE,
+                  fixedColumns = TRUE))
 ```
 TODO: give brief overview of the new variables created and what each one means?
 
@@ -275,15 +264,13 @@ bysl <- create_bysg(data = sgdata,
 
 
 ```{r, echo = FALSE}
-datatable(bysl,
-          rownames = FALSE,
-          extensions = 'FixedColumns',
-          options = list(
-              pageLength = 5,
-              scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+DT::datatable(bysl,
+              rownames = FALSE,
+              extensions = 'FixedColumns',
+              options = list(
+                  pageLength = 5,
+                  scrollX = TRUE,
+                  fixedColumns = TRUE))
 ```
 
 ## All cases: One row per case
@@ -313,10 +300,9 @@ datatable(byperson_first,
           options = list(
               pageLength = 5,
               scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+              fixedColumns = TRUE))
 ```
+
 TODO: explain any new variables that are unique to the byperson df?
 
 Depending on the research questions it might be of interest to select the largest gain, as shown below.
@@ -334,20 +320,17 @@ byperson_largest <- create_byperson(data = sgdata,
                                                     "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                                     sg_measure_name = "bdi",
                                     identify_sg_1to2 = FALSE,
-                                    multiple_sg_select = "largest"
-                                    )
+                                    multiple_sg_select = "largest")
 ```
 
 ```{r, echo = FALSE}
-datatable(byperson_largest,
+DT::datatable(byperson_largest,
           rownames = FALSE,
           extensions = 'FixedColumns',
           options = list(
               pageLength = 5,
               scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+              fixedColumns = TRUE))
 ```
 
 # Extract values around sudden gains
@@ -370,8 +353,7 @@ bysg_rq <- extract_values(data = bysg_rq,
                                                "rq_s5", "rq_s6", "rq_s7", "rq_s8", 
                                                "rq_s9", "rq_s10", "rq_s11", "rq_s12"),
                           extract_measure_name = "rq",
-                          add_to_data = TRUE
-                          )
+                          add_to_data = TRUE)
 ```
 
 ```{r, echo = FALSE}
@@ -381,9 +363,7 @@ datatable(bysg_rq,
           options = list(
               pageLength = 5,
               scrollX = TRUE,
-              fixedColumns = TRUE
-              )
-          )
+              fixedColumns = TRUE))
 ```
 
 # Plots of average change around sudden gains
@@ -422,11 +402,11 @@ plot_sg_rq <- plot_sg(data = bysg_rq,
 # e.g. y axis scale, or x axis labels ...
 
 plot_sg_bdi <- plot_sg_bdi + 
-               coord_cartesian(ylim = c(0, 50))
+               ggplot2::coord_cartesian(ylim = c(0, 50))
 
 plot_sg_rq <- plot_sg_rq + 
-              scale_x_discrete(labels = c("First", "n-2", "n-1", "n",
-                                          "n+1", "n+2", "n+3", "Last"))
+              ggplot2::scale_x_discrete(labels = c("First", "n-2", "n-1", "n",
+                                                   "n+1", "n+2", "n+3", "Last"))
 ```
 
 Each plot will automatically return a warning message about how many missing values were present for each of the five components mentioned above.

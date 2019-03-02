@@ -25,7 +25,6 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_measure_
   # Rename variables so I can use my extract approach
   data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = start_numbering)
 
-
   data_extract <- data_extract %>%
     tidyr::gather(key = "time_str", value = "value", -!! rlang::sym(id_var_name), -sg_session_n) %>%
     dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
@@ -63,8 +62,5 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_measure_
 
     } else if (add_to_data == FALSE) {
         data_extract_join
-    }
-
-
-
+        }
     }

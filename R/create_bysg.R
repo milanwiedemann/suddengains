@@ -140,7 +140,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   sg_reversal <- data_bysg %>%
     dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
-    suddengains:::rename_sg_vars(sg_var_list, start_numbering = 0) %>%
+    rename_sg_vars(sg_var_list, start_numbering = 0) %>%
     tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
     dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
     dplyr::select(-time_str) %>%

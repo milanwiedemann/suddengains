@@ -24,34 +24,34 @@
 #'
 #' @examples TODO
 #'
-# write_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
-#                        sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
-#                        format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
-#
-#     # Check arguments
-#     identify <- base::match.arg(identify)
-#     format <- base::match.arg(format)
-#
-#     # Create bysg data object
-#     bysg_data <- create_bysg(data = data,
-#                              sg_crit1_cutoff = sg_crit1_cutoff,
-#                              sg_crit2_pct = sg_crit2_pct,
-#                              id_var_name = id_var_name,
-#                              tx_start_var_name = tx_start_var_name,
-#                              tx_end_var_name = tx_end_var_name,
-#                              sg_var_list = sg_var_list,
-#                              identify_sg_1to2 = identify_sg_1to2,
-#                              sg_measure_name = sg_measure_name,
-#                              identify = identify)
-#
-#     # Write bysg data in the specified format
-#     if (format == "CSV") {
-#         readr::write_csv(x = bysg_data, path = path, ...)
-#     } else if (format == "SPSS") {
-#         haven::write_sav(data = bysg_data, path = path, ...)
-#     } else if (format == "Excel") {
-#         writexl::write_xlsx(x = bysg_data, path = path, ...)
-#     } else if (format == "STATA") {
-#         haven::write_dta(data = bysg_data, path = path, version = stata_version)
-#     }
-# }
+write_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
+                       sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
+                       format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
+
+    # Check arguments
+    identify <- base::match.arg(identify)
+    format <- base::match.arg(format)
+
+    # Create bysg data object
+    bysg_data <- create_bysg(data = data,
+                             sg_crit1_cutoff = sg_crit1_cutoff,
+                             sg_crit2_pct = sg_crit2_pct,
+                             id_var_name = id_var_name,
+                             tx_start_var_name = tx_start_var_name,
+                             tx_end_var_name = tx_end_var_name,
+                             sg_var_list = sg_var_list,
+                             identify_sg_1to2 = identify_sg_1to2,
+                             sg_measure_name = sg_measure_name,
+                             identify = identify)
+
+    # Write bysg data in the specified format
+    if (format == "CSV") {
+        readr::write_csv(x = bysg_data, path = path, ...)
+    } else if (format == "SPSS") {
+        haven::write_sav(data = bysg_data, path = path, ...)
+    } else if (format == "Excel") {
+        writexl::write_xlsx(x = bysg_data, path = path, ...)
+    } else if (format == "STATA") {
+        haven::write_dta(data = bysg_data, path = path, version = stata_version)
+    }
+}

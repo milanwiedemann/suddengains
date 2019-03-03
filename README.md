@@ -1,7 +1,7 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
 [![last-change](https://img.shields.io/badge/Last%20change-2019--03--02-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
-[![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
+[![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=dev)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
 [![suddengains-version](https://img.shields.io/badge/Version-0.0.2-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
@@ -25,17 +25,23 @@ First, you need to install the devtools package to download the `suddengains` pa
 install.packages("devtools")
 ```
 
-To install the developement version of `suddengains` package:
+To install the current stable version of the `suddengains` package:
 
 ```r
-devtools::install_github(repo = "milanwiedemann/suddengains")
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master")
+```
+
+To install the developmental version of the `suddengains` package:
+
+```r
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
 ```
 
 ## Overview of the functions
 
 The `suddengains` package comes with a range of features which can be categorised into:
 
-1. Functions to identify and extract sudden gains:
+1. Functions to identify sudden gains:
   - `select_cases()`: stable
   - `define_crit1_cutoff()`: stable
   - `identify_sg()`: stable
@@ -51,9 +57,9 @@ The `suddengains` package comes with a range of features which can be categorise
   - `plot_sg()`: stable
   - `describe_sg()`: stable
   
-4. Helper functions to export data sets:
-  - `write_bysg()`: testing
-  - `write_byperson()`: testing
+4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
+  - `write_bysg()`: testing here
+  - `write_byperson()`: testing here
   
 ## How to use `suddengains`
 
@@ -61,6 +67,7 @@ Here are a few examples how to use the `suddengains` package.
 First, load all required packages and datasets.
 This package also contains two sample data sets with made up data to test and illustrate the functions.
 
+### 1. Functions to identify sudden gains:
 ```r
 # Load packages ----
 library(tidyverse)
@@ -127,7 +134,10 @@ select_cases(data = sgdata,
              return_id_lgl = FALSE)
 ```
 
+### 2. Functions to create datasets for further analysis:
+
 Now, you can use the `create_bysg()` and `create_byperson()` functions to create data sets for further analyses.
+
 
 ```r
 # Create bysg dataset ----
@@ -184,6 +194,8 @@ bysg_rq <- extract_values(data = bysg_rq,
                           add_to_data = TRUE)
 ```
 
+### 3. Helper functions to visualise and report sudden gains:
+
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
 Here is code to create a figure of the average gain magnitude.
 
@@ -210,3 +222,42 @@ plot_sg(data = bysg_rq,
 ```
 
 ![](https://dl.dropboxusercontent.com/s/smwspv6hvzu7eq8/suddengains-plot-rq.png)
+
+### 4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
+
+Here is one example how to create a "bysg" data set and write a CSV file to the computer.
+Note that you have to change the file path (and name) to where you want to save the file.
+ 
+```r
+write_bysg(data = sgdata,
+           sg_crit1_cutoff = 7,
+           id_var_name = "id",
+           tx_start_var_name = "bdi_s1",
+           tx_end_var_name = "bdi_s12",
+           sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                           "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                           "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+           sg_measure_name = "bdi",
+           identify = "sg",
+           format = "CSV",
+           path = "~/Desktop/bysg_data_excel.csv")
+
+```
+ 
+Here is another example how to write a "byperson" data set to a SPSS file on your computer.
+ 
+```{r, eval=FALSE}
+write_byperson(data = sgdata,
+               sg_crit1_cutoff = 7,
+               id_var_name = "id",
+               tx_start_var_name = "bdi_s1",
+               tx_end_var_name = "bdi_s12",
+               sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                               "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                               "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+               sg_measure_name = "bdi",
+               identify_sg_1to2 = FALSE,
+               multiple_sg_select = "largest",
+               format = "SPSS",
+               path = "~/Desktop/byperson_data.sav")
+```

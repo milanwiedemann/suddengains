@@ -25,10 +25,16 @@ First, you need to install the devtools package to download the `suddengains` pa
 install.packages("devtools")
 ```
 
-To install the developement version of `suddengains` package:
+To install the current stable version of the `suddengains` package:
 
 ```r
-devtools::install_github(repo = "milanwiedemann/suddengains")
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master")
+```
+
+To install the developmental version of the `suddengains` package:
+
+```r
+devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
 ```
 
 ## Overview of the functions
@@ -51,9 +57,9 @@ The `suddengains` package comes with a range of features which can be categorise
   - `plot_sg()`: stable
   - `describe_sg()`: stable
   
-4. Helper functions to export data sets:
-  - `write_bysg()`: testing
-  - `write_byperson()`: testing
+4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
+  - `write_bysg()`: testing, see "dev" branch
+  - `write_byperson()`: testing, see "dev" branch
   
 ## How to use `suddengains`
 

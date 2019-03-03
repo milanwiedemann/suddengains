@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--03--02-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--03--03-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
@@ -8,7 +8,7 @@
 [![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)
 
-We published a preprint describing this package on [PsyArXiv](https://psyarxiv.com/2wa84/).
+To learn more about the background of this package see our preprint on [PsyArXiv](https://psyarxiv.com/2wa84/).
 We have also created an open [Zotero group](https://www.zotero.org/groups/2280342/suddengains) collecting all the literature looking at sudden gains in psychological therapies. 
 Please let me know if I missed anything or join the group and add papers yourself.
 

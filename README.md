@@ -1,6 +1,7 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
 [![last-change](https://img.shields.io/badge/Last%20change-2019--03--02-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
 [![suddengains-version](https://img.shields.io/badge/Version-0.0.2-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
@@ -41,7 +42,7 @@ devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
 
 The `suddengains` package comes with a range of features which can be categorised into:
 
-1. Functions to identify and extract sudden gains:
+1. Functions to identify sudden gains:
   - `select_cases()`: stable
   - `define_crit1_cutoff()`: stable
   - `identify_sg()`: stable
@@ -66,6 +67,8 @@ The `suddengains` package comes with a range of features which can be categorise
 Here are a few examples how to use the `suddengains` package.
 First, load all required packages and datasets.
 This package also contains two sample data sets with made up data to test and illustrate the functions.
+
+### 1. Functions to identify sudden gains
 
 ```r
 # Load packages ----
@@ -133,6 +136,8 @@ select_cases(data = sgdata,
              return_id_lgl = FALSE)
 ```
 
+### 2. Functions to create datasets for further analysis:
+
 Now, you can use the `create_bysg()` and `create_byperson()` functions to create data sets for further analyses.
 
 ```r
@@ -190,6 +195,8 @@ bysg_rq <- extract_values(data = bysg_rq,
                           add_to_data = TRUE)
 ```
 
+### 3. Helper functions to visualise and report sudden gains
+
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
 Here is code to create a figure of the average gain magnitude.
 
@@ -216,3 +223,7 @@ plot_sg(data = bysg_rq,
 ```
 
 ![](https://dl.dropboxusercontent.com/s/smwspv6hvzu7eq8/suddengains-plot-rq.png)
+
+### 4. Helper functions to export data sets to SPSS, Excel, Stata or CSV
+
+I'm still working on these functions, see the [dev](https://github.com/milanwiedemann/suddengains/tree/dev) branch of this GitHub repository for more information.

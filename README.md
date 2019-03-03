@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--03--02-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--03--03-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=dev)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
 [![suddengains-version](https://img.shields.io/badge/Version-0.0.2-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
@@ -246,7 +246,7 @@ write_bysg(data = sgdata,
  
 Here is another example how to write a "byperson" data set to a SPSS file on your computer.
  
-```{r, eval=FALSE}
+```r
 write_byperson(data = sgdata,
                sg_crit1_cutoff = 7,
                id_var_name = "id",

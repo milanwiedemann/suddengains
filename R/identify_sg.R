@@ -58,14 +58,13 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             # Iterate through all columns
             for (col_j in 3:(base::ncol(data_loop) - 1)) {
 
-                # Check 1st sudden gains criterion
+                # Check 1st sudden gains criterion ----
                 crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit1_cutoff)
 
-                # Check 2nd sudden gains criterion
+                # Check 2nd sudden gains criterion ----
                 crit2[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit2_pct * data_loop[row_i, col_j - 1])
 
-                # Check 3rd sudden gains criterion
-
+                # Check 3rd sudden gains criterion ----
                 # First, create pre and post indices for 3rd criterion
                 pre_indices <- base::max(1, col_j - 3):(col_j - 1) # Create index for pregain
                 post_indices <- col_j:min(base::ncol(data_loop), col_j + 2) # Create index for postgain
@@ -96,6 +95,8 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                     # Adjust critical value for 1 missing value pregain and 1 missing value postgain
                 } else if (sum_n_pre == 2 & sum_n_post == 2) {
                     crit3[row_i, col_j - 2] <- mean_pre - mean_post > 4.303 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (2 + 2 - 2))
+
+                    # Add missing value if less than two pregain or postgain sessions are available
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {
                     crit3[row_i, col_j - 2] <- NA
                 }

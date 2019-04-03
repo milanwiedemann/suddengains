@@ -184,6 +184,18 @@ identify_sg(data = sgdata,
 
 ```
 
+```{r, eval = FALSE}
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
+
+```
+
 To analyse sudden gains after the first session, we include the option to specify a baseline measure in `sg_var_list` (in this example `"bdi_s0"`) and set `identify_sg_1to2 == TRUE`.
 This will allow the identification of sudden gains immediately after session 1, provided data from the baseline measure and the first session are available.
 

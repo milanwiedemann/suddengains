@@ -51,7 +51,3 @@ for more information.}
 \description{
 Writes a data frame as a specified file type.
 }
-\examples{
-TODO
-
-}

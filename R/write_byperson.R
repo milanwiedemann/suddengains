@@ -26,8 +26,6 @@
 #'
 #' @export
 #'
-#' @examples TODO
-#'
 
 write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
                            sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,

@@ -35,6 +35,7 @@
 #'                 sg_measure_name = "bdi",
 #'                 multiple_sg_select = "largest")
 #'
+
 create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, identify_sg_1to2 = FALSE) {
 
     # Check arguments

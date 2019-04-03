@@ -144,19 +144,26 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
         # Export dataframe with information whether individual criteria were met
         if (crit123_details == TRUE) {
-            data_crit123_details <- base::cbind(data_select[, 1], crit1, crit2, crit3)
+            data_crit123_details <- base::cbind(data_select[, 1], crit1, crit2, crit3, crit123)
 
-            # The name for the exported dataframe can be changed in the function
-            assign(name_crit123_details, data_crit123_details, envir = .GlobalEnv)
+            # Return dataframe with details about each criteria instead of combined crit123
+            data_crit123_details %>%
+                dplyr::arrange(!! rlang::sym(id_var_name)) %>%
+                tibble::as.tibble()
+
+        } else if (crit123_details == FALSE) {
+
+            # Combine ID with results from identify sudden gains loop
+            data_crit123 <- base::cbind(data_select[, 1], crit123)
+
+            # Combine data with variables used to identify sudden gains
+            data_select %>%
+                dplyr::left_join(data_crit123, by = id_var_name) %>%
+                dplyr::arrange(!! rlang::sym(id_var_name)) %>%
+                tibble::as.tibble()
+
         }
 
-        # Combine ID with results from identify sudden gains loop
-        data_crit123 <- base::cbind(data_select[, 1], crit123)
 
-        # Combine data with variables used to identify sudden gains
-        data_select %>%
-            dplyr::left_join(data_crit123, by = id_var_name) %>%
-            dplyr::arrange(!! rlang::sym(id_var_name)) %>%
-            tibble::as.tibble()
-    }
+}
 

@@ -226,4 +226,4 @@ plot_sg(data = bysg_rq,
 
 ### 4. Helper functions to export data sets to SPSS, Excel, Stata or CSV
 
-I'm still working on these functions, see the [dev](https://github.com/milanwiedemann/suddengains/tree/dev) branch of this GitHub repository for more information.
+I've finished these functions, see the [dev](https://github.com/milanwiedemann/suddengains/tree/dev) branch of this GitHub repository for more information.

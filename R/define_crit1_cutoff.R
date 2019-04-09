@@ -10,16 +10,18 @@
 
 define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_name, data_item = NULL, reliability = NULL) {
 
+  base::message("This function calculates a cut-off value that represents a clinically meaningful change based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).\nThe RCI formula was modified so that all statistics can be computed from the data of an individual study following suggestions by Stiles et al. (2003).\n\nSee these references for further details:\nJacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12–19. doi:10.1037/0022-006X.59.1.12\nStiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14–21. doi:10.1037/0022-006X.71.1.14")
+
   if (base::is.null(data_item) == TRUE & base::is.null(reliability) == TRUE) {
     stop("No information about reliability given. \n
          One of the two arguments must be used: \n
          1. 'data_item', provide item by item data of baseline questionnaire to calculate Cronbach's alpha \n
-         2. 'reliability' set the reliability manually.")
+         2. 'reliability' set the reliability manually.", call. = FALSE)
   }
 
   if (base::is.null(data_item) == FALSE & base::is.null(reliability) == FALSE) {
     stop("You can only use one argument to define the reliability that will be used to calculate the cut off. \n
-         Set either 'data_item or the 'reliability' argument to NULL.")
+         Set either 'data_item or the 'reliability' argument to NULL.", call. = FALSE)
   }
 
   # if (base::is.null(data_item) == TRUE & reliability > 1 | reliability < 0) {
@@ -43,9 +45,11 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
 
   # Calculate Cronbach's alpha at baseline using psych package
   if (base::is.null(reliability) == FALSE) {
-    reliability <- reliability
+      base::message("The reliability of the measure used to identify sudden gains was specified in the 'reliability' argument.")
+      reliability <- reliability
   } else if (base::is.null(reliability) == TRUE) {
-  reliability <- psych::alpha(data_item)[[1]]$raw_alpha
+      base::message("The reliability was calculated using the item-by-item data specified in the 'data_item' argument.")
+      reliability <- psych::alpha(data_item)[[1]]$raw_alpha
   }
 
   # Calculate standard error of measurement

@@ -6,11 +6,15 @@
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains criterion.
+#' If set to \code{NULL} the second criterion wont be applied.
+#' @param sg_crit3 If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
+#' If set to \code{FALSE} the third criterion wont be applied.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
-#' @param crit123_details Logical, if set to \code{TRUE} a dataframe will be wriiten to the global environment with information about which of the three criteria are met for each session to session interval for all cases.
-#' @param name_crit123_details String, specifying the name of the dataframe produced if \code{crit123_details} is set to \code{TRUE}.
+#' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
+#' Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.
 
 #' @return A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.
 #' @examples identify_sg(data = sgdata,
@@ -23,7 +27,7 @@
 #'            identify_sg_1to2 = FALSE)
 #' @export
 
-identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, identify_sg_1to2 = FALSE, crit123_details = FALSE, name_crit123_details = "data_crit123_details") {
+identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
         # Select data for identifying sudden gains
         # Only ID variable and sudden gains variables needed
@@ -39,18 +43,15 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         # Create one empty dataframe for each sudden gains criterion
         crit1 <- base::data.frame(base::matrix(NA,
                                                nrow = base::nrow(data_loop),
-                                               ncol = base::ncol(data_loop) - 3)
-                                  )
+                                               ncol = base::ncol(data_loop) - 3))
 
         crit2 <- base::data.frame(base::matrix(NA,
                                                nrow = base::nrow(data_loop),
-                                               ncol = base::ncol(data_loop) - 3)
-                                  )
+                                               ncol = base::ncol(data_loop) - 3))
 
         crit3 <- base::data.frame(base::matrix(NA,
                                                nrow = base::nrow(data_loop),
-                                               ncol = base::ncol(data_loop) - 3)
-                                  )
+                                               ncol = base::ncol(data_loop) - 3))
 
         # Iterate through all rows
         for (row_i in 1:base::nrow(data_loop)) {
@@ -59,12 +60,23 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             for (col_j in 3:(base::ncol(data_loop) - 1)) {
 
                 # Check 1st sudden gains criterion ----
-                crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit1_cutoff)
+                if (base::is.null(sg_crit1_cutoff) == TRUE) {
+                    crit1[row_i, col_j - 2] <- NA
+                    } else {
+                        crit1[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit1_cutoff)
+                        }
 
                 # Check 2nd sudden gains criterion ----
-                crit2[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit2_pct * data_loop[row_i, col_j - 1])
+                if (base::is.null(sg_crit2_pct) == TRUE) {
+                    crit2[row_i, col_j - 2] <- NA
+                    } else {
+                        crit2[row_i, col_j - 2] <- (data_loop[row_i, col_j - 1] - data_loop[row_i, col_j] >= sg_crit2_pct * data_loop[row_i, col_j - 1])
+                        }
 
                 # Check 3rd sudden gains criterion ----
+                if (sg_crit3 == FALSE) {
+                    crit3[row_i, col_j - 2] <- NA
+                } else {
                 # First, create pre and post indices for 3rd criterion
                 pre_indices <- base::max(1, col_j - 3):(col_j - 1) # Create index for pregain
                 post_indices <- col_j:min(base::ncol(data_loop), col_j + 2) # Create index for postgain
@@ -100,12 +112,28 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {
                     crit3[row_i, col_j - 2] <- NA
                 }
-            }
-        }
+                } # Close loop that applies 3rg criterion
+            } # Close loop that iterates through columns
+        } # Close loop that iterates through rows
 
         # Multiply dataframes with information on whether sudden gains criteria 1, 2, and 3 are met
         # 1 = criterion is met, 0 = criterion is not met, NA = not enough data to identify sudden gains
-        crit123 <- crit1 * crit2 * crit3
+
+        if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
+            crit123 <- crit1 * TRUE
+            } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
+                crit123 <- crit2 * TRUE
+                } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
+                    crit123 <- crit3 * TRUE
+                    } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
+                        crit123 <- crit1 * crit2
+                        } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
+                            crit123 <- crit2 * crit3
+                            } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
+                                crit123 <- crit1 * crit3
+                            } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
+                                crit123 <- crit1 * crit2 * crit3
+                            }
 
         # Create empty list for renaming variables
         sg_col_names <- base::c()
@@ -162,9 +190,5 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                 dplyr::left_join(data_crit123, by = id_var_name) %>%
                 dplyr::arrange(!! rlang::sym(id_var_name)) %>%
                 tibble::as.tibble()
-
         }
-
-
 }
-

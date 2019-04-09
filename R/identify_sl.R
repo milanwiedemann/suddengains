@@ -28,6 +28,10 @@
 
 identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
+    if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
+        stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
+    }
+
         # Select data for identifying sudden losses
         # Only ID variable and sudden losses variables needed
         data_select <- data %>%
@@ -120,19 +124,26 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
         if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
             crit123 <- crit1 * TRUE
-            } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
-                crit123 <- crit2 * TRUE
-                } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
-                    crit123 <- crit3 * TRUE
-                    } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
-                        crit123 <- crit1 * crit2
-                        } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
-                            crit123 <- crit2 * crit3
-                            } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
-                                crit123 <- crit1 * crit3
-                                } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
-                                    crit123 <- crit1 * crit2 * crit3
-                                    }
+            base::message("First sudden gains criterion was applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
+            crit123 <- crit2 * TRUE
+            base::message("Second sudden gains criterion was applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
+            crit123 <- crit3 * TRUE
+            base::message("Third sudden gains criterion was applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
+            crit123 <- crit1 * crit2
+            base::message("First and second sudden gains criteria were applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
+            crit123 <- crit2 * crit3
+            base::message("Second and third sudden gains criteria were applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
+            crit123 <- crit1 * crit3
+            base::message("First and third sudden gains criteria were applied.")
+        } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
+            crit123 <- crit1 * crit2 * crit3
+            base::message("First, second, and third sudden gains criteria were applied.")
+        }
 
         # Create empty list for renaming variables
         sg_col_names <- base::c()
@@ -153,6 +164,7 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
             # If identify_sg_1to2 is FALSE, sg variables will start with "sg_2to3"
         } else if (identify_sg_1to2 == TRUE) {
+            base::message("The argument identify_sg_1to2 is set to TRUE.\nThis implies that the first variable specified in the argument 'sg_var_list' represents a baseline measurement point, e.g. pre-intervention assessment.")
             for (i in 1:(base::ncol(data_loop) - 3)) {
                 sg_col_names[i] <- base::paste0("sl_", i, "to", i + 1)
 

@@ -43,6 +43,8 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
 
     if (method == "pattern") {
 
+      base::message("The method 'pattern' was used to select cases.\nSee https://github.com/milanwiedemann/suddengains for more information.")
+
       # Return matrix indicating whether values are missing (FALSE) or available (TRUE)
       data_pattern <- !is.na(data_select[ , 2:(length(sg_var_list) + 1)])
 
@@ -63,6 +65,8 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
           dplyr::select(id_var_name, sg_select)
 
       } else if (method == "min_sess") {
+
+        base::message("The method 'min_sess' was used to select cases.\nSee https://github.com/milanwiedemann/suddengains for more information.")
 
         if (!is.numeric(min_sess_num)) {
             stop("`min_sess_num` argument should be numeric", call. = FALSE)

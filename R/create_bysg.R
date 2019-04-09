@@ -5,13 +5,18 @@
 #'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' If set to \code{NULL} the first criterion wont be applied.
+#' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
+#' If set to \code{NULL} the second criterion wont be applied.
+#' @param sg_crit3 If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
+#' If set to \code{FALSE} the third criterion wont be applied.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
 #' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
-#' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' The default is to identify sudden gains (\code{"sg"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #'
@@ -29,7 +34,7 @@
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"),
 #'             sg_measure_name = "bdi")
 #'
-create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, sg_crit2_pct = .25, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
+create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, sg_crit2_pct = .25, sg_crit3 = TRUE, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
 
     # Check arguments
     identify <- base::match.arg(identify)
@@ -44,16 +49,18 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   if (identify == "sg") {
       data_crit123 <- suddengains::identify_sg(data = data,
                                                id_var_name = id_var_name,
-                                               sg_crit1_cutoff = sg_crit1_cutoff,
                                                sg_var_list = sg_var_list,
+                                               sg_crit1_cutoff = sg_crit1_cutoff,
                                                sg_crit2_pct = sg_crit2_pct,
+                                               sg_crit3 = sg_crit3,
                                                identify_sg_1to2 = identify_sg_1to2)
   } else if (identify == "sl") {
       data_crit123 <- suddengains::identify_sl(data = data,
                                                id_var_name = id_var_name,
-                                               sg_crit1_cutoff = sg_crit1_cutoff,
                                                sg_var_list = sg_var_list,
+                                               sg_crit1_cutoff = sg_crit1_cutoff,
                                                sg_crit2_pct = sg_crit2_pct,
+                                               sg_crit3 = sg_crit3,
                                                identify_sg_1to2 = identify_sg_1to2)
   }
 

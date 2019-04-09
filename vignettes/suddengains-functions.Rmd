@@ -171,6 +171,8 @@ TODO: explain output (i.e. the last one is the cutoff, the others are there to c
 
 ## Identify sudden gains and losses
 
+### Sudden gains
+
 To simply identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
 The functions return a data frame indicating for each between-session interval whether a sudden gain/loss was identified.
 TODO: give example e.g what does sg_2to3 mean? maybe this is obvious...
@@ -218,6 +220,8 @@ identify_sg(data = sgdata,
             identify_sg_1to2 = TRUE)
 ```
 
+### Sudden losses
+
 To identify sudden losses, you can use the `identify_sl` function.
 All arguments are the same as in the `identify_sg` function, but the `sg_crit1_cutoff` has to be set to be a negative value.
 
@@ -233,35 +237,72 @@ identify_sl(data = sgdata,
             identify_sg_1to2 = FALSE)
 ```
 
-To not use one of the criteria for identifying sudden gains or sudden losses you can switch them off.
-The first and second crieria can be set to `NULL`, the third has to be set to `FALSE`.
+### Adaptations to the original sudden gains criteria
 
-- 
+The package allows to change or not use either of the three original sudden gains criteria suggested by @Tang1999:
+
+1. The cutoff value for a clinically meaningful change on the measure to be used to identify sudden gains using can be specified using the argument `sg_crit1_cutoff`.
+To not apply the first criterion when identifying sudden gains, this argument can switched off by using `sg_crit1_cutoff = NULL`.
+1. The minimum percentage drop from the pre- to post-gain session can be specified using the argument `sg_crit2_pct`.
+The default is a minimum of a 25% drop, i.e. `sg_crit2_pct = .25`.
+To not apply the second criterion when identifying sudden gains, this argument can switched off by using `sg_crit2_pct = NULL`.
+1. The third criterion can only be turned on (`sg_crit3 = TRUE`) or off (`sg_crit3 = FALSE`). 
+At the moment there is no option to change the way the third criterion gets applied. 
+
 
 ```{r, eval = FALSE}
+# This example only uses the first and second sudden gains criteria 
+# Note: All following examples work the same for the "identify_sl()" function
+# Note: The argument "crit123_details = TRUE" returns details about each between session interval for each criterion.
+# Note: Details about the third criterion will show NAs for each between session interval because it's not being used (sg_crit3 = FALSE)
 identify_sg(data = sgdata,
-            sg_crit1_cutoff = NULL,
+            sg_crit1_cutoff = 7,
             sg_crit2_pct = .25,
             sg_crit3 = FALSE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = TRUE,
-            crit123_details = TRUE) %>% 
-    dplyr::select(dplyr::starts_with("sg"))
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
 
-identify_sl(data = sgdata,
-            sg_crit1_cutoff = -7,
+# This example only uses the first criterion, a modified second criterion (50%) 
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            sg_crit2_pct = .50,
+            sg_crit3 = FALSE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
+
+# This example only uses the first criterion
+# Note: Details about the second and third criterion will show NAs for each between session interval
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
             sg_crit2_pct = NULL,
             sg_crit3 = FALSE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = TRUE,
-            crit123_details = TRUE) %>% 
-    dplyr::select(dplyr::starts_with("sl"))
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
+
+# This example only uses the first criterion
+# Note: Details about the second and third criterion will show NAs for each between session interval
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            sg_crit2_pct = NULL,
+            sg_crit3 = FALSE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
 ```
 
 # Create datasets for further analysis

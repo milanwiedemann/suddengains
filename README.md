@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--04--05-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--04--09-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=dev)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
@@ -59,8 +59,8 @@ The `suddengains` package comes with a range of features which can be categorise
   - `describe_sg()`: stable
   
 4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
-  - `write_bysg()`: testing 
-  - `write_byperson()`: testing 
+  - `write_bysg()`: stable 
+  - `write_byperson()`: stable 
   
 ## How to use `suddengains`
 

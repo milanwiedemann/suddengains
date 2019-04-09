@@ -5,9 +5,8 @@
 \title{Identify sudden gains.}
 \usage{
 identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
-  sg_crit2_pct = 0.25, identify_sg_1to2 = FALSE,
-  crit123_details = FALSE,
-  name_crit123_details = "data_crit123_details")
+  sg_crit2_pct = 0.25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE,
+  crit123_details = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -16,16 +15,20 @@ identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
 
 \item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
-\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.}
+\item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+If set to \code{NULL} the first criterion wont be applied.}
 
-\item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains criterion.}
+\item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains criterion.
+If set to \code{NULL} the second criterion wont be applied.}
+
+\item{sg_crit3}{If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
+If set to \code{FALSE} the third criterion wont be applied.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 
-\item{crit123_details}{Logical, if set to \code{TRUE} a dataframe will be wriiten to the global environment with information about which of the three criteria are met for each session to session interval for all cases.}
-
-\item{name_crit123_details}{String, specifying the name of the dataframe produced if \code{crit123_details} is set to \code{TRUE}.}
+\item{crit123_details}{Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
+Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.}
 }
 \value{
 A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.

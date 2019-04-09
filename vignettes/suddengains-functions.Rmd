@@ -4,10 +4,12 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{A detailed example of how to use the suddengains R package}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 bibliography: ["references.bib", "r-references.bib"]
 link-citations: yes
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include = FALSE}
@@ -141,8 +143,8 @@ Here we see code to count only the intervals of the data that was selected for t
 ```{r}
 count_intervals(data = sgdata_select,
                 id_var_name = "id",
-                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
-                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
                                 "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                 identify_sg_1to2 = FALSE)
 ```
@@ -176,6 +178,8 @@ TODO: give example e.g what does sg_2to3 mean? maybe this is obvious...
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
+            sg_crit2_pct = .25,
+            sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
@@ -187,6 +191,8 @@ identify_sg(data = sgdata,
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
+            sg_crit2_pct = .25,
+            sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
@@ -203,6 +209,7 @@ This will allow the identification of sudden gains immediately after session 1, 
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             sg_crit2_pct = .25,
+            sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s0", 
                             "bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -218,11 +225,43 @@ All arguments are the same as in the `identify_sg` function, but the `sg_crit1_c
 identify_sl(data = sgdata,
             sg_crit1_cutoff = -7,
             sg_crit2_pct = .25,
+            sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
                             "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-            identify_sg_1to2 = TRUE)
+            identify_sg_1to2 = FALSE)
+```
+
+To not use one of the criteria for identifying sudden gains or sudden losses you can switch them off.
+The first and second crieria can be set to `NULL`, the third has to be set to `FALSE`.
+
+- 
+
+```{r, eval = FALSE}
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = NULL,
+            sg_crit2_pct = .25,
+            sg_crit3 = FALSE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = TRUE,
+            crit123_details = TRUE) %>% 
+    dplyr::select(dplyr::starts_with("sg"))
+
+identify_sl(data = sgdata,
+            sg_crit1_cutoff = -7,
+            sg_crit2_pct = NULL,
+            sg_crit3 = FALSE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = TRUE,
+            crit123_details = TRUE) %>% 
+    dplyr::select(dplyr::starts_with("sl"))
 ```
 
 # Create datasets for further analysis

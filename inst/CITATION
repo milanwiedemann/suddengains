@@ -6,6 +6,6 @@ utils::citEntry(
   , journal = "PsyArXiv Preprints"
   , year = "2019"
   , note = "R package version 0.0.2"
-  , doi = "https://doi.org/10.31234/osf.io/2wa84"
+  , doi = "10.31234/osf.io/2wa84"
   , url = "https://github.com/milanwiedemann/suddengains"
 )

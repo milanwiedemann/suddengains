@@ -18,11 +18,11 @@ If set to TRUE, this implies that the first variable specified in \code{sg_var_l
 }
 \value{
 List with values for:
-  \describe{
-    \item{total_between_sess_intervals}{: The total number of between-session intervals present in the data set}
-    \item{total_between_sess_intervals_sg}{: The total number of gain intervals (i.e. sudden gains) present in the data set}
-    \item{analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could be analysed for sudden gains}
-    \item{not_analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data)}
+  \itemize{
+    \item{total_between_sess_intervals}{: The total number of between-session intervals present in the data set.}
+    \item{total_between_sess_intervals_sg}{: The total number of gain intervals (i.e. sudden gains) present in the data set.}
+    \item{analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could be analysed for sudden gains.}
+    \item{not_analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).}
     }
 }
 \description{

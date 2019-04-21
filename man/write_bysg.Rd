@@ -50,3 +50,19 @@ for more information.}
 \description{
 Writes a data frame as a specified file type.
 }
+\examples{
+## Adjusting 'path' argument before running
+# write_bysg(data = sgdata,
+#            sg_crit1_cutoff = 7,
+#            id_var_name = "id",
+#            tx_start_var_name = "bdi_s1",
+#            tx_end_var_name = "bdi_s12",
+#            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#            sg_measure_name = "bdi",
+#            identify_sg_1to2 = FALSE,
+#            format = "CSV",
+#            path = "~/sg_bysg_data.csv")
+#
+}

@@ -28,7 +28,7 @@ library(knitr)
 library(DT)
 ```
 
-Please cite as:
+Please cite this vignette and the R package *suddengains* as:
 
 ```{r}
 citation("suddengains")
@@ -38,14 +38,15 @@ citation("suddengains")
 
 This vignette shows how the *suddengains* R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
 More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
-
 The following vignette describes the data and the main functions of the package following the main steps of a regular sudden gains study.
 
 # Data
 
 Below are two interactive tables of depression and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
 The data is automatically loaded together with the package when running `library(suddengains)`.
-Note that some values for each measure are missing.
+Each measure was contains a baseline measure (**s0**), twelve weekly measures during therapy (**s1** to **s12**), and two follow-up measures (**fu1** and **fu2**).
+Note that some values for each measure are missing, here shown as empty cells. 
+For an example see measure **bdi_s2** for **id = 2**.
 
 ## Depression symptoms
 

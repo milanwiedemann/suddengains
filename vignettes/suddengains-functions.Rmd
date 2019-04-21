@@ -28,7 +28,7 @@ library(knitr)
 library(DT)
 ```
 
-Please cite this vignette and the R package *suddengains* as:
+Please cite this vignette and the R package `suddengains` as:
 
 ```{r}
 citation("suddengains")
@@ -36,7 +36,7 @@ citation("suddengains")
 
 # Introduction
 
-This vignette shows how the *suddengains* R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
+This vignette shows how the `suddengains` R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
 More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
 The following vignette describes the data and the main functions of the package following the main steps of a regular sudden gains study.
 
@@ -141,26 +141,11 @@ sgdata_select <- select_cases(data = sgdata,
                  dplyr::filter(sg_select == TRUE)
 ```
 
-The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
-For more info see the help file of this function.
-Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
-
-```{r}
-count_intervals(data = sgdata_select,
-                id_var_name = "id",
-                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-                identify_sg_1to2 = FALSE)
-```
-
-TODO: brief overview of the 4 outputs to this (from help file?)
-
 # Identification of sudden gains
 
 ## Define cut-off
 
-This function follows suggestions from @Stiles2003 using the RCT [@Jacobson1991].
+This function follows suggestions from @Stiles2003 using the Reliable Change Index [RCI, @Jacobson1991].
 
 ```{r}
 # Test define_crit1_cutoff function ----
@@ -168,11 +153,11 @@ define_crit1_cutoff(data_sessions = sgdata,
                     data_item = NULL,
                     tx_start_var_name = "bdi_s0",
                     tx_end_var_name = "bdi_s12",
-                    reliability = 0.9)
+                    reliability = 0.931)
 
 ```
-TODO: explain output (i.e. the last one is the cutoff, the others are there to confirm the specifications entered)
 
+**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: explain output (i.e. the last one is the cutoff, the others are there to confirm the specifications entered)**
 
 ## Identify sudden gains and losses
 
@@ -246,7 +231,7 @@ identify_sl(data = sgdata,
 
 The package allows to change or not use either of the three original sudden gains criteria suggested by @Tang1999:
 
-1. The cutoff value for a clinically meaningful change on the measure to be used to identify sudden gains using can be specified using the argument `sg_crit1_cutoff`.
+1. The cut-off value for a clinically meaningful change on the measure to be used to identify sudden gains using can be specified using the argument `sg_crit1_cutoff`.
 To not apply the first criterion when identifying sudden gains, this argument can switched off by using `sg_crit1_cutoff = NULL`.
 1. The minimum percentage drop from the pre- to post-gain session can be specified using the argument `sg_crit2_pct`.
 The default is a minimum of a 25% drop, i.e. `sg_crit2_pct = .25`.
@@ -257,9 +242,9 @@ At the moment there is no option to change the way the third criterion gets appl
 
 ```{r, eval = FALSE}
 # This example only uses the first and second sudden gains criteria 
-# Note: All following examples work the same for the "identify_sl()" function
-# Note: The argument "crit123_details = TRUE" returns details about each between session interval for each criterion.
-# Note: Details about the third criterion will show NAs for each between session interval because it's not being used (sg_crit3 = FALSE)
+# All following examples work the same for the "identify_sl()" function
+# The argument "crit123_details = TRUE" returns details about each between session interval for each criterion.
+# Details about the third criterion will show NAs for each between session interval because it's not being used (sg_crit3 = FALSE)
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             sg_crit2_pct = .25,
@@ -284,7 +269,7 @@ identify_sg(data = sgdata,
             crit123_details = TRUE)
 
 # This example only uses the first criterion
-# Note: Details about the second and third criterion will show NAs for each between session interval
+# Details about the second and third criterion will show NAs for each between session interval
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             sg_crit2_pct = NULL,
@@ -297,7 +282,7 @@ identify_sg(data = sgdata,
             crit123_details = TRUE)
 
 # This example only uses the first criterion
-# Note: Details about the second and third criterion will show NAs for each between session interval
+# Details about the second and third criterion will show NAs for each between session interval
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             sg_crit2_pct = NULL,
@@ -313,7 +298,7 @@ identify_sg(data = sgdata,
 # Create datasets for further analysis
 
 ## All gains: One row per gain
-In the suddengains R package we refer to this as "bysg" (by sudden gain).
+In the `suddengains` R package we refer to this as "bysg" (by sudden gain).
 
 Here we see code to create a "bysg" data set identifying sudden gains (specified using the argument `identify = "sg"`) and save it to the object called "bysg".
 The following table shows the output.
@@ -341,7 +326,8 @@ DT::datatable(bysg,
                   scrollX = TRUE,
                   fixedColumns = TRUE))
 ```
-TODO: give brief overview of the new variables created and what each one means?
+
+**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: give brief overview of the new variables created and what each one means?**
 
 Here we see code to create a "bysg" data set identifying sudden losses (specified using the argument `identify = "sl"`) and save it to the object called "bysl".
 The following table shows the output.
@@ -372,7 +358,7 @@ DT::datatable(bysl,
 
 ## All cases: One row per case
 
-In the *suddengains* R package we refer to this as byperson (by person).
+In the `suddengains` R package we refer to this as byperson (by person).
 This data set includes all cases with and all cases without sudden gains.
 If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` can be used to specify which gain to select; in the example below the first gain will be selected.
 
@@ -400,7 +386,7 @@ datatable(byperson_first,
               fixedColumns = TRUE))
 ```
 
-TODO: explain any new variables that are unique to the byperson df?
+**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: explain any new variables that are unique to the byperson df?**
 
 Depending on the research questions it might be of interest to select the largest gain, as shown below.
 Notice how the selected gain for ID 5 is different depending on how to handle multiple gains.
@@ -434,18 +420,19 @@ DT::datatable(byperson_largest,
 
 # Extract values around sudden gains
 
-TODO: intro text here?
+The package can extract scores on secondary outcome or process measures around the period of each gain.
+This function can be applied to either the bysg or byperson dataset, the variables specified in `extract_var_list` have to be in the data set specified in `data`. 
 
 ```{r}
-# For bysg dataset select rq variables first
+# For bysg dataset select "id" and "rq" variables first
 sgdata_rq <- sgdata %>% 
     dplyr::select(id, rq_s0:rq_s12)
 
-# Join them
+# Join them with the sudden gains data set, here "bysg"
 bysg_rq <- bysg %>%
     dplyr::left_join(sgdata_rq, by = "id")
 
-# Extract scores for bysg dataset
+# Extract "rq" scores around sudden gains on "bdi" in the bysg dataset
 bysg_rq <- extract_values(data = bysg_rq,
                           id_var_name = "id_sg",
                           extract_var_list = c("rq_s1", "rq_s2", "rq_s3", "rq_s4", 
@@ -467,9 +454,7 @@ datatable(bysg_rq,
 
 # Plots of average change around sudden gains
 
-The plots are created using the *ggplot* R-package [@R-ggplot2] in five main steps:
-
-TODO: ggplot or ggplot2?
+The plots are created using the *ggplot2* R-package [@R-ggplot2] in five main steps:
 
 1. Means for all time points and points
 1. 95% confidence intervals for all time points
@@ -522,9 +507,31 @@ plot_sg_bdi
 plot_sg_rq 
 ```
 
+
 # Summarise some descriptive statistics
 
-TODO: intro text, and then an explanation of what each output means (from the help page).
+## Count between session intervals
+
+The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
+For more info see the help file of this function.
+Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
+
+- `total_between_sess_intervals`: The total number of between-session intervals present in the data set, here: `sgdata_select`.
+- `total_between_sess_intervals_sg`: The total number of gain intervals (i.e. sudden gains) present in the data set. By default the first to second and second-last to last intervals are not included here. If `identify_sg_1to2` is set to `TRUE` the first to second intervals will be included.
+- `analysed_between_sess_intervals_sg`: The total number of between-session intervals that could be analysed for sudden gains.
+- `not_analysed_between_sess_intervals_sg`: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).
+
+
+```{r}
+count_intervals(data = sgdata_select,
+                id_var_name = "id",
+                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                identify_sg_1to2 = FALSE)
+```
+
+## Descriptive statistics of sudden gains
 
 ```{r}
 # Describe sg ----

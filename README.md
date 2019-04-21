@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--04--09-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--04--21-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
@@ -58,7 +58,7 @@ The `suddengains` package comes with a range of features which can be categorise
   - `plot_sg()`: stable
   - `describe_sg()`: stable
   
-4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
+4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV:
   - `write_bysg()`: stable 
   - `write_byperson()`: stable 
   
@@ -83,6 +83,8 @@ View(sgdata)
 View(sgdata_bad)
 ```
 
+#### 1.1 Define cut-off
+
 The cut-off value for the first sudden gains criterion can be calculated using the reliable change index (RCI; Jacobson & Truax, [1991](https://psycnet.apa.org/record/1991-16094-001)) based on suggestions from Stiles et al. ([2003](http://psycnet.apa.org/buy/2003-01069-004)).
 The function has the option to calculate Chronbach's a based in item-by-item data if provided, or alternatively the reliability of the measure can be specified.
 
@@ -95,8 +97,11 @@ define_crit1_cutoff(data_sessions = sgdata,
                     reliability = 0.93)
 ```
 
+#### 1.2 Select cases
+
 Next, select all cases for the sudden gains analysis. 
 The package currently implements two methods to select cases:
+
 1. Select all cases with a minimum number of repeated measurements available: `method = "min_sess"`
 1. Select all that provide enough data to apply the three sudden gains criteria: `method = "pattern"`
 
@@ -112,7 +117,7 @@ select_cases(data = sgdata,
              return_id_lgl = TRUE)
 ```
 
-An alternative option is to select all cases where it is possible to apply all three sudden gains criteria. 
+Another option is to select all cases where it is possible to apply all three sudden gains criteria. 
 This function goes through the data and selects all cases with at least one of the following data patterns.
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
@@ -138,7 +143,6 @@ select_cases(data = sgdata,
 ### 2. Functions to create datasets for further analysis:
 
 Now, you can use the `create_bysg()` and `create_byperson()` functions to create data sets for further analyses.
-
 
 ```r
 # Create bysg dataset ----
@@ -170,6 +174,8 @@ byperson_first <- create_byperson(data = sgdata,
                                   multiple_sg_select = "first")
 ```
 
+### 3. Extract values around sudden gains
+
 If you are interested in extracting values of other measures around the time of the sudden gain you can use the `extract_values()` function. 
 You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) `%>%` operator to understand the examples.
 
@@ -195,7 +201,7 @@ bysg_rq <- extract_values(data = bysg_rq,
                           add_to_data = TRUE)
 ```
 
-### 3. Helper functions to visualise and report sudden gains:
+### 4. Helper functions to visualise and report sudden gains:
 
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
 Here is code to create a figure of the average gain magnitude.
@@ -224,7 +230,7 @@ plot_sg(data = bysg_rq,
 
 ![](https://dl.dropboxusercontent.com/s/smwspv6hvzu7eq8/suddengains-plot-rq.png)
 
-### 4. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
+### 5. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
 
 Here is one example how to create a "bysg" data set and write a CSV file to the computer.
 Note that you have to change the file path (and name) to where you want to save the file.

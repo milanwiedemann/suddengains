@@ -91,6 +91,10 @@ The package offers two methods to select cases for the sudden gains studies.
 1. `"pattern"`: cases providing enough data to apply the @Tang1999 criteria will be selected
 1. `"min_sess"`: cases with a minimum number of available data (specified in `min_sess_num`) will be selected
 
+By default the argument `return_id_lgl` is set to `FALSE`, this simply adds a new variable named `sg_select` at the end of the dataframe specified in the `data` argument.
+The newly calcualted variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on method selected.  
+When the argument `return_id_lgl` is set to `TRUE`, only the id variable specified in `id_var_name` and the new variable `sg_select` will be returned as the output of this function.
+
 ```{r select, eval = FALSE}
 # 1. method = "pattern"
 select_cases(data = sgdata,
@@ -111,7 +115,7 @@ select_cases(data = sgdata,
              min_sess_num = 9,
              return_id_lgl = TRUE)
 ```
-TODO: explain somewhere about the default output of select_cases i.e. the new logical variable that is added to df
+
 
 The following code shows how to select cases based on the `"pattern"` method and save them as an object called `sgdata_select`.
 This function goes through the data and selects all cases with at least one of the following data patterns.

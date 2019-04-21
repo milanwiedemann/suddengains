@@ -46,7 +46,7 @@ Below are two interactive tables of depression and rumination scores from the da
 The data is automatically loaded together with the package when running `library(suddengains)`.
 Each measure was contains a baseline measure (**s0**), twelve weekly measures during therapy (**s1** to **s12**), and two follow-up measures (**fu1** and **fu2**).
 Note that some values for each measure are missing, here shown as empty cells. 
-For an example see measure **bdi_s2** for **id = 2**.
+For an example of a missing value see measure **bdi_s2** for **id = 2** in the table below.
 
 ## Depression symptoms
 
@@ -93,7 +93,7 @@ The package offers two methods to select cases for the sudden gains studies.
 1. `"min_sess"`: cases with a minimum number of available data (specified in `min_sess_num`) will be selected
 
 By default the argument `return_id_lgl` is set to `FALSE`, this simply adds a new variable named `sg_select` at the end of the dataframe specified in the `data` argument.
-The newly calcualted variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on method selected.  
+The newly calcualted variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on the method specified.
 When the argument `return_id_lgl` is set to `TRUE`, only the id variable specified in `id_var_name` and the new variable `sg_select` will be returned as the output of this function.
 
 ```{r select, eval = FALSE}

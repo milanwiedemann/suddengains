@@ -99,8 +99,10 @@ define_crit1_cutoff(data_sessions = sgdata,
 
 #### 1.2 Select cases
 
-Next, select all cases for the sudden gains analysis. 
-The package currently implements two methods to select cases:
+The package currently implements two methods to select cases for sudden gains analyses.
+Which method is most appropriate for your study will depend on the therapy to be analysed, the underlying theory, the data your're using, the questions you're interested.
+It might also be that it's not neccessary for you to make use of this function.
+Below are some more details about the two methods that are currently available:
 
 1. Select all cases with a minimum number of repeated measurements available: `method = "min_sess"`
 1. Select all that provide enough data to apply the three sudden gains criteria: `method = "pattern"`
@@ -139,6 +141,8 @@ select_cases(data = sgdata,
              method = "pattern", 
              return_id_lgl = FALSE)
 ```
+
+#### 1.3. Identify sudden gains
 
 ### 2. Functions to create datasets for further analysis:
 

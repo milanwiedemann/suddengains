@@ -1,7 +1,8 @@
 ---
 title: "A detailed example of how to use the suddengains R package"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{A detailed example of how to use the suddengains R package}
   %\VignetteEncoding{UTF-8}
@@ -38,7 +39,7 @@ citation("suddengains")
 
 This vignette shows how the `suddengains` R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
 More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
-The following vignette describes the data and the main functions of the package following the main steps of a regular sudden gains study.
+The following vignette illustrates the main functions of the package using the example data set `sgdata`.
 
 # Data
 
@@ -146,6 +147,15 @@ sgdata_select <- select_cases(data = sgdata,
 ## Define cut-off
 
 This function follows suggestions from @Stiles2003 using the Reliable Change Index [RCI, @Jacobson1991].
+The first 4 elements of the output list return the values that were used to calculate the the cut-off:
+
+- `standard_deviation_pre`: Standard deviation of the variable specified in `tx_start_var_name`
+- `reliability`: If `data_item` is provided the internal consistency (Cronbach's alpha) at baseline will be calculated.
+  An alternative option is to enter a value for the baseline reliability using the `reliability` argument.
+- `standard_error_measurement`: Standard error of measurement
+- `sdiff`: Standard error of the difference between  two test scores
+
+The last element of the list `sg_crit1_cutoff` can be used as a cut-off value for the first sudden gains criterion.
 
 ```{r}
 # Test define_crit1_cutoff function ----
@@ -156,8 +166,6 @@ define_crit1_cutoff(data_sessions = sgdata,
                     reliability = 0.931)
 
 ```
-
-**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: explain output (i.e. the last one is the cutoff, the others are there to confirm the specifications entered)**
 
 ## Identify sudden gains and losses
 
@@ -239,7 +247,6 @@ To not apply the second criterion when identifying sudden gains, this argument c
 1. The third criterion can only be turned on (`sg_crit3 = TRUE`) or off (`sg_crit3 = FALSE`). 
 At the moment there is no option to change the way the third criterion gets applied. 
 
-
 ```{r, eval = FALSE}
 # This example only uses the first and second sudden gains criteria 
 # All following examples work the same for the "identify_sl()" function
@@ -301,7 +308,18 @@ identify_sg(data = sgdata,
 In the `suddengains` R package we refer to this as "bysg" (by sudden gain).
 
 Here we see code to create a "bysg" data set identifying sudden gains (specified using the argument `identify = "sg"`) and save it to the object called "bysg".
-The following table shows the output.
+The table below shows the output including the following 15 new variables:
+
+- `id_sg`: Unique identifier for each sudden gain
+- `sg_crit123`: Logical variable idicating whether a sudden gain was identified
+- `sg_session_n`: Pregain session number
+- `sg_freq_byperson`: Frequency of sudden gains identified for each case (`id`)
+- `sg_**bdi**_2n`, `sg_**bdi**_1n`, `sg_**bdi**_n`, `sg_**bdi**_n1`, `sg_**bdi**_n2`, `sg_**bdi**_n3`: Six extracted values of the sudden gains measure around the sudden gain
+- `sg_magnitude`: Magnitude of the sudden gain for each case
+- `sg_**bdi**_tx_change`: Total change on the sudden gains measure from start (`tx_start_var_name`) to end (`tx_end_var_name`) for each case
+- `sg_change_proportion`: Magnitude of the sudden gain (`sg_magnitude`) divided by the total change `sg_**bdi**_tx_change`
+- `sg_reversal_value`: Value that if reached at any point after the sudden gain would count as a reversal of the sudden gain
+- `sg_reversal`: Logical variable indicating whether a sudden gain reversed
 
 ```{r}
 bysg <- create_bysg(data = sgdata,
@@ -316,7 +334,6 @@ bysg <- create_bysg(data = sgdata,
                     identify = "sg")
 ```
 
-
 ```{r, echo = FALSE}
 DT::datatable(bysg,
               rownames = FALSE,
@@ -326,8 +343,6 @@ DT::datatable(bysg,
                   scrollX = TRUE,
                   fixedColumns = TRUE))
 ```
-
-**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: give brief overview of the new variables created and what each one means?**
 
 Here we see code to create a "bysg" data set identifying sudden losses (specified using the argument `identify = "sl"`) and save it to the object called "bysl".
 The following table shows the output.
@@ -386,8 +401,6 @@ datatable(byperson_first,
               fixedColumns = TRUE))
 ```
 
-**TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO: explain any new variables that are unique to the byperson df?**
-
 Depending on the research questions it might be of interest to select the largest gain, as shown below.
 Notice how the selected gain for ID 5 is different depending on how to handle multiple gains.
 The first gain experienced by ID 5 is from session 3 to 4, whereas the largest gain was experienced from session 8 to 9.
@@ -415,8 +428,6 @@ DT::datatable(byperson_largest,
               scrollX = TRUE,
               fixedColumns = TRUE))
 ```
-
-
 
 # Extract values around sudden gains
 
@@ -533,10 +544,17 @@ count_intervals(data = sgdata_select,
 
 ## Descriptive statistics of sudden gains
 
+The `describe_sg()` function provides descriptive statistics about the sudden gains based on the variables from the `bysg` or `byperson` datasets.
+The descriptives (e.g. "sg_pct", the percentage of cases with sudden gains in the specified data set) are always in relation to the input data and therefore will vary depending on whether.
+
 ```{r}
-# Describe sg ----
+# Describe bysg dataset ----
 describe_sg(data = bysg, 
             sg_data_structure = "bysg")
+
+# Describe byperson dataset ----
+describe_sg(data = byperson_first, 
+            sg_data_structure = "byperson")
 ```
 
 # References

@@ -263,7 +263,7 @@ identify_sg(data = sgdata,
             identify_sg_1to2 = FALSE,
             crit123_details = TRUE)
 
-# This example only uses the first criterion, a modified second criterion (50%) 
+# This example only uses the first criterion and a modified second criterion (50%) 
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             sg_crit2_pct = .50,
@@ -314,10 +314,10 @@ The table below shows the output including the following 15 new variables:
 - `sg_crit123`: Logical variable idicating whether a sudden gain was identified
 - `sg_session_n`: Pregain session number
 - `sg_freq_byperson`: Frequency of sudden gains identified for each case (`id`)
-- `sg_**bdi**_2n`, `sg_**bdi**_1n`, `sg_**bdi**_n`, `sg_**bdi**_n1`, `sg_**bdi**_n2`, `sg_**bdi**_n3`: Six extracted values of the sudden gains measure around the sudden gain
+- `sg_bdi_2n`, `sg_bdi_1n`, `sg_bdi_n`, `sg_bdi_n1`, `sg_bdi_n2`, `sg_bdi_n3`: Six extracted values of the sudden gains measure around the sudden gain
 - `sg_magnitude`: Magnitude of the sudden gain for each case
 - `sg_**bdi**_tx_change`: Total change on the sudden gains measure from start (`tx_start_var_name`) to end (`tx_end_var_name`) for each case
-- `sg_change_proportion`: Magnitude of the sudden gain (`sg_magnitude`) divided by the total change `sg_**bdi**_tx_change`
+- `sg_change_proportion`: Magnitude of the sudden gain (`sg_magnitude`) divided by the total change `sg_bdi_tx_change`
 - `sg_reversal_value`: Value that if reached at any point after the sudden gain would count as a reversal of the sudden gain
 - `sg_reversal`: Logical variable indicating whether a sudden gain reversed
 

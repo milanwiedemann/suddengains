@@ -34,6 +34,8 @@ Suggests:
     writexl (>= 1.1.0),
     knitr (>= 1.21),
     DT (>= 0.5),
-    rmarkdown (>= 1.11)
+    rmarkdown (>= 1.11),
+    spelling
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Language: en-US

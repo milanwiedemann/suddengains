@@ -12,7 +12,7 @@ To learn more about the background of this package see our preprint on [PsyArXiv
 We have also created an open [Zotero group](https://www.zotero.org/groups/2280342/suddengains) collecting all the literature looking at sudden gains in psychological therapies. 
 Please let me know if I missed anything or join the group and add papers yourself.
 
-Identify sudden gains based on the criteria outlined by Tang and DeRubeis ([1999](http://psycnet.apa.org/buy/1999-01811-008)). 
+Identify sudden gains based on the criteria outlined by Tang and DeRubeis ([1999](https://doi.org/10.1037/0022-006X.67.6.894)). 
 It applies all three criteria to a dataset while adjusting for missing values. 
 It calculates further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
@@ -85,7 +85,7 @@ View(sgdata_bad)
 
 #### 1.1 Define cut-off
 
-The cut-off value for the first sudden gains criterion can be calculated using the reliable change index (RCI; Jacobson & Truax, [1991](https://psycnet.apa.org/record/1991-16094-001)) based on suggestions from Stiles et al. ([2003](http://psycnet.apa.org/buy/2003-01069-004)).
+The cut-off value for the first sudden gains criterion can be calculated using the reliable change index (RCI; Jacobson & Truax, [1991](https://doi.org/10.1037/0022-006X.59.1.12)) based on suggestions from Stiles et al. ([2003](https://doi.org/10.1037/0022-006X.71.1.14)).
 The function has the option to calculate Chronbach's a based in item-by-item data if provided, or alternatively the reliability of the measure can be specified.
 
 ```r

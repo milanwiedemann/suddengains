@@ -129,35 +129,76 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   var_x_n <- base::paste("sg", sg_measure_name, "n", sep = "_")
   var_x_n_post1 <- base::paste("sg", sg_measure_name, "n1", sep = "_")
 
-  data_bysg <- data_bysg %>%
-    dplyr::mutate(sg_magnitude = !! rlang::sym(var_x_n) - !! rlang::sym(var_x_n_post1),
-                  !! tx_change := !! rlang::sym(tx_start_var_name) - !! rlang::sym(tx_end_var_name),
-                  sg_change_proportion = sg_magnitude / !! rlang::sym(tx_change),
-                  # Replace "-Inf" in sg_change_proportion with NA for cases where tx_chage is 0
-                  sg_change_proportion = dplyr::na_if(sg_change_proportion, "-Inf"),
-                  sg_reversal_value = !! rlang::sym(var_x_n_post1) + (sg_magnitude / 2))
 
-  # Create lsit with all ids for each sudden gain
-  id_sg_list <- data_bysg$id_sg
 
-  sg_reversal <- data_bysg %>%
-    dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
-    rename_sg_vars(sg_var_list, start_numbering = 0) %>%
-    tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
-    dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
-    dplyr::select(-time_str) %>%
-    dplyr::mutate(index = time_num - sg_session_n) %>%
-    dplyr::filter(index >= 2) %>%
-    dplyr::arrange(id_sg, time_num) %>%
-    dplyr::group_by(id_sg) %>%
-    dplyr::mutate(sg_reversal = dplyr::if_else(value > sg_reversal_value, 1, 0),
-           sg_reversal = dplyr::if_else(sg_reversal == 1, 1, 0)) %>%
-    dplyr::select(id_sg, sg_reversal) %>%
-    dplyr::filter(sg_reversal == 1) %>%
-    base::unique() %>%
-    dplyr::ungroup() %>%
-    tidyr::complete(id_sg = id_sg_list) %>%
-    tidyr::replace_na(base::list(sg_reversal = 0))
+  # Calculate sg reversal differently for gains and losses
+  if (identify == "sg") {
+
+    data_bysg <- data_bysg %>%
+      dplyr::mutate(sg_magnitude = !! rlang::sym(var_x_n) - !! rlang::sym(var_x_n_post1),
+                    !! tx_change := !! rlang::sym(tx_start_var_name) - !! rlang::sym(tx_end_var_name),
+                    sg_change_proportion = sg_magnitude / !! rlang::sym(tx_change),
+                    # Replace "-Inf" in sg_change_proportion with NA for cases where tx_chage is 0
+                    sg_change_proportion = dplyr::na_if(sg_change_proportion, "-Inf"),
+                    sg_reversal_value = !! rlang::sym(var_x_n_post1) + (sg_magnitude / 2))
+
+    # Create lsit with all ids for each sudden gain
+    id_sg_list <- data_bysg$id_sg
+
+    sg_reversal <- data_bysg %>%
+      dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
+      rename_sg_vars(sg_var_list, start_numbering = 0) %>%
+      tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
+      dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
+      dplyr::select(-time_str) %>%
+      dplyr::mutate(index = time_num - sg_session_n) %>%
+      dplyr::filter(index >= 2) %>%
+      dplyr::arrange(id_sg, time_num) %>%
+      dplyr::group_by(id_sg) %>%
+      dplyr::mutate(sg_reversal = dplyr::if_else(value > sg_reversal_value, 1, 0),
+                    sg_reversal = dplyr::if_else(sg_reversal == 1, 1, 0)) %>%
+      dplyr::select(id_sg, sg_reversal) %>%
+      dplyr::filter(sg_reversal == 1) %>%
+      base::unique() %>%
+      dplyr::ungroup() %>%
+      tidyr::complete(id_sg = id_sg_list) %>%
+      tidyr::replace_na(base::list(sg_reversal = 0))
+
+  } else if (identify == "sl") {
+
+    data_bysg <- data_bysg %>%
+      dplyr::mutate(sg_magnitude = !! rlang::sym(var_x_n) - !! rlang::sym(var_x_n_post1),
+                    !! tx_change := !! rlang::sym(tx_start_var_name) - !! rlang::sym(tx_end_var_name),
+                    sg_change_proportion = sg_magnitude / !! rlang::sym(tx_change),
+                    # Replace "-Inf" in sg_change_proportion with NA for cases where tx_chage is 0
+                    sg_change_proportion = dplyr::na_if(sg_change_proportion, "-Inf"),
+                    # The calculation of the sg_reversal_value is still correct as sg_magnitude is negative for losses
+                    sg_reversal_value = !! rlang::sym(var_x_n_post1) + (sg_magnitude / 2))
+
+    # Create lsit with all ids for each sudden gain
+    id_sg_list <- data_bysg$id_sg
+
+    sg_reversal <- data_bysg %>%
+      dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
+      rename_sg_vars(sg_var_list, start_numbering = 0) %>%
+      tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
+      dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
+      dplyr::select(-time_str) %>%
+      dplyr::mutate(index = time_num - sg_session_n) %>%
+      dplyr::filter(index >= 2) %>%
+      dplyr::arrange(id_sg, time_num) %>%
+      dplyr::group_by(id_sg) %>%
+      dplyr::mutate(sg_reversal = dplyr::if_else(value < sg_reversal_value, 1, 0),
+                    sg_reversal = dplyr::if_else(sg_reversal == 1, 1, 0)) %>%
+      dplyr::select(id_sg, sg_reversal) %>%
+      dplyr::filter(sg_reversal == 1) %>%
+      base::unique() %>%
+      dplyr::ungroup() %>%
+      tidyr::complete(id_sg = id_sg_list) %>%
+      tidyr::replace_na(base::list(sg_reversal = 0))
+
+    }
+
 
   data_bysg <- data_bysg %>%
     dplyr::left_join(sg_reversal, by = "id_sg")

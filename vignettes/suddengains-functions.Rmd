@@ -45,9 +45,9 @@ The following vignette illustrates the main functions of the package using the e
 
 Below are two interactive tables of depression and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
 The data is automatically loaded together with the package when running `library(suddengains)`.
-Each measure was contains a baseline measure (**s0**), twelve weekly measures during therapy (**s1** to **s12**), and two follow-up measures (**fu1** and **fu2**).
+Each measured construct contains a baseline measure (**s0**), twelve weekly measures during therapy (**s1** to **s12**), and two follow-up measures (**fu1** and **fu2**).
 Note that some values for each measure are missing, here shown as empty cells. 
-For an example of a missing value see measure **bdi_s2** for **id = 2** in the table below.
+For an example of a missing value see **bdi_s2** for **id = 2** in the table below.
 
 ## Depression symptoms
 
@@ -93,8 +93,8 @@ The package offers two methods to select cases for the sudden gains studies.
 1. `"pattern"`: cases providing enough data to apply the @Tang1999 criteria will be selected
 1. `"min_sess"`: cases with a minimum number of available data (specified in `min_sess_num`) will be selected
 
-By default the argument `return_id_lgl` is set to `FALSE`, this simply adds a new variable named `sg_select` at the end of the dataframe specified in the `data` argument.
-The newly calcualted variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on the method specified.
+By default the argument `return_id_lgl` is set to `FALSE`, this simply adds a new variable named `sg_select` at the end of the data frame specified in the `data` argument.
+The newly calculated variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on the method specified.
 When the argument `return_id_lgl` is set to `TRUE`, only the id variable specified in `id_var_name` and the new variable `sg_select` will be returned as the output of this function.
 
 ```{r select, eval = FALSE}
@@ -169,11 +169,11 @@ define_crit1_cutoff(data_sessions = sgdata,
 
 ## Identify sudden gains and losses
 
-### Sudden gains
+To identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
+The functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified.
+For example the variable `sg_2to3` holds information whether a sudden gains occurred from session two to three, with two being the pregain and three being the postgain session.
 
-To simply identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
-The functions return a data frame indicating for each between-session interval whether a sudden gain/loss was identified.
-TODO: give example e.g what does sg_2to3 mean? maybe this is obvious...
+### Sudden gains
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -187,6 +187,9 @@ identify_sg(data = sgdata,
             identify_sg_1to2 = FALSE)
 
 ```
+
+The argument `crit123_details = TRUE` returns additional information about whether each of the three sudden gains criteria are met.
+Some more information about this can be found in the section "Adaptations to the original sudden gains criteria" below.
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -311,7 +314,7 @@ Here we see code to create a "bysg" data set identifying sudden gains (specified
 The table below shows the output including the following 15 new variables:
 
 - `id_sg`: Unique identifier for each sudden gain
-- `sg_crit123`: Logical variable idicating whether a sudden gain was identified
+- `sg_crit123`: Logical variable indicating whether a sudden gain was identified
 - `sg_session_n`: Pregain session number
 - `sg_freq_byperson`: Frequency of sudden gains identified for each case (`id`)
 - `sg_bdi_2n`, `sg_bdi_1n`, `sg_bdi_n`, `sg_bdi_n1`, `sg_bdi_n2`, `sg_bdi_n3`: Six extracted values of the sudden gains measure around the sudden gain
@@ -470,7 +473,7 @@ The plots are created using the *ggplot2* R-package [@R-ggplot2] in five main st
 1. Means for all time points and points
 1. 95% confidence intervals for all time points
 1. Dotted line between the first two values
-1. Straight line betwenn all 5 values around the gain
+1. Straight line between all 5 values around the gain
 1. Dotted line between the last two values
 
 ```{r}
@@ -519,12 +522,12 @@ plot_sg_rq
 ```
 
 
-# Summarise some descriptive statistics
+# Summarise descriptive statistics
 
-## Count between session intervals
+## Count between-session intervals
 
 The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
-For more info see the help file of this function.
+For more info see the help file of this function, `help(count_intervals)`.
 Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
 
 - `total_between_sess_intervals`: The total number of between-session intervals present in the data set, here: `sgdata_select`.
@@ -545,7 +548,7 @@ count_intervals(data = sgdata_select,
 ## Descriptive statistics of sudden gains
 
 The `describe_sg()` function provides descriptive statistics about the sudden gains based on the variables from the `bysg` or `byperson` datasets.
-The descriptives (e.g. "sg_pct", the percentage of cases with sudden gains in the specified data set) are always in relation to the input data and therefore will vary depending on whether.
+The descriptives (e.g. "sg_pct", the percentage of cases with sudden gains in the specified data set) are always in relation to the input data and therefore will vary depending on whether the structure of the data set is `bysg` or `byperson`.
 
 ```{r}
 # Describe bysg dataset ----

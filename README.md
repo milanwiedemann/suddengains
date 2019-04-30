@@ -26,7 +26,9 @@ First, you need to install the devtools package to download the `suddengains` pa
 install.packages("devtools")
 ```
 
-To install the current stable version of the `suddengains` package:
+To install the current stable version of the `suddengains` package use the code below.
+You might also have to update your R to Version 3.5.3 if you're using Windows.
+The install files can be found [here](https://cran.r-project.org/bin/windows/base/old/).
 
 ```r
 devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master")

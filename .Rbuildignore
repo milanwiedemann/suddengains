@@ -4,3 +4,4 @@
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^cran-comments\.md$
+^CRAN-RELEASE$

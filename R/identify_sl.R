@@ -13,17 +13,16 @@
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
 #' Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.
-#'
 #' @return A wide data set indicating whether sudden losses are present for each session to session interval for all cases in \code{data}.
-#' @examples identify_sl(data = sgdata,
+#' @examples # Identify sudden losses
+#' identify_sl(data = sgdata,
 #'             # Negative cut-off value to identify sudden losses
 #'             sg_crit1_cutoff = -7,
 #'             id_var_name = "id",
 #'             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
 #'                             "bdi_s4", "bdi_s5", "bdi_s6",
 #'                             "bdi_s7", "bdi_s8", "bdi_s9",
-#'                             "bdi_s10", "bdi_s11", "bdi_s12"),
-#'            identify_sg_1to2 = FALSE)
+#'                             "bdi_s10", "bdi_s11", "bdi_s12"))
 #' @export
 
 identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {

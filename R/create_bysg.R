@@ -2,7 +2,6 @@
 #'
 #' @description This function produces a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
 #' The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
-#'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 #' If set to \code{NULL} the first criterion wont be applied.
@@ -23,7 +22,8 @@
 #' @return A wide data set with one row per sudden gain/loss.
 #' @export
 #'
-#' @examples create_bysg(data = sgdata,
+#' @examples # Create bypsg data set
+#' create_bysg(data = sgdata,
 #'             sg_crit1_cutoff = 7,
 #'             id_var_name = "id",
 #'             tx_start_var_name = "bdi_s1",

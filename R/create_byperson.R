@@ -4,7 +4,6 @@
 #' The data set includes variables indicating whether each case experienced a sudden gain/loss or not,
 #' values around the period of each gain/loss, and descriptives.
 #' For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
-#'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 #' If set to \code{NULL} the first criterion wont be applied.
@@ -25,11 +24,10 @@
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
 #' The default is to select the first sudden gain (\code{"first"}) if someone experienced multiple gains.
 #' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.
-#'
 #' @return  A wide data set with one row per case in \code{data}.
 #' @export
-#'
-#' @examples create_byperson(data = sgdata,
+#' @examples # Create byperson data set, selecting the largest gain in case of muliple gains
+#' create_byperson(data = sgdata,
 #'                 sg_crit1_cutoff = 7,
 #'                 id_var_name = "id",
 #'                 tx_start_var_name = "bdi_s1",
@@ -40,7 +38,6 @@
 #'                                 "bdi_s10", "bdi_s11", "bdi_s12"),
 #'                 sg_measure_name = "bdi",
 #'                 multiple_sg_select = "largest")
-#'
 
 create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE) {
 

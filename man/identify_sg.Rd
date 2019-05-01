@@ -37,12 +37,12 @@ A wide data set indicating whether sudden gains are present for each session to 
 Function to identify sudden gains in longitudinal data structured in wide format.
 }
 \examples{
+# Identify sudden gains
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
                             "bdi_s4", "bdi_s5", "bdi_s6",
                             "bdi_s7", "bdi_s8", "bdi_s9",
-                            "bdi_s10", "bdi_s11", "bdi_s12"),
-           identify_sg_1to2 = FALSE)
+                            "bdi_s10", "bdi_s11", "bdi_s12"))
 }

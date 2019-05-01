@@ -25,21 +25,25 @@
 #' @param stata_version Numeric, specifying STATA version number.
 #'
 #' @export
-#' @examples
-#' ## Adjusting 'path' argument before running
-#' # write_bysg(data = sgdata,
-#' #            sg_crit1_cutoff = 7,
-#' #            id_var_name = "id",
-#' #            tx_start_var_name = "bdi_s1",
-#' #            tx_end_var_name = "bdi_s12",
-#' #            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-#' #                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-#' #                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-#' #            sg_measure_name = "bdi",
-#' #            identify_sg_1to2 = FALSE,
-#' #            format = "CSV",
-#' #            path = "~/sg_bysg_data.csv")
-#' #
+#' @examples # Adjusting "path" argument before running
+#' # Create character string name for temporary "bysg.csv" file
+#' temp <- tempfile(pattern = "bysg", fileext = ".csv")
+#'
+#' # Write bysg dataset (CVS file)
+#' # To write a different format change the 'format' argument
+#' # as well as the file extension in the 'path' argument
+#' write_bysg(data = sgdata,
+#'            sg_crit1_cutoff = 7,
+#'            id_var_name = "id",
+#'            tx_start_var_name = "bdi_s1",
+#'            tx_end_var_name = "bdi_s12",
+#'            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#'            sg_measure_name = "bdi",
+#'            identify_sg_1to2 = FALSE,
+#'            format = "CSV",
+#'            path = temp)
 
 write_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
                        sg_crit2_pct = .25, sg_crit3 = TRUE, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,

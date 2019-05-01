@@ -54,6 +54,7 @@ values around the period of each gain/loss, and descriptives.
 For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
 }
 \examples{
+# Create byperson data set, selecting the largest gain in case of muliple gains
 create_byperson(data = sgdata,
                 sg_crit1_cutoff = 7,
                 id_var_name = "id",
@@ -65,5 +66,4 @@ create_byperson(data = sgdata,
                                 "bdi_s10", "bdi_s11", "bdi_s12"),
                 sg_measure_name = "bdi",
                 multiple_sg_select = "largest")
-
 }

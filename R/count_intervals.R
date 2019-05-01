@@ -15,6 +15,12 @@
 #'     \item{not_analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).}
 #'     }
 #' @export
+#' @examples # Count between session intervals in "sgdata"
+#' count_intervals(data = sgdata,
+#'                 id_var_name = "id",
+#'                 sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                                 "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                                 "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"))
 
 count_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE) {
 

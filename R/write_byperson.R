@@ -19,7 +19,6 @@
 #' @param multiple_sg_select String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
 #' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.
-#'
 #' @param format String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.
 #' @param path String, specifing the file name ending with the matching file extension,
 #' \code{".csv"}, \code{".sav"}, \code{".dta"} or \code{".xlsx"}.
@@ -27,24 +26,28 @@
 #' see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
 #' for more information.
 #' @param stata_version Numeric, specifying STATA version number.
-#'
 #' @export
 #' @examples
-#' ## Adjusting 'path' argument before running
-#' # write_byperson(data = sgdata,
-#' #                sg_crit1_cutoff = 7,
-#' #                id_var_name = "id",
-#' #                tx_start_var_name = "bdi_s1",
-#' #                tx_end_var_name = "bdi_s12",
-#' #                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-#' #                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-#' #                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-#' #                sg_measure_name = "bdi",
-#' #                identify_sg_1to2 = FALSE,
-#' #                multiple_sg_select = "largest",
-#' #                format = "CSV",
-#' #                path = "~/sg_byperson_data.csv")
-#' #
+#' # Adjusting "path" argument before running
+#' # Create character string name for temporary "byperson.csv" file
+#' temp <- tempfile(pattern = "byperson", fileext = ".csv")
+#'
+#' # Write byperson dataset (CSV file)
+#' # To write a different format change the 'format' argument ...
+#' # ... as well as the file extension in the 'path' argument
+#' write_byperson(data = sgdata,
+#'                sg_crit1_cutoff = 7,
+#'                id_var_name = "id",
+#'                tx_start_var_name = "bdi_s1",
+#'                tx_end_var_name = "bdi_s12",
+#'                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#'                sg_measure_name = "bdi",
+#'                identify_sg_1to2 = FALSE,
+#'                multiple_sg_select = "largest",
+#'                format = "CSV",
+#'                path = temp)
 
 write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
                            sg_crit2_pct = .25, sg_crit3 = TRUE, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,

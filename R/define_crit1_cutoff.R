@@ -1,12 +1,20 @@
-#' Define the Cut-off for SG Criterion 1 using modified RCI Formula
+#' Define cut-off value for first SG criterion
 #'
+#' @description Define the cut-off value for first sudden gains criterion using a modified reliable change index (RCI) formula.
 #' @param data_sessions A dataset in wide format with values for pre _s0 and post treatment _end
 #' @param data_item A dataset in item-by-item scores for the SG measure
 #' @param tx_start_var_name String, variable name of the pretreatment scores
 #' @param tx_end_var_name String, variable name of the postreatment scores
-#' @param reliability Numeric between 0 and 1 indicating reliability of the scale, function not implemented yet
+#' @param reliability Numeric, between 0 and 1 indicating reliability of the scale.
 #' @return A list with all calculated variables using modified formula for RCI including cut-off
 #' @export
+#' @examples # Define cut-off value for first SG criterion
+#' # In this example the reliability is specified and not calculated from item-by-item data
+#' define_crit1_cutoff(data_sessions = sgdata,
+#'                     data_item = NULL,
+#'                     tx_start_var_name = "bdi_s0",
+#'                     tx_end_var_name = "bdi_s12",
+#'                     reliability = 0.931)
 
 define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_name, data_item = NULL, reliability = NULL) {
 
@@ -22,11 +30,10 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
          Set either 'data_item or the 'reliability' argument to NULL.", call. = FALSE)
   }
 
+  # TODO Write check
   # if (base::is.null(data_item) == TRUE & reliability > 1 | reliability < 0) {
   #   stop("Reliability has to be between 0 and 1!")
   # }
-
-  # TODO ADD ARGUMENT TO SPECIFY RELIABILITY OF SCALE, so that this doesnt have to be calculated on item by item data
 
   # Create vectors of variables used in this function
   pre_scores <- dplyr::pull(data_sessions, tx_start_var_name)

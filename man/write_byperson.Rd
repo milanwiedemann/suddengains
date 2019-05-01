@@ -57,19 +57,24 @@ for more information.}
 Writes a data frame as a specified file type.
 }
 \examples{
-## Adjusting 'path' argument before running
-# write_byperson(data = sgdata,
-#                sg_crit1_cutoff = 7,
-#                id_var_name = "id",
-#                tx_start_var_name = "bdi_s1",
-#                tx_end_var_name = "bdi_s12",
-#                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-#                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-#                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-#                sg_measure_name = "bdi",
-#                identify_sg_1to2 = FALSE,
-#                multiple_sg_select = "largest",
-#                format = "CSV",
-#                path = "~/sg_byperson_data.csv")
-#
+# Adjusting "path" argument before running
+# Create character string name for temporary "byperson.csv" file
+temp <- tempfile(pattern = "byperson", fileext = ".csv")
+
+# Write byperson dataset (CSV file)
+# To write a different format change the 'format' argument ...
+# ... as well as the file extension in the 'path' argument
+write_byperson(data = sgdata,
+               sg_crit1_cutoff = 7,
+               id_var_name = "id",
+               tx_start_var_name = "bdi_s1",
+               tx_end_var_name = "bdi_s12",
+               sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                               "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                               "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+               sg_measure_name = "bdi",
+               identify_sg_1to2 = FALSE,
+               multiple_sg_select = "largest",
+               format = "CSV",
+               path = temp)
 }

@@ -10,6 +10,24 @@
 #' If set to \code{FALSE}
 #' @return A wide dataset or just the id variable containing a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 #' @export
+#' @examples # 1. method = "pattern"
+#' select_cases(data = sgdata,
+#'              id_var_name = "id",
+#'              sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                              "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                              "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#'              method = "pattern",
+#'              return_id_lgl = FALSE)
+#'
+#' # 2. method = "min_sess"
+#' select_cases(data = sgdata,
+#'              id_var_name = "id",
+#'              sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                              "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                              "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#'              method = "min_sess",
+#'              min_sess_num = 9,
+#'              return_id_lgl = TRUE)
 
 select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "min_sess"), min_sess_num = NULL, return_id_lgl = FALSE) {
 

@@ -10,11 +10,11 @@ rename_sg_vars(data, rename_var_list, new_var_str = "temp_var_",
 \arguments{
 \item{data}{Dataframe in wide format}
 
-\item{rename_var_list}{List of variables to be ranamed}
+\item{rename_var_list}{Vector of variables to be ranamed}
 
-\item{new_var_str}{TODO}
+\item{new_var_str}{String, new name for variables}
 
-\item{start_numbering}{TODO}
+\item{start_numbering}{Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list"}
 }
 \value{
 Dataframe in wide format with renamed variables

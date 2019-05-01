@@ -45,6 +45,7 @@ This function produces a wide data set with one row for each sudden gain/loss an
 The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
 }
 \examples{
+# Create bypsg data set
 create_bysg(data = sgdata,
             sg_crit1_cutoff = 7,
             id_var_name = "id",

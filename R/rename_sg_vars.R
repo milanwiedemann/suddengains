@@ -1,9 +1,9 @@
 #' Rename variables for extracting variables in sudden gians package
 #'
 #' @param data Dataframe in wide format
-#' @param rename_var_list List of variables to be ranamed
-#' @param new_var_str TODO
-#' @param start_numbering TODO
+#' @param rename_var_list Vector of variables to be ranamed
+#' @param new_var_str String, new name for variables
+#' @param start_numbering Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list"
 #' @return Dataframe in wide format with renamed variables
 
 rename_sg_vars <- function(data, rename_var_list, new_var_str = "temp_var_", start_numbering = 1){
@@ -19,5 +19,5 @@ rename_sg_vars <- function(data, rename_var_list, new_var_str = "temp_var_", sta
   }
 
     # Return dataframe with renamed variables
-    data
+    return(data)
 }

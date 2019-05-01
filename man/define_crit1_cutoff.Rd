@@ -2,7 +2,7 @@
 % Please edit documentation in R/define_crit1_cutoff.R
 \name{define_crit1_cutoff}
 \alias{define_crit1_cutoff}
-\title{Define the Cut-off for SG Criterion 1 using modified RCI Formula}
+\title{Define cut-off value for first SG criterion}
 \usage{
 define_crit1_cutoff(data_sessions, tx_start_var_name, tx_end_var_name,
   data_item = NULL, reliability = NULL)
@@ -16,11 +16,20 @@ define_crit1_cutoff(data_sessions, tx_start_var_name, tx_end_var_name,
 
 \item{data_item}{A dataset in item-by-item scores for the SG measure}
 
-\item{reliability}{Numeric between 0 and 1 indicating reliability of the scale, function not implemented yet}
+\item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.}
 }
 \value{
 A list with all calculated variables using modified formula for RCI including cut-off
 }
 \description{
-Define the Cut-off for SG Criterion 1 using modified RCI Formula
+Define the cut-off value for first sudden gains criterion using a modified reliable change index (RCI) formula.
+}
+\examples{
+# Define cut-off value for first SG criterion
+# In this example the reliability is specified and not calculated from item-by-item data
+define_crit1_cutoff(data_sessions = sgdata,
+                    data_item = NULL,
+                    tx_start_var_name = "bdi_s0",
+                    tx_end_var_name = "bdi_s12",
+                    reliability = 0.931)
 }

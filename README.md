@@ -153,8 +153,6 @@ For example the variable `sg_2to3` holds information whether a sudden gains occu
 ```r
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .25,
-            sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 

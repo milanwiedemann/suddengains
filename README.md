@@ -146,6 +146,21 @@ select_cases(data = sgdata,
 
 #### 1.3. Identify sudden gains
 
+To identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
+The functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified.
+For example the variable `sg_2to3` holds information whether a sudden gains occurred from session two to three, with two being the pregain and three being the postgain session.
+
+```r
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            sg_crit2_pct = .25,
+            sg_crit3 = TRUE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"))
+```
+
 ### 2. Functions to create datasets for further analysis:
 
 Now, you can use the `create_bysg()` and `create_byperson()` functions to create data sets for further analyses.

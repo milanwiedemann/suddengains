@@ -20,24 +20,22 @@ It also implements a function to specify which sudden gains to choose in case of
 
 ## Installation
 
-First, you need to install the devtools package to download the `suddengains` package from this GitHub repository.
+Version 0.1.0 of the suddengains package is available on [CRAN](https://cran.r-project.org/web/packages/suddengains/index.html)
+
+```r
+install.packages("suddengains")
+```
+
+To download the current developement version you need to install the devtools package to download the `suddengains` package from this GitHub repository.
 
 ```r
 install.packages("devtools")
 ```
 
-To install the current stable version of the `suddengains` package use the code below.
-You might also have to update your R to Version 3.5.3 if you're using Windows.
-The install files can be found [here](https://cran.r-project.org/bin/windows/base/old/).
+To install the current developement version of the `suddengains` package use the code below.
 
 ```r
 devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master")
-```
-
-To install the developmental version of the `suddengains` package:
-
-```r
-devtools::install_github(repo = "milanwiedemann/suddengains", ref = "dev")
 ```
 
 ## Overview of the functions
@@ -63,6 +61,13 @@ The `suddengains` package comes with a range of features which can be categorise
 4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV:
   - `write_bysg()`: stable 
   - `write_byperson()`: stable 
+  
+A detailed illustration of all functions can be found in the vignette:
+
+```r
+# Open vignette in RStudio ----
+vignette("suddengains-functions")
+```
   
 ## How to use `suddengains`
 

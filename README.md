@@ -271,7 +271,7 @@ write_bysg(data = sgdata,
            sg_measure_name = "bdi",
            identify = "sg",
            format = "CSV",
-           path = "~/Desktop/bysg_data_excel.csv")
+           path = "~/Desktop/bysg_data.csv")
 ```
  
 Here is another example how to write a "byperson" data set to a SPSS file on your computer.

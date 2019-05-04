@@ -47,23 +47,47 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   # Run identify_sg function first to find positions of gain
   if (identify == "sg") {
-      data_crit123 <- suddengains::identify_sg(data = data,
-                                               id_var_name = id_var_name,
-                                               sg_var_list = sg_var_list,
-                                               sg_crit1_cutoff = sg_crit1_cutoff,
-                                               sg_crit2_pct = sg_crit2_pct,
-                                               sg_crit3 = sg_crit3,
-                                               identify_sg_1to2 = identify_sg_1to2)
-  } else if (identify == "sl") {
-      data_crit123 <- suddengains::identify_sl(data = data,
-                                               id_var_name = id_var_name,
-                                               sg_var_list = sg_var_list,
-                                               sg_crit1_cutoff = sg_crit1_cutoff,
-                                               sg_crit2_pct = sg_crit2_pct,
-                                               sg_crit3 = sg_crit3,
-                                               identify_sg_1to2 = identify_sg_1to2)
-  }
+    # Suppress warnings because I dont want to carry them over from the identify function
+    # Insted return an error for the same case, no gains/losses for all create functions
+    data_crit123 <- base::suppressWarnings(suddengains::identify_sg(data = data,
+                                                                    id_var_name = id_var_name,
+                                                                    sg_var_list = sg_var_list,
+                                                                    sg_crit1_cutoff = sg_crit1_cutoff,
+                                                                    sg_crit2_pct = sg_crit2_pct,
+                                                                    sg_crit3 = sg_crit3,
+                                                                    identify_sg_1to2 = identify_sg_1to2))
 
+      # Calculate number of sudden gains
+      sg_sum <- data_crit123 %>%
+        dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+        base::sum(., na.rm = T)
+
+      # Stop if no sudden gains were identified and return error
+      if (sg_sum == 0) {
+        stop("No sudden gains were identified.", call. = FALSE)
+      }
+
+  } else if (identify == "sl") {
+    # Suppress warnings because I dont want to carry them over from the identify function
+    # Insted return an error for the same case, no gains/losses for all create functions
+    data_crit123 <- base::suppressWarnings(suddengains::identify_sl(data = data,
+                                                                    id_var_name = id_var_name,
+                                                                    sg_var_list = sg_var_list,
+                                                                    sg_crit1_cutoff = sg_crit1_cutoff,
+                                                                    sg_crit2_pct = sg_crit2_pct,
+                                                                    sg_crit3 = sg_crit3,
+                                                                    identify_sg_1to2 = identify_sg_1to2))
+
+      # Calculate number of sudden gains
+      sg_sum <- data_crit123 %>%
+        dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+        base::sum(., na.rm = T)
+
+      # Stop if no sudden losses were identified and return error
+      if (sg_sum == 0) {
+        stop("No sudden losses were identified.", call. = FALSE)
+      }
+  }
 
   # Set missings to zero to calculate in next step
   data_crit123[base::is.na(data_crit123)] <- 0

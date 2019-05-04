@@ -31,6 +31,12 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
     }
 
+    if (sg_crit1_cutoff > 0) {
+        stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be negative to identify sudden losses.", call. = FALSE)
+    }
+
+
+
         # Select data for identifying sudden losses
         # Only ID variable and sudden losses variables needed
         data_select <- data %>%
@@ -163,7 +169,7 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
             # If identify_sg_1to2 is FALSE, sg variables will start with "sg_2to3"
         } else if (identify_sg_1to2 == TRUE) {
-            base::message("The argument identify_sg_1to2 is set to TRUE.\nThis implies that the first variable specified in the argument 'sg_var_list' represents a baseline measurement point, e.g. pre-intervention assessment.")
+            # base::message("The argument identify_sg_1to2 is set to TRUE, this implies that the first variable specified in the argument 'sg_var_list' represents a baseline measurement point, e.g. pre-intervention assessment.")
             for (i in 1:(base::ncol(data_loop) - 3)) {
                 sg_col_names[i] <- base::paste0("sl_", i, "to", i + 1)
 
@@ -180,6 +186,15 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         names(crit1) <- sg_col_names_crit1
         names(crit2) <- sg_col_names_crit2
         names(crit3) <- sg_col_names_crit3
+
+        # Calculate number of sudden losses
+        sg_sum <- base::sum(crit123, na.rm = T)
+
+        # Return message if no sudden losses were identified
+        # Have this down here so it's the last message and more visible
+        if (sg_sum == 0) {
+            base::warning("No sudden losses were identified.")
+        }
 
         # Export dataframe with information whether individual criteria were met
         if (crit123_details == TRUE) {

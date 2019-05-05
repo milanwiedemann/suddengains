@@ -76,6 +76,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
 
   if (multiple_sg_select == "first") {
 
+    base::message("The first gain/loss was selected in case of multiple gains/losses.")
+
     bysg_data_select <- data_bysg %>%
       dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
@@ -83,6 +85,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
       dplyr::ungroup()
 
     } else if (multiple_sg_select == "last") {
+
+      base::message("The last gain/loss was selected in case of multiple gains/losses.")
 
       bysg_data_select <- data_bysg %>%
         dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
@@ -92,6 +96,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
 
       } else if (multiple_sg_select == "smallest") {
 
+        base::message("The smallest gain/loss was selected in case of multiple gains/losses.")
+
         bysg_data_select <- data_bysg %>%
           dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
           dplyr::group_by(!! rlang::sym(id_var_name)) %>%
@@ -100,6 +106,8 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
           dplyr::ungroup()
 
         } else if (multiple_sg_select == "largest") {
+
+          base::message("The largest gain/loss was selected in case of multiple gains/losses.")
 
           bysg_data_select <- data_bysg %>%
             dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%

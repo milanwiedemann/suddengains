@@ -525,8 +525,8 @@ plot_sg_rq
 
 ## Plot average gain for multiple groups
 
-This step duplicates the dataset and adds a variable assigning each case to one of two groups.
-The data frame `sgdata_group` can now be used to illustrate the plotting function for different groups
+To illustrate this functionality I need to create a data frame with a grouping variable.
+The code below duplicates the data frame `sgdata` and adds a variable assigning each case to one of two groups.
 
 ```{r}
 # Set seed
@@ -564,6 +564,9 @@ byperson_group_select <- select_cases(data = byperson_group,
                  dplyr::filter(sg_select == TRUE)
 ```
 
+The data frame `sgdata_group` can now be used to illustrate the plotting function for different groups.
+This function works identical to the plot function for one group.
+There are some more arguments to specify the colours to be used for the different groups.
 
 ```{r}
 plot_byperson_group <- plot_sg(data = byperson_group_select,
@@ -575,7 +578,7 @@ plot_byperson_group <- plot_sg(data = byperson_group_select,
                                group_var_name = "group",
                                group_levels = c(1, 2),
                                group_labels = c("Treatment A", "Treatment B"),
-                               group_title = "Group",
+                               group_title = NULL,
                                colour_group = "viridis",
                                viridis_option = "B",
                                viridis_begin = .2,
@@ -584,6 +587,7 @@ plot_byperson_group <- plot_sg(data = byperson_group_select,
                                ylab = "BDI", xlab = "Session")
 ```
 
+The plot below shows the average gain for each group.
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
 plot_byperson_group

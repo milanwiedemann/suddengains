@@ -1,5 +1,6 @@
-#' Select sample with enough available data to identify sudden gains
+#' Select sample providing enough data to identify sudden gains
 #'
+#' @description Select sample for further sudden gains analyses depending on specified methods.
 #' @param data A dataset in wide format with an id variable and the sudden gains variables.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.

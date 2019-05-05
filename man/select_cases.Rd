@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_cases.R
 \name{select_cases}
 \alias{select_cases}
-\title{Select sample with enough available data to identify sudden gains}
+\title{Select sample providing enough data to identify sudden gains}
 \usage{
 select_cases(data, id_var_name, sg_var_list, method = c("pattern",
   "min_sess"), min_sess_num = NULL, return_id_lgl = FALSE)
@@ -26,7 +26,7 @@ If set to \code{FALSE}}
 A wide dataset or just the id variable containing a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
 }
 \description{
-Select sample with enough available data to identify sudden gains
+Select sample for further sudden gains analyses depending on specified methods.
 }
 \examples{
 # 1. method = "pattern"

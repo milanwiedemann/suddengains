@@ -2,15 +2,19 @@
 % Please edit documentation in R/plot_sg.R
 \name{plot_sg}
 \alias{plot_sg}
-\title{Plot average magnitude of sudden gain or another variable around the sudden gain}
+\title{Plot average change in variables around the sudden gain}
 \usage{
-plot_sg(data, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
-  ylab, xlab = "Session", colour = "#239b89ff",
-  group_var_name = NULL, group_levels = NULL, group_labels = NULL,
-  group_title = NULL)
+plot_sg(data, id_var_name, tx_start_var_name, tx_end_var_name,
+  sg_pre_post_var_list, ylab, xlab = "Session",
+  colour_single = "#239b89ff", colour_group = c("viridis", "ggplot2",
+  "grey"), viridis_option = "B", viridis_begin = 0.2,
+  viridis_end = 0.8, group_var_name = NULL, group_levels = NULL,
+  group_labels = NULL, group_title = NULL, apaish = TRUE)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset.}
+
+\item{id_var_name}{String, specifying the name of the ID variable.}
 
 \item{tx_start_var_name}{String, specifying the variable name of the first measurement point of the intervention.}
 
@@ -23,10 +27,15 @@ and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{xlab}{String, specifying the label for the x axis, e.g. \code{"Session"}.}
 
-\item{colour}{Vector, specifying the string(s) of the colour(s) of the plot.
-In case groups were specified, the order of this vector will apply colours to the plot in the same order as \code{group_levels}.
-WARNING WARNING WARNING, AT THE MOMENT IT IS ONLY POSSIBLE TO SPECIFY ONE COLOUR FOR ALL GROUPS.
-The default at the moment is my favourite colour.}
+\item{colour_single}{String, specifying the colour of the plot for one group.}
+
+\item{colour_group}{String, specifying the discrete colour palette to be used for the groups.}
+
+\item{viridis_option}{String specifying the colour option for discrete viridis palette, see ggplot2::scale_fill_viridis_d().}
+
+\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see ggplot2::scale_fill_viridis_d().}
+
+\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see ggplot2::scale_fill_viridis_d().}
 
 \item{group_var_name}{String, specifying the variable name of the group variable.}
 
@@ -35,6 +44,8 @@ The default at the moment is my favourite colour.}
 \item{group_labels}{Vector, specifying the label names as strings for the groups in \code{group_var_name}.}
 
 \item{group_title}{String, specifying the title that will be used for the groups specified in \code{group_labels}.}
+
+\item{apaish}{Logical, make plot look APA publishable.}
 }
 \value{
 A plot of the mean values around the sudden gain, for the measure specified.
@@ -59,6 +70,7 @@ bysg <- create_bysg(data = sgdata,
 
 # Plot average change of BDI values around the period of the sudden gain
 plot_sg(data = bysg,
+        id_var_name = "id",
         tx_start_var_name = "bdi_s1",
         tx_end_var_name = "bdi_s12",
         sg_pre_post_var_list = c("sg_bdi_2n", "sg_bdi_1n", "sg_bdi_n",

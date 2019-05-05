@@ -1,12 +1,9 @@
-#' Example dataset with BDI scores and a fictional secondary process measure to illustrate how the package works
+#' Longitudinal dataset with repeated measures of depression and rumination
 #'
-#' @description Some more detials here
-#'
+#' @description Example dataset with a measure of depression symptoms (BDI) and a fictional secondary process measure (RQ) to illustrate how the package works.
 #' @docType data
-#'
 #' @usage data(sgdata)
-#'
-#' @format An longitudinal dataset in the wide format:
+#' @format A longitudinal dataset in wide format:
 #' \itemize{
 #'   \item{id}{: ID variable, unique identifier for each person}
 #'   \item{bdi_s0}{: BDI value, baseline assessment}
@@ -40,10 +37,7 @@
 #'   \item{rq_fu1}{: RQ value, follow-up measure 1}
 #'   \item{rq_fu2}{: RQ value, follow-up measure 2}
 #' }
-#'
 #' @keywords dataset
-#'
-#'
 #' @examples
 #' # Load data into global environment
 #' data(sgdata)

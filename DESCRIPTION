@@ -1,7 +1,7 @@
 Package: suddengains
 Title: Identify Sudden Gains in Longitudinal Data
-Date: 2019-05-01
-Version: 0.1.0
+Date: 2019-05-04
+Version: 0.1.0.9002
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1991-282X")),
   person("Graham M", "Thew", role = "ctb", comment = c(ORCID = "0000-0003-2851-1315")),
@@ -26,7 +26,6 @@ Imports:
     stringr (>= 1.4.0),
     ggplot2 (>= 2.2.1),
     psych (>= 1.7.8),
-    reshape2 (>= 1.4.3),
     readr (>= 1.1.0),
     tidyr (>= 0.8.2)
 Suggests:

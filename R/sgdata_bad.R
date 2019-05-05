@@ -1,12 +1,9 @@
-#' Same as sgdata but with inconsistent, bad vaiable names
+#' Longitudinal dataset with repeated measures of depression and rumination (bad variable names)
 #'
-#' @description To illistrate package also works with variable names dont have good names
-#'
+#' @description Same as \code{sgdata} but with bad vaiable names to illustrate that variable names can be inconsistent.
 #' @docType data
-#'
 #' @usage data(sgdata_bad)
-#'
-#' @format An longitudinal dataset in the wide format:
+#' @format A longitudinal dataset in wide format:
 #' \itemize{
 #'   \item{id}{: ID variable, unique identifier for each person}
 #'   \item{bdi_intake}{: BDI value, baseline assessment}
@@ -40,10 +37,7 @@
 #'   \item{prq_fu1}{: RQ value, follow-up measure 1}
 #'   \item{rqq_followup2}{: RQ value, follow-up measure 2}
 #' }
-#'
 #' @keywords dataset
-#'
-#'
 #' @examples
 #' # Load data into global environment
 #' data(sgdata_bad)

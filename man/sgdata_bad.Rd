@@ -3,8 +3,8 @@
 \docType{data}
 \name{sgdata_bad}
 \alias{sgdata_bad}
-\title{Same as sgdata but with inconsistent, bad vaiable names}
-\format{An longitudinal dataset in the wide format:
+\title{Longitudinal dataset with repeated measures of depression and rumination (bad variable names)}
+\format{A longitudinal dataset in wide format:
 \itemize{
   \item{id}{: ID variable, unique identifier for each person}
   \item{bdi_intake}{: BDI value, baseline assessment}
@@ -42,7 +42,7 @@
 data(sgdata_bad)
 }
 \description{
-To illistrate package also works with variable names dont have good names
+Same as \code{sgdata} but with bad vaiable names to illustrate that variable names can be inconsistent.
 }
 \examples{
 # Load data into global environment

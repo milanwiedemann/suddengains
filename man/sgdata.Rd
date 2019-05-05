@@ -3,8 +3,8 @@
 \docType{data}
 \name{sgdata}
 \alias{sgdata}
-\title{Example dataset with BDI scores and a fictional secondary process measure to illustrate how the package works}
-\format{An longitudinal dataset in the wide format:
+\title{Longitudinal dataset with repeated measures of depression and rumination}
+\format{A longitudinal dataset in wide format:
 \itemize{
   \item{id}{: ID variable, unique identifier for each person}
   \item{bdi_s0}{: BDI value, baseline assessment}
@@ -42,7 +42,7 @@
 data(sgdata)
 }
 \description{
-Some more detials here
+Example dataset with a measure of depression symptoms (BDI) and a fictional secondary process measure (RQ) to illustrate how the package works.
 }
 \examples{
 # Load data into global environment

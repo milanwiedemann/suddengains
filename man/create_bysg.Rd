@@ -15,7 +15,7 @@ create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 \item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 If set to \code{NULL} the first criterion wont be applied.}
 
-\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
+\item{id_var_name}{String, specifying the name of the ID variable.}
 
 \item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 

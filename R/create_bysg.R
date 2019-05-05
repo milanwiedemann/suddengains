@@ -9,7 +9,7 @@
 #' If set to \code{NULL} the second criterion wont be applied.
 #' @param sg_crit3 If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
 #' If set to \code{FALSE} the third criterion wont be applied.
-#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @param id_var_name String, specifying the name of the ID variable.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.

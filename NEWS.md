@@ -7,6 +7,8 @@ Add more specific warning and error messages:
 
 Fix calculation of start and end values in plot_sg() function for bysg data sets
 
+Update all help files, fix spelling mistakes and clarify some things
+
 # suddengains 0.1.0
 
 First CRAN submission.

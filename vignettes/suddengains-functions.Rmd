@@ -604,8 +604,8 @@ Here we see code to count only the intervals of the data that was selected for t
 
 - `total_between_sess_intervals`: The total number of between-session intervals present in the data set, here: `sgdata_select`.
 - `total_between_sess_intervals_sg`: The total number of gain intervals (i.e. sudden gains) present in the data set. By default the first to second and second-last to last intervals are not included here. If `identify_sg_1to2` is set to `TRUE` the first to second intervals will be included.
-- `analysed_between_sess_intervals_sg`: The total number of between-session intervals that could be analysed for sudden gains.
-- `not_analysed_between_sess_intervals_sg`: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).
+- `available_between_sess_intervals_sg`: The total number of between-session intervals that could be analysed for sudden gains.
+- `not_available_between_sess_intervals_sg`: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).
 
 
 ```{r}

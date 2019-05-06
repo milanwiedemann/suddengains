@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_intervals.R
 \name{count_intervals}
 \alias{count_intervals}
-\title{Number of between session intervals analysed for sudden gains}
+\title{Count number of between-session intervals available to identify sudden gains}
 \usage{
 count_intervals(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE)
 }
@@ -19,14 +19,14 @@ If set to TRUE, this implies that the first variable specified in \code{sg_var_l
 \value{
 List with values for:
   \itemize{
-    \item{total_between_sess_intervals}{: The total number of between-session intervals present in the data set.}
-    \item{total_between_sess_intervals_sg}{: The total number of gain intervals (i.e. sudden gains) present in the data set.}
-    \item{analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could be analysed for sudden gains.}
-    \item{not_analysed_between_sess_intervals_sg}{: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).}
+    \item{total_between_sess_intervals}{: The total number of between-session intervals present in the data set, NAs are also included here. This multiplies the number of cases (rows) with the number of specified between-session intervals: \code{nrows * (length(sg_var_list) - 1)}.}
+    \item{total_between_sess_intervals_sg}{: The total number of between-session intervals where sudden gains can theoretically, NAs are also included here. This multiplies the number of cases (rows) with the number of between-session intervals where sudden gains can be identified using the 3 original criteria: \code{nrows * (length(sg_var_list) - 3)}.}
+    \item{available_between_sess_intervals_sg}{: The total number of between-session intervals that can be analysed for sudden gains taking into account the pattern of missing data.}
+    \item{not_available_between_sess_intervals_sg}{: The total number of between-session intervals that can not be analysed for sudden gains due to the pattern of missing data.}
     }
 }
 \description{
-Calculates the number of between-session intervals present in the data set, the number that could feasibly be analysed for sudden gains (given the pattern of any missing data), and the number of gain intervals found.
+Calculates the number of total between-session intervals present in the data set and the number of between-session intervals that are available to identify sudden gains talking into account the pattern of missing data.
 }
 \examples{
 # Count between session intervals in "sgdata"

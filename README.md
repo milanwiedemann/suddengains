@@ -1,12 +1,12 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--05--06-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
-[![suddengains-version](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
-[![minimal-R-version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
+[![suddengains-version](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg)](https://github.com/milanwiedemann/suddengains)
 [![licence](https://img.shields.io/badge/Licence-GPL--3-brightgreen.svg)](https://choosealicense.com/licenses/gpl-3.0/)
+[![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
+[![](https://cranlogs.r-pkg.org/badges/suddengains)](https://cran.r-project.org/package=suddengains)
+
 
 To learn more about the background of this package see our preprint on [PsyArXiv](https://psyarxiv.com/2wa84/).
 We have also created an open [Zotero group](https://www.zotero.org/groups/2280342/suddengains) collecting all the literature looking at sudden gains in psychological therapies. 

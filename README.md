@@ -1,6 +1,6 @@
 # suddengains: An R package for identifying sudden gains in longitudinal data
 
-[![last-change](https://img.shields.io/badge/Last%20change-2019--05--01-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
+[![last-change](https://img.shields.io/badge/Last%20change-2019--05--06-brightgreen.svg)](https://github.com/milanwiedemann/suddengains) 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
 [![Build status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
@@ -20,7 +20,7 @@ It also implements a function to specify which sudden gains to choose in case of
 
 ## Installation
 
-Version 0.1.0 of the suddengains package is available on [CRAN](https://cran.r-project.org/web/packages/suddengains/index.html)
+Version 0.1.0 of the suddengains package is available on [CRAN](https://cran.r-project.org/web/packages/suddengains/index.html):
 
 ```r
 install.packages("suddengains")
@@ -62,7 +62,10 @@ The `suddengains` package comes with a range of features which can be categorise
   - `write_bysg()`: stable 
   - `write_byperson()`: stable 
   
-A detailed illustration of all functions can be found in the vignette:
+A detailed illustration of all functions can be found in the vignette.
+Note that the vignette is only available in R when you install the package from CRAN.
+To make the vignette available when installing from GitHub the following additional `build_opts` arguments have to be added: `devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master", build_opts = c("--no-resave-data", "--no-manual"))`.
+You can also look at the vignette [here](http://htmlpreview.github.io/?https://github.com/milanwiedemann/suddengains/blob/master/vignettes/suddengains-functions.html).
 
 ```r
 # Open vignette in RStudio ----
@@ -207,15 +210,15 @@ You need to be familiar with the [pipe](https://magrittr.tidyverse.org/) `%>%` o
 # Load dplyr package for adding variables from a secondary measure to the by_sg data set
 library(dplyr)
 
-# For bysg dataset select rq variables from sgdata first
+# For bysg dataset select "rq" variables from sgdata first
 sgdata_rq <- sgdata %>% 
     select(id, rq_s0:rq_s12)
 
-# Now join them
+# Now add the "rq" variables to the bysg data set
 bysg_rq <- bysg %>%
     left_join(sgdata_rq, by = "id")
 
-# Extract scores for bysg dataset
+# Extract rq scores around sudden gain on bdi
 bysg_rq <- extract_values(data = bysg_rq,
                           id_var_name = "id_sg",
                           extract_var_list = c("rq_s1", "rq_s2", "rq_s3", "rq_s4", 
@@ -227,11 +230,27 @@ bysg_rq <- extract_values(data = bysg_rq,
 
 ### 4. Helper functions to visualise and report sudden gains:
 
+#### 4.1 Count between-session intervals
+
+The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
+For more info see the help file of this function, `help(count_intervals)`.
+
+```r
+count_intervals(data = sgdata_select,
+                id_var_name = "id",
+                sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                                "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                                "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"))
+```
+
+#### 4.2 Plot average sudden gain magnitude
+
 The package also offers a function to visualise the average magnitude of sudden gains in relation to the overall change of cases with sudden gains.
 Here is code to create a figure of the average gain magnitude.
 
 ```r
 plot_sg(data = bysg,
+        id_var_name = "id",
         tx_start_var_name = "bdi_s0",
         tx_end_var_name = "bdi_s12",
         sg_pre_post_var_list = c("sg_bdi_2n", "sg_bdi_1n", "sg_bdi_n", 
@@ -245,6 +264,7 @@ Here is code to create a figure of the average change of PDS scores around the s
 
 ```r
 plot_sg(data = bysg_rq,
+        id_var_name = "id",
         tx_start_var_name = "rq_s1",
         tx_end_var_name = "rq_s12",
         sg_pre_post_var_list = c("sg_rq_2n", "sg_rq_1n", "sg_rq_n", 
@@ -253,6 +273,20 @@ plot_sg(data = bysg_rq,
 ```
 
 ![](https://dl.dropboxusercontent.com/s/smwspv6hvzu7eq8/suddengains-plot-rq.png)
+
+#### 4.3 Show descriptive statistics of sudden gains
+
+The `describe_sg()` function provides descriptive statistics about the sudden gains based on the variables from the `bysg` or `byperson` datasets.
+
+```r
+# Describe bysg dataset ----
+describe_sg(data = bysg, 
+            sg_data_structure = "bysg")
+
+# Describe byperson dataset ----
+describe_sg(data = byperson_first, 
+            sg_data_structure = "byperson")
+```
 
 ### 5. Helper functions to export data sets to SPSS, Excel, Stata or CSV:
 

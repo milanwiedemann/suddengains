@@ -42,7 +42,7 @@
 data(sgdata_bad)
 }
 \description{
-Same as \code{sgdata} but with bad vaiable names to illustrate that variable names can be inconsistent.
+Same as \code{sgdata} but with bad vaiable names to illustrate that the package can also work with inconsistent names.
 }
 \examples{
 # Load data into global environment

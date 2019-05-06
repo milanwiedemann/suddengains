@@ -1,8 +1,11 @@
-#' Extract variables around the sudden gain
+#' Extract values around the sudden gain
 #'
-#' @param data A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.
-#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' @description Extract values of measures around the time of a sudden gain.
+#'
+#' @param data A \code{bysg} or \code{byperson} data set in wide format with the variable \code{sg_session_n} and all variables specified in \code{extract_var_list}.
+#' @param id_var_name String, specifying the name of the ID variable.
 #' @param extract_var_list Vector, specifying the variable names of session to session scores to extract from.
+#' Note that this list has to have the same number of repeated measures as specified in \code{sg_var_list} when creating the sudden gains data set.
 #' @param extract_measure_name String, specifying the name of the measure being used to extract values from.
 #' @param start_numbering Numeric, set to by default 1.
 #' Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.

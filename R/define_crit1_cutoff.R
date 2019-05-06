@@ -7,6 +7,9 @@
 #' @param tx_end_var_name String, variable name of the postreatment scores
 #' @param reliability Numeric, between 0 and 1 indicating reliability of the scale.
 #' @return A list with all calculated variables using modified formula for RCI including cut-off
+#' @references Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. \url{https://doi.org/10.1037/0022-006X.59.1.12}.
+#'
+#' Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. \url{https://doi.org/10.1037/0022-006X.71.1.14}.
 #' @export
 #' @examples # Define cut-off value for first SG criterion
 #' # In this example the reliability is specified and not calculated from item-by-item data

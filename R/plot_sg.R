@@ -155,16 +155,16 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
                           colour = NULL,
                           shape = group_title)
 
-            if (apaish == TRUE) {
-                # Make plot look apaish
-                plot_out <- plot_temp +
-                    ggplot2::theme_classic() +
-                    ggplot2::theme(text = ggplot2::element_text(size = 12))
+        if (apaish == TRUE) {
+            # Make plot look apaish
+            plot_out <- plot_temp +
+                ggplot2::theme_classic() +
+                ggplot2::theme(text = ggplot2::element_text(size = 12))
 
-            } else {
-                # Return plot with ggplot2 default background
-                plot_out <-  plot_temp
-            }
+        } else {
+            # Return plot with ggplot2 default background
+            plot_out <-  plot_temp
+        }
 
         plot_out
 
@@ -257,8 +257,6 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             ggplot2::scale_x_discrete(labels = base::c("Start", "N-2", "N-1", "N",
                                                        "N+1", "N+2", "N+3", "End")) +
 
-
-
             # Add x and y axis labels
             ggplot2::labs(x = xlab,
                           y = ylab,
@@ -291,7 +289,5 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
 
         # Return final plot
         plot_out
-
     }
-
 }

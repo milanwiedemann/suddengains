@@ -41,7 +41,7 @@ If set to TRUE, this implies that the first variable specified in \code{sg_var_l
 A wide data set with one row per sudden gain/loss.
 }
 \description{
-This function produces a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
+This function returns a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
 The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
 }
 \examples{
@@ -57,4 +57,7 @@ create_bysg(data = sgdata,
                             "bdi_s10", "bdi_s11", "bdi_s12"),
             sg_measure_name = "bdi")
 
+}
+\references{
+Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 }

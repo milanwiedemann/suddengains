@@ -5,11 +5,11 @@
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param method String, specifying the method used to select cases: \code{pattern} or \code{min_sess}.
-#' @param min_sess_num Numberic, minimum number of available sessions to be selected.
+#' @param min_sess_num Numeric, minimum number of available sessions to be selected.
 #' This argument needs to be specified if \code{method = min_sess}.
-#' @param return_id_lgl Logical, if \code{TRUE} the function returns only the ID variable a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
-#' If set to \code{FALSE}
-#' @return A wide dataset or just the id variable containing a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+#' @param return_id_lgl Logical, if \code{TRUE} the function returns the ID variable and a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
+#' If set to \code{FALSE} this function retruns the input data together with the new variable \code{sg_select}.
+#' @return A wide dataset indicating with all cases and a variable indicating whether each cases provides enough data to identify sudden gains.
 #' @export
 #' @examples # 1. method = "pattern"
 #' select_cases(data = sgdata,

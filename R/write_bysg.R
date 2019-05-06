@@ -17,15 +17,15 @@
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' @param format String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.
-#' @param path String, specifing the file name ending with the matching file extension,
+#' @param path String, specifying the file name ending with the matching file extension,
 #' \code{".csv"}, \code{".sav"}, \code{".dta"} or \code{".xlsx"}.
 #' @param ... Additional parameters to be passed on to the specified write function,
 #' see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
 #' for more information.
 #' @param stata_version Numeric, specifying STATA version number.
-#'
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @export
-#' @examples # Adjusting "path" argument before running
+#' @examples # Adjust "path" argument before running
 #' # Create character string name for temporary "bysg.csv" file
 #' temp <- tempfile(pattern = "bysg", fileext = ".csv")
 #'

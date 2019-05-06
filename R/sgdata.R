@@ -1,6 +1,6 @@
 #' Longitudinal dataset with repeated measures of depression and rumination
 #'
-#' @description Example dataset with a measure of depression symptoms (BDI) and a fictional secondary process measure (RQ) to illustrate how the package works.
+#' @description Example dataset with a measure of depression symptoms (BDI) and a secondary process measure (RQ; Rumination Questionnaire) to illustrate how the package works.
 #' @docType data
 #' @usage data(sgdata)
 #' @format A longitudinal dataset in wide format:

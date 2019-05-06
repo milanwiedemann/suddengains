@@ -1,10 +1,12 @@
-#' Rename variables for extracting variables in sudden gians package
+#' Rename variable names to a generic and consistent format
 #'
-#' @param data Dataframe in wide format
-#' @param rename_var_list Vector of variables to be ranamed
-#' @param new_var_str String, new name for variables
-#' @param start_numbering Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list"
-#' @return Dataframe in wide format with renamed variables
+#' @description Rename variable names to a generic and consistent format that can be used by other functions of the suddengains package.
+#'
+#' @param data Dataframe in wide format.
+#' @param rename_var_list Vector of variables to be renamed.
+#' @param new_var_str String, new name for variables.
+#' @param start_numbering Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list".
+#' @return Dataframe in wide format with renamed variables.
 
 rename_sg_vars <- function(data, rename_var_list, new_var_str = "temp_var_", start_numbering = 1){
 

@@ -42,7 +42,7 @@
 data(sgdata)
 }
 \description{
-Example dataset with a measure of depression symptoms (BDI) and a fictional secondary process measure (RQ) to illustrate how the package works.
+Example dataset with a measure of depression symptoms (BDI) and a secondary process measure (RQ; Rumination Questionnaire) to illustrate how the package works.
 }
 \examples{
 # Load data into global environment

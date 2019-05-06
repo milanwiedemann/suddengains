@@ -22,14 +22,14 @@ The list includes values for:
     \item{sg_pct}{: percentage of people in the input dataset who experienced a sudden gain}
     \item{sg_multiple_n}{: number of people who experienced a sudden gain (byperson dataset only)}
     \item{sg_multiple_pct}{: percentage of people in the input dataset who experienced more than one sudden gain}
-    \item{sg_reversal_n}{: number of sudden gains that later meets criteria for a reversal}
-    \item{sg_reversal_pct}{: percentage of sudden gains that later meets criteria for a reversal}
+    \item{sg_reversal_n}{: number of sudden gains that later meet the criteria for a reversal}
+    \item{sg_reversal_pct}{: percentage of sudden gains that later meet the criteria for a reversal}
     \item{sg_magnitude_m}{: mean magnitude of the sudden gains observed}
     \item{sg_magnitude_sd}{: standard deviation of the magnitude of the sudden gains observed}
     }
 }
 \description{
-Some numbers (percentages) will be different depending wich dataset is selected, because if multiple gains in bysg only one will be selected for further analyses.
+Some numbers (percentages) will be different depending which form of data set (bysg vs. byperson) is selected, because if multiple gains in bysg only one will be selected for further analyses.
 }
 \examples{
 # Create bysg dataset

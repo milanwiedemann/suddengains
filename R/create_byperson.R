@@ -1,6 +1,6 @@
 #' Create a data set with one gain per person
 #'
-#' @description This function produces a wide data set with one row for each case in \code{data}.
+#' @description This function returns a wide data set with one row for each case in \code{data}.
 #' The data set includes variables indicating whether each case experienced a sudden gain/loss or not,
 #' values around the period of each gain/loss, and descriptives.
 #' For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
@@ -24,7 +24,8 @@
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
 #' The default is to select the first sudden gain (\code{"first"}) if someone experienced multiple gains.
 #' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.
-#' @return  A wide data set with one row per case in \code{data}.
+#' @return  A wide data set with one row per case (\code{id_var_name}) in \code{data}.
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @export
 #' @examples # Create byperson data set, selecting the largest gain in case of muliple gains
 #' create_byperson(data = sgdata,
@@ -41,35 +42,35 @@
 
 create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE) {
 
-    # Check arguments
-    multiple_sg_select <- base::match.arg(multiple_sg_select)
-    identify <- base::match.arg(identify)
+  # Check arguments
+  multiple_sg_select <- base::match.arg(multiple_sg_select)
+  identify <- base::match.arg(identify)
 
 
-    # If data_is_bysg arguement is FALSE run the create_bysg function
-    # If data_is_bysg arguement is TRUE dont run the create_bysg function and assume that the data already is in the right format
-    # to create the byperson dataset
-    if (data_is_bysg == FALSE) {
+  # If data_is_bysg arguement is FALSE run the create_bysg function
+  # If data_is_bysg arguement is TRUE dont run the create_bysg function and assume that the data already is in the right format
+  # to create the byperson dataset
+  if (data_is_bysg == FALSE) {
 
-        data_bysg <- create_bysg(data = data,
-                                 id_var_name = id_var_name,
-                                 sg_var_list = sg_var_list,
-                                 sg_crit1_cutoff = sg_crit1_cutoff,
-                                 sg_crit2_pct = sg_crit2_pct,
-                                 sg_crit3 = sg_crit3,
-                                 tx_start_var_name = tx_start_var_name,
-                                 tx_end_var_name = tx_end_var_name,
-                                 sg_measure_name = sg_measure_name,
-                                 identify_sg_1to2 = identify_sg_1to2,
-                                 identify = identify)
+    data_bysg <- create_bysg(data = data,
+                             id_var_name = id_var_name,
+                             sg_var_list = sg_var_list,
+                             sg_crit1_cutoff = sg_crit1_cutoff,
+                             sg_crit2_pct = sg_crit2_pct,
+                             sg_crit3 = sg_crit3,
+                             tx_start_var_name = tx_start_var_name,
+                             tx_end_var_name = tx_end_var_name,
+                             sg_measure_name = sg_measure_name,
+                             identify_sg_1to2 = identify_sg_1to2,
+                             identify = identify)
 
-    } else if (data_is_bysg == TRUE) {
+  } else if (data_is_bysg == TRUE) {
 
-        # Implement checks that test whether specific variables are present in the data set, e.g. "sg_session_n", "sg_magnitude" ...
+    # Implement checks that test whether specific variables are present in the data set, e.g. "sg_session_n", "sg_magnitude" ...
 
-        data_bysg <- data
+    data_bysg <- data
 
-    }
+  }
 
 
 
@@ -84,39 +85,39 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
       dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
       dplyr::ungroup()
 
-    } else if (multiple_sg_select == "last") {
+  } else if (multiple_sg_select == "last") {
 
-      base::message("The last gain/loss was selected in case of multiple gains/losses.")
+    base::message("The last gain/loss was selected in case of multiple gains/losses.")
 
-      bysg_data_select <- data_bysg %>%
-        dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
-        dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-        dplyr::filter(sg_session_n == base::max(sg_session_n)) %>%
-        dplyr::ungroup()
+    bysg_data_select <- data_bysg %>%
+      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+      dplyr::filter(sg_session_n == base::max(sg_session_n)) %>%
+      dplyr::ungroup()
 
-      } else if (multiple_sg_select == "smallest") {
+  } else if (multiple_sg_select == "smallest") {
 
-        base::message("The smallest gain/loss was selected in case of multiple gains/losses.")
+    base::message("The smallest gain/loss was selected in case of multiple gains/losses.")
 
-        bysg_data_select <- data_bysg %>%
-          dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
-          dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-          dplyr::filter(sg_magnitude == base::min(sg_magnitude)) %>%
-          dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
-          dplyr::ungroup()
+    bysg_data_select <- data_bysg %>%
+      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+      dplyr::filter(sg_magnitude == base::min(sg_magnitude)) %>%
+      dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
+      dplyr::ungroup()
 
-        } else if (multiple_sg_select == "largest") {
+  } else if (multiple_sg_select == "largest") {
 
-          base::message("The largest gain/loss was selected in case of multiple gains/losses.")
+    base::message("The largest gain/loss was selected in case of multiple gains/losses.")
 
-          bysg_data_select <- data_bysg %>%
-            dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
-            dplyr::group_by(!! rlang::sym(id_var_name)) %>%
-            dplyr::filter(sg_magnitude == base::max(sg_magnitude)) %>%
-            dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
-            dplyr::ungroup()
+    bysg_data_select <- data_bysg %>%
+      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::group_by(!! rlang::sym(id_var_name)) %>%
+      dplyr::filter(sg_magnitude == base::max(sg_magnitude)) %>%
+      dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
+      dplyr::ungroup()
 
-        }
+  }
 
 
   # Join dataset
@@ -126,5 +127,5 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
 
   # Return dataset
   data_byperson %>%
-      dplyr::arrange(!! rlang::sym(id_var_name))
-  }
+    dplyr::arrange(!! rlang::sym(id_var_name))
+}

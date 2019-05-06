@@ -1,6 +1,6 @@
 #' Longitudinal dataset with repeated measures of depression and rumination (bad variable names)
 #'
-#' @description Same as \code{sgdata} but with bad vaiable names to illustrate that variable names can be inconsistent.
+#' @description Same as \code{sgdata} but with bad vaiable names to illustrate that the package can also work with inconsistent names.
 #' @docType data
 #' @usage data(sgdata_bad)
 #' @format A longitudinal dataset in wide format:

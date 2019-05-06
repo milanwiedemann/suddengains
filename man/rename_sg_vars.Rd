@@ -2,23 +2,23 @@
 % Please edit documentation in R/rename_sg_vars.R
 \name{rename_sg_vars}
 \alias{rename_sg_vars}
-\title{Rename variables for extracting variables in sudden gians package}
+\title{Rename variable names to a generic and consistent format}
 \usage{
 rename_sg_vars(data, rename_var_list, new_var_str = "temp_var_",
   start_numbering = 1)
 }
 \arguments{
-\item{data}{Dataframe in wide format}
+\item{data}{Dataframe in wide format.}
 
-\item{rename_var_list}{Vector of variables to be ranamed}
+\item{rename_var_list}{Vector of variables to be renamed.}
 
-\item{new_var_str}{String, new name for variables}
+\item{new_var_str}{String, new name for variables.}
 
-\item{start_numbering}{Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list"}
+\item{start_numbering}{Numeric, first number to be used as suffix for renaming variables specified in "rename_var_list".}
 }
 \value{
-Dataframe in wide format with renamed variables
+Dataframe in wide format with renamed variables.
 }
 \description{
-Rename variables for extracting variables in sudden gians package
+Rename variable names to a generic and consistent format that can be used by other functions of the suddengains package.
 }

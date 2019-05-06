@@ -14,6 +14,7 @@
 #' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
 #' Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.
 #' @return A wide data set indicating whether sudden losses are present for each session to session interval for all cases in \code{data}.
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @examples # Identify sudden losses
 #' identify_sl(data = sgdata,
 #'             # Negative cut-off value to identify sudden losses

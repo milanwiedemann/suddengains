@@ -38,7 +38,7 @@ If set to \code{FALSE} the third criterion wont be applied.}
 
 \item{format}{String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.}
 
-\item{path}{String, specifing the file name ending with the matching file extension,
+\item{path}{String, specifying the file name ending with the matching file extension,
 \code{".csv"}, \code{".sav"}, \code{".dta"} or \code{".xlsx"}.}
 
 \item{stata_version}{Numeric, specifying STATA version number.}
@@ -51,7 +51,7 @@ for more information.}
 Writes a data frame as a specified file type.
 }
 \examples{
-# Adjusting "path" argument before running
+# Adjust "path" argument before running
 # Create character string name for temporary "bysg.csv" file
 temp <- tempfile(pattern = "bysg", fileext = ".csv")
 
@@ -70,4 +70,7 @@ write_bysg(data = sgdata,
            identify_sg_1to2 = FALSE,
            format = "CSV",
            path = temp)
+}
+\references{
+Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 }

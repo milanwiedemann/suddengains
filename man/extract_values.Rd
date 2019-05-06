@@ -2,17 +2,18 @@
 % Please edit documentation in R/extract_values.R
 \name{extract_values}
 \alias{extract_values}
-\title{Extract variables around the sudden gain}
+\title{Extract values around the sudden gain}
 \usage{
 extract_values(data, id_var_name, extract_var_list, extract_measure_name,
   start_numbering = 1, add_to_data = TRUE)
 }
 \arguments{
-\item{data}{A \code{bysg} or \code{byperson} dataset in wide format with the variable sg_session_n and all variables to extract.}
+\item{data}{A \code{bysg} or \code{byperson} data set in wide format with the variable \code{sg_session_n} and all variables specified in \code{extract_var_list}.}
 
-\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
+\item{id_var_name}{String, specifying the name of the ID variable.}
 
-\item{extract_var_list}{Vector, specifying the variable names of session to session scores to extract from.}
+\item{extract_var_list}{Vector, specifying the variable names of session to session scores to extract from.
+Note that this list has to have the same number of repeated measures as specified in \code{sg_var_list} when creating the sudden gains data set.}
 
 \item{extract_measure_name}{String, specifying the name of the measure being used to extract values from.}
 
@@ -26,7 +27,7 @@ If set to false, only the ID variable and all extracted values will be returned.
 A wide dataset with values for \code{extract_measure_name} around the sudden gain.
 }
 \description{
-Extract variables around the sudden gain
+Extract values of measures around the time of a sudden gain.
 }
 \examples{
 # Create bysg dataset

@@ -18,17 +18,18 @@
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' @param multiple_sg_select String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
-#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.
+#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg data set created using the \code{create_bysg} function.
 #' @param format String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.
-#' @param path String, specifing the file name ending with the matching file extension,
+#' @param path String, specifying the file name ending with the matching file extension,
 #' \code{".csv"}, \code{".sav"}, \code{".dta"} or \code{".xlsx"}.
 #' @param ... Additional parameters to be passed on to the specified write function,
 #' see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
 #' for more information.
 #' @param stata_version Numeric, specifying STATA version number.
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @export
 #' @examples
-#' # Adjusting "path" argument before running
+#' # Adjust "path" argument before running
 #' # Create character string name for temporary "byperson.csv" file
 #' temp <- tempfile(pattern = "byperson", fileext = ".csv")
 #'

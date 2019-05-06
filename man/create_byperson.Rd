@@ -45,10 +45,10 @@ If set to \code{FALSE} the third criterion wont be applied.}
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 }
 \value{
-A wide data set with one row per case in \code{data}.
+A wide data set with one row per case (\code{id_var_name}) in \code{data}.
 }
 \description{
-This function produces a wide data set with one row for each case in \code{data}.
+This function returns a wide data set with one row for each case in \code{data}.
 The data set includes variables indicating whether each case experienced a sudden gain/loss or not,
 values around the period of each gain/loss, and descriptives.
 For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
@@ -66,4 +66,7 @@ create_byperson(data = sgdata,
                                 "bdi_s10", "bdi_s11", "bdi_s12"),
                 sg_measure_name = "bdi",
                 multiple_sg_select = "largest")
+}
+\references{
+Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 }

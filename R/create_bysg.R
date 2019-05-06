@@ -1,6 +1,6 @@
 #' Create a data set with one row for each sudden gain/loss
 #'
-#' @description This function produces a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
+#' @description This function returns a wide data set with one row for each sudden gain/loss and assigns a unique identifier to each.
 #' The data set includes variables indicating values around the period of each gain/loss, and calculates descriptives of each gain/loss.
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
@@ -18,10 +18,9 @@
 #' The default is to identify sudden gains (\code{"sg"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
-#'
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @return A wide data set with one row per sudden gain/loss.
 #' @export
-#'
 #' @examples # Create bypsg data set
 #' create_bysg(data = sgdata,
 #'             sg_crit1_cutoff = 7,
@@ -36,14 +35,11 @@
 #'
 create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, sg_crit2_pct = .25, sg_crit3 = TRUE, identify = c("sg", "sl"), identify_sg_1to2 = FALSE) {
 
-    # Check arguments
-    identify <- base::match.arg(identify)
-
+  # Check arguments
+  identify <- base::match.arg(identify)
 
   # Before doing anything, save the raw data that was put in function as data argument
   data_in <- data
-
-
 
   # Run identify_sg function first to find positions of gain
   if (identify == "sg") {
@@ -57,15 +53,15 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
                                                                     sg_crit3 = sg_crit3,
                                                                     identify_sg_1to2 = identify_sg_1to2))
 
-      # Calculate number of sudden gains
-      sg_sum <- data_crit123 %>%
-        dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
-        base::sum(., na.rm = T)
+    # Calculate number of sudden gains
+    sg_sum <- data_crit123 %>%
+      dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+      base::sum(., na.rm = T)
 
-      # Stop if no sudden gains were identified and return error
-      if (sg_sum == 0) {
-        stop("No sudden gains were identified.", call. = FALSE)
-      }
+    # Stop if no sudden gains were identified and return error
+    if (sg_sum == 0) {
+      stop("No sudden gains were identified.", call. = FALSE)
+    }
 
   } else if (identify == "sl") {
     # Suppress warnings because I dont want to carry them over from the identify function
@@ -78,27 +74,26 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
                                                                     sg_crit3 = sg_crit3,
                                                                     identify_sg_1to2 = identify_sg_1to2))
 
-      # Calculate number of sudden gains
-      sg_sum <- data_crit123 %>%
-        dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
-        base::sum(., na.rm = T)
+    # Calculate number of sudden gains
+    sg_sum <- data_crit123 %>%
+      dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+      base::sum(., na.rm = T)
 
-      # Stop if no sudden losses were identified and return error
-      if (sg_sum == 0) {
-        stop("No sudden losses were identified.", call. = FALSE)
-      }
+    # Stop if no sudden losses were identified and return error
+    if (sg_sum == 0) {
+      stop("No sudden losses were identified.", call. = FALSE)
+    }
   }
 
   # Set missings to zero to calculate in next step
   data_crit123[base::is.na(data_crit123)] <- 0
-
 
   # Start creating bysg dataset
   data_bysg <- data_crit123 %>%
     dplyr::select(!! rlang::sym(id_var_name), dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
     tidyr::gather(key = "session", value = "sg_crit123", -!! rlang::sym(id_var_name)) %>%
     dplyr::mutate(session = as.numeric(stringr::str_extract(session, "(\\d+)")),
-           sg_session_n = session) %>%
+                  sg_session_n = session) %>%
     dplyr::arrange(!! rlang::sym(id_var_name)) %>%
     dplyr::group_by(!! rlang::sym(id_var_name)) %>%
     dplyr::mutate(sg_freq_byperson = sum(sg_crit123, na.rm = TRUE)) %>%
@@ -113,25 +108,25 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   # First check if tx_start_var_name and tx_end_var_name are in sg_var_list, if not add them
   if (tx_start_var_name %in% sg_var_list == TRUE) {
-      sg_var_select <- base::c(id_var_name, sg_var_list)
+    sg_var_select <- base::c(id_var_name, sg_var_list)
   } else if (tx_start_var_name %in% sg_var_list == FALSE) {
-      sg_var_select <- base::c(id_var_name, tx_start_var_name, sg_var_list)
+    sg_var_select <- base::c(id_var_name, tx_start_var_name, sg_var_list)
   }
 
   if (tx_end_var_name %in% sg_var_list == TRUE) {
-      sg_var_select <- c(sg_var_select)
+    sg_var_select <- c(sg_var_select)
   } else if (tx_end_var_name %in% sg_var_list == FALSE) {
-      sg_var_select <- c(sg_var_select, tx_end_var_name)
+    sg_var_select <- c(sg_var_select, tx_end_var_name)
   }
 
   data_bysg <- data_bysg %>%
-      dplyr::left_join(dplyr::select(data_in, sg_var_select), by = id_var_name)
+    dplyr::left_join(dplyr::select(data_in, sg_var_select), by = id_var_name)
 
   # Set start value for numbering to extract the correct values around the gain
   if (identify_sg_1to2 == TRUE) {
-      start_numbering <- 0
+    start_numbering <- 0
   } else if (identify_sg_1to2 == FALSE) {
-      start_numbering <- 1
+    start_numbering <- 1
   }
 
   # Extract scores of the sudden gains measure around the sudden gain ----
@@ -141,7 +136,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
                                               extract_measure_name = sg_measure_name,
                                               start_numbering = start_numbering,
                                               add_to_data = FALSE
-                                              )
+  )
 
   # Combine the extracted scores with the bysg dataset
   data_bysg <- data_bysg %>%
@@ -220,15 +215,13 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
       dplyr::ungroup() %>%
       tidyr::complete(id_sg = id_sg_list) %>%
       tidyr::replace_na(base::list(sg_reversal = 0))
-
-    }
-
+  }
 
   data_bysg <- data_bysg %>%
     dplyr::left_join(sg_reversal, by = "id_sg")
 
   # Return tibble
   data_bysg %>%
-      tibble::as.tibble() %>%
-      dplyr::arrange(!! rlang::sym(id_var_name))
+    tibble::as.tibble() %>%
+    dplyr::arrange(!! rlang::sym(id_var_name))
 }

@@ -129,7 +129,7 @@ This function goes through the data and selects all cases with at least one of t
 | 3.           |   x   |   .   | **N** |   x   |   x   |   .   |
 | 4.           |   x   |   .   | **N** |   x   |   .   |   x   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. Bold "**N**" represents the pregain session for each "pattern".
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. "**N**" represents available data to be examined as a possible pregain session.
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,

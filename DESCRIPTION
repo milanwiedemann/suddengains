@@ -10,7 +10,7 @@ Authors@R: c(
   )
 Description: Identify sudden gains based on the criteria outlined by Tang and DeRubeis (1999) <doi:10.1037/0022-006X.67.6.894>. Sudden losses, defined as the opposite of sudden gains can also be identified. It 
     applies all three criteria to a dataset while adjusting the third criteria for missing values. It handles multiple gains per person by creating two datasets, one with all sudden gains and 
-    one with one selected sudden gain for each participant. It can extract and plot scores around sudden gains on multiple measures. See the GitHub repository for more information and examples.
+    one with one selected sudden gain for each participant. It can extract and plot scores around sudden gains on multiple measures.
 Depends: 
     R (>= 3.4.0)
 License: GPL-3

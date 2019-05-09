@@ -61,7 +61,7 @@ The `suddengains` package comes with a range of features which can be categorise
   - `write_bysg()`: stable 
   - `write_byperson()`: stable 
   
-A detailed illustration of all functions can be found in this [vignette](http://htmlpreview.github.io/?https://github.com/milanwiedemann/suddengains/blob/master/vignettes/suddengains-functions.html).
+A detailed illustration of all functions can be found in the vignette on [CRAN](https://cran.r-project.org/web/packages/suddengains/).
 Note that the vignette is only available in R when you install the package from CRAN.
 To make the vignette available when installing from GitHub the following additional `build_opts` arguments have to be added: `devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master", build_opts = c("--no-resave-data", "--no-manual"))`.
 

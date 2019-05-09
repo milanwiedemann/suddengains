@@ -1,10 +1,10 @@
 ---
-title: "A detailed example of how to use the suddengains R package"
+title: "A tutorial on using the *suddengains* R package"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{A detailed example of how to use the suddengains R package}
+  %\VignetteIndexEntry{A tutorial on using the *suddengains* R package}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 bibliography: ["references.bib", "r-references.bib"]

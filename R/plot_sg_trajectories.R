@@ -1,27 +1,27 @@
 #' Plot individual trajectories
-#' @description Plot individual trajectories of selected cases. This function can be combined with a filter command to explore specific trajectories.
+#' @description Plot individual trajectories of selected cases. This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
 #' @param data Dataset in wide format.
-#' @param id_var String, specifying id variable.
+#' @param id_var String, specifying ID variable.
 #' @param var_list Vector, specifying variable names to be plotted in sequential order.
-#' @param select_id_list asd
-#' @param select_n Numberic, number of randomly selected cases to be plotted.
+#' @param select_id_list Vector, specifying case IDs to be plotted.
+#' @param select_n Numeric, specifying number of randomly selected cases to be plotted.
 #' @param show_id Logical, specifying whether or not to show ID variables inside the plot near the first measurement point.
-#' @param id_label_size Numeric, if 'show_id' = TRUE specifying the size of the label inside the plot.
-#' @param show_legend Logical, specifying whether or not a legend of all ids outside of the plot.
-#' @param legend_title String, specifying the title of legend,b y default the variable name of 'id_var' will be shown.
-#' @param connect_missing Logical, speciying whether to connect points by \code{id_var} across missing values.
+#' @param id_label_size Numeric, specifying the size of the ID label, if \code{show_id = TRUE}.
+#' @param show_legend Logical, specifying whether or not a legend of all IDs.
+#' @param legend_title String, specifying the title of legend, by default the variable name of \code{id_var} will be shown.
+#' @param connect_missing Logical, specifying whether to connect points across missing values.
 #' @param colour String, specifying the discrete colour palette to be used.
-#' @param viridis_option String specifying the colour option for discrete viridis palette, see ggplot2::scale_fill_viridis_d().
-#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see ggplot2::scale_fill_viridis_d().
-#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see ggplot2::scale_fill_viridis_d().
-#' @param line_alpha Numeric, specifying alpha of lines.
-#' @param point_alpha Numeric, specifying alpha of points.
+#' @param viridis_option String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
+#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
+#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
+#' @param line_alpha Numeric, specifying alpha (transparency) of lines.
+#' @param point_alpha Numeric, specifying alpha (transparency) of points.
 #' @param xlab String for x axis label.
 #' @param ylab String for y axis label.
 #' @param scale_x_num Logical, if \code{TRUE} print sequential numbers starting from 1 as x axis labels, if \code{FALSE} use variable names.
-#' @param scale_x_num_start Numeric, if \code{scale_x_num == TRUE} this is the starting value of the x axis.
-#' @param apaish Logical, make plot APA publishable.
-#' @param ... Arguments to be passed on to ggrepel::geom_label_repel()
+#' @param scale_x_num_start Numeric, specifying the starting value of the x axis, if \code{scale_x_num = TRUE}.
+#' @param apaish Logical, if \code{TRUE} aligns plot with APA guidelines.
+#' @param ... Further arguments to be passed on to ggrepel::geom_label_repel().
 #' @return ggplot2 object
 #' @examples # Plot individual trajectories of IDs 2, 4, 5, and 9
 #' plot_sg_trajectories(data = sgdata,
@@ -46,10 +46,11 @@
 #'                      ylab = "BDI")
 #' @export
 
-plot_sg_trajectories <- function(data, id_var, var_list, select_id_list = NULL, select_n = NULL, show_id = TRUE, show_legend = TRUE, legend_title = "ID", id_label_size = 2, connect_missing = TRUE, colour = c("viridis", "ggplot", "grey"), viridis_option = "B", viridis_begin = 0.2, viridis_end = 0.8, line_alpha = 1, point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE, scale_x_num_start = 1, apaish = TRUE, ...) {
+plot_sg_trajectories <- function(data, id_var, var_list, select_id_list = NULL, select_n = NULL, show_id = TRUE, show_legend = TRUE, legend_title = "ID", id_label_size = 2, connect_missing = TRUE, colour = c("viridis", "ggplot", "grey"), viridis_option = c("D", "A", "B", "C"), viridis_begin = 0.2, viridis_end = 0.8, line_alpha = 1, point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE, scale_x_num_start = 1, apaish = TRUE, ...) {
 
     # Check arguments
     colour <- base::match.arg(colour)
+    viridis_option <- base::match.arg(viridis_option)
 
     # Create list with all ids
     id_list <- data %>% dplyr::select(id_var) %>% base::unlist()

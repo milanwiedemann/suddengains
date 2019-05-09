@@ -10,7 +10,7 @@ vignette: >
 bibliography: ["references.bib", "r-references.bib"]
 link-citations: yes
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 ```{r setup, include = FALSE}
@@ -124,12 +124,12 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           |   x   | **X** |   x   |   x   |       |       |
-| 2.           |   x   | **X** |   x   |       |   x   |       |
-| 3.           |   x   |       | **X** |   x   |   x   |       |
-| 4.           |   x   |       | **X** |   x   |       |   x   |
+| 1.           |   x   | **N** |   x   |   x   |    .   |   .    |
+| 2.           |   x   | **N** |   x   |   .    |   x   |  .     |
+| 3.           |   x   |   .    | **N** |   x   |   x   |   .    |
+| 4.           |   x   |   .    | **N** |   x   |    .   |   x   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. x = Present data; Empty cell = Missing data. Bold **X** represent the pregain session for each "pattern".
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. Bold "**N**" represent the pregain session for each "pattern".
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,
@@ -163,7 +163,7 @@ define_crit1_cutoff(data_sessions = sgdata,
                     data_item = NULL,
                     tx_start_var_name = "bdi_s0",
                     tx_end_var_name = "bdi_s12",
-                    reliability = 0.931)
+                    reliability = 0.8)
 
 ```
 
@@ -593,6 +593,97 @@ The plot below shows the average gain for each group.
 plot_byperson_group
 ```
 
+## Plot individual trajectories
+
+The function `plot_sg_trajectories()` can plot individual trajectories of cases.
+It is possible to select specific IDs for plotting using the `select_id_list` argument or a number of random IDs using the `sample_n` argument.
+
+```{r}
+plot_trajectories_1 <- sgdata %>%
+    plot_sg_trajectories(id_var = "id",
+                         select_id_list = c("2", "4", "5", "9"),
+                         var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                      "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                      "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                         show_id = TRUE,
+                         id_label_size = 4,
+                         label.padding = .2,
+                         show_legend = FALSE,
+                         colour = "viridis",
+                         viridis_option = "D",
+                         viridis_begin = 0,
+                         viridis_end = .8,
+                         connect_missing = FALSE,
+                         scale_x_num = TRUE,
+                         scale_x_num_start = 1,
+                         apaish = TRUE,
+                         xlab = "Session", 
+                         ylab = "BDI"
+                         )
+```
+
+
+
+```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+plot_trajectories_1
+```
+
+The function can also be combined with a filter function to explore specific sudden gains cases, for example (1) all sudden gain at session 3, or (2) three randomly selected (`select_n = 3`) cases who experienced more than one sudden gain (`dplyr::filter(sg_freq_byperson > 1`).
+
+```{r}
+# Show all cases with a sudden gain at session 3
+plot_trajectories_2 <- bysg %>%
+    dplyr::filter(sg_session_n == 3) %>% 
+    plot_sg_trajectories(id_var = "id_sg",
+                         var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                      "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                      "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                         show_id = FALSE,
+                         id_label_size = 4,
+                         label.padding = .2,
+                         show_legend = TRUE,
+                         colour = "viridis",
+                         viridis_option = "D",
+                         viridis_begin = 0,
+                         viridis_end = .8,
+                         connect_missing = TRUE,
+                         scale_x_num = TRUE,
+                         scale_x_num_start = 1,
+                         apaish = TRUE,
+                         xlab = "Session", 
+                         ylab = "BDI")
+
+plot_trajectories_3 <- byperson_first %>%
+    dplyr::filter(sg_freq_byperson > 1) %>% 
+    plot_sg_trajectories(id_var = "id_sg",
+                         var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                      "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                      "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                         select_n = 3,
+                         show_id = FALSE,
+                         id_label_size = 4,
+                         label.padding = .2,
+                         show_legend = TRUE,
+                         colour = "viridis",
+                         viridis_option = "D",
+                         viridis_begin = 0,
+                         viridis_end = .8,
+                         connect_missing = TRUE,
+                         scale_x_num = TRUE,
+                         scale_x_num_start = 1,
+                         apaish = TRUE,
+                         xlab = "Session", 
+                         ylab = "BDI")
+```
+
+```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+plot_trajectories_2
+```
+
+
+```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+plot_trajectories_3
+```
 
 # Summarise descriptive statistics
 

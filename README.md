@@ -54,6 +54,7 @@ The `suddengains` package comes with a range of features which can be categorise
 3. Helper functions to visualise and report sudden gains:
   - `count_intervals()`: stable
   - `plot_sg()`: stable
+  - `plot_sg_trajectories()`: testing
   - `describe_sg()`: stable
   
 4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV:

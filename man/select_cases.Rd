@@ -27,6 +27,17 @@ A wide dataset indicating with all cases and a variable indicating whether each 
 }
 \description{
 Select sample for further sudden gains analyses depending on specified methods.
+
+The following table shows the different data patterns that get selected when \code{method = "pattern"}.
+This function goes through the data and selects all cases with at least one of the following data patterns.
+\tabular{lrrrrrr}{
+\strong{Pattern} \tab \strong{x1} \tab \strong{x2} \tab \strong{x3} \tab \strong{x4} \tab \strong{x5} \tab \strong{x6} \cr
+\strong{1.}       \tab x           \tab \strong{N}  \tab x           \tab x           \tab .         \tab .           \cr
+\strong{2.}       \tab x           \tab \strong{N}  \tab x           \tab .          \tab x          \tab .           \cr
+\strong{3.}       \tab x           \tab .          \tab \strong{N}  \tab x           \tab x          \tab .           \cr
+\strong{4.}       \tab x           \tab .          \tab \strong{N}  \tab x           \tab .         \tab x
+}
+\emph{Note}. x1 to x6 are consecutive data points of the primary outcome measure. x = Available data; . = Missing data. \strong{N} represent the pregain session for each "pattern".
 }
 \examples{
 # 1. method = "pattern"

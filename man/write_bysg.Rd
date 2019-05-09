@@ -55,7 +55,7 @@ Writes a data frame as a specified file type.
 # Create character string name for temporary "bysg.csv" file
 temp <- tempfile(pattern = "bysg", fileext = ".csv")
 
-# Write bysg dataset (CVS file)
+# Write bysg dataset (CSV file)
 # To write a different format change the 'format' argument
 # as well as the file extension in the 'path' argument
 write_bysg(data = sgdata,

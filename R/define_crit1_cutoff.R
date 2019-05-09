@@ -34,9 +34,9 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
   }
 
   # TODO Write check
-  # if (base::is.null(data_item) == TRUE & reliability > 1 | reliability < 0) {
-  #   stop("Reliability has to be between 0 and 1!")
-  # }
+  if (base::is.null(data_item) == TRUE & reliability > 1 | reliability < 0) {
+    stop("Reliability has to be between 0 and 1.", call. = FALSE)
+  }
 
   # Create vectors of variables used in this function
   pre_scores <- dplyr::pull(data_sessions, tx_start_var_name)
@@ -53,10 +53,10 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
 
   # Calculate Cronbach's alpha at baseline using psych package
   if (base::is.null(reliability) == FALSE) {
-      base::message("The reliability of the measure used to identify sudden gains was specified in the arguement 'reliability = ", reliability, "'.\n")
+      base::message("The reliability of the measure used to identify sudden gains was specified in the arguement 'reliability = ", reliability, "'.")
       reliability <- reliability
   } else if (base::is.null(reliability) == TRUE) {
-      base::message("The reliability was calculated using the item-by-item data specified in the 'data_item' argument.\n")
+      base::message("The reliability was calculated using the item-by-item data specified in the 'data_item' argument.")
       reliability <- psych::alpha(data_item)[[1]]$raw_alpha
   }
 
@@ -78,12 +78,10 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
 
   # General info message:
   base::message(paste0("This function calculates a cut-off value that represents a clinically meaningful change based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).\n",
-                      "The RCI formula was modified so that all statistics can be computed from the data of an individual study following suggestions by Stiles et al. (2003).\n\n",
-                      "See these references for further details:\n",
-                      "Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. doi:10.1037/0022-006X.59.1.12.\n",
-                      "Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. doi:10.1037/0022-006X.71.1.14.\n",
-                      "Wiedemann, M., Thew, G. R., Stott, R., & Ehlers, A. (2019). suddengains: An R package to identify sudden gains in longitudinal data. https://doi.org/10.31234/osf.io/2wa84."))
+                       "The RCI formula was modified so that all statistics can be computed from the data of an individual study following suggestions by Stiles et al. (2003)."))
 
   # Return output as list in console
   return(output)
 }
+
+

@@ -631,7 +631,7 @@ plot_trajectories_1
 The function can also be combined with a filter function to explore specific sudden gains cases, for example (1) all sudden gain at session 3, or (2) three randomly selected (`select_n = 3`) cases who experienced more than one sudden gain (`dplyr::filter(sg_freq_byperson > 1`).
 
 ```{r}
-# Show all cases with a sudden gain at session 3
+# 1. Create plot including all cases with a sudden gain at session 3
 plot_trajectories_2 <- bysg %>%
     dplyr::filter(sg_session_n == 3) %>% 
     plot_sg_trajectories(id_var = "id_sg",
@@ -653,6 +653,8 @@ plot_trajectories_2 <- bysg %>%
                          xlab = "Session", 
                          ylab = "BDI")
 
+# 2. Create plot including 3 (select_n = 3) cases with 
+#    more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3 <- byperson_first %>%
     dplyr::filter(sg_freq_byperson > 1) %>% 
     plot_sg_trajectories(id_var = "id_sg",
@@ -677,11 +679,12 @@ plot_trajectories_3 <- byperson_first %>%
 ```
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+# 1. Show all cases with a sudden gain at session 3
 plot_trajectories_2
 ```
 
-
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+# 2. Show 3 (select_n = 3) cases with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3
 ```
 

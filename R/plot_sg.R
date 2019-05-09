@@ -48,12 +48,13 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
                     ylab, xlab = "Session",
                     colour_single = "#239b89ff",
                     colour_group = c("viridis", "ggplot", "grey"),
-                    viridis_option = "B", viridis_begin = 0.2, viridis_end = 0.8,
+                    viridis_option = c("D", "A", "B", "C"), viridis_begin = 0, viridis_end = 1,
                     group_var_name = NULL, group_levels = NULL, group_labels = NULL, group_title = NULL,
                     apaish = TRUE) {
 
     # Check arguments
     colour_group <- base::match.arg(colour_group)
+    viridis_option <- base::match.arg(viridis_option)
 
     # Create individual objects for pre post variable names
     pre3 <- sg_pre_post_var_list[1]

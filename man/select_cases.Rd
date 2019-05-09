@@ -35,9 +35,9 @@ This function goes through the data and selects all cases with at least one of t
 \strong{1.}       \tab x           \tab \strong{N}  \tab x           \tab x           \tab .         \tab .           \cr
 \strong{2.}       \tab x           \tab \strong{N}  \tab x           \tab .          \tab x          \tab .           \cr
 \strong{3.}       \tab x           \tab .          \tab \strong{N}  \tab x           \tab x          \tab .           \cr
-\strong{4.}       \tab x           \tab .          \tab \strong{N}  \tab x           \tab .         \tab x
+\strong{4.}       \tab x           \tab .          \tab \strong{N}  \tab x           \tab .          \tab x
 }
-\emph{Note}. x1 to x6 are consecutive data points of the primary outcome measure. x = Available data; . = Missing data. \strong{N} represent the pregain session for each "pattern".
+\emph{Note}. x1 to x6 are consecutive data points of the primary outcome measure. 'x' = Available data; '.' = Missing data. '\strong{N}' represents available data to be examined as a possible pregain session.
 }
 \examples{
 # 1. method = "pattern"

@@ -37,7 +37,7 @@ citation("suddengains")
 
 # Introduction
 
-This vignette shows how the `suddengains` R package can be used to help with the methods of a research study looking at sudden gains as described by @Tang1999.
+This vignette shows how the `suddengains` R package can be used to help with the methods of research studies looking at sudden gains as described by @Tang1999.
 More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
 The following vignette illustrates the main functions of the package using the example data set `sgdata`.
 
@@ -46,7 +46,7 @@ The following vignette illustrates the main functions of the package using the e
 Below are two interactive tables of depression and rumination scores from the data set (`sgdata`) that comes with the `suddengains` package.
 The data is automatically loaded together with the package when running `library(suddengains)`.
 Each measured construct contains a baseline measure (**s0**), twelve weekly measures during therapy (**s1** to **s12**), and two follow-up measures (**fu1** and **fu2**).
-Note that some values for each measure are missing, here shown as empty cells. 
+Note that some values for each measure are missing, shown here as empty cells. 
 For an example of a missing value see **bdi_s2** for **id = 2** in the table below.
 
 ## Depression symptoms
@@ -88,13 +88,13 @@ DT::datatable(sgdata_rq,
 
 ## Select cases
 
-The package offers two methods to select cases for the sudden gains studies.
+The package offers two methods to select cases for the calculation of sudden gains.
 
 1. `"pattern"`: cases providing enough data to apply the @Tang1999 criteria will be selected
-1. `"min_sess"`: cases with a minimum number of available data (specified in `min_sess_num`) will be selected
+1. `"min_sess"`: cases with a minimum number of available data points (specified in `min_sess_num`) will be selected
 
-By default the argument `return_id_lgl` is set to `FALSE`, this simply adds a new variable named `sg_select` at the end of the data frame specified in the `data` argument.
-The newly calculated variable `sg_select` is logical and contains information whether a case is selected (`TRUE`) or not selected (`FALSE`) based on the method specified.
+By default the argument `return_id_lgl` is set to `FALSE`, which adds a new variable named `sg_select` at the end of the data frame specified in the `data` argument.
+This newly calculated variable `sg_select` is logical and indicates whether a case is selected (`TRUE`) or not selected (`FALSE`) based on the method specified.
 When the argument `return_id_lgl` is set to `TRUE`, only the id variable specified in `id_var_name` and the new variable `sg_select` will be returned as the output of this function.
 
 ```{r select, eval = FALSE}
@@ -129,7 +129,7 @@ This function goes through the data and selects all cases with at least one of t
 | 3.           |   x   |   .    | **N** |   x   |   x   |   .    |
 | 4.           |   x   |   .    | **N** |   x   |    .   |   x   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. Bold "**N**" represent the pregain session for each "pattern".
+*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. Bold "**N**" represents the pregain session for each "pattern".
 
 ```{r}
 sgdata_select <- select_cases(data = sgdata,
@@ -146,7 +146,7 @@ sgdata_select <- select_cases(data = sgdata,
 
 ## Define cut-off
 
-This function follows suggestions from @Stiles2003 using the Reliable Change Index [RCI, @Jacobson1991].
+This function calculates a cut-off value to use for the first sudden gains criterion. It follows suggestions from @Stiles2003 using the Reliable Change Index [RCI, @Jacobson1991].
 The first 4 elements of the output list return the values that were used to calculate the the cut-off:
 
 - `standard_deviation_pre`: Standard deviation of the variable specified in `tx_start_var_name`
@@ -170,7 +170,7 @@ define_crit1_cutoff(data_sessions = sgdata,
 ## Identify sudden gains and losses
 
 To identify sudden gains/losses you can use the `identify_sg` and `identify_sl` functions.
-The functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified.
+These functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified.
 For example the variable `sg_2to3` holds information whether a sudden gains occurred from session two to three, with two being the pregain and three being the postgain session.
 
 ### Sudden gains
@@ -189,7 +189,7 @@ identify_sg(data = sgdata,
 ```
 
 The argument `crit123_details = TRUE` returns additional information about whether each of the three sudden gains criteria are met.
-Some more information about this can be found in the section "Adaptations to the original sudden gains criteria" below.
+More information about this can be found in the section "Adaptations to the original sudden gains criteria" below.
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -205,8 +205,8 @@ identify_sg(data = sgdata,
 
 ```
 
-To analyse sudden gains after the first session, we include the option to specify a baseline measure in `sg_var_list` (in this example `"bdi_s0"`) and set `identify_sg_1to2 == TRUE`.
-This will allow the identification of sudden gains immediately after session 1, provided data from the baseline measure and the first session are available.
+If we wish to analyse sudden gains that occur immediately after the first session, we include the option to specify a baseline measure in `sg_var_list` (in this example `"bdi_s0"`) and set `identify_sg_1to2 == TRUE`.
+This will allow the identification of sudden gains between session 1 and session 2, provided data from the baseline measure and the first session are available.
 
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
@@ -224,7 +224,7 @@ identify_sg(data = sgdata,
 ### Sudden losses
 
 To identify sudden losses, you can use the `identify_sl` function.
-All arguments are the same as in the `identify_sg` function, but the `sg_crit1_cutoff` has to be set to be a negative value.
+All arguments are the same as in the `identify_sg` function, but the `sg_crit1_cutoff` must be set to be a negative value.
 
 ```{r, eval = FALSE}
 identify_sl(data = sgdata,
@@ -240,15 +240,15 @@ identify_sl(data = sgdata,
 
 ### Adaptations to the original sudden gains criteria
 
-The package allows to change or not use either of the three original sudden gains criteria suggested by @Tang1999:
+The package includes options for modifying or omitting the three original sudden gains criteria suggested by @Tang1999:
 
-1. The cut-off value for a clinically meaningful change on the measure to be used to identify sudden gains using can be specified using the argument `sg_crit1_cutoff`.
-To not apply the first criterion when identifying sudden gains, this argument can switched off by using `sg_crit1_cutoff = NULL`.
-1. The minimum percentage drop from the pre- to post-gain session can be specified using the argument `sg_crit2_pct`.
+1. The cut-off value for clinically meaningful change on the measure used to identify sudden gains is specified using the argument `sg_crit1_cutoff`.
+To omit the first criterion when identifying sudden gains, this argument can be 'switched off' by using `sg_crit1_cutoff = NULL`.
+1. The minimum percentage drop from the pre- to post-gain session is specified using the argument `sg_crit2_pct`.
 The default is a minimum of a 25% drop, i.e. `sg_crit2_pct = .25`.
-To not apply the second criterion when identifying sudden gains, this argument can switched off by using `sg_crit2_pct = NULL`.
+To omit the second criterion when identifying sudden gains, this argument can be 'switched off' by using `sg_crit2_pct = NULL`.
 1. The third criterion can only be turned on (`sg_crit3 = TRUE`) or off (`sg_crit3 = FALSE`). 
-At the moment there is no option to change the way the third criterion gets applied. 
+At present, modification of the third criterion is not available. 
 
 ```{r, eval = FALSE}
 # This example only uses the first and second sudden gains criteria 
@@ -321,7 +321,7 @@ The table below shows the output including the following 15 new variables:
 - `sg_magnitude`: Magnitude of the sudden gain for each case
 - `sg_**bdi**_tx_change`: Total change on the sudden gains measure from start (`tx_start_var_name`) to end (`tx_end_var_name`) for each case
 - `sg_change_proportion`: Magnitude of the sudden gain (`sg_magnitude`) divided by the total change `sg_bdi_tx_change`
-- `sg_reversal_value`: Value that if reached at any point after the sudden gain would count as a reversal of the sudden gain
+- `sg_reversal_value`: Value representing the threshold for the sudden gain to be considered 'reversed'
 - `sg_reversal`: Logical variable indicating whether a sudden gain reversed
 
 ```{r}
@@ -378,7 +378,7 @@ DT::datatable(bysl,
 
 In the `suddengains` R package we refer to this as byperson (by person).
 This data set includes all cases with and all cases without sudden gains.
-If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` can be used to specify which gain to select; in the example below the first gain will be selected.
+If multiple sudden gains were experienced by a case, the argument `multiple_sg_select` is used to specify which gain should be selected; in the example below the first gain will be selected.
 
 ```{r}
 byperson_first <- create_byperson(data = sgdata,
@@ -404,8 +404,8 @@ datatable(byperson_first,
               fixedColumns = TRUE))
 ```
 
-Depending on the research questions it might be of interest to select the largest gain, as shown below.
-Notice how the selected gain for ID 5 is different depending on how to handle multiple gains.
+Depending on the research question it might be of interest to select the largest gain, as shown below.
+Notice that the selected gain for ID 5 is different depending on how multiple gains are handled.
 The first gain experienced by ID 5 is from session 3 to 4, whereas the largest gain was experienced from session 8 to 9.
 
 ```{r}
@@ -435,7 +435,8 @@ DT::datatable(byperson_largest,
 # Extract values around sudden gains
 
 The package can extract scores on secondary outcome or process measures around the period of each gain.
-This function can be applied to either the bysg or byperson dataset, the variables specified in `extract_var_list` have to be in the data set specified in `data`. 
+This function can be applied to either the bysg or byperson dataset.
+Note that the variables specified in `extract_var_list` must be in the data set specified in `data`. 
 
 ```{r}
 # For bysg dataset select "id" and "rq" variables first
@@ -468,7 +469,7 @@ datatable(bysg_rq,
 
 # Plots of average change around sudden gains
 
-The plots are created using the *ggplot2* R-package [@R-ggplot2] in five main steps:
+These plots are created using the *ggplot2* R-package [@R-ggplot2] in five main steps:
 
 1. Means for all time points and points
 1. 95% confidence intervals for all time points
@@ -477,7 +478,7 @@ The plots are created using the *ggplot2* R-package [@R-ggplot2] in five main st
 1. Dotted line between the last two values
 
 ```{r}
-# Create plot of average change in depression symptoms around the gain
+# Create plot of average change in depression symptoms (BDI) around the gain
 plot_sg_bdi <- plot_sg(data = bysg,
                        id_var_name = "id",
                        tx_start_var_name = "bdi_s1",
@@ -487,7 +488,7 @@ plot_sg_bdi <- plot_sg(data = bysg,
                        ylab = "BDI", xlab = "Session",
                        colour_single = "#239b89ff")
 
-# Create plot of average change in rumination around the gain
+# Create plot of average change in rumination (RQ) around depression sudden gains
 plot_sg_rq <- plot_sg(data = bysg_rq,
                       id_var_name = "id",
                       tx_start_var_name = "rq_s1",
@@ -498,7 +499,7 @@ plot_sg_rq <- plot_sg(data = bysg_rq,
                       colour_single = "#440154FF") 
 
 
-# It is possible apply other ggplot2 functions to the plot now,
+# It is then possible to apply other ggplot2 functions to the plot if desired,
 # e.g. y axis scale, or x axis labels ...
 
 plot_sg_bdi <- plot_sg_bdi + 
@@ -515,7 +516,7 @@ The warning messages from the BDI plot can be interpreted as follows:
 1. *Means for all time points and points*: There are **12 missing values** overall 
 1. *95% confidence intervals for all time points:* There are **12 missing values** overall
 1. *Dotted line between the first two values:* There are **8 missing values** at session `tx_start_var_name` and the *first* variable specified in `sg_pre_post_var_list` together
-1. *Straight line betwenn all 5 values around the gain:* There are **11 missing values** together in all variables specified in `sg_pre_post_var_list`
+1. *Straight line between all 5 values around the gain:* There are **11 missing values** together in all variables specified in `sg_pre_post_var_list`
 1. *Dotted line between the last two values:* There is **1 missing values** at session `tx_end_var_name` and the *last* variable specified in `sg_pre_post_var_list`
 
 ```{r, fig.show = 'hold', fig.width=3.2, fig.height=3.2}
@@ -525,7 +526,7 @@ plot_sg_rq
 
 ## Plot average gain for multiple groups
 
-To illustrate this functionality I need to create a data frame with a grouping variable.
+To illustrate this functionality we create a data frame with a grouping variable.
 The code below duplicates the data frame `sgdata` and adds a variable assigning each case to one of two groups.
 
 ```{r}
@@ -565,8 +566,8 @@ byperson_group_select <- select_cases(data = byperson_group,
 ```
 
 The data frame `sgdata_group` can now be used to illustrate the plotting function for different groups.
-This function works identical to the plot function for one group.
-There are some more arguments to specify the colours to be used for the different groups.
+This function works identically to the plot function for a single group.
+Further arguments are used to specify the colours to be used for the different groups.
 
 ```{r}
 plot_byperson_group <- plot_sg(data = byperson_group_select,
@@ -595,8 +596,9 @@ plot_byperson_group
 
 ## Plot individual trajectories
 
-The function `plot_sg_trajectories()` can plot individual trajectories of cases.
-It is possible to select specific IDs for plotting using the `select_id_list` argument or a number of random IDs using the `sample_n` argument.
+The function `plot_sg_trajectories()` can plot individual trajectories of the cases in the data set.
+It is possible to select specific IDs for plotting using the `select_id_list` argument, or a number of random IDs using the `sample_n` argument.
+Below, case IDs 2, 4, 5 and 9 are selected.
 
 ```{r}
 plot_trajectories_1 <- sgdata %>%
@@ -628,7 +630,7 @@ plot_trajectories_1 <- sgdata %>%
 plot_trajectories_1
 ```
 
-The function can also be combined with a filter function to explore specific sudden gains cases, for example (1) all sudden gain at session 3, or (2) three randomly selected (`select_n = 3`) cases who experienced more than one sudden gain (`dplyr::filter(sg_freq_byperson > 1`).
+This function can also be combined with a filter function to explore specific groups of sudden gains cases, for example (1) all cases with a sudden gain at session 3, or (2) three randomly selected (`select_n = 3`) cases who experienced more than one sudden gain (`dplyr::filter(sg_freq_byperson > 1`).
 
 ```{r}
 # 1. Create plot including all cases with a sudden gain at session 3
@@ -653,7 +655,7 @@ plot_trajectories_2 <- bysg %>%
                          xlab = "Session", 
                          ylab = "BDI")
 
-# 2. Create plot including 3 (select_n = 3) cases with 
+# 2. Create plot including 3 randomly selected (select_n = 3) cases who experienced 
 #    more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3 <- byperson_first %>%
     dplyr::filter(sg_freq_byperson > 1) %>% 
@@ -682,6 +684,7 @@ plot_trajectories_3 <- byperson_first %>%
 # 1. Show all cases with a sudden gain at session 3
 plot_trajectories_2
 ```
+CAN YOU MAKE IT SO THE CODE AND PLOT FOR GRAPH 2 GO TOGETHER, THEN THE CODE AND PLOT FOR GRAPH 3?
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
 # 2. Show 3 (select_n = 3) cases with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
@@ -692,13 +695,13 @@ plot_trajectories_3
 
 ## Count between-session intervals
 
-The `count_intervals` function provides a summary of between-session intervals that were and weren't analysed for sudden gains.
-For more info see the help file of this function, `help(count_intervals)`.
+The `count_intervals` function provides a summary of how many between-session intervals were and were not analysed for sudden gains.
+For more information see the help file for this function, `help(count_intervals)`.
 Here we see code to count only the intervals of the data that was selected for the sudden gains study in the above code using `sgdata_select`.
 
 - `total_between_sess_intervals`: The total number of between-session intervals present in the data set, here: `sgdata_select`.
-- `total_between_sess_intervals_sg`: The total number of gain intervals (i.e. sudden gains) present in the data set. By default the first to second and second-last to last intervals are not included here. If `identify_sg_1to2` is set to `TRUE` the first to second intervals will be included.
-- `available_between_sess_intervals_sg`: The total number of between-session intervals that could be analysed for sudden gains.
+- `total_between_sess_intervals_sg`: The total number of gain intervals (i.e. sudden gains) present in the data set. By default the first-to-second and penultimate-to-last intervals are not included here. If `identify_sg_1to2` is set to `TRUE` the first-to-second intervals will be included.
+- `available_between_sess_intervals_sg`: The total number of between-session intervals that could feasibly be analysed for sudden gains.
 - `not_available_between_sess_intervals_sg`: The total number of between-session intervals that could not be analysed for sudden gains (due to missing data).
 
 

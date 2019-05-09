@@ -194,7 +194,7 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         # Return message if no sudden losses were identified
         # Have this down here so it's the last message and more visible
         if (sg_sum == 0) {
-            base::warning("No sudden losses were identified.")
+            base::warning("No sudden losses were identified.", call. = FALSE)
         }
 
         # Export dataframe with information whether individual criteria were met

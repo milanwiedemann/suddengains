@@ -20,7 +20,7 @@
 #' @param group_title String, specifying the title that will be used for the groups specified in \code{group_labels}.
 #' @param ylab String, specifying the label for the y axis i.e. the name of the measure being plotted.
 #' @param xlab String, specifying the label for the x axis, e.g. \code{"Session"}.
-#' @param apaish Logical, make plot look APA publishable.
+#' @param apaish Logical, make plot APA publishable.
 #' @return A plot of the mean values around the sudden gain, for the measure specified.
 #' @export
 #' @examples # First create a bysg (or byperson) dataset
@@ -47,10 +47,13 @@
 plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pre_post_var_list,
                     ylab, xlab = "Session",
                     colour_single = "#239b89ff",
-                    colour_group = c("viridis", "ggplot2", "grey"),
+                    colour_group = c("viridis", "ggplot", "grey"),
                     viridis_option = "B", viridis_begin = 0.2, viridis_end = 0.8,
                     group_var_name = NULL, group_levels = NULL, group_labels = NULL, group_title = NULL,
                     apaish = TRUE) {
+
+    # Check arguments
+    colour_group <- base::match.arg(colour_group)
 
     # Create individual objects for pre post variable names
     pre3 <- sg_pre_post_var_list[1]

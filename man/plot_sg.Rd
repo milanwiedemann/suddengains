@@ -6,7 +6,7 @@
 \usage{
 plot_sg(data, id_var_name, tx_start_var_name, tx_end_var_name,
   sg_pre_post_var_list, ylab, xlab = "Session",
-  colour_single = "#239b89ff", colour_group = c("viridis", "ggplot2",
+  colour_single = "#239b89ff", colour_group = c("viridis", "ggplot",
   "grey"), viridis_option = "B", viridis_begin = 0.2,
   viridis_end = 0.8, group_var_name = NULL, group_levels = NULL,
   group_labels = NULL, group_title = NULL, apaish = TRUE)
@@ -45,7 +45,7 @@ and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{group_title}{String, specifying the title that will be used for the groups specified in \code{group_labels}.}
 
-\item{apaish}{Logical, make plot look APA publishable.}
+\item{apaish}{Logical, make plot APA publishable.}
 }
 \value{
 A plot of the mean values around the sudden gain, for the measure specified.

@@ -124,10 +124,10 @@ This function goes through the data and selects all cases with at least one of t
 
 | Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           |   x   | **N** |   x   |   x   |    .   |   .    |
-| 2.           |   x   | **N** |   x   |   .    |   x   |  .     |
-| 3.           |   x   |   .    | **N** |   x   |   x   |   .    |
-| 4.           |   x   |   .    | **N** |   x   |    .   |   x   |
+| 1.           |   x   | **N** |   x   |   x   |   .   |   .   |
+| 2.           |   x   | **N** |   x   |   .   |   x   |   .   |
+| 3.           |   x   |   .   | **N** |   x   |   x   |   .   |
+| 4.           |   x   |   .   | **N** |   x   |   .   |   x   |
 
 *Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. "x" = Present data; "." = Missing data. Bold "**N**" represents the pregain session for each "pattern".
 
@@ -620,11 +620,8 @@ plot_trajectories_1 <- sgdata %>%
                          scale_x_num_start = 1,
                          apaish = TRUE,
                          xlab = "Session", 
-                         ylab = "BDI"
-                         )
+                         ylab = "BDI")
 ```
-
-
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
 plot_trajectories_1
@@ -654,7 +651,14 @@ plot_trajectories_2 <- bysg %>%
                          apaish = TRUE,
                          xlab = "Session", 
                          ylab = "BDI")
+```
 
+```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+# 1. Show all cases with a sudden gain at session 3
+plot_trajectories_2
+```
+
+```{r}
 # 2. Create plot including 3 randomly selected (select_n = 3) cases who experienced 
 #    more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3 <- byperson_first %>%
@@ -679,12 +683,6 @@ plot_trajectories_3 <- byperson_first %>%
                          xlab = "Session", 
                          ylab = "BDI")
 ```
-
-```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
-# 1. Show all cases with a sudden gain at session 3
-plot_trajectories_2
-```
-CAN YOU MAKE IT SO THE CODE AND PLOT FOR GRAPH 2 GO TOGETHER, THEN THE CODE AND PLOT FOR GRAPH 3?
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
 # 2. Show 3 (select_n = 3) cases with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))

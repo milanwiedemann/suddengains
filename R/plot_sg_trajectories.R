@@ -44,9 +44,37 @@
 #'                      apaish = TRUE,
 #'                      xlab = "Session",
 #'                      ylab = "BDI")
+#'
+#' # Create byperson dataset to use for plotting
+#' byperson <- create_byperson(data = sgdata,
+#'                             sg_crit1_cutoff = 7,
+#'                             id_var_name = "id",
+#'                             tx_start_var_name = "bdi_s1",
+#'                             tx_end_var_name = "bdi_s12",
+#'                             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+#'                                             "bdi_s4", "bdi_s5", "bdi_s6",
+#'                                             "bdi_s7", "bdi_s8", "bdi_s9",
+#'                                             "bdi_s10", "bdi_s11", "bdi_s12"),
+#'                             sg_measure_name = "bdi")
+#'
+#' # First, filter byperson dataset to only include cases with more than one sudden gain
+#' # Next, plot BDI trajectory of 3 randomly selected cases with with more than one sudden gain
+#' byperson %>%
+#'   dplyr::filter(sg_freq_byperson > 1) %>%
+#'     plot_sg_trajectories(id_var = "id_sg",
+#'                          var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+#'                                       "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+#'                                       "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+#'                          select_n = 3,
+#'                          show_id = TRUE,
+#'                          show_legend = TRUE,
+#'                          scale_x_num = TRUE,
+#'                          scale_x_num_start = 1,
+#'                          xlab = "Session",
+#'                          ylab = "BDI")
 #' @export
 
-plot_sg_trajectories <- function(data, id_var, var_list, select_id_list = NULL, select_n = NULL, show_id = TRUE, show_legend = TRUE, legend_title = "ID", id_label_size = 2, connect_missing = TRUE, colour = c("viridis", "ggplot", "grey"), viridis_option = c("D", "A", "B", "C"), viridis_begin = 0.2, viridis_end = 0.8, line_alpha = 1, point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE, scale_x_num_start = 1, apaish = TRUE, ...) {
+plot_sg_trajectories <- function(data, id_var, var_list, select_id_list = NULL, select_n = NULL, show_id = TRUE, show_legend = TRUE, legend_title = "ID", id_label_size = 2, connect_missing = TRUE, colour = c("viridis", "ggplot", "grey"), viridis_option = c("D", "A", "B", "C"), viridis_begin = 0, viridis_end = 1, line_alpha = 1, point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE, scale_x_num_start = 1, apaish = TRUE, ...) {
 
     # Check arguments
     colour <- base::match.arg(colour)

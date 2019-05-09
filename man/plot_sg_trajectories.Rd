@@ -7,43 +7,43 @@
 plot_sg_trajectories(data, id_var, var_list, select_id_list = NULL,
   select_n = NULL, show_id = TRUE, show_legend = TRUE,
   legend_title = "ID", id_label_size = 2, connect_missing = TRUE,
-  colour = c("viridis", "ggplot", "grey"), viridis_option = "B",
-  viridis_begin = 0.2, viridis_end = 0.8, line_alpha = 1,
+  colour = c("viridis", "ggplot", "grey"), viridis_option = c("D", "A",
+  "B", "C"), viridis_begin = 0, viridis_end = 1, line_alpha = 1,
   point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE,
   scale_x_num_start = 1, apaish = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataset in wide format.}
 
-\item{id_var}{String, specifying id variable.}
+\item{id_var}{String, specifying ID variable.}
 
 \item{var_list}{Vector, specifying variable names to be plotted in sequential order.}
 
-\item{select_id_list}{asd}
+\item{select_id_list}{Vector, specifying case IDs to be plotted.}
 
-\item{select_n}{Numberic, number of randomly selected cases to be plotted.}
+\item{select_n}{Numeric, specifying number of randomly selected cases to be plotted.}
 
 \item{show_id}{Logical, specifying whether or not to show ID variables inside the plot near the first measurement point.}
 
-\item{show_legend}{Logical, specifying whether or not a legend of all ids outside of the plot.}
+\item{show_legend}{Logical, specifying whether or not a legend of all IDs.}
 
-\item{legend_title}{String, specifying the title of legend,b y default the variable name of 'id_var' will be shown.}
+\item{legend_title}{String, specifying the title of legend, by default the variable name of \code{id_var} will be shown.}
 
-\item{id_label_size}{Numeric, if 'show_id' = TRUE specifying the size of the label inside the plot.}
+\item{id_label_size}{Numeric, specifying the size of the ID label, if \code{show_id = TRUE}.}
 
-\item{connect_missing}{Logical, speciying whether to connect points by \code{id_var} across missing values.}
+\item{connect_missing}{Logical, specifying whether to connect points across missing values.}
 
 \item{colour}{String, specifying the discrete colour palette to be used.}
 
-\item{viridis_option}{String specifying the colour option for discrete viridis palette, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_option}{String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
 
-\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
 
-\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
 
-\item{line_alpha}{Numeric, specifying alpha of lines.}
+\item{line_alpha}{Numeric, specifying alpha (transparency) of lines.}
 
-\item{point_alpha}{Numeric, specifying alpha of points.}
+\item{point_alpha}{Numeric, specifying alpha (transparency) of points.}
 
 \item{xlab}{String for x axis label.}
 
@@ -51,17 +51,17 @@ plot_sg_trajectories(data, id_var, var_list, select_id_list = NULL,
 
 \item{scale_x_num}{Logical, if \code{TRUE} print sequential numbers starting from 1 as x axis labels, if \code{FALSE} use variable names.}
 
-\item{scale_x_num_start}{Numeric, if \code{scale_x_num == TRUE} this is the starting value of the x axis.}
+\item{scale_x_num_start}{Numeric, specifying the starting value of the x axis, if \code{scale_x_num = TRUE}.}
 
-\item{apaish}{Logical, make plot APA publishable.}
+\item{apaish}{Logical, if \code{TRUE} aligns plot with APA guidelines.}
 
-\item{...}{Arguments to be passed on to ggrepel::geom_label_repel()}
+\item{...}{Further arguments to be passed on to ggrepel::geom_label_repel().}
 }
 \value{
 ggplot2 object
 }
 \description{
-Plot individual trajectories of selected cases. This function can be combined with a filter command to explore specific trajectories.
+Plot individual trajectories of selected cases. This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
 }
 \examples{
 # Plot individual trajectories of IDs 2, 4, 5, and 9
@@ -85,4 +85,32 @@ plot_sg_trajectories(data = sgdata,
                      apaish = TRUE,
                      xlab = "Session",
                      ylab = "BDI")
+
+# Create byperson dataset to use for plotting
+byperson <- create_byperson(data = sgdata,
+                            sg_crit1_cutoff = 7,
+                            id_var_name = "id",
+                            tx_start_var_name = "bdi_s1",
+                            tx_end_var_name = "bdi_s12",
+                            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+                                            "bdi_s4", "bdi_s5", "bdi_s6",
+                                            "bdi_s7", "bdi_s8", "bdi_s9",
+                                            "bdi_s10", "bdi_s11", "bdi_s12"),
+                            sg_measure_name = "bdi")
+
+# First, filter byperson dataset to only include cases with more than one sudden gain
+# Next, plot BDI trajectory of 3 randomly selected cases with with more than one sudden gain
+byperson \%>\%
+  dplyr::filter(sg_freq_byperson > 1) \%>\%
+    plot_sg_trajectories(id_var = "id_sg",
+                         var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
+                                      "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
+                                      "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                         select_n = 3,
+                         show_id = TRUE,
+                         show_legend = TRUE,
+                         scale_x_num = TRUE,
+                         scale_x_num_start = 1,
+                         xlab = "Session",
+                         ylab = "BDI")
 }

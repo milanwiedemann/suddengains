@@ -1,13 +1,13 @@
-# suddengains 0.1.1
+# suddengains 0.2.0
 
-Add more specific warning and error messages:
-- Message notification if no gains losses are identified using: identify_sg() or identify_sl()
-- Error if no gains losses are identified using: create_bysg(), create_byperson()
+- Add new plot function for individual trajectories
+
+- Add more specific warning and error messages:
+  - Message notification if no gains losses are identified using: identify_sg() or identify_sl()
+  - Error if no gains losses are identified using: create_bysg(), create_byperson()
 - Add colour option to plotting function for groups
-
-Fix calculation of start and end values in plot_sg() function for bysg data sets
-
-Update all help files, fix spelling mistakes and clarify some things
+- Fix calculation of start and end values in plot_sg() function for bysg data sets
+- Update all help files, fix spelling mistakes and clarify some things
 
 # suddengains 0.1.0
 

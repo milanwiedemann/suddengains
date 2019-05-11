@@ -683,7 +683,7 @@ plot_trajectories_3 <- byperson_first %>%
 ```
 
 ```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
-# 2. Show 3 (select_n = 3) cases with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
+# 2. Show 3 cases (select_n = 3) with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3
 ```
 

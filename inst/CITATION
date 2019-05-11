@@ -5,7 +5,7 @@ utils::citEntry(
   , title = "{suddengains}: {An} {R} package to identify sudden gains in longitudinal data"
   , journal = "PsyArXiv Preprints"
   , year = "2019"
-  , note = "R package version 0.1.1"
+  , note = "R package version 0.2.0"
   , doi = "10.31234/osf.io/2wa84"
   , url = "https://github.com/milanwiedemann/suddengains"
 )

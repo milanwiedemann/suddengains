@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission. 
-I have tried to reproduce the package dependency error "Package required but not available: 'readr'" locally, on three R-hub platforms, and on travis-ci and ci.appveyor. See more information below. 
-In this version I have also updated the minimum version of dependencies in the DESCRIPTION file.
+I have tried to reproduce the package dependency error "Package required but not available: 'readr'" locally, on three R-hub platforms, and on travis-ci and ci.appveyor, but my tests all return no ERRORs or WARNINGs or NOTES. See more information below. 
+In this version I have updated the minimum version of dependencies in the DESCRIPTION file.
 
 ## Test environments
 * local OS X install, R 3.5.3

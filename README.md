@@ -18,7 +18,7 @@ It also implements a function to specify which sudden gains to choose in case of
 
 ## Installation
 
-Version 0.1.0 of the suddengains package is available on [CRAN](https://CRAN.R-project.org/package=suddengains):
+The current stable version of the `suddengains` package is available on [CRAN](https://CRAN.R-project.org/package=suddengains):
 
 ```r
 install.packages("suddengains")

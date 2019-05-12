@@ -67,7 +67,7 @@ To make the vignette available when installing from GitHub the following additio
 
 ```r
 # Open vignette in RStudio ----
-vignette("suddengains-functions")
+vignette("suddengains-tutorial")
 ```
   
 ## How to use `suddengains`

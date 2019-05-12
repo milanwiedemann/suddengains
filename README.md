@@ -14,7 +14,7 @@ Identify sudden gains based on the criteria outlined by Tang and DeRubeis ([1999
 It applies all three criteria to a dataset while adjusting for missing values. 
 It calculates further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
-It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain).
+It also implements a function to specify which sudden gains to choose in case of multiple gains (e.g. the earliest or largest gain).
 
 ## Installation
 

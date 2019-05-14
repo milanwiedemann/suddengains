@@ -14,7 +14,7 @@ Identify sudden gains based on the criteria outlined by Tang and DeRubeis ([1999
 It applies all three criteria to a dataset while adjusting for missing values. 
 It calculates further variables that are of interest. 
 It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. 
-It also implements a function to specify which sudden gains to choose in case of multiple gains (earliest or largest gain).
+It also implements a function to specify which sudden gains to choose in case of multiple gains (e.g. the earliest or largest gain).
 
 ## Installation
 
@@ -54,7 +54,7 @@ The `suddengains` package comes with a range of features which can be categorise
 3. Helper functions to visualise and report sudden gains:
   - `count_intervals()`: stable
   - `plot_sg()`: stable
-  - `plot_sg_trajectories()`: testing
+  - `plot_sg_trajectories()`: stable
   - `describe_sg()`: stable
   
 4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV:
@@ -67,7 +67,7 @@ To make the vignette available when installing from GitHub the following additio
 
 ```r
 # Open vignette in RStudio ----
-vignette("suddengains-functions")
+vignette("suddengains-tutorial")
 ```
   
 ## How to use `suddengains`

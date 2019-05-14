@@ -103,19 +103,19 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                 # Check 3rd criterion for no missing at pre or post
 
                 if (sum_n_pre == 3 & sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 2.776 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (3 + 3 - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 2.776 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
 
                     # Adjust critical value for 1 missing value in pregain mean
                 } else if (sum_n_pre == 2 & sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2)) / (2 + 3 - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 3.182 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
 
                     # Adjust critical value for 1 missing value in postgain mean
                 } else if (sum_n_pre == 3 & sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 3.182 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (3 + 2 - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 3.182 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2)))  / (sum_n_pre + sum_n_post - 2))
 
                     # Adjust critical value for 1 missing value pregain and 1 missing value postgain
                 } else if (sum_n_pre == 2 & sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 4.303 * base::sqrt(((2 * sd_pre ^ 2) + (2 * sd_post ^ 2))  / (2 + 2 - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > 4.303 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2)))  / (sum_n_pre + sum_n_post - 2))
 
                     # Add missing value if less than two pregain or postgain sessions are available
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {

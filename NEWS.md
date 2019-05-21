@@ -1,5 +1,6 @@
 # suddengains 0.2.1
 
+- Fix error message when loading SPSS datasets with the R package foreign 
 - Calculate critical values from the student t distribution for third criterion using `base::qt()`
 - Add functionality to change significance level (alpha) for computing two-tailed critical value based on the student t distribution using the argument `sg_crit3_alpha`
 

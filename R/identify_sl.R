@@ -30,6 +30,9 @@
 
 identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
+    # Create tibble necessary for further data manipulations
+    data <- tibble::as_tibble(data)
+
     if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
         stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
     }

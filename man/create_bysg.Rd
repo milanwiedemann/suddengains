@@ -6,8 +6,8 @@
 \usage{
 create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
   tx_start_var_name, tx_end_var_name, sg_measure_name,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, identify = c("sg", "sl"),
-  identify_sg_1to2 = FALSE)
+  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
+  identify = c("sg", "sl"), identify_sg_1to2 = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -30,6 +30,9 @@ If set to \code{NULL} the second criterion wont be applied.}
 
 \item{sg_crit3}{If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
 If set to \code{FALSE} the third criterion wont be applied.}
+
+\item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
+Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
 \item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
 The default is to identify sudden gains (\code{"sg"}).}

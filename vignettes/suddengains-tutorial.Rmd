@@ -1,10 +1,10 @@
 ---
-title: "A tutorial on using the *suddengains* R package"
+title: "A tutorial on using the suddengains R package"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{A tutorial on using the *suddengains* R package}
+  %\VignetteIndexEntry{A tutorial on using the suddengains R package}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 bibliography: ["references.bib", "r-references.bib"]
@@ -178,7 +178,7 @@ For example the variable `sg_2to3` holds information whether a sudden gains occu
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .25,
+            sg_crit2_pct = 0.25,
             sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -193,7 +193,7 @@ More information about this can be found in the section "Adaptations to the orig
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .25,
+            sg_crit2_pct = 0.25,
             sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -209,7 +209,7 @@ This will allow the identification of sudden gains between session 1 and session
 ```{r, eval = FALSE}
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .25,
+            sg_crit2_pct = 0.25,
             sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s0", 
@@ -227,7 +227,7 @@ All arguments are the same as in the `identify_sg` function, but the `sg_crit1_c
 ```{r, eval = FALSE}
 identify_sl(data = sgdata,
             sg_crit1_cutoff = -7,
-            sg_crit2_pct = .25,
+            sg_crit2_pct = 0.25,
             sg_crit3 = TRUE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -243,10 +243,10 @@ The package includes options for modifying or omitting the three original sudden
 1. The cut-off value for clinically meaningful change on the measure used to identify sudden gains is specified using the argument `sg_crit1_cutoff`.
 To omit the first criterion when identifying sudden gains, this argument can be 'switched off' by using `sg_crit1_cutoff = NULL`.
 1. The minimum percentage drop from the pre- to post-gain session is specified using the argument `sg_crit2_pct`.
-The default is a minimum of a 25% drop, i.e. `sg_crit2_pct = .25`.
+The default is a minimum of a 25% drop, i.e. `sg_crit2_pct = 0.25`.
 To omit the second criterion when identifying sudden gains, this argument can be 'switched off' by using `sg_crit2_pct = NULL`.
-1. The third criterion can only be turned on (`sg_crit3 = TRUE`) or off (`sg_crit3 = FALSE`). 
-At present, modification of the third criterion is not available. 
+1. The third criterion can be 'switched off' using `sg_crit3 = FALSE`.
+It is also possible to change the significance level ($\alpha$) used to determine the critical value based on the student t distribution, by default `sg_crit3_alpha = 0.05`.
 
 ```{r, eval = FALSE}
 # This example only uses the first and second sudden gains criteria 
@@ -255,8 +255,21 @@ At present, modification of the third criterion is not available.
 # Details about the third criterion will show NAs for each between session interval because it's not being used (sg_crit3 = FALSE)
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .25,
+            sg_crit2_pct = 0.25,
             sg_crit3 = FALSE,
+            id_var_name = "id",
+            sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                            "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                            "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+            identify_sg_1to2 = FALSE,
+            crit123_details = TRUE)
+
+# This example only uses the first, second, and a modified third sudden gains criterion (sg_crit3_alpha = 0.01)
+identify_sg(data = sgdata,
+            sg_crit1_cutoff = 7,
+            sg_crit2_pct = 0.25,
+            sg_crit3 = TRUE,
+            sg_crit3_alpha = 0.01,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
                             "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
@@ -267,7 +280,7 @@ identify_sg(data = sgdata,
 # This example only uses the first criterion and a modified second criterion (50%) 
 identify_sg(data = sgdata,
             sg_crit1_cutoff = 7,
-            sg_crit2_pct = .50,
+            sg_crit2_pct = 0.50,
             sg_crit3 = FALSE,
             id_var_name = "id",
             sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
@@ -580,8 +593,8 @@ plot_byperson_group <- plot_sg(data = byperson_group_select,
                                group_title = NULL,
                                colour_group = "viridis",
                                viridis_option = "B",
-                               viridis_begin = .2,
-                               viridis_end = .8,
+                               viridis_begin = 0.2,
+                               viridis_end = 0.8,
                                apaish = TRUE,
                                ylab = "BDI", xlab = "Session")
 ```
@@ -607,12 +620,12 @@ plot_trajectories_1 <- sgdata %>%
                                       "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                          show_id = TRUE,
                          id_label_size = 4,
-                         label.padding = .2,
+                         label.padding = 0.2,
                          show_legend = FALSE,
                          colour = "viridis",
                          viridis_option = "D",
                          viridis_begin = 0,
-                         viridis_end = .8,
+                         viridis_end = 0.8,
                          connect_missing = FALSE,
                          scale_x_num = TRUE,
                          scale_x_num_start = 1,
@@ -637,12 +650,12 @@ plot_trajectories_2 <- bysg %>%
                                       "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
                          show_id = FALSE,
                          id_label_size = 4,
-                         label.padding = .2,
+                         label.padding = 0.2,
                          show_legend = TRUE,
                          colour = "viridis",
                          viridis_option = "D",
                          viridis_begin = 0,
-                         viridis_end = .8,
+                         viridis_end = 0.8,
                          connect_missing = TRUE,
                          scale_x_num = TRUE,
                          scale_x_num_start = 1,
@@ -668,12 +681,12 @@ plot_trajectories_3 <- byperson_first %>%
                          select_n = 3,
                          show_id = FALSE,
                          id_label_size = 4,
-                         label.padding = .2,
+                         label.padding = 0.2,
                          show_legend = TRUE,
                          colour = "viridis",
                          viridis_option = "D",
                          viridis_begin = 0,
-                         viridis_end = .8,
+                         viridis_end = 0.8,
                          connect_missing = TRUE,
                          scale_x_num = TRUE,
                          scale_x_num_start = 1,

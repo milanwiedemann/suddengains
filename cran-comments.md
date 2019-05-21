@@ -11,10 +11,6 @@
 * Platform: x86_64-w64-mingw32/x64 (64-bit)
 * Running under: Windows Server 2012 R2 x64 (build 9600)
 
-https://builder.r-hub.io/status/suddengains_0.2.1.tar.gz-7a01c7ccdc4545c0a873f57f36d41a9a
-https://builder.r-hub.io/status/suddengains_0.2.1.tar.gz-39205272002a4d43913e6784cafd2453
-https://builder.r-hub.io/status/suddengains_0.2.1.tar.gz-aeaecda547b745f5b6fe6048f391f6a9
-
 ## CRAN checks on R-hub
 * Build ID: suddengains_0.2.1.tar.gz-aeaecda547b745f5b6fe6048f391f6a9
 * Platform: Fedora Linux, R-devel, clang, gfortran

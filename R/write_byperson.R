@@ -9,6 +9,8 @@
 #' If set to \code{NULL} the second criterion wont be applied.
 #' @param sg_crit3 If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
 #' If set to \code{FALSE} the third criterion wont be applied.
+#' @param sg_crit3_alpha Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
+#' Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
@@ -51,7 +53,7 @@
 #'                path = temp)
 
 write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
-                           sg_crit2_pct = .25, sg_crit3 = TRUE, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
+                           sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
                            multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE,
                            format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
 
@@ -65,6 +67,7 @@ write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_s
                                      sg_crit1_cutoff = sg_crit1_cutoff,
                                      sg_crit2_pct = sg_crit2_pct,
                                      sg_crit3 = sg_crit3,
+                                     sg_crit3_alpha = sg_crit3_alpha,
                                      id_var_name = id_var_name,
                                      tx_start_var_name = tx_start_var_name,
                                      tx_end_var_name = tx_end_var_name,

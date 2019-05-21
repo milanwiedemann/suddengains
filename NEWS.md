@@ -1,3 +1,8 @@
+# suddengains 0.2.1
+
+- Calculate critical values from the student t distribution for third criterion using `base::qt()`
+- Add functionality to change significance level (alpha) for computing two-tailed critical value based on the student t distribution using the argument `sg_crit3_alpha`
+
 # suddengains 0.2.0
 
 - Add new plot function `plot_sg_trajectories()` to plot trajectories of individual cases

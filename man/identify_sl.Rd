@@ -5,8 +5,8 @@
 \title{Identify sudden losses.}
 \usage{
 identify_sl(data, id_var_name, sg_var_list, sg_crit1_cutoff,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE,
-  crit123_details = FALSE)
+  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
+  identify_sg_1to2 = FALSE, crit123_details = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -21,6 +21,9 @@ identify_sl(data, id_var_name, sg_var_list, sg_crit1_cutoff,
 
 \item{sg_crit3}{Logical, if set to \code{TRUE} the third criteria will be applied automatically adjusting the critical value for missingness.
 If set to \code{FALSE} the third criterion wont be applied.}
+
+\item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
+Degrees of freedom are based on the number of available data in the three sessions preceding the loss and the three sessions following the loss.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}

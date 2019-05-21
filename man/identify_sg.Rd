@@ -5,8 +5,8 @@
 \title{Identify sudden gains.}
 \usage{
 identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE,
-  crit123_details = FALSE)
+  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
+  identify_sg_1to2 = FALSE, crit123_details = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -23,6 +23,9 @@ If set to \code{NULL} the second criterion wont be applied.}
 
 \item{sg_crit3}{If set to \code{TRUE} the third criterion will be applied automatically adjusting the critical value for missingness.
 If set to \code{FALSE} the third criterion wont be applied.}
+
+\item{sg_crit3_alpha}{Numeric, alpha for the two-tailed student t-test to determine the critical value to be used for the third criterion.
+Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}

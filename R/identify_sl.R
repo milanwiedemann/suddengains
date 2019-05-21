@@ -9,6 +9,8 @@
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden losses criterion.
 #' @param sg_crit3 Logical, if set to \code{TRUE} the third criteria will be applied automatically adjusting the critical value for missingness.
 #' If set to \code{FALSE} the third criterion wont be applied.
+#' @param sg_crit3_alpha Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
+#' Degrees of freedom are based on the number of available data in the three sessions preceding the loss and the three sessions following the loss.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
@@ -26,7 +28,7 @@
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"))
 #' @export
 
-identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
+identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
     if (base::is.null(sg_crit1_cutoff) == TRUE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
         stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
@@ -36,7 +38,8 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be negative to identify sudden losses.", call. = FALSE)
     }
 
-
+    # Set p for qt function needed for 3rd criterion
+    sg_crit3_alpha_critical_value <- sg_crit3_alpha
 
         # Select data for identifying sudden losses
         # Only ID variable and sudden losses variables needed
@@ -99,23 +102,15 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
                 sum_n_pre <- base::sum(!is.na(data_loop[row_i, base::c(pre_indices)]), na.rm = T)
                 sum_n_post <- base::sum(!is.na(data_loop[row_i, base::c(post_indices)]), na.rm = T)
+                sum_n_pre_post <- sum_n_pre + sum_n_post
 
-                # Check 3rd criterion for no missing at pre or post
+                # Check 3rd criterion for two or more values at both pre and post
+                if (sum_n_pre >= 2 & sum_n_post >= 2) {
+                    # Calculate critical value to be used based on how many pre and postgain sessions are available
+                    sg_crit3_critical_value <- base::abs(stats::qt(p = (sg_crit3_alpha_critical_value / 2), df = (sum_n_pre_post - 2)))
 
-                if (sum_n_pre == 3 & sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 2.776 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
-
-                    # Adjust critical value for 1 missing value in pregain mean
-                } else if (sum_n_pre == 2 & sum_n_post == 3) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 3.182 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
-
-                    # Adjust critical value for 1 missing value in postgain mean
-                } else if (sum_n_pre == 3 & sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 3.182 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2)))  / (sum_n_pre + sum_n_post - 2))
-
-                    # Adjust critical value for 1 missing value pregain and 1 missing value postgain
-                } else if (sum_n_pre == 2 & sum_n_post == 2) {
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > 4.303 * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2)))  / (sum_n_pre + sum_n_post - 2))
+                    # Test for third criterion using adjusted critical value
+                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > sg_crit3_critical_value * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
 
                     # Add missing value if less than two pregain or postgain sessions are available
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {

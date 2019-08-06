@@ -6,7 +6,7 @@
 \usage{
 check_interval(pre_values, post_values, sg_crit1_cutoff,
   sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  identify = c("sg", "sl"))
+  identify = c("sg", "sl"), details = TRUE)
 }
 \arguments{
 \item{pre_values}{Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)}
@@ -26,6 +26,8 @@ If set to \code{FALSE} the third criterion wont be applied.}
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
 \item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).}
+
+\item{details}{Logical, details yes no?}
 }
 \value{
 Information on whether a given interval is a sudden gain/loss

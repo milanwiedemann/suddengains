@@ -11,6 +11,7 @@
 #' @param sg_crit3_alpha Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
 #' Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' @param details Logical, details yes no?
 #'
 #'
 #' @return Information on whether a given interval is a sudden gain/loss
@@ -56,14 +57,17 @@
 #'                sg_crit3_alpha = .05,
 #'                identify = "sl")
 #'
-check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify = c("sg", "sl")) {
+check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify = c("sg", "sl"), details = TRUE) {
+
+    # Check arguments
+    identify <- base::match.arg(identify)
 
 
         # prepare some stuff for printing results lalala
         if (identify == "sg") {
-        identify_string <- "# Sudden gain: "
+        identify_string <- "Sudden gain"
         } else if (identify == "sl") {
-            identify_string <- "# Sudden loss: "
+            identify_string <- "Sudden loss"
         }
 
         # ADD CHECKS FOR PRE AND POST VALUE VECTORS
@@ -156,13 +160,40 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
         }
 
 
+    if (details == FALSE) {
+
         # Create results object
-        results <- paste("# Criterion 1: ", crit1, "\n",
-                         "# Criterion 2: ", crit2, "\n",
-                         "# Criterion 3, Critical value: ", round(sg_crit3_critical_value, 3), "\n",
-                         "# Criterion 3: ", crit3, "\n",
-                         identify_string, as.logical(crit123),
+        results <- paste("# Check ", tolower(identify_string), "\n",
+                         "## Criterion 1: ", crit1, "\n",
+                         "## Criterion 2: ", crit2, "\n",
+                         "## Criterion 3: ", crit3, "\n",
+                         "## ", identify_string, ": ", as.logical(crit123),
                          sep = "")
+
+    } else if (details == TRUE)
+
+        # Create results object
+        results <- paste("# Check ", tolower(identify_string), "\n",
+                         "## Criterion 1: ", crit1, "\n",
+                         "## Criterion 2: ", crit2, "\n",
+                         "## Criterion 3: ", crit3, "\n",
+                         "## ", identify_string, ": ", as.logical(crit123), "\n", "\n",
+
+                        "# Detailed output\n",
+                        "## Criterion 1, Cut-off: ", sg_crit1_cutoff, "\n",
+                        "## Criterion 2, Percentage change threshhold: ", sg_crit2_pct, "\n",
+                        "## Criterion 3, Alpha: ", sg_crit3_alpha, "\n",
+                        "## Criterion 3, Critical value: ", round(sg_crit3_critical_value, 3), "\n",
+
+                        "## Number of pre gain values present: ", sum_n_pre, "\n",
+                        "## Number of post gain values present: ", sum_n_post, "\n",
+                        "## Mean pre: ", round(mean_pre, 3), "\n",
+                        "## Mean post: ", round(mean_post, 3), "\n",
+                        "## SD pre: ", round(sd_pre, 3), "\n",
+                        "## SD post: ", round(sd_post, 3),
+
+                         sep = "")
+
 
         # Format results and print
         cat(results)

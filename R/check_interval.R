@@ -128,9 +128,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
                 crit3 <- NA
             }
 
-
-
-
             # Multiply dataframes with information on whether sudden gains criteria 1, 2, and 3 are met
             # 1 = criterion is met, 0 = criterion is not met, NA = not enough data to identify sudden gains
 
@@ -158,8 +155,8 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
             }
         }
 
-        # return(as.logical(crit123))
 
+        # Create results object
         results <- paste("# Criterion 1: ", crit1, "\n",
                          "# Criterion 2: ", crit2, "\n",
                          "# Criterion 3, Critical value: ", round(sg_crit3_critical_value, 3), "\n",
@@ -167,5 +164,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
                          identify_string, as.logical(crit123),
                          sep = "")
 
+        # Format results and print
         cat(results)
     }

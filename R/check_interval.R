@@ -56,7 +56,7 @@
 #'                sg_crit3_alpha = .05,
 #'                identify = "sl")
 #'
-check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify = c("sg", "sl"), details = FALSE) {
+check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, identify = c("sg", "sl")) {
 
 
         # prepare some stuff for printing results lalala

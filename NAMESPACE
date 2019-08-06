@@ -2,6 +2,7 @@
 
 export("%>%")
 export(":=")
+export(check_interval)
 export(count_intervals)
 export(create_byperson)
 export(create_bysg)

@@ -1,3 +1,7 @@
+# suddengains 0.3.0
+
+- Add function to check if a given interval is a sudden gain/loss
+
 # suddengains 0.2.1
 
 - Fix error message when loading SPSS datasets with the R package foreign 

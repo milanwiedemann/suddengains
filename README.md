@@ -41,25 +41,26 @@ devtools::install_github(repo = "milanwiedemann/suddengains", ref = "master")
 The `suddengains` package comes with a range of features which can be categorised into:
 
 1. Functions to identify sudden gains:
-  - `select_cases()`: stable
-  - `define_crit1_cutoff()`: stable
-  - `identify_sg()`: stable
-  - `identify_sl()`: stable
+  - `select_cases()`: Select sample providing enough data to identify sudden gains
+  - `define_crit1_cutoff()`: Uses modified RCI formula to determine a cut-off value for criterion 1
+  - `identify_sg()`: Identifies sudden gains
+  - `identify_sl()`: Identifies sudden losses
+  - `check_interval()`: Checks if a given interval is a sudden gain/loss
   
 2. Functions to create datasets for further analysis:
-  - `extract_values()`: stable
-  - `create_byperson()`: stable
-  - `create_bysg()`: stable
+  - `extract_values()`: Extracts values on a secondary measure around the sudden gain/loss
+  - `create_byperson()`: Creates a dataset with one row for each sudden gain/loss
+  - `create_bysg()`: Creates a dataset with one row for each person
 
 3. Helper functions to visualise and report sudden gains:
-  - `count_intervals()`: stable
-  - `plot_sg()`: stable
-  - `plot_sg_trajectories()`: stable
-  - `describe_sg()`: stable
+  - `count_intervals()`: Count number of between-session intervals available to identify sudden gains
+  - `plot_sg()`: Creates plots of the average sudden gain
+  - `plot_sg_trajectories()`: Creates plots of plots of individual case trajectories
+  - `describe_sg()`: Shows descriptives for the sudden gains datasets
   
 4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV:
-  - `write_bysg()`: stable 
-  - `write_byperson()`: stable 
+  - `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the sudden gains data sets
+  - `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of the sudden gains data sets
   
 A detailed illustration of all functions can be found in the vignette on [CRAN](https://CRAN.R-project.org/package=suddengains).
 Note that the vignette is only available in R when you install the package from CRAN.
@@ -130,14 +131,14 @@ select_cases(data = sgdata,
 Another option is to select all cases where it is possible to apply all three sudden gains criteria. 
 This function goes through the data and selects all cases with at least one of the following data patterns.
 
-| Data pattern | x<sub>1</sub> | x<sub>2</sub> | x<sub>3</sub> | x<sub>4</sub> | x<sub>5</sub> | x<sub>6</sub> |
+| Data pattern | x<sub>i</sub> | x<sub>i+1</sub> | x<sub>i+2</sub> | x<sub>i+3</sub> | x<sub>i+4</sub> | x<sub>i+5</sub> |
 |:------------:|-------|-------|-------|-------|-------|-------|
-| 1.           |   x   | **N** |   x   |   x   |    .   |    .   |
-| 2.           |   x   | **N** |   x   |   .    |   x   |    .   |
-| 3.           |   x   |   .    | **N** |   x   |   x   |    .   |
-| 4.           |   x   |   .    | **N** |   x   |   .    |   x   |
+| 1.           |   x   | x<sub>N</sub> |   x   |   x   |    .   |    .   |
+| 2.           |   x   | x<sub>N</sub> |   x   |   .    |   x   |    .   |
+| 3.           |   x   |   .    | x<sub>N</sub> |   x   |   x   |    .   |
+| 4.           |   x   |   .    | x<sub>N</sub> |   x   |   .    |   x   |
 
-*Note:* x<sub>1</sub> to x<sub>6</sub> are consecutive data points of the primary outcome measure. 'x' = Available data; '.' = Missing data. **N** represents available data to be examined as a possible pregain session.
+*Note:* x<sub>i</sub> to x<sub>i+5</sub> represent the scores on the measure used to identify sudden gains at time point i and the subsequent five measurement points. 'x' = Available data; x<sub>N</sub> represents available data to be considered as the possible pregain session;'.' = Missing data.
 
 ```r
 # 2. Select all patients providing enough data to identify sudden gains ----

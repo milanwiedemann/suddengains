@@ -27,6 +27,7 @@
 #' @param stata_version Numeric, specifying STATA version number.
 #' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @export
+#' @importFrom rlang :=
 #' @examples # Adjust "path" argument before running
 #' # Create character string name for temporary "bysg.csv" file
 #' temp <- tempfile(pattern = "bysg", fileext = ".csv")

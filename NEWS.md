@@ -1,6 +1,6 @@
 # suddengains 0.3.0
 
-- Add function to check if a given interval is a sudden gain/loss
+- Add function `check_interval()` to check if a given interval is a sudden gain/loss
 
 # suddengains 0.2.1
 

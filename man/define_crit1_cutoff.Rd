@@ -4,17 +4,17 @@
 \alias{define_crit1_cutoff}
 \title{Define cut-off value for first SG criterion}
 \usage{
-define_crit1_cutoff(data_sessions, tx_start_var_name, tx_end_var_name,
-  data_item = NULL, reliability = NULL)
+define_crit1_cutoff(data = NULL, sd_pre = NULL,
+  tx_start_var_name = NULL, data_item = NULL, reliability = NULL)
 }
 \arguments{
-\item{data_sessions}{A dataset in wide format with values for pre _s0 and post treatment _end}
+\item{data}{A dataset in wide format with values for}
+
+\item{sd_pre}{Standard deviation at baseline}
 
 \item{tx_start_var_name}{String, variable name of the pretreatment scores}
 
-\item{tx_end_var_name}{String, variable name of the postreatment scores}
-
-\item{data_item}{A dataset in item-by-item scores for the SG measure}
+\item{data_item}{A dataset in wide format including only the item-by-item scores of the SG measure, no ID variable}
 
 \item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.}
 }
@@ -23,14 +23,14 @@ A list with all calculated variables using modified formula for RCI including cu
 }
 \description{
 Define the cut-off value for first sudden gains criterion using a modified reliable change index (RCI) formula.
+\deqn{Cut-off value = 1.96 \times \sqrt{2 \times \sqrt{1-\alpha_pre}}}
 }
 \examples{
 # Define cut-off value for first SG criterion
 # In this example the reliability is specified and not calculated from item-by-item data
-define_crit1_cutoff(data_sessions = sgdata,
+define_crit1_cutoff(data = sgdata,
                     data_item = NULL,
                     tx_start_var_name = "bdi_s0",
-                    tx_end_var_name = "bdi_s12",
                     reliability = 0.931)
 }
 \references{

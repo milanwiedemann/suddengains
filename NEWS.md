@@ -1,3 +1,8 @@
+# suddengains 0.3.1
+
+- Make compaible with tidyr v1.0.0
+- Fix error in `extract_values()` function
+
 # suddengains 0.3.0
 
 - Add function `check_interval()` to check if a given interval is a sudden gain/loss

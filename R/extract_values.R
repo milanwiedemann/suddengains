@@ -46,7 +46,7 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_measure_
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
-  id_list <- dplyr::select(data, id_var_name)
+  all_ids <- dplyr::select(data, id_var_name)
 
   # Select only variables needed to extract scores around sudden gain
   data_in <- data %>%
@@ -68,8 +68,7 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_measure_
       index == 2  ~ "x_n_post2",
       index == 3  ~ "x_n_post3"
     )) %>%
-    #
-    # # keeping only relevant columns and converting back to the form you need
+    # keeping only relevant columns and converting back to the form you need
     dplyr::select(id_var_name, name, value) %>%
     tidyr::spread(key = name, value = value) %>%
     dplyr::select(id_var_name, x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
@@ -82,14 +81,12 @@ extract_values <- function(data, id_var_name, extract_var_list, extract_measure_
     base::names(data_extract)[base::names(data_extract) == "x_n_post2"] <- paste0("sg_", extract_measure_name, "_n2")
     base::names(data_extract)[base::names(data_extract) == "x_n_post3"] <- paste0("sg_", extract_measure_name, "_n3")
 
-    # # making sure that all implicitly missing values are explicit
-    data_extract_join <- data_extract %>%
-      tidyr::complete(id_var_name = id_list)
+    # making sure that all ids are included here even if no values were extracted
+    data_extract_join <- dplyr::left_join(all_ids, data_extract, by = id_var_name)
 
+    # Add to data or return extracted values only?
     if (add_to_data == TRUE) {
-        data %>%
-            dplyr::left_join(data_extract_join, by = id_var_name)
-
+      dplyr::left_join(data, data_extract_join, by = id_var_name)
     } else if (add_to_data == FALSE) {
         data_extract_join
         }

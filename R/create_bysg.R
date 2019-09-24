@@ -151,8 +151,6 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   var_x_n <- base::paste("sg", sg_measure_name, "n", sep = "_")
   var_x_n_post1 <- base::paste("sg", sg_measure_name, "n1", sep = "_")
 
-
-
   # Calculate sg reversal differently for gains and losses
   if (identify == "sg") {
 

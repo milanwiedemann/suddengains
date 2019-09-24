@@ -77,8 +77,7 @@ define_crit1_cutoff <- function(data_sessions, tx_start_var_name, tx_end_var_nam
                  sg_crit1_cutoff = sg_crit1_cutoff)
 
   # General info message:
-  base::message(paste0("This function calculates a cut-off value that represents a clinically meaningful change based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).\n",
-                       "The RCI formula was modified so that all statistics can be computed from the data of an individual study following suggestions by Stiles et al. (2003)."))
+  base::message(paste0("This function calculates a cut-off value that represents a reliable change based on the Reliable Change Index (RCI; Jacobson & Truax, 1991)."))
 
   # Return output as list in console
   return(output)

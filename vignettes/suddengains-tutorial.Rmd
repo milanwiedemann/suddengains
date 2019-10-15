@@ -159,11 +159,11 @@ The last element of the list `sg_crit1_cutoff` can be used as a cut-off value fo
 
 ```{r}
 # Test define_crit1_cutoff function ----
-define_crit1_cutoff(data_sessions = sgdata,
-                    data_item = NULL,
-                    tx_start_var_name = "bdi_s0",
-                    tx_end_var_name = "bdi_s12",
-                    reliability = 0.91)
+# define_crit1_cutoff(data_sessions = sgdata,
+#                     data_item = NULL,
+#                     tx_start_var_name = "bdi_s0",
+#                     tx_end_var_name = "bdi_s12",
+#                     reliability = 0.91)
 
 ```
 

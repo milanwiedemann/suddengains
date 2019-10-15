@@ -4,19 +4,23 @@
 \alias{define_crit1_cutoff}
 \title{Define cut-off value for first SG criterion}
 \usage{
-define_crit1_cutoff(data = NULL, sd_pre = NULL,
-  tx_start_var_name = NULL, data_item = NULL, reliability = NULL)
+define_crit1_cutoff(data = NULL, data_item = NULL,
+  tx_start_var_name = NULL, standard_deviation = NULL,
+  reliability = NULL)
 }
 \arguments{
 \item{data}{A dataset in wide format with values for}
 
-\item{sd_pre}{Standard deviation at baseline}
-
-\item{tx_start_var_name}{String, variable name of the pretreatment scores}
-
 \item{data_item}{A dataset in wide format including only the item-by-item scores of the SG measure, no ID variable}
 
-\item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.}
+\item{tx_start_var_name}{String, variable name of the pretreatment scores in the dataset specified in the \code{data} argument.
+This argument is not needed if the standard deviation is specified in the \code{standard_deviation} argument.}
+
+\item{standard_deviation}{Numeric, standard deviation of normal population or standard deviation at baseline.}
+
+\item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.
+According to Jacobson & Truax (1991) the test-retest reliability should be used.
+Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be a more appropriate for estimating the standard error in some cases.}
 }
 \value{
 A list with all calculated variables using modified formula for RCI including cut-off
@@ -35,6 +39,8 @@ define_crit1_cutoff(data = sgdata,
 }
 \references{
 Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. \url{https://doi.org/10.1037/0022-006X.59.1.12}.
+
+Martinovich, Z., Saunders, S., & Howard, K. (1996). Some Comments on “Assessing Clinical Significance”. Psychotherapy Research, 6(2), 124–132. \url{https://doi.org/10.1080/10503309612331331648}.
 
 Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. \url{https://doi.org/10.1037/0022-006X.71.1.14}.
 }

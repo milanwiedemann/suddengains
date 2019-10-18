@@ -27,7 +27,7 @@ A list with estimates the for standard error of measurement (se), the standard e
 }
 \description{
 Define a cut-off value for the first sudden gains criterion based on the Reliable Change Index (RCI; Jacobson & Truax, 1991) using an estimate for the standard deviation (sd) of the normal population and the reliability of the scale.
-These values can be entered manually or extracted from data sets.
+These values can be entered manually using the arguments \code{sd} and \code{reliability} or extracted from data using the arguments \code{data_sd} and \code{data_reliability}.
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 \deqn{se = sd * \sqrt(1 - reliability)}
 \deqn{sdiff = \sqrt(2 * se^2)}

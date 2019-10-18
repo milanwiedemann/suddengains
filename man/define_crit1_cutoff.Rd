@@ -4,37 +4,42 @@
 \alias{define_crit1_cutoff}
 \title{Define cut-off value for first SG criterion}
 \usage{
-define_crit1_cutoff(data = NULL, data_item = NULL,
-  tx_start_var_name = NULL, standard_deviation = NULL,
-  reliability = NULL)
+define_crit1_cutoff(sd = NULL, reliability = NULL, data_sd = NULL,
+  data_reliability = NULL)
 }
 \arguments{
-\item{data}{A dataset in wide format with values for}
-
-\item{data_item}{A dataset in wide format including only the item-by-item scores of the SG measure, no ID variable}
-
-\item{tx_start_var_name}{String, variable name of the pretreatment scores in the dataset specified in the \code{data} argument.
-This argument is not needed if the standard deviation is specified in the \code{standard_deviation} argument.}
-
-\item{standard_deviation}{Numeric, standard deviation of normal population or standard deviation at baseline.}
+\item{sd}{Numeric, standard deviation of normal population or standard deviation at baseline.
+This argument is not needed if a vector with pretreatment scores is specified in the \code{data_sd} argument.}
 
 \item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.
+This argument is not needed if item-by-item data is specified in the \code{data_reliability} argument.}
+
+\item{data_sd}{A dataset in wide format including a variable with pretreatment scores specified in the \code{tx_start_var_name} argument.
+This argument is not needed if the standard deviation is specified in the \code{sd} argument.}
+
+\item{data_reliability}{A dataset in wide format (one row for each individual and one column for each item) including only the item-by-item scores of the SG measure (no ID variable).
 According to Jacobson & Truax (1991) the test-retest reliability should be used.
-Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be a more appropriate for estimating the standard error in some cases.}
+Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
+This argument is not needed if the reliability is specified in the \code{reliability} argument.}
 }
 \value{
-A list with all calculated variables using modified formula for RCI including cut-off
+A list with estimates the for standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value).
 }
 \description{
-Define the cut-off value for first sudden gains criterion using a modified reliable change index (RCI) formula.
-\deqn{Cut-off value = 1.96 \times \sqrt{2 \times \sqrt{1-\alpha_pre}}}
+Define a cut-off value for the first sudden gains criterion based on the Reliable Change Index (RCI; Jacobson & Truax, 1991) using an estimate for the standard deviation (sd) of the normal population and the reliability of the scale.
+These values can be entered manually or extracted from data sets.
+This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
+\deqn{se = sd * \sqrt(1 - reliability)}
+\deqn{sdiff = \sqrt(2 * se^2)}
+\deqn{reliable_change_value = 1.96 * sdiff}
 }
 \examples{
 # Define cut-off value for first SG criterion
-# In this example the reliability is specified and not calculated from item-by-item data
-define_crit1_cutoff(data = sgdata,
-                    data_item = NULL,
-                    tx_start_var_name = "bdi_s0",
+# In this example the reliability is specified manually and not calculated from item-by-item data
+define_crit1_cutoff(sd = 10,
+                    reliability = 0.931)
+# In this example the reliability is specified manually and not calculated from item-by-item data
+define_crit1_cutoff(data_sd = sgdata$bdi_s0,
                     reliability = 0.931)
 }
 \references{

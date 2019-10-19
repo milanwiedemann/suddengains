@@ -102,6 +102,10 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
             stop("`min_sess_num` argument should be numeric", call. = FALSE)
         }
 
+        if (min_sess_num > length(sg_var_list)) {
+          stop("The minimum number of sessions 'min_sess' is greater than the number of sessions in 'sg_var_list'.", call. = FALSE)
+        }
+
       data_select$nvalid <- base::rowSums(!is.na(data_select[ , 2:(length(sg_var_list) + 1)]))
 
       data_out <- data_select %>%

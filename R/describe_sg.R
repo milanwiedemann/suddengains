@@ -1,7 +1,7 @@
 #' Show descriptives for the sudden gains datasets
 #'
 #' Some numbers (percentages) will be different depending which form of data set (bysg vs. byperson) is selected, because if multiple gains in bysg only one will be selected for further analyses.
-#' @param data A \code{bysg} or \code{byperson} dataset.
+#' @param data A \code{bysg} or \code{byperson} dataset created using the function \code{\link{create_bysg}} or \code{\link{create_byperson}}.
 #' @param sg_data_structure String, indicating whether the input data is a \code{bysg} or \code{byperson} dataset.
 #' @return A list, showing basic descriptive statistics for sudden gains within the dataset specified.
 #' Note that some numbers (e.g. percentages) will be different depending which dataset is selected, because where a participant has multiple gains, only one is selected for the \code{byperson} dataset.

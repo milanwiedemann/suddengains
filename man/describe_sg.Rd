@@ -7,7 +7,7 @@
 describe_sg(data, sg_data_structure = c("bysg", "byperson"))
 }
 \arguments{
-\item{data}{A \code{bysg} or \code{byperson} dataset.}
+\item{data}{A \code{bysg} or \code{byperson} dataset created using the function \code{\link{create_bysg}} or \code{\link{create_byperson}}.}
 
 \item{sg_data_structure}{String, indicating whether the input data is a \code{bysg} or \code{byperson} dataset.}
 }

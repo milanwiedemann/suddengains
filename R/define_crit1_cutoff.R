@@ -24,10 +24,12 @@
 #' Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. \url{https://doi.org/10.1037/0022-006X.71.1.14}.
 #' @export
 #' @examples # Define cut-off value for first SG criterion
-#' # In this example the reliability is specified manually and not calculated from item-by-item data
-#' define_crit1_cutoff(sd = 10,
+#' # In this example the standard deviation and the reliability are specified manually
+#' define_crit1_cutoff(sd = 10.5,
 #'                     reliability = 0.931)
-#' # In this example the reliability is specified manually and not calculated from item-by-item data
+#'
+#' # In this example the reliability is specified manually and the standard deviation is calculated
+#' # The values used to calculate the standard deviation are in the variable "bdi_s0" from the data set "sgdata"
 #' define_crit1_cutoff(data_sd = sgdata$bdi_s0,
 #'                     reliability = 0.931)
 

@@ -14,7 +14,7 @@ This argument is not needed if a vector with pretreatment scores is specified in
 \item{reliability}{Numeric, between 0 and 1 indicating reliability of the scale.
 This argument is not needed if item-by-item data is specified in the \code{data_reliability} argument.}
 
-\item{data_sd}{A dataset in wide format including a variable with pretreatment scores specified in the \code{tx_start_var_name} argument.
+\item{data_sd}{A vector with pretreatment values.
 This argument is not needed if the standard deviation is specified in the \code{sd} argument.}
 
 \item{data_reliability}{A dataset in wide format (one row for each individual and one column for each item) including only the item-by-item scores of the SG measure (no ID variable).
@@ -35,10 +35,12 @@ This function calculates the standard error of measurement (se), the standard er
 }
 \examples{
 # Define cut-off value for first SG criterion
-# In this example the reliability is specified manually and not calculated from item-by-item data
-define_crit1_cutoff(sd = 10,
+# In this example the standard deviation and the reliability are specified manually
+define_crit1_cutoff(sd = 10.5,
                     reliability = 0.931)
-# In this example the reliability is specified manually and not calculated from item-by-item data
+
+# In this example the reliability is specified manually and the standard deviation is calculated
+# The values used to calculate the standard deviation are in the variable "bdi_s0" from the data set "sgdata"
 define_crit1_cutoff(data_sd = sgdata$bdi_s0,
                     reliability = 0.931)
 }

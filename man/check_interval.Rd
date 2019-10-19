@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_interval.R
 \name{check_interval}
 \alias{check_interval}
-\title{Checks if a given interval is a sudden gain/loss}
+\title{Check if a given interval is a sudden gain/loss}
 \usage{
 check_interval(pre_values, post_values, sg_crit1_cutoff,
   sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
@@ -33,7 +33,7 @@ Degrees of freedom are based on the number of available data in the three sessio
 Information on whether a given interval is a sudden gain/loss
 }
 \description{
-Checks if a given interval is a sudden gain/loss
+Checks if a specific session to session interval is a sudden gain/loss.
 }
 \examples{
 # Check interval for sudden gain using all 3 criteria

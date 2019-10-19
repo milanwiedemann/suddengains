@@ -1,4 +1,6 @@
-#' Checks if a given interval is a sudden gain/loss
+#' Check if a given interval is a sudden gain/loss
+#'
+#' @description Checks if a specific session to session interval is a sudden gain/loss.
 #'
 #' @param pre_values Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)
 #' @param post_values Vector, three post gain/loss values to be checked for a sudden gain/loss (n+1, n+2, n+3)

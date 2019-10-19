@@ -1,5 +1,7 @@
 #' Plot individual trajectories
-#' @description Plot individual trajectories of selected cases. This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
+#' @description Plot individual trajectories of selected cases using \code{\link[ggplot2]{ggplot}}.
+#' This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
+#' Further ggplot2 components can be added using + following this function.
 #' @param data Dataset in wide format.
 #' @param id_var String, specifying ID variable.
 #' @param var_list Vector, specifying variable names to be plotted in sequential order.
@@ -11,9 +13,9 @@
 #' @param legend_title String, specifying the title of legend, by default the variable name of \code{id_var} will be shown.
 #' @param connect_missing Logical, specifying whether to connect points across missing values.
 #' @param colour String, specifying the discrete colour palette to be used.
-#' @param viridis_option String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
-#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
-#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.
+#' @param viridis_option String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.
+#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.
+#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.
 #' @param line_alpha Numeric, specifying alpha (transparency) of lines.
 #' @param point_alpha Numeric, specifying alpha (transparency) of points.
 #' @param xlab String for x axis label.
@@ -21,7 +23,7 @@
 #' @param scale_x_num Logical, if \code{TRUE} print sequential numbers starting from 1 as x axis labels, if \code{FALSE} use variable names.
 #' @param scale_x_num_start Numeric, specifying the starting value of the x axis, if \code{scale_x_num = TRUE}.
 #' @param apaish Logical, if \code{TRUE} aligns plot with APA guidelines.
-#' @param ... Further arguments to be passed on to ggrepel::geom_label_repel().
+#' @param ... Further arguments to be passed on to \code{\link[ggrepel]{geom_label_repel}}.
 #' @return ggplot2 object
 #' @examples # Plot individual trajectories of IDs 2, 4, 5, and 9
 #' plot_sg_trajectories(data = sgdata,

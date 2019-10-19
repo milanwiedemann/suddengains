@@ -12,7 +12,7 @@ plot_sg(data, id_var_name, tx_start_var_name, tx_end_var_name,
   group_labels = NULL, group_title = NULL, apaish = TRUE)
 }
 \arguments{
-\item{data}{A \code{bysg} or \code{byperson} dataset.}
+\item{data}{A \code{bysg} or \code{byperson} dataset created using the function \code{\link{create_bysg}} or \code{\link{create_byperson}}.}
 
 \item{id_var_name}{String, specifying the name of the ID variable.}
 
@@ -31,11 +31,11 @@ and the 3 after the sudden gain, for the measure being plotted.}
 
 \item{colour_group}{String, specifying the discrete colour palette to be used for the groups.}
 
-\item{viridis_option}{String specifying the colour option for discrete viridis palette, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_option}{String specifying the colour option for discrete viridis palette, see \code{\link[ggplot2]{scale_fill_viridis_d}}.}
 
-\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see \code{\link[ggplot2]{scale_fill_viridis_d}}.}
 
-\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see ggplot2::scale_fill_viridis_d().}
+\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see \code{\link[ggplot2]{scale_fill_viridis_d}}.}
 
 \item{group_var_name}{String, specifying the variable name of the group variable.}
 
@@ -51,9 +51,10 @@ and the 3 after the sudden gain, for the measure being plotted.}
 A plot of the mean values around the sudden gain, for the measure specified.
 }
 \description{
-Generates a plot of the mean values around the sudden gain.
+Generates a plot of the mean values around the sudden gain using \code{\link[ggplot2]{ggplot}}.
 This can be used to plot the primary outcome or secondary measures.
 The parameters starting with "group" allow to plot the average gain magnitude by group.
+Further ggplot2 components can be added using + following this function.
 }
 \examples{
 # First create a bysg (or byperson) dataset

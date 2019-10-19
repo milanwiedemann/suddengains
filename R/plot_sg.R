@@ -1,9 +1,10 @@
 #' Plot average change in variables around the sudden gain
 #'
-#' @description Generates a plot of the mean values around the sudden gain.
+#' @description Generates a plot of the mean values around the sudden gain using \code{\link[ggplot2]{ggplot}}.
 #' This can be used to plot the primary outcome or secondary measures.
 #' The parameters starting with "group" allow to plot the average gain magnitude by group.
-#' @param data A \code{bysg} or \code{byperson} dataset.
+#' Further ggplot2 components can be added using + following this function.
+#' @param data A \code{bysg} or \code{byperson} dataset created using the function \code{\link{create_bysg}} or \code{\link{create_byperson}}.
 #' @param id_var_name String, specifying the name of the ID variable.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
@@ -11,9 +12,9 @@
 #' and the 3 after the sudden gain, for the measure being plotted.
 #' @param colour_single String, specifying the colour of the plot for one group.
 #' @param colour_group String, specifying the discrete colour palette to be used for the groups.
-#' @param viridis_option String specifying the colour option for discrete viridis palette, see ggplot2::scale_fill_viridis_d().
-#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see ggplot2::scale_fill_viridis_d().
-#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see ggplot2::scale_fill_viridis_d().
+#' @param viridis_option String specifying the colour option for discrete viridis palette, see \code{\link[ggplot2]{scale_fill_viridis_d}}.
+#' @param viridis_begin Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, see \code{\link[ggplot2]{scale_fill_viridis_d}}.
+#' @param viridis_end Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, see \code{\link[ggplot2]{scale_fill_viridis_d}}.
 #' @param group_var_name String, specifying the variable name of the group variable.
 #' @param group_levels Vector, specifying the levels as numeric for the groups in \code{group_var_name}.
 #' @param group_labels Vector, specifying the label names as strings for the groups in \code{group_var_name}.

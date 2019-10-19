@@ -35,11 +35,11 @@ plot_sg_trajectories(data, id_var, var_list, select_id_list = NULL,
 
 \item{colour}{String, specifying the discrete colour palette to be used.}
 
-\item{viridis_option}{String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
+\item{viridis_option}{String, specifying the colour option for discrete viridis palette, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.}
 
-\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
+\item{viridis_begin}{Numeric, specifying hue between 0 and 1 at which the viridis colormap begins, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.}
 
-\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See ggplot2::scale_fill_viridis_d() for more details.}
+\item{viridis_end}{Numeric, specifying hue between 0 and 1 at which the viridis colormap ends, if \code{colour = "viridis"}. See \code{\link[ggplot2]{scale_fill_viridis_d}} for more details.}
 
 \item{line_alpha}{Numeric, specifying alpha (transparency) of lines.}
 
@@ -55,13 +55,15 @@ plot_sg_trajectories(data, id_var, var_list, select_id_list = NULL,
 
 \item{apaish}{Logical, if \code{TRUE} aligns plot with APA guidelines.}
 
-\item{...}{Further arguments to be passed on to ggrepel::geom_label_repel().}
+\item{...}{Further arguments to be passed on to \code{\link[ggrepel]{geom_label_repel}}.}
 }
 \value{
 ggplot2 object
 }
 \description{
-Plot individual trajectories of selected cases. This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
+Plot individual trajectories of selected cases using \code{\link[ggplot2]{ggplot}}.
+This function can be combined with a filter command to explore the trajectories of individual or groups of cases.
+Further ggplot2 components can be added using + following this function.
 }
 \examples{
 # Plot individual trajectories of IDs 2, 4, 5, and 9

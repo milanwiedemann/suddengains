@@ -16,7 +16,7 @@
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
 #' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
-#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
 #' The default is to identify sudden gains (\code{"sg"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.

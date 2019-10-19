@@ -20,12 +20,12 @@
 #' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
-#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
 #' The default is to identify sudden gains (\code{"sg"}).
 #' @param multiple_sg_select String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
 #' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
 #' The default is to select the first sudden gain (\code{"first"}) if someone experienced multiple gains.
-#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.
+#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{\link{create_bysg}} function.
 #' @return  A wide data set with one row per case (\code{id_var_name}) in \code{data}.
 #' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 #' @export

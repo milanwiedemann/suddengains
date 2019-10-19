@@ -31,9 +31,9 @@ If set to \code{NULL} the first criterion wont be applied.}
 Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
 The default is to select the first sudden gain (\code{"first"}) if someone experienced multiple gains.}
 
-\item{data_is_bysg}{Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{create_bysg} function.}
+\item{data_is_bysg}{Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{\link{create_bysg}} function.}
 
-\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
 The default is to identify sudden gains (\code{"sg"}).}
 
 \item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.

@@ -16,16 +16,17 @@
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
 #' @param sg_measure_name String, specifying the name of the measure used to identify sudden gains/losses.
-#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+#' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
+#' The default is to identify sudden gains (\code{"sg"}).
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' @param multiple_sg_select String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
-#' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.
-#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg data set created using the \code{create_bysg} function.
+#' Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}, \code{\link{create_byperson}}.
+#' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg data set created using the \code{\link{create_bysg}} function.
 #' @param format String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.
 #' @param path String, specifying the file name ending with the matching file extension,
 #' \code{".csv"}, \code{".sav"}, \code{".dta"} or \code{".xlsx"}.
 #' @param ... Additional parameters to be passed on to the specified write function,
-#' see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
+#' see \code{\link[readr]{write_csv}} for \code{"CSV"}, \code{\link[haven]{write_sav}} for \code{"SPSS"}, \code{\link[haven]{write_dta}} for \code{"STATA"} or \code{\link[writexl]{write_xlsx}} for \code{"Excel"}
 #' for more information.
 #' @param stata_version Numeric, specifying STATA version number.
 #' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.

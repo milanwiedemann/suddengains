@@ -37,14 +37,15 @@ If set to \code{FALSE} the third criterion wont be applied.}
 \item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
-\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).}
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
+The default is to identify sudden gains (\code{"sg"}).}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.}
 
 \item{multiple_sg_select}{String, specifying which sudden gain/loss to select for this data set if more than one gain/loss was identified per case.
-Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}.}
+Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest"}, \code{\link{create_byperson}}.}
 
-\item{data_is_bysg}{Logical, specifying whether the data set in the \code{data} argument is a bysg data set created using the \code{create_bysg} function.}
+\item{data_is_bysg}{Logical, specifying whether the data set in the \code{data} argument is a bysg data set created using the \code{\link{create_bysg}} function.}
 
 \item{format}{String, specifying the format of the data file, \code{"CSV"}, \code{"SPSS"}, \code{"STATA"} or \code{"Excel"}.}
 
@@ -54,7 +55,7 @@ Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest
 \item{stata_version}{Numeric, specifying STATA version number.}
 
 \item{...}{Additional parameters to be passed on to the specified write function,
-see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
+see \code{\link[readr]{write_csv}} for \code{"CSV"}, \code{\link[haven]{write_sav}} for \code{"SPSS"}, \code{\link[haven]{write_dta}} for \code{"STATA"} or \code{\link[writexl]{write_xlsx}} for \code{"Excel"}
 for more information.}
 }
 \description{

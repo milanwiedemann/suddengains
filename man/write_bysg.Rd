@@ -36,7 +36,8 @@ If set to \code{FALSE} the third criterion wont be applied.}
 \item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
-\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).}
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
+The default is to identify sudden gains (\code{"sg"}).}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.}
 
@@ -48,7 +49,7 @@ Degrees of freedom are based on the number of available data in the three sessio
 \item{stata_version}{Numeric, specifying STATA version number.}
 
 \item{...}{Additional parameters to be passed on to the specified write function,
-see \code{readr::write_csv} for \code{"CSV"}, \code{haven::write_sav} for \code{"SPSS"}, \code{haven::write_dta} for \code{"STATA"} or \code{writexl::write_xlsx} for \code{"Excel"}
+see \code{\link[readr]{write_csv}} for \code{"CSV"}, \code{\link[haven]{write_sav}} for \code{"SPSS"}, \code{\link[haven]{write_dta}} for \code{"STATA"} or \code{\link[writexl]{write_xlsx}} for \code{"Excel"}
 for more information.}
 }
 \description{

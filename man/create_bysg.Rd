@@ -34,7 +34,7 @@ If set to \code{FALSE} the third criterion wont be applied.}
 \item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
 
-\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
+\item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) using \code{\link{identify_sg}} or sudden losses (\code{"sl"}) using \code{\link{identify_sl}}.
 The default is to identify sudden gains (\code{"sg"}).}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.

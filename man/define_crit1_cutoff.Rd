@@ -39,8 +39,8 @@ This function calculates the standard error of measurement (se), the standard er
 define_crit1_cutoff(sd = 10.5,
                     reliability = 0.931)
 
-# In this example the reliability is specified manually and the standard deviation is calculated
-# The values used to calculate the standard deviation are in the variable "bdi_s0" from the data set "sgdata"
+# In this example the reliability is specified manually
+# The standard deviation of the variable "bdi_s0" in the dataset "sgdata" gets calculated
 define_crit1_cutoff(data_sd = sgdata$bdi_s0,
                     reliability = 0.931)
 }

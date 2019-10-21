@@ -28,8 +28,8 @@
 #' define_crit1_cutoff(sd = 10.5,
 #'                     reliability = 0.931)
 #'
-#' # In this example the reliability is specified manually and the standard deviation is calculated
-#' # The values used to calculate the standard deviation are in the variable "bdi_s0" from the data set "sgdata"
+#' # In this example the reliability is specified manually
+#' # The standard deviation of the variable "bdi_s0" in the dataset "sgdata" gets calculated
 #' define_crit1_cutoff(data_sd = sgdata$bdi_s0,
 #'                     reliability = 0.931)
 
@@ -70,7 +70,7 @@ define_crit1_cutoff <- function(sd = NULL, reliability = NULL, data_sd = NULL, d
     stop("No information about standard deviation given.\nChoose one of the two options below:\n1. Specify the standard deviation manually using 'sd'.\n2. Provide a vector with pre-treatment values using the argument 'data_sd'.", call. = FALSE)
   } else if (base::is.null(data_sd) == TRUE & base::is.null(sd) == FALSE) {
     sd_pre <- sd
-  } else if (base::is.null(data) == FALSE & base::is.null(data_sd) == FALSE) {
+  } else if (base::is.null(data_sd) == FALSE & base::is.null(sd) == TRUE) {
     # Create vectors of variables used in this function
     sd_pre <- stats::sd(data_sd, na.rm = TRUE)
   }

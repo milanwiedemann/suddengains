@@ -6,7 +6,7 @@
 \usage{
 check_interval(pre_values, post_values, sg_crit1_cutoff,
   sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  identify = c("sg", "sl"), details = TRUE)
+  sg_crit3_adjust = TRUE, identify = c("sg", "sl"), details = TRUE)
 }
 \arguments{
 \item{pre_values}{Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)}
@@ -25,6 +25,13 @@ If set to \code{FALSE} the third criterion wont be applied.}
 
 \item{sg_crit3_alpha}{Numeric, alpha for the student t-test (two-tailed) to determine the critical value to be used for the third criterion.
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
+
+\item{sg_crit3_adjust}{Logical, specify whether critical value gets adjusted for missingness, see Lutz et al. (2013) and the documentation of this R package for further details.
+This argument is set to \code{TRUE} by default adjusting the critical value for missingness as described in the package documentation and Lutz et al. (2013):
+A critical value of 2.776 is used when all three data points before and after a potential gain are available,
+where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
+and where one datapoint is missing both before and after the gain a critical value of 4.303 is used.
+If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for sudden gains.}
 
 \item{identify}{String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).}
 

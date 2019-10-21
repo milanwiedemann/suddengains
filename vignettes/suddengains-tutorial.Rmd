@@ -144,27 +144,43 @@ sgdata_select <- select_cases(data = sgdata,
 
 # Identification of sudden gains
 
-## Define cut-off
+## Define cut-off for first criterion
 
-This function calculates a cut-off value to use for the first sudden gains criterion. It follows suggestions from @Stiles2003 using the Reliable Change Index [RCI, @Jacobson1991].
-The first 4 elements of the output list return the values that were used to calculate the the cut-off:
+This function calculates a cut-off value to use for the first sudden gains criterion based on the Reliable Change Index [RCI, @Jacobson1991].
+The following 5 elements are returned by the function
 
-- `standard_deviation_pre`: Standard deviation of the variable specified in `tx_start_var_name`
-- `reliability`: If `data_item` is provided the internal consistency (Cronbach's alpha) at baseline will be calculated.
-  An alternative option is to enter a value for the baseline reliability using the `reliability` argument.
-- `standard_error_measurement`: Standard error of measurement
-- `sdiff`: Standard error of the difference between  two test scores
+- `sd`: Standard deviation manually endered using the `sd` argument or the standard deviation of the values specified in `data_sd`
+- `reliability`: Reliability of the measure manually specified in `reliability` or the internal consistency (Cronbach's alpha) calculated from the item-by-item data specified in `data_reliability`.
+- `standard_error_measurement`: Standard error of measurement, see formula below:
+
+$$
+\text{standard_error_measurement} = {\text{sd}} \times \sqrt{1-\text{reliability}}
+$$
+
+
+- `standard_error_difference`: Standard error of the difference between two test scores, see formula below:
+
+$$
+\text{standard_error_difference} = \sqrt{2\times (\text{standard_error_measurement})^2}
+$$
+
+
+- `reliable_change_value`: Value that is considered to reflect reliable change on a measure [@Jacobson1991]. This value is calculated using:
+
+$$\text{reliable_change_value} = 1.96 \times \text{standard_error_difference}$$
 
 The last element of the list `sg_crit1_cutoff` can be used as a cut-off value for the first sudden gains criterion.
 
-```{r}
-# Test define_crit1_cutoff function ----
-# define_crit1_cutoff(data_sessions = sgdata,
-#                     data_item = NULL,
-#                     tx_start_var_name = "bdi_s0",
-#                     tx_end_var_name = "bdi_s12",
-#                     reliability = 0.91)
+```{r, eval=FALSE}
+# Define cut-off value for first SG criterion
+# The sd and the reliability are specified manually
+define_crit1_cutoff(sd = 10.5,
+                    reliability = 0.931)
 
+# The reliability is specified manually
+# The sd gets calculated from variable "bdi_s0" in "sgdata" 
+define_crit1_cutoff(data_sd = sgdata$bdi_s0,
+                    reliability = 0.931)
 ```
 
 ## Identify sudden gains and losses

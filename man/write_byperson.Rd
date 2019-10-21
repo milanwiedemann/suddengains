@@ -16,6 +16,7 @@ write_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
 
 \item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 If set to \code{NULL} the first criterion wont be applied.}
 
 \item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}

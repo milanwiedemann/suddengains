@@ -6,7 +6,8 @@
 \usage{
 identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
   sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  identify_sg_1to2 = FALSE, crit123_details = FALSE)
+  sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE,
+  crit123_details = FALSE)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}
@@ -16,6 +17,7 @@ identify_sg(data, id_var_name, sg_var_list, sg_crit1_cutoff,
 \item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
 \item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 If set to \code{NULL} the first criterion wont be applied.}
 
 \item{sg_crit2_pct}{Numeric, specifying the percentage change to be used for the second sudden gains criterion.
@@ -26,6 +28,13 @@ If set to \code{FALSE} the third criterion wont be applied.}
 
 \item{sg_crit3_alpha}{Numeric, alpha for the two-tailed student t-test to determine the critical value to be used for the third criterion.
 Degrees of freedom are based on the number of available data in the three sessions preceding the gain and the three sessions following the gain.}
+
+\item{sg_crit3_adjust}{Logical, specify whether critical value gets adjusted for missingness, see Lutz et al. (2013) and the documentation of this R package for further details.
+This argument is set to \code{TRUE} by default adjusting the critical value for missingness as described in the package documentation and Lutz et al. (2013):
+A critical value of 2.776 is used when all three data points before and after a potential gain are available,
+where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
+and where one datapoint is missing both before and after the gain a critical value of 4.303 is used.
+If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for sudden gains.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
@@ -50,5 +59,7 @@ identify_sg(data = sgdata,
                             "bdi_s10", "bdi_s11", "bdi_s12"))
 }
 \references{
+Lutz, W., Ehrlich, T., Rubel, J., Hallwachs, N., Röttger, M.-A., Jorasz, C., … Tschitsaz-Stucki, A. (2013). The ups and downs of psychotherapy: Sudden gains and sudden losses identified with session reports. Psychotherapy Research, 23(1), 14–24. \url{https://doi.org/10.1080/10503307.2012.693837}.
+
 Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
 }

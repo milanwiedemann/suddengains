@@ -6,6 +6,7 @@
 #' For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' If set to \code{NULL} the second criterion wont be applied.
@@ -48,12 +49,10 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
   multiple_sg_select <- base::match.arg(multiple_sg_select)
   identify <- base::match.arg(identify)
 
-
   # If data_is_bysg arguement is FALSE run the create_bysg function
   # If data_is_bysg arguement is TRUE dont run the create_bysg function and assume that the data already is in the right format
   # to create the byperson dataset
   if (data_is_bysg == FALSE) {
-
     data_bysg <- create_bysg(data = data,
                              id_var_name = id_var_name,
                              sg_var_list = sg_var_list,
@@ -66,17 +65,10 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
                              sg_measure_name = sg_measure_name,
                              identify_sg_1to2 = identify_sg_1to2,
                              identify = identify)
-
   } else if (data_is_bysg == TRUE) {
-
     # Implement checks that test whether specific variables are present in the data set, e.g. "sg_session_n", "sg_magnitude" ...
-
     data_bysg <- data
-
   }
-
-
-
 
   if (multiple_sg_select == "first") {
 
@@ -119,11 +111,9 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
       dplyr::filter(sg_magnitude == base::max(sg_magnitude)) %>%
       dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
       dplyr::ungroup()
-
   }
 
-
-  # Join dataset
+  # Join datasets
   data_byperson <- bysg_data_select %>%
     dplyr::full_join(data, by = id_var_name) %>%
     tidyr::replace_na(list(sg_crit123 = 0, sg_freq_byperson = 0))

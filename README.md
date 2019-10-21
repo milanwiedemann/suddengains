@@ -42,7 +42,7 @@ The `suddengains` package comes with a range of features which can be categorise
 
 1. Functions to identify sudden gains:
   - `select_cases()`: Select sample providing enough data to identify sudden gains
-  - `define_crit1_cutoff()`: Uses modified RCI formula to determine a cut-off value for criterion 1
+  - `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off value for criterion 1
   - `identify_sg()`: Identifies sudden gains
   - `identify_sl()`: Identifies sudden losses
   - `check_interval()`: Checks if a given interval is a sudden gain/loss
@@ -99,10 +99,7 @@ The function has the option to calculate Chronbach's a based in item-by-item dat
 
 ```r
 # Define cut-off for first sudden gains criterion using the reliable change index
-define_crit1_cutoff(data_sessions = sgdata,
-                    data_item = NULL,
-                    tx_start_var_name = "bdi_s0",
-                    tx_end_var_name = "bdi_s12",
+define_crit1_cutoff(sd = 10.5,
                     reliability = 0.93)
 ```
 

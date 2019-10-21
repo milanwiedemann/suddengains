@@ -5,6 +5,7 @@
 #' @param pre_values Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)
 #' @param post_values Vector, three post gain/loss values to be checked for a sudden gain/loss (n+1, n+2, n+3)
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
+#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' If set to \code{NULL} the second criterion wont be applied.
@@ -63,7 +64,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
 
     # Check arguments
     identify <- base::match.arg(identify)
-
 
         # prepare some stuff for printing results lalala
         if (identify == "sg") {
@@ -136,7 +136,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
 
             # Multiply dataframes with information on whether sudden gains criteria 1, 2, and 3 are met
             # 1 = criterion is met, 0 = criterion is not met, NA = not enough data to identify sudden gains
-
             if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == FALSE) {
                 crit123 <- crit1 * TRUE
                 base::message("First sudden gains criterion was applied.")
@@ -160,7 +159,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
                 base::message("First, second, and third sudden gains criteria were applied.")
             }
         }
-
 
     if (details == FALSE) {
 
@@ -195,7 +193,6 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
                         "## SD post: ", round(sd_post, 3),
 
                          sep = "")
-
 
         # Format results and print
         cat(results)

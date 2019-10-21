@@ -1,3 +1,12 @@
+# suddengains 0.4.0
+
+- Fix error in formula used to define a cutoff value for the first sudden gains criteria based on the Reliable Change Index (RCI; Jacobson & Truax, 1991) in the function `define_crit1_cutoff()`
+- Add formulas used to calculate standard error of measurement, standard error of difference, and relaible change value to help file of `define_crit1_cutoff()`
+- Simplify `define_crit1_cutoff()` function arguments 
+- Add links to functions of other R packages to help files
+- Add links to functions of suddengains package to help files
+- Add option to not adjust critical value in third sudden gains criterion
+
 # suddengains 0.3.1
 
 - Make compaible with tidyr v1.0.0

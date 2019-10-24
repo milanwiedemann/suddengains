@@ -202,6 +202,10 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
 
     } else if (details == TRUE)
 
+        if (sg_crit3_adjust == FALSE){
+            sg_crit3_alpha <- "FALSE"
+        }
+
         # Create results object
         results <- paste("# Check ", tolower(identify_string), "\n",
                          "## Criterion 1: ", crit1, "\n",

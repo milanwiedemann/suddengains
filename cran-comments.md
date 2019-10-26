@@ -19,18 +19,15 @@
 * passing
 
 ### R-hub builder
-* Build ID: suddengains_0.3.1.tar.gz-f304f7e54f0a49e8892140b7369d1b2e
+* Build ID: suddengains_0.4.0.tar.gz-9752aa7b30904270b85eb6779e91fd09
 * Platform: Fedora Linux, R-devel, clang, gfortran
 * There were no ERRORs or WARNINGs or NOTES
 
-* Build ID: suddengains_0.3.1.tar.gz-df1ea2f5c05446e1b00a37270eb2dbad
+* Build ID: suddengains_0.4.0.tar.gz-e7fd9b69b7ea401ab80067682d0bf250
 * Platform: Ubuntu Linux 16.04 LTS, R-release, GCC
 * There were no ERRORs or WARNINGs or NOTES
 
-* Build ID: suddengains_0.3.1.tar.gz-b5915c11122948a9a67b4be0cff879a6
+* Build ID: suddengains_0.4.0.tar.gz-28045e4e479f424ab163ee2fef5597cb
 * Platform: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * There were no ERRORs or WARNINGs
 * There was one NOTE regarding url links in the help files
-
-
-

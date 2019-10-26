@@ -112,12 +112,14 @@ or on [PsyArXiv](https://psyarxiv.com/2wa84/).
 
 ### 1\. Functions to identify sudden gains
 
-To identify sudden gains/losses you can use the `identify_sg` and
-`identify_sl` functions. These functions return a data frame with new
-variables indicating for each between-session interval whether a sudden
-gain/loss was identified. For example the variable `sg_2to3` holds
-information whether a sudden gains occurred from session two to three,
-with two being the pregain and three being the postgain session.
+To identify sudden gains/losses you can use the **`identify_sg()`** and
+**`identify_sl()`** functions. These functions return a data frame with
+new variables indicating for each between-session interval whether a
+sudden gain/loss was identified. For example the variable `sg_2to3`
+holds information whether a sudden gains occurred from session two to
+three, with two being the pregain and three being the postgain session.
+Further functions to help with identifying sudden gains are listed
+above.
 
 ``` r
 identify_sg(data = sgdata,
@@ -139,7 +141,8 @@ provides two options for output datasets: The **`create_bysg()`**
 function creates a dataset structured with one row per sudden gain, and
 the **`create_byperson()`** function creates a dataset structured with
 one row per person, indicating whether or not they experienced a sudden
-gain. The **`create_bysg()`** function is shown below.
+gain. The **`create_bysg()`** function is shown below. More functions to
+help with creating datasets for further analyses are listed above.
 
 ``` r
 # Create output dataset with one row per sudden gain
@@ -161,8 +164,10 @@ bysg <- create_bysg(data = sgdata,
 ### 3\. Helper functions to visualise and report sudden gains
 
 The **`plot_sg()`** function plots the ‘average’ sudden gain, and can be
-used to show changes around the sudden
-gain.
+used to show changes around the sudden gain. The
+**`plot_sg_trajectories()`** can be used to visualise trajectories for a
+selection of individual
+cases.
 
 ``` r
 # Create plot of average change in depression symptoms (BDI) around the gain
@@ -183,6 +188,34 @@ plot_sg(data = bysg,
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+``` r
+# Visualise trajectories for a selection of individual cases
+plot_sg_trajectories(data = sgdata,
+                     id_var = "id",
+                     select_id_list = c("2", "4", "5", "9"),
+                     var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", 
+                                  "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8", 
+                                  "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
+                     show_id = TRUE,
+                     id_label_size = 4,
+                     label.padding = .2,
+                     show_legend = TRUE,
+                     colour = "viridis",
+                     viridis_option = "D",
+                     viridis_begin = 0,
+                     viridis_end = 1,
+                     connect_missing = TRUE,
+                     scale_x_num = TRUE,
+                     scale_x_num_start = 1,
+                     apaish = TRUE,
+                     xlab = "Session", 
+                     ylab = "BDI")
+#> Warning: Removed 2 rows containing missing values (geom_point).
+#> Warning: Removed 2 rows containing missing values (geom_label_repel).
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ### 4\. Helper functions to export data sets to SPSS, Excel, Stata, and CSV
 

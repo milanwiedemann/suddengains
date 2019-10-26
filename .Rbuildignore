@@ -5,3 +5,4 @@
 ^\.httr-oauth$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^README\.Rmd$

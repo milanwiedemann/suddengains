@@ -51,7 +51,7 @@ For an example of a missing value see **bdi_s2** for **id = 2** in the table bel
 
 ## Depression symptoms
 
-```{r data-bdi, echo = FALSE}
+```{r data-bdi, echo = FALSE, screenshot.force = FALSE}
 
 sgdata_bdi <- sgdata %>% 
     dplyr::select(id, 
@@ -69,7 +69,7 @@ DT::datatable(sgdata_bdi,
 
 ## Rumination 
 
-```{r data-rq, echo = FALSE}
+```{r data-rq, echo = FALSE, screenshot.force = FALSE}
 
 sgdata_rq <- sgdata %>% 
     dplyr::select(id, 
@@ -411,7 +411,7 @@ bysg <- create_bysg(data = sgdata,
                     identify = "sg")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, screenshot.force = FALSE}
 DT::datatable(bysg,
               rownames = FALSE,
               extensions = 'FixedColumns',
@@ -438,7 +438,7 @@ bysl <- create_bysg(data = sgdata,
 ```
 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, screenshot.force = FALSE}
 DT::datatable(bysl,
               rownames = FALSE,
               extensions = 'FixedColumns',
@@ -496,7 +496,7 @@ byperson_largest <- create_byperson(data = sgdata,
                                     multiple_sg_select = "largest")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, screenshot.force = FALSE}
 DT::datatable(byperson_largest,
           rownames = FALSE,
           extensions = 'FixedColumns',

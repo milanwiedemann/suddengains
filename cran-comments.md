@@ -31,3 +31,10 @@
 * Platform: Windows Server 2008 R2 SP1, R-devel, 32/64 bit
 * There were no ERRORs or WARNINGs
 * There was one NOTE regarding url links in the help files
+
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Fixed the links in the README.md file
+* Deleted the old README_OLD.md file
+* Updated the vignette to avoid warnings that might come from the DT package 

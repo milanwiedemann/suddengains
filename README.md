@@ -107,7 +107,7 @@ vignette is only available in R when you install the package from CRAN.
 
 Below are some examples illustrating the suddengains package. More
 details can be found in the
-[Vignette](https://cran.r-project.org/web/packages/suddengains/vignettes/suddengains-tutorial.html)
+[Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html)
 or on [PsyArXiv](https://psyarxiv.com/2wa84/).
 
 ### 1\. Functions to identify sudden gains

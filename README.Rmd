@@ -79,7 +79,7 @@ The `suddengains` package comes with a range of features which can be categorise
 A detailed illustration of all functions can be found in the vignette on [CRAN](https://CRAN.R-project.org/package=suddengains).
 Note that the vignette is only available in R when you install the package from CRAN.
 
-## Eamples
+## Examples
 
 Below are some examples illustrating the suddengains package.
 More details can be found in the [Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html) or on [PsyArXiv](https://psyarxiv.com/2wa84/).
@@ -130,7 +130,7 @@ bysg <- create_bysg(data = sgdata,
 The **`plot_sg()`** function plots the 'average' sudden gain, and can be used to show changes around the sudden gain.
 The **`plot_sg_trajectories()`** can be used to visualise trajectories for a selection of individual cases.
 
-```{r, fig.width = 3.5, fig.height = 3.5, dpi=200}
+```{r, fig.width = 3.5, fig.height = 3.5, dpi=200, out.width = "50%"}
 # Create plot of average change in depression symptoms (BDI) around the gain
 plot_sg(data = bysg,
         id_var_name = "id",
@@ -142,7 +142,7 @@ plot_sg(data = bysg,
         colour_single = "#239b89ff")
 ```
 
-```{r, fig.width = 5, fig.height = 3.5, dpi=200}
+```{r, fig.width = 6, fig.height = 3.5, dpi=200, out.width = "80%"}
 # Visualise trajectories for a selection of individual cases
 plot_sg_trajectories(data = sgdata,
                      id_var = "id",

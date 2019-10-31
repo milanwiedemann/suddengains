@@ -39,9 +39,9 @@
 <meta property="og:description" content="Define a cut-off value for the first sudden gains criterion based on the Reliable Change Index (RCI; Jacobson &amp;amp; Truax, 1991) using an estimate for the standard deviation (sd) of the normal population and the reliability of the scale.
 These values can be entered manually using the arguments sd and reliability or extracted from data using the arguments data_sd and data_reliability.
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson &amp;amp; Truax, 1991).
-$$se = sd * \sqrt(1 - reliability)$$
-$$sdiff = \sqrt(2 * se^2)$$
-$$reliable_change_value = 1.96 * sdiff$$" />
+$$se = sd * \sqrt{(1 - reliability)}$$
+$$sdiff = \sqrt{(2 * se^2)}$$
+$$\text{reliable_change_value} = 1.96 * sdiff$$" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,9 +134,9 @@ $$reliable_change_value = 1.96 * sdiff$$" />
     <p>Define a cut-off value for the first sudden gains criterion based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991) using an estimate for the standard deviation (sd) of the normal population and the reliability of the scale.
 These values can be entered manually using the arguments <code>sd</code> and <code>reliability</code> or extracted from data using the arguments <code>data_sd</code> and <code>data_reliability</code>.
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
-$$se = sd * \sqrt(1 - reliability)$$
-$$sdiff = \sqrt(2 * se^2)$$
-$$reliable_change_value = 1.96 * sdiff$$</p>
+$$se = sd * \sqrt{(1 - reliability)}$$
+$$sdiff = \sqrt{(2 * se^2)}$$
+$$\text{reliable_change_value} = 1.96 * sdiff$$</p>
     </div>
 
     <pre class="usage"><span class='fu'>define_crit1_cutoff</span>(<span class='kw'>sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>reliability</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data_sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,

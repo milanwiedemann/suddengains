@@ -3,9 +3,9 @@
 #' @description Define a cut-off value for the first sudden gains criterion based on the Reliable Change Index (RCI; Jacobson & Truax, 1991) using an estimate for the standard deviation (sd) of the normal population and the reliability of the scale.
 #' These values can be entered manually using the arguments \code{sd} and \code{reliability} or extracted from data using the arguments \code{data_sd} and \code{data_reliability}.
 #' This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
-#' \deqn{se = sd * \sqrt(1 - reliability)}
-#' \deqn{sdiff = \sqrt(2 * se^2)}
-#' \deqn{reliable_change_value = 1.96 * sdiff}
+#' \deqn{se = sd * \sqrt{(1 - reliability)}}
+#' \deqn{sdiff = \sqrt{(2 * se^2)}}
+#' \deqn{\text{reliable_change_value} = 1.96 * sdiff}
 #' @param sd Numeric, standard deviation of normal population or standard deviation at baseline.
 #' This argument is not needed if a vector with pretreatment scores is specified in the \code{data_sd} argument.
 #' @param reliability Numeric, between 0 and 1 indicating reliability of the scale.

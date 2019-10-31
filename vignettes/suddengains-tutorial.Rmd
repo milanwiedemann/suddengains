@@ -664,7 +664,7 @@ plot_byperson_group <- plot_sg(data = byperson_group_select,
 
 The plot below shows the average gain for each group.
 
-```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+```{r, fig.show = 'hold', fig.width=4.4, fig.height=3.2}
 plot_byperson_group
 ```
 
@@ -727,7 +727,7 @@ plot_trajectories_2 <- bysg %>%
                          ylab = "BDI")
 ```
 
-```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+```{r, fig.show = 'hold', fig.width=6.5, fig.height=4}
 # 1. Show all cases with a sudden gain at session 3
 plot_trajectories_2
 ```
@@ -758,7 +758,7 @@ plot_trajectories_3 <- byperson_first %>%
                          ylab = "BDI")
 ```
 
-```{r, fig.show = 'hold', fig.width=5.5, fig.height=4}
+```{r, fig.show = 'hold', fig.width=6.5, fig.height=4}
 # 2. Show 3 cases (select_n = 3) with more than 1 gain (dplyr::filter(sg_freq_byperson > 1))
 plot_trajectories_3
 ```

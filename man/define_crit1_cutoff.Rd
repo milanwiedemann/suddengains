@@ -4,8 +4,12 @@
 \alias{define_crit1_cutoff}
 \title{Define cut-off value for first SG criterion}
 \usage{
-define_crit1_cutoff(sd = NULL, reliability = NULL, data_sd = NULL,
-  data_reliability = NULL)
+define_crit1_cutoff(
+  sd = NULL,
+  reliability = NULL,
+  data_sd = NULL,
+  data_reliability = NULL
+)
 }
 \arguments{
 \item{sd}{Numeric, standard deviation of normal population or standard deviation at baseline.
@@ -31,7 +35,7 @@ These values can be entered manually using the arguments \code{sd} and \code{rel
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 \deqn{se = sd * \sqrt{(1 - reliability)}}
 \deqn{sdiff = \sqrt{(2 * se^2)}}
-\deqn{\text{reliable_change_value} = 1.96 * sdiff}
+\deqn{reliable change value = 1.96 * sdiff}
 }
 \examples{
 # Define cut-off value for first SG criterion

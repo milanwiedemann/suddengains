@@ -4,12 +4,25 @@
 \alias{plot_sg}
 \title{Plot average change in variables around the sudden gain}
 \usage{
-plot_sg(data, id_var_name, tx_start_var_name, tx_end_var_name,
-  sg_pre_post_var_list, ylab, xlab = "Session",
-  colour_single = "#239b89ff", colour_group = c("viridis", "ggplot",
-  "grey"), viridis_option = c("D", "A", "B", "C"), viridis_begin = 0,
-  viridis_end = 1, group_var_name = NULL, group_levels = NULL,
-  group_labels = NULL, group_title = NULL, apaish = TRUE)
+plot_sg(
+  data,
+  id_var_name,
+  tx_start_var_name,
+  tx_end_var_name,
+  sg_pre_post_var_list,
+  ylab,
+  xlab = "Session",
+  colour_single = "#239b89ff",
+  colour_group = c("viridis", "ggplot", "grey"),
+  viridis_option = c("D", "A", "B", "C"),
+  viridis_begin = 0,
+  viridis_end = 1,
+  group_var_name = NULL,
+  group_levels = NULL,
+  group_labels = NULL,
+  group_title = NULL,
+  apaish = TRUE
+)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} dataset created using the function \code{\link{create_bysg}} or \code{\link{create_byperson}}.}

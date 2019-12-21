@@ -4,8 +4,14 @@
 \alias{extract_values}
 \title{Extract values around the sudden gain}
 \usage{
-extract_values(data, id_var_name, extract_var_list, extract_measure_name,
-  start_numbering = 1, add_to_data = TRUE)
+extract_values(
+  data,
+  id_var_name,
+  extract_var_list,
+  extract_measure_name,
+  start_numbering = 1,
+  add_to_data = TRUE
+)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} data set in wide format with the variable \code{sg_session_n} and all variables specified in \code{extract_var_list}.}

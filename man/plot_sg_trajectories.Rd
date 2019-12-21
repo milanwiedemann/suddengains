@@ -4,13 +4,30 @@
 \alias{plot_sg_trajectories}
 \title{Plot individual trajectories}
 \usage{
-plot_sg_trajectories(data, id_var, var_list, select_id_list = NULL,
-  select_n = NULL, show_id = TRUE, show_legend = TRUE,
-  legend_title = "ID", id_label_size = 2, connect_missing = TRUE,
-  colour = c("viridis", "ggplot", "grey"), viridis_option = c("D", "A",
-  "B", "C"), viridis_begin = 0, viridis_end = 1, line_alpha = 1,
-  point_alpha = 1, xlab = "X", ylab = "Y", scale_x_num = FALSE,
-  scale_x_num_start = 1, apaish = TRUE, ...)
+plot_sg_trajectories(
+  data,
+  id_var,
+  var_list,
+  select_id_list = NULL,
+  select_n = NULL,
+  show_id = TRUE,
+  show_legend = TRUE,
+  legend_title = "ID",
+  id_label_size = 2,
+  connect_missing = TRUE,
+  colour = c("viridis", "ggplot", "grey"),
+  viridis_option = c("D", "A", "B", "C"),
+  viridis_begin = 0,
+  viridis_end = 1,
+  line_alpha = 1,
+  point_alpha = 1,
+  xlab = "X",
+  ylab = "Y",
+  scale_x_num = FALSE,
+  scale_x_num_start = 1,
+  apaish = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{Dataset in wide format.}

@@ -19,8 +19,8 @@
 #' A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 #' where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 #' and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-#' If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
-#' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
+#' If set to \code{FALSE} the critical value set \code{in sg_crit3_adjust_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
+#' @param sg_crit3_adjust_critical_value Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.
@@ -49,7 +49,7 @@
 #'                 sg_measure_name = "bdi",
 #'                 multiple_sg_select = "largest")
 
-create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE) {
+create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776, identify_sg_1to2 = FALSE) {
 
   # Check arguments
   multiple_sg_select <- base::match.arg(multiple_sg_select)
@@ -67,6 +67,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
                              sg_crit3 = sg_crit3,
                              sg_crit3_alpha = sg_crit3_alpha,
                              sg_crit3_adjust = sg_crit3_adjust,
+                             sg_crit3_critical_value = sg_crit3_critical_value,
                              tx_start_var_name = tx_start_var_name,
                              tx_end_var_name = tx_end_var_name,
                              sg_measure_name = sg_measure_name,

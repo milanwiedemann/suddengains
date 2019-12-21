@@ -38,7 +38,7 @@
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"))
 #' @export
 
-identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
+identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
     # Create tibble necessary for further data manipulations
     data <- tibble::as_tibble(data)
@@ -122,13 +122,13 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
 
                     # Calculate critical value to be used based on how many pre and postgain sessions are available
                     if (sg_crit3_adjust == TRUE) {
-                        sg_crit3_critical_value <- base::abs(stats::qt(p = (sg_crit3_alpha_critical_value / 2), df = (sum_n_pre_post - 2)))
+                        sg_crit3_critical_value_set <- base::abs(stats::qt(p = (sg_crit3_alpha_critical_value / 2), df = (sum_n_pre_post - 2)))
                     } else if  (sg_crit3_adjust == FALSE) {
-                        sg_crit3_critical_value <- 2.776
+                        sg_crit3_critical_value_set <- sg_crit3_critical_value
                     }
 
                     # Test for third criterion using adjusted critical value
-                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > sg_crit3_critical_value * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
+                    crit3[row_i, col_j - 2] <- mean_pre - mean_post > sg_crit3_critical_value_set * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
 
                 # Add missing value if less than two pregain or postgain sessions are available
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {
@@ -151,9 +151,9 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                     crit123 <- crit3 * TRUE
                     base::message("Third sudden gains criterion was applied.")
                     if (sg_crit3_adjust == TRUE) {
-                        message("The critical value for the thrid criterion was adjusted for missingness.")
+                        message("The critical value for the third criterion was adjusted for missingness.")
                     } else if  (sg_crit3_adjust == FALSE) {
-                        message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                        message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
                     }
                     } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
                         crit123 <- crit1 * crit2
@@ -162,25 +162,25 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                             crit123 <- crit2 * crit3
                             base::message("Second and third sudden gains criteria were applied.")
                             if (sg_crit3_adjust == TRUE) {
-                                message("The critical value for the thrid criterion was adjusted for missingness.")
+                                message("The critical value for the third criterion was adjusted for missingness.")
                             } else if  (sg_crit3_adjust == FALSE) {
-                                message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                                message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
                             }
                             } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
                                 crit123 <- crit1 * crit3
                                 base::message("First and third sudden gains criteria were applied.")
                                 if (sg_crit3_adjust == TRUE) {
-                                    message("The critical value for the thrid criterion was adjusted for missingness.")
+                                    message("The critical value for the third criterion was adjusted for missingness.")
                                 } else if  (sg_crit3_adjust == FALSE) {
-                                    message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                                    message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
                                 }
                             } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
                                 crit123 <- crit1 * crit2 * crit3
                                 base::message("First, second, and third sudden gains criteria were applied.")
                                 if (sg_crit3_adjust == TRUE) {
-                                    message("The critical value for the thrid criterion was adjusted for missingness.")
+                                    message("The critical value for the third criterion was adjusted for missingness.")
                                 } else if  (sg_crit3_adjust == FALSE) {
-                                    message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                                    message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
                                 }
                             }
 

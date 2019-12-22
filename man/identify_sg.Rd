@@ -14,6 +14,7 @@ identify_sg(
   sg_crit3_alpha = 0.05,
   sg_crit3_adjust = TRUE,
   sg_crit3_critical_value = 2.776,
+  sg_crit3_individual_value = NULL,
   identify_sg_1to2 = FALSE,
   crit123_details = FALSE
 )
@@ -47,11 +48,18 @@ If set to \code{FALSE} the critical value set in \code{sg_crit3_critical_value} 
 
 \item{sg_crit3_critical_value}{Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
 
+\item{sg_crit3_individual_value}{String, specify a numeric variable name in \code{data} with one critical value in each row, i.e. one coritical value for each person.}
+
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden gains from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 
 \item{crit123_details}{Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
 Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.}
+
+\item{sg_crit3_min_x}{Numeric, specifying the minimum number of available data points that have to be present to identify sudden gains in a given sequence of three repeated measurements.
+For example using \code{sg_crit3_min_x = 3} requires available data in all three pre and post gain values, using \code{sg_crit3_min_x = 2} only requires two available scores in the three pre and post gain values.
+In the case of \code{sg_crit3_min_x = 1} only one available value is required before and after the gain.
+This means that any pair of consequtive data points will be analysed and can only be used if a variable with individual critical values is specified for each person in \code{sg_crit3_individual_value}.}
 }
 \value{
 A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.

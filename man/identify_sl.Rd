@@ -43,7 +43,9 @@ This argument is set to \code{TRUE} by default adjusting the critical value for 
 A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
+If set to \code{FALSE} the critical value set in \code{sg_crit3_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
+
+\item{sg_crit3_critical_value}{Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}

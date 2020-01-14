@@ -64,7 +64,7 @@
 write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name,
                            sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776,
                            identify = c("sg", "sl"), identify_sg_1to2 = FALSE,
-                           multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE,
+                           multiple_sg_select = c("first", "last", "smallest", "largest"), data_is_bysg = FALSE,
                            format = c("CSV", "SPSS", "STATA", "Excel"), path, stata_version = 14, ...) {
 
     # Check arguments

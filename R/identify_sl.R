@@ -21,7 +21,7 @@
 #' and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
 #' If set to \code{FALSE} the critical value set in \code{sg_crit3_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
 #' @param sg_crit3_critical_value Numeric, if  the argument \code{sg_crit3_adjust = FALSE}, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
-#' @param sg_crit3_individual_value String, specify a numeric variable name in \code{data} with one critical value in each row, i.e. one coritical value for each person.
+#' @param sg_crit1_individual_cutoff String, specify a numeric variable name in \code{data} with one critical value in each row, i.e. one critical value for each person.
 #' @param sg_crit3_min_x Numeric, specifying the minimum number of available data points that have to be present to identify sudden gains in a given sequence of three repeated measurements.
 #' For example using \code{sg_crit3_min_x = 3} requires available data in all three pre and post gain values, using \code{sg_crit3_min_x = 2} only requires two available scores in the three pre and post gain values.
 #' In the case of \code{sg_crit3_min_x = 1} only one available value is required before and after the gain.

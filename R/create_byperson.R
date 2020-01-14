@@ -49,7 +49,7 @@
 #'                 sg_measure_name = "bdi",
 #'                 multiple_sg_select = "largest")
 
-create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smalles", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776, identify_sg_1to2 = FALSE) {
+create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_start_var_name, tx_end_var_name, sg_measure_name, multiple_sg_select = c("first", "last", "smallest", "largest"), data_is_bysg = FALSE, identify = c("sg", "sl"), sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776, identify_sg_1to2 = FALSE) {
 
   # Check arguments
   multiple_sg_select <- base::match.arg(multiple_sg_select)

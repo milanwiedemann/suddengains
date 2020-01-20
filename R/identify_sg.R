@@ -53,8 +53,10 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
     }
 
-    if (sg_crit1_cutoff < 0) {
-        stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be positive to identify sudden gains.", call. = FALSE)
+    if (base::is.null(sg_crit1_cutoff) == FALSE) {
+        if (sg_crit1_cutoff < 0 ) {
+            stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be positive to identify sudden gains.", call. = FALSE)
+        }
     }
 
     # Set p for qt function needed for 3rd criterion

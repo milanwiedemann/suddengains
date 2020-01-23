@@ -12,7 +12,7 @@ create_byperson(
   tx_start_var_name,
   tx_end_var_name,
   sg_measure_name,
-  multiple_sg_select = c("first", "last", "smalles", "largest"),
+  multiple_sg_select = c("first", "last", "smallest", "largest"),
   data_is_bysg = FALSE,
   identify = c("sg", "sl"),
   sg_crit2_pct = 0.25,

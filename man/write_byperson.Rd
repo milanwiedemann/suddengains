@@ -19,7 +19,7 @@ write_byperson(
   sg_crit3_critical_value = 2.776,
   identify = c("sg", "sl"),
   identify_sg_1to2 = FALSE,
-  multiple_sg_select = c("first", "last", "smalles", "largest"),
+  multiple_sg_select = c("first", "last", "smallest", "largest"),
   data_is_bysg = FALSE,
   format = c("CSV", "SPSS", "STATA", "Excel"),
   path,

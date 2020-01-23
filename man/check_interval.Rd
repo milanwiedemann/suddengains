@@ -12,6 +12,7 @@ check_interval(
   sg_crit3 = TRUE,
   sg_crit3_alpha = 0.05,
   sg_crit3_adjust = TRUE,
+  sg_crit3_critical_value = 2.776,
   identify = c("sg", "sl"),
   details = TRUE
 )

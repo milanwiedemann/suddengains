@@ -194,10 +194,10 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
 
         # Create results object
         results <- paste("# Check ", tolower(identify_string), "\n",
-                         "## Criterion 1: ", crit1, "\n",
-                         "## Criterion 2: ", crit2, "\n",
-                         "## Criterion 3: ", crit3, "\n",
-                         "## ", identify_string, ": ", as.logical(crit123),
+                         "## Met Criterion 1: ", ifelse(crit1 == TRUE, "YES", "NO"), "\n",
+                         "## Met Criterion 2: ", ifelse(crit2 == TRUE, "YES", "NO"), "\n",
+                         "## Met Criterion 3: ", ifelse(crit3 == TRUE, "YES", "NO"), "\n",
+                         "## ", identify_string, ": ", ifelse(as.logical(crit123) == TRUE, "YES", "NO"),
                          sep = "")
 
     } else if (details == TRUE)
@@ -208,23 +208,22 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
 
         # Create results object
         results <- paste("# Check ", tolower(identify_string), "\n",
-                         "## Criterion 1: ", crit1, "\n",
-                         "## Criterion 2: ", crit2, "\n",
-                         "## Criterion 3: ", crit3, "\n",
-                         "## ", identify_string, ": ", as.logical(crit123), "\n", "\n",
+                         "## Met Criterion 1: ", ifelse(crit1 == TRUE, "YES", "NO"), "\n",
+                         "## Met Criterion 2: ", ifelse(crit2 == TRUE, "YES", "NO"), "\n",
+                         "## Met Criterion 3: ", ifelse(crit3 == TRUE, "YES", "NO"), "\n",
+                         "## ", identify_string, ": ", ifelse(as.logical(crit123) == TRUE, "YES", "NO"), "\n", "\n",
 
                         "# Detailed output\n",
-                        "## Criterion 1, Cut-off: ", sg_crit1_cutoff, "\n",
-                        "## Criterion 2, Percentage change threshhold: ", sg_crit2_pct, "\n",
-                        "## Criterion 3, Alpha: ", sg_crit3_alpha, "\n",
-                        "## Criterion 3, Critical value: ", round(sg_crit3_critical_value_set, 3), "\n",
+                        "## Criterion 1: Cut-off: ", sg_crit1_cutoff, "\n",
+                        "## Criterion 2: Percentage change threshhold: ", sg_crit2_pct * 100, "%\n",
+                        "## Criterion 3: Adjusted: ", ifelse(sg_crit3_adjust == TRUE, "YES", "NO") , ", Critical value: ", round(sg_crit3_critical_value_set, 3), "\n",
 
                         "## Number of pre gain values present: ", sum_n_pre, "\n",
                         "## Number of post gain values present: ", sum_n_post, "\n",
-                        "## Mean pre: ", round(mean_pre, 3), "\n",
-                        "## Mean post: ", round(mean_post, 3), "\n",
-                        "## SD pre: ", round(sd_pre, 3), "\n",
-                        "## SD post: ", round(sd_post, 3),
+                        "## Mean of pre gain values: ", round(mean_pre, 3), "\n",
+                        "## Mean of post gain values: ", round(mean_post, 3), "\n",
+                        "## SD of pre gain values: ", round(sd_pre, 3), "\n",
+                        "## SD of post gain values: ", round(sd_post, 3),
 
                          sep = "")
 

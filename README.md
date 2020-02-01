@@ -39,11 +39,11 @@ You can install the released version of suddengains from
 install.packages("suddengains")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And this development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("milanwiedemann/suddengains")
+devtools::install_github("milanwiedemann/suddengains", ref = "plos-one-revisions")
 ```
 
 ## Overview of the functions

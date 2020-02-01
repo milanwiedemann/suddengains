@@ -32,14 +32,7 @@ add papers yourself.
 
 ## Installation
 
-You can install the released version of suddengains from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("suddengains")
-```
-
-And this development version from [GitHub](https://github.com/) with:
+You can install this development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")

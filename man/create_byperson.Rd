@@ -4,12 +4,23 @@
 \alias{create_byperson}
 \title{Create a data set with one gain per person}
 \usage{
-create_byperson(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_measure_name,
+create_byperson(
+  data,
+  sg_crit1_cutoff,
+  id_var_name,
+  sg_var_list,
+  tx_start_var_name,
+  tx_end_var_name,
+  sg_measure_name,
   multiple_sg_select = c("first", "last", "smalles", "largest"),
-  data_is_bysg = FALSE, identify = c("sg", "sl"),
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE)
+  data_is_bysg = FALSE,
+  identify = c("sg", "sl"),
+  sg_crit2_pct = 0.25,
+  sg_crit3 = TRUE,
+  sg_crit3_alpha = 0.05,
+  sg_crit3_adjust = TRUE,
+  identify_sg_1to2 = FALSE
+)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}

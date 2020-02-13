@@ -4,11 +4,21 @@
 \alias{create_bysg}
 \title{Create a data set with one row for each sudden gain/loss}
 \usage{
-create_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_measure_name,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  sg_crit3_adjust = TRUE, identify = c("sg", "sl"),
-  identify_sg_1to2 = FALSE)
+create_bysg(
+  data,
+  sg_crit1_cutoff,
+  id_var_name,
+  sg_var_list,
+  tx_start_var_name,
+  tx_end_var_name,
+  sg_measure_name,
+  sg_crit2_pct = 0.25,
+  sg_crit3 = TRUE,
+  sg_crit3_alpha = 0.05,
+  sg_crit3_adjust = TRUE,
+  identify = c("sg", "sl"),
+  identify_sg_1to2 = FALSE
+)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}

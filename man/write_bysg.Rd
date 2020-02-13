@@ -4,12 +4,25 @@
 \alias{write_bysg}
 \title{Write a sudden gains data frame (bysg) to CSV, SPSS, STATA or Excel files}
 \usage{
-write_bysg(data, sg_crit1_cutoff, id_var_name, sg_var_list,
-  tx_start_var_name, tx_end_var_name, sg_measure_name,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  sg_crit3_adjust = TRUE, identify = c("sg", "sl"),
-  identify_sg_1to2 = FALSE, format = c("CSV", "SPSS", "STATA",
-  "Excel"), path, stata_version = 14, ...)
+write_bysg(
+  data,
+  sg_crit1_cutoff,
+  id_var_name,
+  sg_var_list,
+  tx_start_var_name,
+  tx_end_var_name,
+  sg_measure_name,
+  sg_crit2_pct = 0.25,
+  sg_crit3 = TRUE,
+  sg_crit3_alpha = 0.05,
+  sg_crit3_adjust = TRUE,
+  identify = c("sg", "sl"),
+  identify_sg_1to2 = FALSE,
+  format = c("CSV", "SPSS", "STATA", "Excel"),
+  path,
+  stata_version = 14,
+  ...
+)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}

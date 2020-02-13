@@ -4,8 +4,12 @@
 \alias{rename_sg_vars}
 \title{Rename variable names to a generic and consistent format}
 \usage{
-rename_sg_vars(data, rename_var_list, new_var_str = "temp_var_",
-  start_numbering = 1)
+rename_sg_vars(
+  data,
+  rename_var_list,
+  new_var_str = "temp_var_",
+  start_numbering = 1
+)
 }
 \arguments{
 \item{data}{Dataframe in wide format.}

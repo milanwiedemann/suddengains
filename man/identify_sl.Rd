@@ -4,10 +4,18 @@
 \alias{identify_sl}
 \title{Identify sudden losses.}
 \usage{
-identify_sl(data, id_var_name, sg_var_list, sg_crit1_cutoff,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE,
-  crit123_details = FALSE)
+identify_sl(
+  data,
+  id_var_name,
+  sg_var_list,
+  sg_crit1_cutoff,
+  sg_crit2_pct = 0.25,
+  sg_crit3 = TRUE,
+  sg_crit3_alpha = 0.05,
+  sg_crit3_adjust = TRUE,
+  identify_sg_1to2 = FALSE,
+  crit123_details = FALSE
+)
 }
 \arguments{
 \item{data}{A data set in wide format including an ID variable and variables for each measurement point.}

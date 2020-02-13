@@ -4,9 +4,17 @@
 \alias{check_interval}
 \title{Check if a given interval is a sudden gain/loss}
 \usage{
-check_interval(pre_values, post_values, sg_crit1_cutoff,
-  sg_crit2_pct = 0.25, sg_crit3 = TRUE, sg_crit3_alpha = 0.05,
-  sg_crit3_adjust = TRUE, identify = c("sg", "sl"), details = TRUE)
+check_interval(
+  pre_values,
+  post_values,
+  sg_crit1_cutoff,
+  sg_crit2_pct = 0.25,
+  sg_crit3 = TRUE,
+  sg_crit3_alpha = 0.05,
+  sg_crit3_adjust = TRUE,
+  identify = c("sg", "sl"),
+  details = TRUE
+)
 }
 \arguments{
 \item{pre_values}{Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)}

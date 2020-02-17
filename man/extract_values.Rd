@@ -4,18 +4,29 @@
 \alias{extract_values}
 \title{Extract values around the sudden gain}
 \usage{
-extract_values(data, id_var_name, extract_var_list, extract_measure_name,
-  start_numbering = 1, add_to_data = TRUE)
+extract_values(
+  data,
+  id_var_name,
+  extract_var_list,
+  sg_session_n_var_name = "sg_session_n",
+  extract_measure_name = "x",
+  start_numbering = 1,
+  add_to_data = TRUE
+)
 }
 \arguments{
 \item{data}{A \code{bysg} or \code{byperson} data set in wide format with the variable \code{sg_session_n} and all variables specified in \code{extract_var_list}.}
 
 \item{id_var_name}{String, specifying the name of the ID variable.}
 
-\item{extract_var_list}{Vector, specifying the variable names of session to session scores to extract from.
-Note that this list has to have the same number of repeated measures as specified in \code{sg_var_list} when creating the sudden gains data set.}
+\item{extract_var_list}{List or vector, specifying the variable names of session to session scores to extract from.
+If this is a list, the name of each element will be used when creating new variables.
+Note that each element of this list must have the same number of repeated measures as specified in \code{sg_var_list} when creating the sudden gains data set.}
 
-\item{extract_measure_name}{String, specifying the name of the measure being used to extract values from.}
+\item{sg_session_n_var_name}{String, specifying variable name that contains information about the pregain session number.
+If the sudden gains data set was created using the suddengains R package, the default argument "sg_session_n" should be used.}
+
+\item{extract_measure_name}{String, if \code{extract_var_list} is a vector, this string will be used as the when creating new variables of the extracted measures.}
 
 \item{start_numbering}{Numeric, set to by default 1.
 Change to 0 if a pre-treatment (e.g. baseline assessment) measurement point is included in \code{extract_var_list}.}

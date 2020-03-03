@@ -7,8 +7,8 @@ Authors@R: c(
   person("Graham M", "Thew", role = "ctb", comment = c(ORCID = "0000-0003-2851-1315")),
   person("Richard", "Stott", role = "ctb", comment = c(ORCID = "0000-0003-2533-5504")),
   person("Anke", "Ehlers", role = c("ctb", "ths"), comment = c(ORCID = "0000-0002-8742-0192")),
-  person("Mental Health Research UK", role = c("fnd"),
-  person("Wellcome Trust", role = c("fnd")
+  person("Mental Health Research UK", role = c("fnd")),
+  person("Wellcome Trust", role = c("fnd"))
   )
 Description: Identify sudden gains based on the three criteria outlined by Tang and DeRubeis (1999) <doi:10.1037/0022-006X.67.6.894> to a selection of repeated measures. Sudden losses, defined as the opposite of sudden gains can also be identified. Two different datasets can be created, one including all sudden gains/losses and one including one selected sudden gain/loss for each case. It can extract scores around sudden gains/losses. It can plot the average change around sudden gains/losses and trajectories of individual cases.
 Depends: 

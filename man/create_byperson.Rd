@@ -12,13 +12,14 @@ create_byperson(
   tx_start_var_name,
   tx_end_var_name,
   sg_measure_name,
-  multiple_sg_select = c("first", "last", "smalles", "largest"),
+  multiple_sg_select = c("first", "last", "smallest", "largest"),
   data_is_bysg = FALSE,
   identify = c("sg", "sl"),
   sg_crit2_pct = 0.25,
   sg_crit3 = TRUE,
   sg_crit3_alpha = 0.05,
   sg_crit3_adjust = TRUE,
+  sg_crit3_critical_value = 2.776,
   identify_sg_1to2 = FALSE
 )
 }
@@ -28,8 +29,6 @@ create_byperson(
 \item{sg_crit1_cutoff}{Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
 The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 If set to \code{NULL} the first criterion wont be applied.}
-
-\item{id_var_name}{String, specifying the name of the ID variable. Each row should have a unique value.}
 
 \item{sg_var_list}{Vector, specifying the variable names of each measurement point sequentially.}
 
@@ -62,7 +61,9 @@ This argument is set to \code{TRUE} by default adjusting the critical value for 
 A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
+If set to \code{FALSE} the critical value setin \code{sg_crit3_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
+
+\item{sg_crit3_critical_value}{Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.}
 
 \item{identify_sg_1to2}{Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}

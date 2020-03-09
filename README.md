@@ -40,18 +40,11 @@ add papers yourself.
 
 ## Installation
 
-You can install the released version of suddengains from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("suddengains")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install this development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("milanwiedemann/suddengains")
+devtools::install_github("milanwiedemann/suddengains", ref = "plos-one-revisions")
 ```
 
 ## Overview of the functions

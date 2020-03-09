@@ -1,11 +1,10 @@
 utils::citEntry(
   "article"
-  , "Wiedemann, M., Thew, G. R., Stott, R., & Ehlers, A. (2019). suddengains: An R package to identify sudden gains in longitudinal data. https://doi.org/10.31234/osf.io/2wa84."
+  , "Wiedemann, M., Thew, G. R., Stott, R., & Ehlers, A. (2019). suddengains: An R package to identify sudden gains in longitudinal data. PLOS ONE. https://doi.org/10.1371/journal.pone.0230276"
   , author = c("Milan Wiedemann and Graham R Thew and Richard Stott and Anke Ehlers")
   , title = "{suddengains}: {An} {R} package to identify sudden gains in longitudinal data"
-  , journal = "PsyArXiv Preprints"
-  , year = "2019"
-  , note = "R package version 0.4.0"
-  , doi = "10.31234/osf.io/2wa84"
+  , journal = "PLOS ONE"
+  , year = "2020"
+  , doi = "10.1371/journal.pone.0230276"
   , url = "https://github.com/milanwiedemann/suddengains"
 )

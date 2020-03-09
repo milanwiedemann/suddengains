@@ -62,14 +62,7 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/milanwiedemann/suddengains">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -86,7 +79,8 @@
 <a href="#suddengains" class="anchor"></a>suddengains</h1></div>
 <!-- badges: start -->
 
-<p>Identify sudden gains based on the criteria outlined by Tang and DeRubeis (<a href="https://doi.org/10.1037/0022-006X.67.6.894">1999</a>). It applies all three criteria to a dataset while adjusting for missing values. It calculates further variables that are of interest. It handles multiple gains by creating two datasets, one structured by sudden gain and one by participant. It also implements a function to specify which sudden gains to choose in case of multiple gains (e.g. the earliest or largest gain).</p>
+<p>Sudden gains are large and stable improvements in an outcome variable between consecutive measurements, for example during a psychological intervention with multiple assessments (Tang and DeRubeis, <a href="https://doi.org/10.1037/0022-006X.67.6.894">1999</a>). The R package <code>suddengains</code> provides a set of tools to facilitate sudden gains research. It identifies sudden gains or sudden losses while allowing to apply adaptations of the standard criteria. It handles multiple gains by creating two datasets, one structured by sudden gains and one by participants. It also implements a function to specify which sudden gains to choose in case of multiple gains (e.g. the earliest or largest gain).</p>
+<p>An interactive web application <strong><a href="https://milanwiedemann.shinyapps.io/shinygains"><code>shinygains</code></a></strong> illustrates the main functions of this package and allows users to explore and understand the impact of different methodological choices.</p>
 <p>To learn more about the background of this package see our preprint on <a href="https://psyarxiv.com/2wa84/">PsyArXiv</a>. We have also created an open <a href="https://www.zotero.org/groups/2280342/suddengains">Zotero group</a> collecting all the literature looking at sudden gains in psychological therapies. Please let me know if I missed anything or join the group and add papers yourself.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -95,7 +89,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"suddengains"</span>)</a></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"milanwiedemann/suddengains"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"milanwiedemann/suddengains"</span>)</a></code></pre></div>
 </div>
 <div id="overview-of-the-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -186,7 +180,7 @@
 <a class="sourceLine" id="cb4-11" data-line-number="11">                    <span class="dt">sg_measure_name =</span> <span class="st">"bdi"</span>,</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">                    <span class="dt">identify =</span> <span class="st">"sg"</span>)</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; First, second, and third sudden gains criteria were applied.</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; The critical value for the thrid criterion was adjusted for missingness.</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span></a></code></pre></div>
 </div>
 <div id="helper-functions-to-visualise-and-report-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
@@ -201,12 +195,12 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7">                                 <span class="st">"sg_bdi_n1"</span>, <span class="st">"sg_bdi_n2"</span>, <span class="st">"sg_bdi_n3"</span>),</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">        <span class="dt">ylab =</span> <span class="st">"BDI"</span>, <span class="dt">xlab =</span> <span class="st">"Session"</span>,</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">        <span class="dt">colour_single =</span> <span class="st">"#239b89ff"</span>)</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; Warning: Removed 31 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; Warning: Removed 31 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Warning: Removed 16 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Warning: Removed 11 rows containing non-finite values (stat_summary).</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Warning: Removed 14 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: Removed 8 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="50%"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Visualise trajectories for a selection of individual cases</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories</a></span>(<span class="dt">data =</span> sgdata,</a>
@@ -229,8 +223,8 @@
 <a class="sourceLine" id="cb6-19" data-line-number="19">                     <span class="dt">apaish =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb6-20" data-line-number="20">                     <span class="dt">xlab =</span> <span class="st">"Session"</span>, </a>
 <a class="sourceLine" id="cb6-21" data-line-number="21">                     <span class="dt">ylab =</span> <span class="st">"BDI"</span>)</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_point).</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_label_repel).</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_label_repel).</span></a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="80%"></p>
 </div>
 <div id="helper-functions-to-export-data-sets-to-spss-excel-stata-and-csv" class="section level3">
@@ -262,8 +256,6 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=suddengains">https://​cloud.r-project.org/​package=suddengains</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/milanwiedemann/suddengains">https://​github.com/​milanwiedemann/​suddengains</a>
-</li>
 <li>Report a bug at <br><a href="https://github.com/milanwiedemann/suddengains/issues">https://​github.com/​milanwiedemann/​suddengains/​issues</a>
 </li>
 </ul>
@@ -284,6 +276,8 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Milan Wiedemann <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1991-282X" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
+<li>Mental Health Research UK <br><small class="roles"> Funder </small>  </li>
+<li>Wellcome Trust <br><small class="roles"> Funder </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -303,7 +297,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Milan Wiedemann.</p>
+  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">

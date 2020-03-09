@@ -14,14 +14,22 @@ status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](
 [![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains)](https://cran.r-project.org/package=suddengains)
 <!-- badges: end -->
 
-Identify sudden gains based on the criteria outlined by Tang and
-DeRubeis ([1999](https://doi.org/10.1037/0022-006X.67.6.894)). It
-applies all three criteria to a dataset while adjusting for missing
-values. It calculates further variables that are of interest. It handles
-multiple gains by creating two datasets, one structured by sudden gain
-and one by participant. It also implements a function to specify which
-sudden gains to choose in case of multiple gains (e.g. the earliest or
-largest gain).
+Sudden gains are large and stable improvements in an outcome variable
+between consecutive measurements, for example during a psychological
+intervention with multiple assessments (Tang and DeRubeis,
+[1999](https://doi.org/10.1037/0022-006X.67.6.894)). The R package
+`suddengains` provides a set of tools to facilitate sudden gains
+research. It identifies sudden gains or sudden losses while allowing to
+apply adaptations of the standard criteria. It handles multiple gains by
+creating two datasets, one structured by sudden gains and one by
+participants. It also implements a function to specify which sudden
+gains to choose in case of multiple gains (e.g. the earliest or largest
+gain).
+
+An interactive web application
+**[`shinygains`](https://milanwiedemann.shinyapps.io/shinygains)**
+illustrates the main functions of this package and allows users to
+explore and understand the impact of different methodological choices.
 
 To learn more about the background of this package see our preprint on
 [PsyArXiv](https://psyarxiv.com/2wa84/). We have also created an open
@@ -158,7 +166,7 @@ bysg <- create_bysg(data = sgdata,
                     sg_measure_name = "bdi",
                     identify = "sg")
 #> First, second, and third sudden gains criteria were applied.
-#> The critical value for the thrid criterion was adjusted for missingness.
+#> The critical value for the third criterion was adjusted for missingness.
 ```
 
 ### 3\. Helper functions to visualise and report sudden gains
@@ -179,12 +187,12 @@ plot_sg(data = bysg,
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylab = "BDI", xlab = "Session",
         colour_single = "#239b89ff")
-#> Warning: Removed 31 rows containing non-finite values (stat_summary).
+#> Warning: Removed 27 rows containing non-finite values (stat_summary).
 
-#> Warning: Removed 31 rows containing non-finite values (stat_summary).
-#> Warning: Removed 16 rows containing non-finite values (stat_summary).
+#> Warning: Removed 27 rows containing non-finite values (stat_summary).
+#> Warning: Removed 14 rows containing non-finite values (stat_summary).
+#> Warning: Removed 8 rows containing non-finite values (stat_summary).
 #> Warning: Removed 10 rows containing non-finite values (stat_summary).
-#> Warning: Removed 11 rows containing non-finite values (stat_summary).
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" />
@@ -211,8 +219,8 @@ plot_sg_trajectories(data = sgdata,
                      apaish = TRUE,
                      xlab = "Session", 
                      ylab = "BDI")
-#> Warning: Removed 2 rows containing missing values (geom_point).
-#> Warning: Removed 2 rows containing missing values (geom_label_repel).
+#> Warning: Removed 3 rows containing missing values (geom_point).
+#> Warning: Removed 3 rows containing missing values (geom_label_repel).
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />

@@ -116,7 +116,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
                                   position = ggplot2::position_dodge(width = 0.2)) +
 
             # Add 95pct CIs
-            ggplot2::stat_summary(fun.data = ggplot2::mean_cl_normal,
+            ggplot2::stat_summary(fun.data = ggplot2::mean_se,
                                   geom = "errorbar",
                                   fun.args = base::list(mult = 1.96),
                                   width = 0.1,
@@ -228,7 +228,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
                                   position = ggplot2::position_dodge(width = 0.2)) +
 
             # Add 95pct CIs
-            ggplot2::stat_summary(fun.data = ggplot2::mean_cl_normal,
+            ggplot2::stat_summary(fun.data = ggplot2::mean_se,
                                   geom = "errorbar",
                                   fun.args = base::list(mult = 1.96),
                                   width = 0.1,

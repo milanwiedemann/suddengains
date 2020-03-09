@@ -19,7 +19,8 @@
 #' A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 #' where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 #' and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-#' If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
+#' If set to \code{FALSE} the critical value set in \code{sg_crit3_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
+#' @param sg_crit3_critical_value Numeric, if  the argument \code{sg_crit3_adjust = FALSE}, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
 #' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
@@ -39,7 +40,7 @@
 #'                             "bdi_s10", "bdi_s11", "bdi_s12"))
 #' @export
 
-identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
+identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit2_pct = .25, sg_crit3 = TRUE, sg_crit3_alpha = .05, sg_crit3_adjust = TRUE, sg_crit3_critical_value = 2.776, identify_sg_1to2 = FALSE, crit123_details = FALSE) {
 
     # Create tibble necessary for further data manipulations
     data <- tibble::as_tibble(data)
@@ -48,9 +49,14 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         stop("Please specify at least one of the three sudden gains criteria using the following arguments: sg_crit1_cutoff, sg_crit2_pct, sg_crit3.", call. = FALSE)
     }
 
-    if (sg_crit1_cutoff > 0) {
-        stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be negative to identify sudden losses.", call. = FALSE)
+
+    if (base::is.null(sg_crit1_cutoff) == FALSE) {
+        if (sg_crit1_cutoff > 0) {
+            stop("The cut-off value specified in 'sg_crit1_cutoff' needs to be negative to identify sudden losses.", call. = FALSE)
+        }
     }
+
+
 
     # Set p for qt function needed for 3rd criterion
     sg_crit3_alpha_critical_value <- sg_crit3_alpha
@@ -122,13 +128,13 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
                 if (sum_n_pre >= 2 & sum_n_post >= 2) {
                     # Calculate critical value to be used based on how many pre and postgain sessions are available
                     if (sg_crit3_adjust == TRUE) {
-                        sg_crit3_critical_value <- base::abs(stats::qt(p = (sg_crit3_alpha_critical_value / 2), df = (sum_n_pre_post - 2)))
+                        sg_crit3_critical_value_set <- base::abs(stats::qt(p = (sg_crit3_alpha_critical_value / 2), df = (sum_n_pre_post - 2)))
                     } else if  (sg_crit3_adjust == FALSE) {
-                        sg_crit3_critical_value <- 2.776
+                        sg_crit3_critical_value_set <- sg_crit3_critical_value
                     }
 
                     # Test for third criterion using adjusted critical value
-                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > sg_crit3_critical_value * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
+                    crit3[row_i, col_j - 2] <- mean_post - mean_pre > sg_crit3_critical_value_set * base::sqrt((((sum_n_pre - 1) * (sd_pre ^ 2)) + ((sum_n_post - 1) * (sd_post ^ 2))) / (sum_n_pre + sum_n_post - 2))
 
                     # Add missing value if less than two pregain or postgain sessions are available
                 } else if (sum_n_pre < 2 | sum_n_post < 2) {
@@ -151,9 +157,9 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             crit123 <- crit3 * TRUE
             base::message("Third sudden gains criterion was applied.")
             if (sg_crit3_adjust == TRUE) {
-                message("The critical value for the thrid criterion was adjusted for missingness.")
+                message("The critical value for the third criterion was adjusted for missingness.")
             } else if  (sg_crit3_adjust == FALSE) {
-                message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
             }
         } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == FALSE) {
             crit123 <- crit1 * crit2
@@ -162,25 +168,25 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             crit123 <- crit2 * crit3
             base::message("Second and third sudden gains criteria were applied.")
             if (sg_crit3_adjust == TRUE) {
-                message("The critical value for the thrid criterion was adjusted for missingness.")
+                message("The critical value for the third criterion was adjusted for missingness.")
             } else if  (sg_crit3_adjust == FALSE) {
-                message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
             }
         } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == TRUE & sg_crit3 == TRUE) {
             crit123 <- crit1 * crit3
             base::message("First and third sudden gains criteria were applied.")
             if (sg_crit3_adjust == TRUE) {
-                message("The critical value for the thrid criterion was adjusted for missingness.")
+                message("The critical value for the third criterion was adjusted for missingness.")
             } else if  (sg_crit3_adjust == FALSE) {
-                message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
             }
         } else if (base::is.null(sg_crit1_cutoff) == FALSE & base::is.null(sg_crit2_pct) == FALSE & sg_crit3 == TRUE) {
             crit123 <- crit1 * crit2 * crit3
             base::message("First, second, and third sudden gains criteria were applied.")
             if (sg_crit3_adjust == TRUE) {
-                message("The critical value for the thrid criterion was adjusted for missingness.")
+                message("The critical value for the third criterion was adjusted for missingness.")
             } else if  (sg_crit3_adjust == FALSE) {
-                message("The critical value for the thrid criterion was not adjusted for missingness, 2.776 was used for all comparisons.")
+                message(paste0("Note: The critical value for the third criterion was not adjusted for missingness: ", sg_crit3_critical_value, " was used for all comparisons."))
             }
         }
 

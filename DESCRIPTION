@@ -1,6 +1,6 @@
 Package: suddengains
 Title: Identify Sudden Gains in Longitudinal Data
-Date: 2019-10-31
+Date: 2020-03-09
 Version: 0.4.1
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1991-282X")),

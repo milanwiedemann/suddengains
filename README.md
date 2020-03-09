@@ -31,20 +31,29 @@ An interactive web application
 illustrates the main functions of this package and allows users to
 explore and understand the impact of different methodological choices.
 
-To learn more about the background of this package see our preprint on
-[PsyArXiv](https://psyarxiv.com/2wa84/). We have also created an open
-[Zotero group](https://www.zotero.org/groups/2280342/suddengains)
-collecting all the literature looking at sudden gains in psychological
-therapies. Please let me know if I missed anything or join the group and
-add papers yourself.
+To learn more about the background of this package see our paper in
+[PLOS
+ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276).
+We have also created an open [Zotero
+group](https://www.zotero.org/groups/2280342/suddengains) collecting all
+the literature looking at sudden gains in psychological therapies.
+Please let me know if I missed anything or join the group and add papers
+yourself.
 
 ## Installation
 
-You can install this development version from [GitHub](https://github.com/) with:
+You can install the released version of suddengains from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("suddengains")
+```
+
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("milanwiedemann/suddengains", ref = "plos-one-revisions")
+devtools::install_github("milanwiedemann/suddengains")
 ```
 
 ## Overview of the functions
@@ -160,6 +169,7 @@ bysg <- create_bysg(data = sgdata,
                     identify = "sg")
 #> First, second, and third sudden gains criteria were applied.
 #> The critical value for the third criterion was adjusted for missingness.
+#> Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.
 ```
 
 ### 3\. Helper functions to visualise and report sudden gains

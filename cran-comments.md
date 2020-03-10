@@ -19,13 +19,18 @@
 * passing
 
 ## R-hub builder
-* Build ID: suddengains_0.4.2.tar.gz-5a5c87751ac845a7b2a897933e53d164
-* Platform: x86_64-w64-mingw32 (64-bit)
-* Status: success
+* Build ID:	suddengains_0.4.2.tar.gz-ab122fe2d5de451dab248c624bb811b3
+* Platform:	Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+* checking package dependencies ... ERROR
+* Package required but not available: 'ggplot2'
 
-* Build ID: suddengains_0.4.2.tar.gz-77b0b0634e8e4146aa3293a6d06ac28e
-* Platform: Fedora Linux, R-devel, clang, gfortran
-* Status: PREPERROR
+## winbuilder
+* https://win-builder.r-project.org/5JY4Y68182H0
+* Status: OK
+* R version 3.6.3 (2020-02-29)
+
+* https://win-builder.r-project.org/Iq6fgrEMhvz9
+* Status: 1 NOTE
 
 # Resubmission
 This is a resubmission.

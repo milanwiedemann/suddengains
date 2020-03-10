@@ -6,7 +6,7 @@
 #' @param id_var_name String, specifying the name of the ID variable. Each row should have a unique value.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
+#' The function \code{\link{define_crit1_cutoff}} can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains criterion.
 #' If set to \code{NULL} the second criterion wont be applied.

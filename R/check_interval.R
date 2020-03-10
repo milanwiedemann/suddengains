@@ -5,7 +5,7 @@
 #' @param pre_values Vector, three pre gain/loss values to be checked for a sudden gain/loss (n-2, n-1, n)
 #' @param post_values Vector, three post gain/loss values to be checked for a sudden gain/loss (n+1, n+2, n+3)
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
+#' The function \code{\link{define_crit1_cutoff}} can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' If set to \code{NULL} the second criterion wont be applied.
@@ -19,6 +19,7 @@
 #' where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 #' and where one datapoint is missing both before and after the gain a critical value of 4.303 is used.
 #' If set to \code{FALSE} a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for sudden gains.
+#' @param sg_crit3_critical_value Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
 #' @param identify String, specifying whether to identify sudden gains (\code{"sg"}) or sudden losses (\code{"sl"}).
 #' @param details Logical, details yes no?
 #'

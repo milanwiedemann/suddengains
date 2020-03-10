@@ -6,7 +6,7 @@
 #' For cases with no sudden gain/loss the descriptive variables are coded as missing (\code{NA}).
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
+#' The function \code{\link{define_crit1_cutoff}} can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' If set to \code{NULL} the second criterion wont be applied.
@@ -21,6 +21,7 @@
 #' and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
 #' If set to \code{FALSE} the critical value setin \code{sg_crit3_critical_value} will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
 #' @param sg_crit3_critical_value Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.
+#' @param id_var_name String, specifying the name of the ID variable.
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param tx_start_var_name String, specifying the variable name of the first measurement point of the intervention.
 #' @param tx_end_var_name String, specifying the variable name of the last measurement point of the intervention.

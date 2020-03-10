@@ -4,7 +4,7 @@
 #'
 #' @param data A data set in wide format including an ID variable and variables for each measurement point.
 #' @param sg_crit1_cutoff Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-#' The function \code{\link{define_crit1_cutoff}} can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
+#' The function \code{\link{define_crit1_cutoff}} can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson & Truax, 1991).
 #' If set to \code{NULL} the first criterion wont be applied.
 #' @param sg_crit2_pct Numeric, specifying the percentage change to be used for the second sudden gains/losses criterion.
 #' If set to \code{NULL} the second criterion wont be applied.

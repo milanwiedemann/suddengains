@@ -14,7 +14,7 @@
 #' This argument is not needed if the standard deviation is specified in the \code{sd} argument.
 #' @param data_reliability A dataset in wide format (one row for each individual and one column for each item) including only the item-by-item scores of the SG measure (no ID variable).
 #' According to Jacobson & Truax (1991) the test-retest reliability should be used.
-#' Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
+#' Martinovich et al. (1996) suggest that the internal consistency (Cronbach's alpha) can be used instead of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
 #' This argument is not needed if the reliability is specified in the \code{reliability} argument.
 #' @return A list with estimates the for standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value).
 #' @references Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. \url{https://doi.org/10.1037/0022-006X.59.1.12}.

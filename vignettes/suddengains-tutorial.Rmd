@@ -38,7 +38,7 @@ citation("suddengains")
 # Introduction
 
 This vignette shows how the `suddengains` R package can be used to help with the methods of research studies looking at sudden gains as described by @Tang1999.
-More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our preprint @R-suddengains.
+More about the theoretical background of sudden gains and why it might be helpful to use this package can be found in our paper @R-suddengains.
 The following vignette illustrates the main functions of the package using the example data set `sgdata`.
 
 # Data
@@ -149,7 +149,7 @@ sgdata_select <- select_cases(data = sgdata,
 This function calculates a cut-off value to use for the first sudden gains criterion based on the Reliable Change Index [RCI, @Jacobson1991].
 The following 5 elements are returned by the function
 
-- `sd`: Standard deviation manually endered using the `sd` argument or the standard deviation of the values specified in `data_sd`
+- `sd`: Standard deviation manually entered using the `sd` argument or the standard deviation of the values specified in `data_sd`
 - `reliability`: Reliability of the measure manually specified in `reliability` or the internal consistency (Cronbach's alpha) calculated from the item-by-item data specified in `data_reliability`.
 - `standard_error_measurement`: Standard error of measurement, see formula below:
 

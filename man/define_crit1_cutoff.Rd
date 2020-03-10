@@ -23,7 +23,7 @@ This argument is not needed if the standard deviation is specified in the \code{
 
 \item{data_reliability}{A dataset in wide format (one row for each individual and one column for each item) including only the item-by-item scores of the SG measure (no ID variable).
 According to Jacobson & Truax (1991) the test-retest reliability should be used.
-Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
+Martinovich et al. (1996) suggest that the internal consistency (Cronbach's alpha) can be used instead of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
 This argument is not needed if the reliability is specified in the \code{reliability} argument.}
 }
 \value{

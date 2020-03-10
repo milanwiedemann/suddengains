@@ -26,7 +26,7 @@ select_cases(
 This argument needs to be specified if \code{method = min_sess}.}
 
 \item{return_id_lgl}{Logical, if \code{TRUE} the function returns the ID variable and a new variable \code{sg_select} indicating whether there is enough data available to identify sudden gains.
-If set to \code{FALSE} this function retruns the input data together with the new variable \code{sg_select}.}
+If set to \code{FALSE} this function returns the input data together with the new variable \code{sg_select}.}
 }
 \value{
 A wide dataset indicating with all cases and a variable indicating whether each cases provides enough data to identify sudden gains.

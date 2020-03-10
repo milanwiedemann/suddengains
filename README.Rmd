@@ -85,7 +85,7 @@ Note that the vignette is only available in R when you install the package from 
 ## Examples
 
 Below are some examples illustrating the suddengains package.
-More details can be found in the [Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html) or on [PsyArXiv](https://psyarxiv.com/2wa84/).
+More details can be found in the [Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html) or in our [PLOS ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276) paper.
 
 ### 1. Functions to identify sudden gains
 

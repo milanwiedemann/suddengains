@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -124,8 +124,15 @@
     <p>Extract values of measures around the time of a sudden gain.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_values</span>(<span class='no'>data</span>, <span class='no'>id_var_name</span>, <span class='no'>extract_var_list</span>, <span class='no'>extract_measure_name</span>,
-  <span class='kw'>start_numbering</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>extract_values</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id_var_name</span>,
+  <span class='no'>extract_var_list</span>,
+  <span class='kw'>sg_session_n_var_name</span> <span class='kw'>=</span> <span class='st'>"sg_session_n"</span>,
+  <span class='kw'>extract_measure_name</span> <span class='kw'>=</span> <span class='st'>"x"</span>,
+  <span class='kw'>start_numbering</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,12 +147,18 @@
     </tr>
     <tr>
       <th>extract_var_list</th>
-      <td><p>Vector, specifying the variable names of session to session scores to extract from.
-Note that this list has to have the same number of repeated measures as specified in <code>sg_var_list</code> when creating the sudden gains data set.</p></td>
+      <td><p>List or vector, specifying the variable names of session to session scores to extract from.
+If this is a list, the name of each element will be used when creating new variables.
+Note that each element of this list must have the same number of repeated measures as specified in <code>sg_var_list</code> when creating the sudden gains data set.</p></td>
+    </tr>
+    <tr>
+      <th>sg_session_n_var_name</th>
+      <td><p>String, specifying variable name that contains information about the pregain session number.
+If the sudden gains data set was created using the suddengains R package, the default argument "sg_session_n" should be used.</p></td>
     </tr>
     <tr>
       <th>extract_measure_name</th>
-      <td><p>String, specifying the name of the measure being used to extract values from.</p></td>
+      <td><p>String, if <code>extract_var_list</code> is a vector, this string will be used as the when creating new variables of the extracted measures.</p></td>
     </tr>
     <tr>
       <th>start_numbering</th>
@@ -174,7 +187,7 @@ If set to false, only the ID variable and all extracted values will be returned.
                                     <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                     <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                                     <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='input'>
+                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='input'>
 <span class='co'># For bysg dataset select "id" and "rq" variables first</span>
 <span class='no'>sgdata_rq</span> <span class='kw'>&lt;-</span> <span class='no'>sgdata</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>rq_s0</span>:<span class='no'>rq_s12</span>)
@@ -190,7 +203,7 @@ If set to false, only the ID variable and all extracted values will be returned.
                                                <span class='st'>"rq_s5"</span>, <span class='st'>"rq_s6"</span>, <span class='st'>"rq_s7"</span>, <span class='st'>"rq_s8"</span>,
                                                <span class='st'>"rq_s9"</span>, <span class='st'>"rq_s10"</span>, <span class='st'>"rq_s11"</span>, <span class='st'>"rq_s12"</span>),
                           <span class='kw'>extract_measure_name</span> <span class='kw'>=</span> <span class='st'>"rq"</span>,
-                          <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+                          <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

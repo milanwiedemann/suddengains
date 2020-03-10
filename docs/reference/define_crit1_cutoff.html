@@ -41,7 +41,7 @@ These values can be entered manually using the arguments sd and reliability or e
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson &amp;amp; Truax, 1991).
 $$se = sd * \sqrt{(1 - reliability)}$$
 $$sdiff = \sqrt{(2 * se^2)}$$
-$$\text{reliable_change_value} = 1.96 * sdiff$$" />
+$$reliable change value = 1.96 * sdiff$$" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -74,7 +74,7 @@ $$\text{reliable_change_value} = 1.96 * sdiff$$" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -131,11 +131,15 @@ These values can be entered manually using the arguments <code>sd</code> and <co
 This function calculates the standard error of measurement (se), the standard error of the difference (sdiff) and a value that classifies as reliable change (reliable_change_value) based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
 $$se = sd * \sqrt{(1 - reliability)}$$
 $$sdiff = \sqrt{(2 * se^2)}$$
-$$\text{reliable_change_value} = 1.96 * sdiff$$</p>
+$$reliable change value = 1.96 * sdiff$$</p>
     </div>
 
-    <pre class="usage"><span class='fu'>define_crit1_cutoff</span>(<span class='kw'>sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>reliability</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data_sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data_reliability</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>define_crit1_cutoff</span>(
+  <span class='kw'>sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>reliability</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data_sd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>data_reliability</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,7 +163,7 @@ This argument is not needed if the standard deviation is specified in the <code>
       <th>data_reliability</th>
       <td><p>A dataset in wide format (one row for each individual and one column for each item) including only the item-by-item scores of the SG measure (no ID variable).
 According to Jacobson &amp; Truax (1991) the test-retest reliability should be used.
-Martinovich et al. (1996) suggest that the internal constitency (Cronbach's alpha) can be used insted of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
+Martinovich et al. (1996) suggest that the internal consistency (Cronbach's alpha) can be used instead of the test-retest reliability and may be more appropriate for estimating the standard error in some cases.
 This argument is not needed if the reliability is specified in the <code>reliability</code> argument.</p></td>
     </tr>
     </table>

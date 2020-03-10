@@ -78,7 +78,7 @@ Note. x1 to x6 are consecutive data points of the primary outcome measure. 'x' =
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -142,8 +142,14 @@ This function goes through the data and selects all cases with at least one of t
 <p><em>Note</em>. x1 to x6 are consecutive data points of the primary outcome measure. 'x' = Available data; '.' = Missing data. '<strong>N</strong>' represents available data to be examined as a possible pregain session.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_cases</span>(<span class='no'>data</span>, <span class='no'>id_var_name</span>, <span class='no'>sg_var_list</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pattern"</span>,
-  <span class='st'>"min_sess"</span>), <span class='kw'>min_sess_num</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_id_lgl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>select_cases</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id_var_name</span>,
+  <span class='no'>sg_var_list</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pattern"</span>, <span class='st'>"min_sess"</span>),
+  <span class='kw'>min_sess_num</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>return_id_lgl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,7 +178,7 @@ This argument needs to be specified if <code>method = min_sess</code>.</p></td>
     <tr>
       <th>return_id_lgl</th>
       <td><p>Logical, if <code>TRUE</code> the function returns the ID variable and a new variable <code>sg_select</code> indicating whether there is enough data available to identify sudden gains.
-If set to <code>FALSE</code> this function retruns the input data together with the new variable <code>sg_select</code>.</p></td>
+If set to <code>FALSE</code> this function returns the input data together with the new variable <code>sg_select</code>.</p></td>
     </tr>
     </table>
 
@@ -193,7 +199,7 @@ If set to <code>FALSE</code> this function retruns the input data together with 
 #&gt;       id bdi_s0 bdi_s1 bdi_s2 bdi_s3 bdi_s4 bdi_s5 bdi_s6 bdi_s7 bdi_s8 bdi_s9
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>     1     33     35     37     34     23     24     21     29     17     11
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     26     </span><span style='color: #BB0000;'>NA</span><span>     25     25     17     16     12     11     10
+#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10
 #&gt; </span><span style='color: #555555;'> 3</span><span>     3     40     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26
 #&gt; </span><span style='color: #555555;'> 4</span><span>     4     33     31     30     32     22     22     20     21     19     24
 #&gt; </span><span style='color: #555555;'> 5</span><span>     5     39     39     37     36     26     26     23     21     19      6

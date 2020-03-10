@@ -118,7 +118,9 @@ vignette is only available in R when you install the package from CRAN.
 Below are some examples illustrating the suddengains package. More
 details can be found in the
 [Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html)
-or on [PsyArXiv](https://psyarxiv.com/2wa84/).
+or in our [PLOS
+ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276)
+paper.
 
 ### 1\. Functions to identify sudden gains
 
@@ -190,6 +192,13 @@ plot_sg(data = bysg,
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylab = "BDI", xlab = "Session",
         colour_single = "#239b89ff")
+#> Warning: `fun.y` is deprecated. Use `fun` instead.
+
+#> Warning: `fun.y` is deprecated. Use `fun` instead.
+
+#> Warning: `fun.y` is deprecated. Use `fun` instead.
+
+#> Warning: `fun.y` is deprecated. Use `fun` instead.
 #> Warning: Removed 27 rows containing non-finite values (stat_summary).
 
 #> Warning: Removed 27 rows containing non-finite values (stat_summary).

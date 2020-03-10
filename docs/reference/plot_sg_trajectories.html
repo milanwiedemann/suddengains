@@ -71,7 +71,7 @@ Further ggplot2 components can be added using + following this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -128,13 +128,30 @@ This function can be combined with a filter command to explore the trajectories 
 Further ggplot2 components can be added using + following this function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_sg_trajectories</span>(<span class='no'>data</span>, <span class='no'>id_var</span>, <span class='no'>var_list</span>, <span class='kw'>select_id_list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>legend_title</span> <span class='kw'>=</span> <span class='st'>"ID"</span>, <span class='kw'>id_label_size</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>connect_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"viridis"</span>, <span class='st'>"ggplot"</span>, <span class='st'>"grey"</span>), <span class='kw'>viridis_option</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"D"</span>, <span class='st'>"A"</span>,
-  <span class='st'>"B"</span>, <span class='st'>"C"</span>), <span class='kw'>viridis_begin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>viridis_end</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>line_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"X"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>scale_x_num</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>scale_x_num_start</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>apaish</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_sg_trajectories</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id_var</span>,
+  <span class='no'>var_list</span>,
+  <span class='kw'>select_id_list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>select_n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>show_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legend_title</span> <span class='kw'>=</span> <span class='st'>"ID"</span>,
+  <span class='kw'>id_label_size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>connect_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colour</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"viridis"</span>, <span class='st'>"ggplot"</span>, <span class='st'>"grey"</span>),
+  <span class='kw'>viridis_option</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"D"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>),
+  <span class='kw'>viridis_begin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>viridis_end</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>line_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"X"</span>,
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Y"</span>,
+  <span class='kw'>scale_x_num</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>scale_x_num_start</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>apaish</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -254,7 +271,7 @@ Further ggplot2 components can be added using + following this function.</p>
                      <span class='kw'>scale_x_num_start</span> <span class='kw'>=</span> <span class='fl'>1</span>,
                      <span class='kw'>apaish</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                      <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Session"</span>,
-                     <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"BDI"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 2 rows containing missing values (geom_label_repel).</span></div><div class='img'><img src='plot_sg_trajectories-1.png' alt='' width='700' height='433' /></div><div class='input'>
+                     <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"BDI"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_label_repel).</span></div><div class='img'><img src='plot_sg_trajectories-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Create byperson dataset to use for plotting</span>
 <span class='no'>byperson</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_byperson.html'>create_byperson</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
                             <span class='kw'>sg_crit1_cutoff</span> <span class='kw'>=</span> <span class='fl'>7</span>,
@@ -265,7 +282,7 @@ Further ggplot2 components can be added using + following this function.</p>
                                             <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                             <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                                             <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                            <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div><div class='input'>
+                            <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div><div class='input'>
 <span class='co'># First, filter byperson dataset to only include cases with more than one sudden gain</span>
 <span class='co'># Next, plot BDI trajectory of 3 randomly selected cases with with more than one sudden gain</span>
 <span class='no'>byperson</span> <span class='kw'>%&gt;%</span>

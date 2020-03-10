@@ -3,6 +3,7 @@
 - Add option to specify the critical value for criterion three using the argument `sg_crit3_critical_value`
 - Add option to extract values from multiple measures by specifting a list in the `extract_var_list` of the function `extract_values()`
 - Internal changes to `plot_sg()` function to work properly with shiny
+- Make output from `describe_sg()` function clearer
 - Create shiny app illustrating main functions of this version, available at https://milanwiedemann.shinyapps.io/shinygains/
 - Correct typos
 - Add funders to documentation

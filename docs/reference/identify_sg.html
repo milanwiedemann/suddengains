@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -124,10 +124,19 @@
     <p>Function to identify sudden gains in longitudinal data structured in wide format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>identify_sg</span>(<span class='no'>data</span>, <span class='no'>id_var_name</span>, <span class='no'>sg_var_list</span>, <span class='no'>sg_crit1_cutoff</span>,
-  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>crit123_details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>identify_sg</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id_var_name</span>,
+  <span class='no'>sg_var_list</span>,
+  <span class='no'>sg_crit1_cutoff</span>,
+  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_critical_value</span> <span class='kw'>=</span> <span class='fl'>2.776</span>,
+  <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>crit123_details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,7 +156,7 @@
     <tr>
       <th>sg_crit1_cutoff</th>
       <td><p>Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
+The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
 If set to <code>NULL</code> the first criterion wont be applied.</p></td>
     </tr>
     <tr>
@@ -172,7 +181,11 @@ This argument is set to <code>TRUE</code> by default adjusting the critical valu
 A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-If set to <code>FALSE</code> a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
+If set to <code>FALSE</code> the critical value set in <code>sg_crit3_critical_value</code> will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
+    </tr>
+    <tr>
+      <th>sg_crit3_critical_value</th>
+      <td><p>Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
     </tr>
     <tr>
       <th>identify_sg_1to2</th>
@@ -202,11 +215,11 @@ Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected t
             <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
                             <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                             <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
-                            <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>))</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 43 x 22</span><span>
+                            <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>))</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 43 x 22</span><span>
 #&gt;       id bdi_s1 bdi_s2 bdi_s3 bdi_s4 bdi_s5 bdi_s6 bdi_s7 bdi_s8 bdi_s9 bdi_s10
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>     1     35     37     34     23     24     21     29     17     11      11
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     </span><span style='color: #BB0000;'>NA</span><span>     25     25     17     16     12     11     10       3
+#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10       3
 #&gt; </span><span style='color: #555555;'> 3</span><span>     3     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26      24
 #&gt; </span><span style='color: #555555;'> 4</span><span>     4     31     30     32     22     22     20     21     19     24      33
 #&gt; </span><span style='color: #555555;'> 5</span><span>     5     39     37     36     26     26     23     21     19      6       7

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -168,32 +168,32 @@ The list includes values for:</p><ul>
                                     <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                     <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                                     <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='input'>
+                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='input'>
 <span class='co'># Describe bysg dataset</span>
 <span class='fu'>describe_sg</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bysg</span>,
             <span class='kw'>sg_data_structure</span> <span class='kw'>=</span> <span class='st'>"bysg"</span>)</div><div class='output co'>#&gt; $total_n
-#&gt; [1] 26
+#&gt; [1] 24
 #&gt; 
 #&gt; $sg_total_n
-#&gt; [1] 26
+#&gt; [1] 24
 #&gt; 
 #&gt; $sg_pct
 #&gt; [1] 100
 #&gt; 
 #&gt; $sg_multiple_pct
-#&gt; [1] 73.08
+#&gt; [1] 70.83
 #&gt; 
 #&gt; $sg_reversal_n
-#&gt; [1] 5
+#&gt; [1] 4
 #&gt; 
 #&gt; $sg_reversal_pct
-#&gt; [1] 19.23
+#&gt; [1] 16.67
 #&gt; 
 #&gt; $sg_magnitude_m
-#&gt; [1] 10.73
+#&gt; [1] 11
 #&gt; 
 #&gt; $sg_magnitude_sd
-#&gt; [1] 3.42
+#&gt; [1] 3.43
 #&gt; </div><div class='input'>
 <span class='co'># Create byperson dataset</span>
 <span class='no'>byperson_first</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_byperson.html'>create_byperson</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
@@ -206,38 +206,38 @@ The list includes values for:</p><ul>
                                                   <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                                                   <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
                                   <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>,
-                                  <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='st'>"first"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div><div class='input'>
+                                  <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='st'>"first"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div><div class='input'>
 <span class='co'># Describe byperson dataset</span>
 <span class='fu'>describe_sg</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>byperson_first</span>,
             <span class='kw'>sg_data_structure</span> <span class='kw'>=</span> <span class='st'>"byperson"</span>)</div><div class='output co'>#&gt; $total_n
 #&gt; [1] 43
 #&gt; 
 #&gt; $sg_total_n
-#&gt; [1] 26
+#&gt; [1] 24
 #&gt; 
 #&gt; $sg_n
-#&gt; [1] 16
+#&gt; [1] 15
 #&gt; 
 #&gt; $sg_pct
-#&gt; [1] 37.21
+#&gt; [1] 34.88
 #&gt; 
 #&gt; $sg_multiple_n
-#&gt; [1] 9
+#&gt; [1] 8
 #&gt; 
 #&gt; $sg_multiple_pct
-#&gt; [1] 20.93
+#&gt; [1] 18.6
 #&gt; 
 #&gt; $sg_reversal_n
 #&gt; [1] 3
 #&gt; 
 #&gt; $sg_reversal_pct
-#&gt; [1] 18.75
+#&gt; [1] 20
 #&gt; 
 #&gt; $sg_magnitude_m
-#&gt; [1] 11.19
+#&gt; [1] 11.4
 #&gt; 
 #&gt; $sg_magnitude_sd
-#&gt; [1] 3.94
+#&gt; [1] 3.98
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

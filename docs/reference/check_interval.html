@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -124,9 +124,18 @@
     <p>Checks if a specific session to session interval is a sudden gain/loss.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_interval</span>(<span class='no'>pre_values</span>, <span class='no'>post_values</span>, <span class='no'>sg_crit1_cutoff</span>,
-  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>identify</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg"</span>, <span class='st'>"sl"</span>), <span class='kw'>details</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>check_interval</span>(
+  <span class='no'>pre_values</span>,
+  <span class='no'>post_values</span>,
+  <span class='no'>sg_crit1_cutoff</span>,
+  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_critical_value</span> <span class='kw'>=</span> <span class='fl'>2.776</span>,
+  <span class='kw'>identify</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg"</span>, <span class='st'>"sl"</span>),
+  <span class='kw'>details</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,7 +151,7 @@
     <tr>
       <th>sg_crit1_cutoff</th>
       <td><p>Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
+The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
 If set to <code>NULL</code> the first criterion wont be applied.</p></td>
     </tr>
     <tr>
@@ -170,6 +179,10 @@ and where one datapoint is missing both before and after the gain a critical val
 If set to <code>FALSE</code> a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for sudden gains.</p></td>
     </tr>
     <tr>
+      <th>sg_crit3_critical_value</th>
+      <td><p>Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
+    </tr>
+    <tr>
       <th>identify</th>
       <td><p>String, specifying whether to identify sudden gains (<code>"sg"</code>) or sudden losses (<code>"sl"</code>).</p></td>
     </tr>
@@ -193,22 +206,21 @@ If set to <code>FALSE</code> a critical value of 2.776 will instead be used for 
                <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>.05</span>,
                <span class='kw'>identify</span> <span class='kw'>=</span> <span class='st'>"sg"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; # Check sudden gain
-#&gt; ## Criterion 1: TRUE
-#&gt; ## Criterion 2: TRUE
-#&gt; ## Criterion 3: TRUE
-#&gt; ## Sudden gain: TRUE
+#&gt; ## Met Criterion 1: YES
+#&gt; ## Met Criterion 2: YES
+#&gt; ## Met Criterion 3: YES
+#&gt; ## Sudden gain: YES
 #&gt; 
 #&gt; # Detailed output
-#&gt; ## Criterion 1, Cut-off: 7
-#&gt; ## Criterion 2, Percentage change threshhold: 0.25
-#&gt; ## Criterion 3, Alpha: 0.05
-#&gt; ## Criterion 3, Critical value: 2.776
+#&gt; ## Criterion 1: Cut-off: 7
+#&gt; ## Criterion 2: Percentage change threshhold: 25%
+#&gt; ## Criterion 3: Adjusted: YES, Critical value: 2.776
 #&gt; ## Number of pre gain values present: 3
 #&gt; ## Number of post gain values present: 3
-#&gt; ## Mean pre: 32
-#&gt; ## Mean post: 6
-#&gt; ## SD pre: 1
-#&gt; ## SD post: 1</div><div class='input'>
+#&gt; ## Mean of pre gain values: 32
+#&gt; ## Mean of post gain values: 6
+#&gt; ## SD of pre gain values: 1
+#&gt; ## SD of post gain values: 1</div><div class='input'>
 <span class='co'># No missing data, alpha = 0.01</span>
 <span class='fu'>check_interval</span>(<span class='kw'>pre_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>32</span>, <span class='fl'>31</span>, <span class='fl'>33</span>),
                <span class='kw'>post_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>7</span>),
@@ -217,22 +229,21 @@ If set to <code>FALSE</code> a critical value of 2.776 will instead be used for 
                <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>.01</span>,
                <span class='kw'>identify</span> <span class='kw'>=</span> <span class='st'>"sg"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; # Check sudden gain
-#&gt; ## Criterion 1: TRUE
-#&gt; ## Criterion 2: TRUE
-#&gt; ## Criterion 3: TRUE
-#&gt; ## Sudden gain: TRUE
+#&gt; ## Met Criterion 1: YES
+#&gt; ## Met Criterion 2: YES
+#&gt; ## Met Criterion 3: YES
+#&gt; ## Sudden gain: YES
 #&gt; 
 #&gt; # Detailed output
-#&gt; ## Criterion 1, Cut-off: 7
-#&gt; ## Criterion 2, Percentage change threshhold: 0.25
-#&gt; ## Criterion 3, Alpha: 0.01
-#&gt; ## Criterion 3, Critical value: 4.604
+#&gt; ## Criterion 1: Cut-off: 7
+#&gt; ## Criterion 2: Percentage change threshhold: 25%
+#&gt; ## Criterion 3: Adjusted: YES, Critical value: 4.604
 #&gt; ## Number of pre gain values present: 3
 #&gt; ## Number of post gain values present: 3
-#&gt; ## Mean pre: 32
-#&gt; ## Mean post: 6
-#&gt; ## SD pre: 1
-#&gt; ## SD post: 1</div><div class='input'>
+#&gt; ## Mean of pre gain values: 32
+#&gt; ## Mean of post gain values: 6
+#&gt; ## SD of pre gain values: 1
+#&gt; ## SD of post gain values: 1</div><div class='input'>
 <span class='co'># Check intervall for sudden gain using only third criterion</span>
 <span class='co'># Some missing data, alpha = 0.01</span>
 <span class='fu'>check_interval</span>(<span class='kw'>pre_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>,<span class='fl'>31</span>,<span class='fl'>33</span>),
@@ -242,22 +253,21 @@ If set to <code>FALSE</code> a critical value of 2.776 will instead be used for 
                <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>.01</span>,
                <span class='kw'>identify</span> <span class='kw'>=</span> <span class='st'>"sg"</span>)</div><div class='output co'>#&gt; <span class='message'>Third sudden gains criterion was applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; # Check sudden gain
-#&gt; ## Criterion 1: NA
-#&gt; ## Criterion 2: NA
-#&gt; ## Criterion 3: TRUE
-#&gt; ## Sudden gain: TRUE
+#&gt; ## Met Criterion 1: NA
+#&gt; ## Met Criterion 2: NA
+#&gt; ## Met Criterion 3: YES
+#&gt; ## Sudden gain: YES
 #&gt; 
 #&gt; # Detailed output
-#&gt; ## Criterion 1, Cut-off: 
-#&gt; ## Criterion 2, Percentage change threshhold: 
-#&gt; ## Criterion 3, Alpha: 0.01
-#&gt; ## Criterion 3, Critical value: 9.925
+#&gt; ## Criterion 1: Cut-off: 
+#&gt; ## Criterion 2: Percentage change threshhold: %
+#&gt; ## Criterion 3: Adjusted: YES, Critical value: 9.925
 #&gt; ## Number of pre gain values present: 2
 #&gt; ## Number of post gain values present: 2
-#&gt; ## Mean pre: 32
-#&gt; ## Mean post: 6
-#&gt; ## SD pre: 1.414
-#&gt; ## SD post: 1.414</div><div class='input'>
+#&gt; ## Mean of pre gain values: 32
+#&gt; ## Mean of post gain values: 6
+#&gt; ## SD of pre gain values: 1.414
+#&gt; ## SD of post gain values: 1.414</div><div class='input'>
 <span class='co'># Check intervall for sudden loss using all three criteria</span>
 <span class='co'># Some missing data, alpha = 0.05</span>
 <span class='fu'>check_interval</span>(<span class='kw'>pre_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>NA</span>, <span class='fl'>7</span>),
@@ -267,22 +277,21 @@ If set to <code>FALSE</code> a critical value of 2.776 will instead be used for 
                <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
                <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>.05</span>,
                <span class='kw'>identify</span> <span class='kw'>=</span> <span class='st'>"sl"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; # Check sudden loss
-#&gt; ## Criterion 1: TRUE
-#&gt; ## Criterion 2: TRUE
-#&gt; ## Criterion 3: TRUE
-#&gt; ## Sudden loss: TRUE
+#&gt; ## Met Criterion 1: YES
+#&gt; ## Met Criterion 2: YES
+#&gt; ## Met Criterion 3: YES
+#&gt; ## Sudden loss: YES
 #&gt; 
 #&gt; # Detailed output
-#&gt; ## Criterion 1, Cut-off: -7
-#&gt; ## Criterion 2, Percentage change threshhold: 0.25
-#&gt; ## Criterion 3, Alpha: 0.05
-#&gt; ## Criterion 3, Critical value: 3.182
+#&gt; ## Criterion 1: Cut-off: -7
+#&gt; ## Criterion 2: Percentage change threshhold: 25%
+#&gt; ## Criterion 3: Adjusted: YES, Critical value: 3.182
 #&gt; ## Number of pre gain values present: 2
 #&gt; ## Number of post gain values present: 3
-#&gt; ## Mean pre: 6
-#&gt; ## Mean post: 14
-#&gt; ## SD pre: 1.414
-#&gt; ## SD post: 2</div><div class='input'>
+#&gt; ## Mean of pre gain values: 6
+#&gt; ## Mean of post gain values: 14
+#&gt; ## SD of pre gain values: 1.414
+#&gt; ## SD of post gain values: 2</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

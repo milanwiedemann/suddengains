@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -124,13 +124,28 @@
     <p>Writes a data frame as a specified file type.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_byperson</span>(<span class='no'>data</span>, <span class='no'>sg_crit1_cutoff</span>, <span class='no'>id_var_name</span>, <span class='no'>sg_var_list</span>,
-  <span class='no'>tx_start_var_name</span>, <span class='no'>tx_end_var_name</span>, <span class='no'>sg_measure_name</span>,
-  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>identify</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg"</span>, <span class='st'>"sl"</span>),
-  <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>,
-  <span class='st'>"smalles"</span>, <span class='st'>"largest"</span>), <span class='kw'>data_is_bysg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CSV"</span>,
-  <span class='st'>"SPSS"</span>, <span class='st'>"STATA"</span>, <span class='st'>"Excel"</span>), <span class='no'>path</span>, <span class='kw'>stata_version</span> <span class='kw'>=</span> <span class='fl'>14</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>write_byperson</span>(
+  <span class='no'>data</span>,
+  <span class='no'>sg_crit1_cutoff</span>,
+  <span class='no'>id_var_name</span>,
+  <span class='no'>sg_var_list</span>,
+  <span class='no'>tx_start_var_name</span>,
+  <span class='no'>tx_end_var_name</span>,
+  <span class='no'>sg_measure_name</span>,
+  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sg_crit3_critical_value</span> <span class='kw'>=</span> <span class='fl'>2.776</span>,
+  <span class='kw'>identify</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg"</span>, <span class='st'>"sl"</span>),
+  <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>, <span class='st'>"smallest"</span>, <span class='st'>"largest"</span>),
+  <span class='kw'>data_is_bysg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CSV"</span>, <span class='st'>"SPSS"</span>, <span class='st'>"STATA"</span>, <span class='st'>"Excel"</span>),
+  <span class='no'>path</span>,
+  <span class='kw'>stata_version</span> <span class='kw'>=</span> <span class='fl'>14</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,7 +157,7 @@
     <tr>
       <th>sg_crit1_cutoff</th>
       <td><p>Numeric, specifying the cut-off value to be used for the first sudden gains criterion.
-The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calcualate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
+The function <code><a href='define_crit1_cutoff.html'>define_crit1_cutoff</a></code> can be used to calculate a cutoff value based on the Reliable Change Index (RCI; Jacobson &amp; Truax, 1991).
 If set to <code>NULL</code> the first criterion wont be applied.</p></td>
     </tr>
     <tr>
@@ -187,7 +202,11 @@ This argument is set to <code>TRUE</code> by default adjusting the critical valu
 A critical value of 2.776 is used when all three data points before and after a potential gain are available,
 where one datapoint is missing either before or after a potential gain a critical value of 3.182 is used,
 and where one datapoint is missing both before and after the gain a critical value of 4.303 is used (for sg_crit3_alpha = 0.05).
-If set to <code>FALSE</code> a critical value of 2.776 will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
+If set to <code>FALSE</code> the critical value set in <code>sg_crit3_critical_value</code> will instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.</p></td>
+    </tr>
+    <tr>
+      <th>sg_crit3_critical_value</th>
+      <td><p>Numeric, specifying the critical value to instead be used for all comparisons, regardless of missingnes in the sequence of data points that are investigated for potential sudden gains.#'</p></td>
     </tr>
     <tr>
       <th>identify</th>
@@ -252,7 +271,7 @@ for more information.</p></td>
                <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
                <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='st'>"largest"</span>,
                <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"CSV"</span>,
-               <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>temp</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the thrid criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div></pre>
+               <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>temp</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='output co'>#&gt; <span class='message'>The first gain/loss was selected in case of multiple gains/losses.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

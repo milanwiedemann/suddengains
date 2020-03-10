@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
 
 <p>Sudden gains are large and stable improvements in an outcome variable between consecutive measurements, for example during a psychological intervention with multiple assessments (Tang and DeRubeis, <a href="https://doi.org/10.1037/0022-006X.67.6.894">1999</a>). The R package <code>suddengains</code> provides a set of tools to facilitate sudden gains research. It identifies sudden gains or sudden losses while allowing to apply adaptations of the standard criteria. It handles multiple gains by creating two datasets, one structured by sudden gains and one by participants. It also implements a function to specify which sudden gains to choose in case of multiple gains (e.g. the earliest or largest gain).</p>
 <p>An interactive web application <strong><a href="https://milanwiedemann.shinyapps.io/shinygains"><code>shinygains</code></a></strong> illustrates the main functions of this package and allows users to explore and understand the impact of different methodological choices.</p>
-<p>To learn more about the background of this package see our preprint on <a href="https://psyarxiv.com/2wa84/">PsyArXiv</a>. We have also created an open <a href="https://www.zotero.org/groups/2280342/suddengains">Zotero group</a> collecting all the literature looking at sudden gains in psychological therapies. Please let me know if I missed anything or join the group and add papers yourself.</p>
+<p>To learn more about the background of this package see our paper in <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276">PLOS ONE</a>. We have also created an open <a href="https://www.zotero.org/groups/2280342/suddengains">Zotero group</a> collecting all the literature looking at sudden gains in psychological therapies. Please let me know if I missed anything or join the group and add papers yourself.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -148,7 +148,7 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>Below are some examples illustrating the suddengains package. More details can be found in the <a href="https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html">Vignette</a> or on <a href="https://psyarxiv.com/2wa84/">PsyArXiv</a>.</p>
+<p>Below are some examples illustrating the suddengains package. More details can be found in the <a href="https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html">Vignette</a> or in our <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276">PLOS ONE</a> paper.</p>
 <div id="functions-to-identify-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions-to-identify-sudden-gains" class="anchor"></a>1. Functions to identify sudden gains</h3>
@@ -180,7 +180,8 @@
 <a class="sourceLine" id="cb4-11" data-line-number="11">                    <span class="dt">sg_measure_name =</span> <span class="st">"bdi"</span>,</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">                    <span class="dt">identify =</span> <span class="st">"sg"</span>)</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; First, second, and third sudden gains criteria were applied.</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></a></code></pre></div>
 </div>
 <div id="helper-functions-to-visualise-and-report-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
@@ -195,12 +196,19 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7">                                 <span class="st">"sg_bdi_n1"</span>, <span class="st">"sg_bdi_n2"</span>, <span class="st">"sg_bdi_n3"</span>),</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">        <span class="dt">ylab =</span> <span class="st">"BDI"</span>, <span class="dt">xlab =</span> <span class="st">"Session"</span>,</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">        <span class="dt">colour_single =</span> <span class="st">"#239b89ff"</span>)</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; Warning: `fun.y` is deprecated. Use `fun` instead.</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Warning: Removed 14 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: Removed 8 rows containing non-finite values (stat_summary).</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; Warning: `fun.y` is deprecated. Use `fun` instead.</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: `fun.y` is deprecated. Use `fun` instead.</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; Warning: `fun.y` is deprecated. Use `fun` instead.</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; Warning: Removed 14 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; Warning: Removed 8 rows containing non-finite values (stat_summary).</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="50%"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Visualise trajectories for a selection of individual cases</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories</a></span>(<span class="dt">data =</span> sgdata,</a>

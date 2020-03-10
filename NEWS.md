@@ -1,3 +1,12 @@
+# suddengains 0.4.2
+
+- Add option to specify the critical value for criterion three using the argument `sg_crit3_critical_value`
+- Add option to extract values from multiple measures by specifting a list in the `extract_var_list` of the function `extract_values()`
+- Internal changes to `plot_sg()` function to work properly with shiny
+- Create shiny app illustrating main functions of this version, available at https://milanwiedemann.shinyapps.io/shinygains/
+- Correct typos
+- Add funders to documentation
+
 # suddengains 0.4.0
 
 - Fix error in formula used to define a cutoff value for the first sudden gains criteria based on the Reliable Change Index (RCI; Jacobson & Truax, 1991) in the function `define_crit1_cutoff()`

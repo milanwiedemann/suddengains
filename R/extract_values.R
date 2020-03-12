@@ -58,7 +58,7 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
       stop("Elements entered in list 'extract_var_list' must have the same length.", call. = FALSE)
     }
 
-    message("Note: Each element in the list specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
+    message("Note: Each element specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
 
 
     # create data with ids for loop to add
@@ -117,7 +117,7 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
 
 
 
-    message("Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
+    message("Note: The vector(s) specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
 
 
     # create data with ids for loop to add

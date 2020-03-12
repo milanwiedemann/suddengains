@@ -51,7 +51,6 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
   # This is needed at the end to add IDs for which no scores could be extracted
   all_ids <- dplyr::select(data, id_var_name)
 
-
   if (is.list(extract_var_list) == TRUE) {
 
     if ((length(unique(lengths(extract_var_list))) == 1L) == FALSE) {
@@ -60,20 +59,19 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
 
     message("Note: Each element specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
 
-
     # create data with ids for loop to add
     data_loop <- dplyr::select(data, id_var_name)
 
     for (measure in seq_along(extract_var_list)) {
 
-
       # Select only variables needed to extract scores around sudden gain
       data_in <- data %>%
         dplyr::select(id_var_name, sg_session_n, extract_var_list[[measure]])
 
-      # Rename variables so I can use my extract approach
+      # Rename variables to generic names so the code below works
       data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list[[measure]], start_numbering = start_numbering)
 
+      # Now extract scores around the gain/loss
       data_extract <- data_extract %>%
         tidyr::gather(key = "time_str", value = "value", -!! rlang::sym(id_var_name), -sg_session_n) %>%
         dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
@@ -114,11 +112,7 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
 
   } else if (is.vector(extract_var_list) == TRUE) {
 
-
-
-
     message("Note: The vector(s) specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
-
 
     # create data with ids for loop to add
     data_loop <- dplyr::select(data, id_var_name)
@@ -159,15 +153,11 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
       # making sure that all ids are included here even if no values were extracted
       data_loop <- dplyr::left_join(data_loop, data_extract, by = id_var_name)
 
-
-
     # Add to data or return extracted values only?
     if (add_to_data == TRUE) {
       dplyr::left_join(data, data_loop, by = id_var_name)
     } else if (add_to_data == FALSE) {
       data_loop
     }
-
   }
-
-    }
+  }

@@ -146,13 +146,14 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   }
 
   # Extract scores of the sudden gains measure around the sudden gain ----
-  data_extract <- suddengains::extract_values(data_bysg,
-                                              id_var_name = "id_sg",
-                                              extract_var_list = sg_var_list,
-                                              extract_measure_name = sg_measure_name,
-                                              start_numbering = start_numbering,
-                                              add_to_data = FALSE
-  )
+  data_extract <- base::suppressMessages(
+    suddengains::extract_values(data_bysg,
+                                id_var_name = "id_sg",
+                                extract_var_list = sg_var_list,
+                                extract_measure_name = sg_measure_name,
+                                start_numbering = start_numbering,
+                                add_to_data = FALSE)
+    )
 
   # Combine the extracted scores with the bysg dataset
   data_bysg <- data_bysg %>%

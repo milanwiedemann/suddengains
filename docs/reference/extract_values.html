@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
       </span>
     </div>
 
@@ -91,6 +91,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shinygains.html">shinygains: An interactive illustration of the suddengains R package</a>
+    </li>
     <li>
       <a href="../articles/suddengains-tutorial.html">A tutorial on using the suddengains R package</a>
     </li>
@@ -187,7 +190,7 @@ If set to false, only the ID variable and all extracted values will be returned.
                                     <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                     <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                                     <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div><div class='input'>
+                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='input'>
 <span class='co'># For bysg dataset select "id" and "rq" variables first</span>
 <span class='no'>sgdata_rq</span> <span class='kw'>&lt;-</span> <span class='no'>sgdata</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>rq_s0</span>:<span class='no'>rq_s12</span>)
@@ -203,7 +206,7 @@ If set to false, only the ID variable and all extracted values will be returned.
                                                <span class='st'>"rq_s5"</span>, <span class='st'>"rq_s6"</span>, <span class='st'>"rq_s7"</span>, <span class='st'>"rq_s8"</span>,
                                                <span class='st'>"rq_s9"</span>, <span class='st'>"rq_s10"</span>, <span class='st'>"rq_s11"</span>, <span class='st'>"rq_s12"</span>),
                           <span class='kw'>extract_measure_name</span> <span class='kw'>=</span> <span class='st'>"rq"</span>,
-                          <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div></pre>
+                          <span class='kw'>add_to_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: The vector(s) specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

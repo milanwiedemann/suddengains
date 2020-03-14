@@ -1,4 +1,5 @@
 ---
+title: "shinygains: An interactive illustration of the suddengains R package"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{shinygains: An interactive illustration of the suddengains R package}
@@ -10,7 +11,7 @@ vignette: >
 .shiny-app-frame {
   position: fixed;
   left: 0;
-  top: 0px;
+  top: 50px;
   bottom: 0;
   right: 0;
 }

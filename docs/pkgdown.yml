@@ -2,5 +2,6 @@ pandoc: 2.3.1
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
+  shinygains: shinygains.html
   suddengains-tutorial: suddengains-tutorial.html
 

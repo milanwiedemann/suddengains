@@ -215,8 +215,8 @@ check_interval <- function(pre_values, post_values, sg_crit1_cutoff, sg_crit2_pc
                          "## ", identify_string, ": ", ifelse(as.logical(crit123) == TRUE, "YES", "NO"), "\n", "\n",
 
                         "# Detailed output\n",
-                        "## Criterion 1: Cut-off: ", sg_crit1_cutoff, "\n",
-                        "## Criterion 2: Percentage change threshhold: ", sg_crit2_pct * 100, "%\n",
+                        "## Criterion 1: Cut-off: ", ifelse(rlang::is_true(crit1) == TRUE, paste(sg_crit1_cutoff, "\n") , "Criterion 1 was not applied\n"),
+                        "## Criterion 2: Percentage change threshhold: ", ifelse(rlang::is_true(crit2) == TRUE, paste(sg_crit2_pct * 100, "%\n"), "Criterion 2 was not applied\n"),
                         "## Criterion 3: Adjusted: ", ifelse(sg_crit3_adjust == TRUE, "YES", "NO") , ", Critical value: ", round(sg_crit3_critical_value_set, 3), "\n",
 
                         "## Number of pre gain values present: ", sum_n_pre, "\n",

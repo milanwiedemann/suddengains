@@ -110,7 +110,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
 
         plot_temp <- sg_plot_start +
             # Add means
-            ggplot2::stat_summary(fun.y = mean,
+            ggplot2::stat_summary(fun = mean,
                                   geom = "point",
                                   colour = colour_single,
                                   position = ggplot2::position_dodge(width = 0.2)) +
@@ -126,7 +126,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             # Add dotted line from start value to pre-pre-pre gain value
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("start_fun", "pre3_fun")),
                                   ggplot2::aes(y = value, group = 1),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 3,
                                   colour = colour_single,
@@ -135,7 +135,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("pre3_fun", "pre2_fun", "pre1_fun",
                                                                                         "post1_fun", "post2_fun", "post3_fun")),
                                   ggplot2::aes(y = value, group = 1),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 1,
                                   colour = colour_single,
@@ -144,7 +144,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             # Add dotted line from post-post-post gain value to end value
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("post3_fun", "end_fun")),
                                   ggplot2::aes(y = value, group = 1),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 3,
                                   colour = colour_single,
@@ -223,7 +223,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
         # Create plot
         plot_temp <- sg_plot_start +
             # Add means
-            ggplot2::stat_summary(fun.y = mean,
+            ggplot2::stat_summary(fun = mean,
                                   geom = "point",
                                   position = ggplot2::position_dodge(width = 0.2)) +
 
@@ -237,7 +237,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             # Add dotted line from start value to pre-pre-pre gain value
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("start_fun", "pre3_fun")),
                                   ggplot2::aes(y = value, group = !! rlang::sym(group_var_name)),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 3,
                                   position = ggplot2::position_dodge(width = 0.2)) +
@@ -245,7 +245,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("pre3_fun", "pre2_fun", "pre1_fun",
                                                                                         "post1_fun", "post2_fun", "post3_fun")),
                                   ggplot2::aes(y = value, group = !! rlang::sym(group_var_name)),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 1,
                                   position = ggplot2::position_dodge(width = 0.2)) +
@@ -253,7 +253,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             # Add dotted line from post-post-post gain value to end value
             ggplot2::stat_summary(data = dplyr::filter(plot_data, variable %in% base::c("post3_fun", "end_fun")),
                                   ggplot2::aes(y = value, group = !! rlang::sym(group_var_name)),
-                                  fun.y = mean,
+                                  fun = mean,
                                   geom = "line",
                                   linetype = 3,
                                   position = ggplot2::position_dodge(width = 0.2)) +

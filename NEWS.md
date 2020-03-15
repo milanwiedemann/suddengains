@@ -1,7 +1,8 @@
+
 # suddengains 0.4.3
-- supress messages in `create_bysg()` and create_byperson that come from `extract_values()` function
-- update ggplot2 function with deprecated warning message 
-- clearer detailed output message in `check_interval()` function
+- Supress message about vector length from `extract_values()` in the functions `create_bysg()` and `create_byperson()`
+- Update ggplot2 functions with "deprecated" warning message 
+- Add clearer detailed output message in `check_interval()` function
 
 # suddengains 0.4.2
 

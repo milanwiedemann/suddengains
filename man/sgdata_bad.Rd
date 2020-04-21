@@ -4,7 +4,8 @@
 \name{sgdata_bad}
 \alias{sgdata_bad}
 \title{Longitudinal dataset with repeated measures of depression and rumination (bad variable names)}
-\format{A longitudinal dataset in wide format:
+\format{
+A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 \itemize{
   \item{id}{: ID variable, unique identifier for each person}
   \item{bdi_intake}{: BDI value, baseline assessment}
@@ -37,7 +38,8 @@
   \item{rq_s12_end}{: RQ value, session 12}
   \item{prq_fu1}{: RQ value, follow-up measure 1}
   \item{rqq_followup2}{: RQ value, follow-up measure 2}
-}}
+}
+}
 \usage{
 data(sgdata_bad)
 }

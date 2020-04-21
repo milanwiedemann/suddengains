@@ -3,7 +3,7 @@
 #' @description Same as \code{sgdata} but with bad vaiable names to illustrate that the package can also work with inconsistent names.
 #' @docType data
 #' @usage data(sgdata_bad)
-#' @format A longitudinal dataset in wide format:
+#' @format A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 #' \itemize{
 #'   \item{id}{: ID variable, unique identifier for each person}
 #'   \item{bdi_intake}{: BDI value, baseline assessment}

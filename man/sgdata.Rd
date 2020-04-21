@@ -4,7 +4,8 @@
 \name{sgdata}
 \alias{sgdata}
 \title{Longitudinal dataset with repeated measures of depression and rumination}
-\format{A longitudinal dataset in wide format:
+\format{
+A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 \itemize{
   \item{id}{: ID variable, unique identifier for each person}
   \item{bdi_s0}{: BDI value, baseline assessment}
@@ -37,7 +38,8 @@
   \item{rq_s12}{: RQ value, session 12}
   \item{rq_fu1}{: RQ value, follow-up measure 1}
   \item{rq_fu2}{: RQ value, follow-up measure 2}
-}}
+}
+}
 \usage{
 data(sgdata)
 }

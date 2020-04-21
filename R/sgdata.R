@@ -3,7 +3,7 @@
 #' @description Example dataset with a measure of depression symptoms (BDI) and a secondary process measure (RQ; Rumination Questionnaire) to illustrate how the package works.
 #' @docType data
 #' @usage data(sgdata)
-#' @format A longitudinal dataset in wide format:
+#' @format A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 #' \itemize{
 #'   \item{id}{: ID variable, unique identifier for each person}
 #'   \item{bdi_s0}{: BDI value, baseline assessment}

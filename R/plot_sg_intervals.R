@@ -39,7 +39,7 @@ plot_sg_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 =
         # geom_bar(position = position_fill(), stat = "identity")
         ggplot2::scale_y_continuous(labels = scales::percent_format()) +
         # scale_fill_manual(values = c("red", "yellow"))
-        ggplot2::scale_fill_viridis_d(name = "", direction = -1) +
+        ggplot2::scale_fill_viridis_d(name = "", direction = -1, alpha = .8) +
         # papaja::theme_apa() +
         ggplot2::labs(title = "Percentage of available data per time point", x = "", y = "") +
         ggplot2::theme(legend.position = "right")+
@@ -69,18 +69,18 @@ plot_sg_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 =
         dplyr::mutate(id = "count_intervals",
                name = factor(name,
                              levels = c("not_available_between_sess_sg", "total_not_available_sg", "available_between_sess_sg"),
-                             labels = c(paste0("Not Analysed Type 1\n(n = ", plot_count_intervals_data_temp$value[1],", ", round(plot_count_intervals_data_temp$pct[1] * 100, 0), "%)"),
-                                        paste0("Not Analysed Type 2\n(n = ", plot_count_intervals_data_temp$value[3] ,", ", round(plot_count_intervals_data_temp$pct[3] * 100, 0), "%)"),
+                             labels = c(paste0("Not Analysed Type 1\n(n = ", plot_count_intervals_data_temp$value[3],", ", round(plot_count_intervals_data_temp$pct[3] * 100, 0), "%)"),
+                                        paste0("Not Analysed Type 2\n(n = ", plot_count_intervals_data_temp$value[1] ,", ", round(plot_count_intervals_data_temp$pct[1] * 100, 0), "%)"),
                                         paste0("Analysed\n(n = ", plot_count_intervals_data_temp$value[2] ,", ", round(plot_count_intervals_data_temp$pct[2] * 100, 0), "%)"))))
 
     # Create second plot
     plot_sg_intervals <- plot_count_intervals_data %>%
         ggplot2::ggplot(ggplot2::aes(x = id, y = value, fill = name)) +
         ggplot2::geom_bar(position = "fill", stat = "identity") +
-        ggplot2::scale_fill_viridis_d(name = "", direction = -1) +
+        ggplot2::scale_fill_viridis_d(name = "", direction = -1, alpha = .8) +
         ggplot2::labs(title = paste0("Percentage of session to session intervals analysed (Total number of intervals, n = ", sum(plot_count_intervals_data_temp$value) ,")")) +
         ggplot2::theme(legend.position = "right") +
-        ggplot2::labs(x = "", y = "", caption = "Not Analysed Type 1: The total number of session to session intervals from the first to the second and the second last to the last session. \n\nNot Analysed Type 2: The total number of session to session intervals that can not be analysed for sudden gains due to the pattern of missing data.") +
+        ggplot2::labs(x = "", y = "", caption = "Not Analysed Type 1: The total number of session to session intervals that can not be analysed for sudden gains due to the pattern of missing data.\n\nNot Analysed Type 2: The total number of session to session intervals from the first to the second and the second last to the last session.") +
         ggplot2::theme(legend.key = ggplot2::element_rect(color = NA, fill = NA),
               legend.key.size = ggplot2::unit(0.9, "cm")) +
         ggplot2::theme(legend.title.align = 1.5) +

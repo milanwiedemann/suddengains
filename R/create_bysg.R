@@ -237,6 +237,6 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
   # Return tibble
   data_bysg %>%
-    tibble::as.tibble() %>%
+    tibble::as_tibble() %>%
     dplyr::arrange(!! rlang::sym(id_var_name))
 }

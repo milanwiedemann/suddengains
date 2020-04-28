@@ -18,8 +18,6 @@ If set to TRUE, this implies that the first variable specified in \code{sg_var_l
 }
 \value{
 Plot showing percentage of available data per time point and percentage of session to session intervals that wer analysed for sudden gains.
-
-
 }
 \description{
 Plot summary of available data per time point and analysed session to session intervals
@@ -27,8 +25,10 @@ Plot summary of available data per time point and analysed session to session in
 \examples{
 # Create plot
 plot_sg_intervals(data = sgdata,
-                 id_var_name = "id",
-                 sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4", "bdi_s5",
-                                 "bdi_s6", "bdi_s7", "bdi_s8", "bdi_s9", "bdi_s10", "bdi_s11"))
+                  id_var_name = "id",
+                  sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
+                                  "bdi_s4", "bdi_s5", "bdi_s6",
+                                  "bdi_s7", "bdi_s8", "bdi_s9",
+                                  "bdi_s10", "bdi_s11", "bdi_s12"))
 
 }

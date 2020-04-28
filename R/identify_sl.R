@@ -243,7 +243,7 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             # Return dataframe with details about each criteria instead of combined crit123
             data_crit123_details %>%
                 dplyr::arrange(!! rlang::sym(id_var_name)) %>%
-                tibble::as.tibble()
+                tibble::as_tibble()
 
         } else if (crit123_details == FALSE) {
 
@@ -254,6 +254,6 @@ identify_sl <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
             data_select %>%
                 dplyr::left_join(data_crit123, by = id_var_name) %>%
                 dplyr::arrange(!! rlang::sym(id_var_name)) %>%
-                tibble::as.tibble()
+                tibble::as_tibble()
         }
 }

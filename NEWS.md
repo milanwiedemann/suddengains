@@ -1,5 +1,6 @@
-# suddengains 0.4.3
+# suddengains 0.4.4
 - add function `plot_sg_intervals()` to visualise session to session intervals that are analysed for sudden gains 
+- minor changes to integrate updates in tibble package
 
 
 # suddengains 0.4.3

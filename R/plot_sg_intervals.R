@@ -19,7 +19,7 @@
 plot_sg_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE) {
 
     # Select data
-    sgdata_miss <- sgdata %>%
+    sgdata_miss <- data %>%
         dplyr::select(id_var_name, sg_var_list)
 
     # Calculate data for first plot

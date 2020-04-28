@@ -1,3 +1,6 @@
+# suddengains 0.4.3
+- add function `plot_sg_intervals()` to visualise session to session intervals that are analysed for sudden gains 
+
 
 # suddengains 0.4.3
 - Supress message about vector length from `extract_values()` in the functions `create_bysg()` and `create_byperson()`

@@ -85,7 +85,7 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
       data_pattern <- base::cbind(id_list, data_pattern)
 
       data_out <- data_pattern %>%
-          tibble::as.tibble() %>%
+          tibble::as_tibble() %>%
           tidyr::unite("pattern", sg_var_list, sep = " ") %>%
           dplyr::mutate(sg_pattern_1 = stringr::str_detect(pattern, "TRUE TRUE TRUE TRUE"),
                sg_pattern_2 = stringr::str_detect(pattern, "TRUE TRUE TRUE FALSE TRUE"),

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • suddengains</title>
+<title>Plot summary of available data per time point and analysed session to session intervals — plot_sg_intervals • suddengains</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Plot summary of available data per time point and analysed session to session intervals — plot_sg_intervals" />
+<meta property="og:description" content="Plot summary of available data per time point and analysed session to session intervals" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -125,20 +126,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Plot summary of available data per time point and analysed session to session intervals</h1>
+    <small class="dont-index">Source: <a href='https://github.com/milanwiedemann/suddengains/blob/master/R/plot_sg_intervals.R'><code>R/plot_sg_intervals.R</code></a></small>
+    <div class="hidden name"><code>plot_sg_intervals.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="shinygains.html">shinygains: An interactive illustration of the suddengains R package</a></dt>
-        <dd></dt>
-        <dt><a href="suddengains-tutorial.html">A tutorial on using the suddengains R package</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>Plot summary of available data per time point and analysed session to session intervals</p>
     </div>
+
+    <pre class="usage"><span class='fu'>plot_sg_intervals</span>(<span class='no'>data</span>, <span class='no'>id_var_name</span>, <span class='no'>sg_var_list</span>, <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>A data set in wide format including an ID variable and variables for each measurement point.</p></td>
+    </tr>
+    <tr>
+      <th>id_var_name</th>
+      <td><p>String, specifying the name of the ID variable. Each row should have a unique value.</p></td>
+    </tr>
+    <tr>
+      <th>sg_var_list</th>
+      <td><p>Vector, specifying the variable names of each measurement point sequentially.</p></td>
+    </tr>
+    <tr>
+      <th>identify_sg_1to2</th>
+      <td><p>Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
+If set to TRUE, this implies that the first variable specified in <code>sg_var_list</code> represents a baseline measurement point, e.g. pre-intervention assessment.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Plot showing percentage of available data per time point and percentage of session to session intervals that wer analysed for sudden gains.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Create plot</span>
+<span class='fu'>plot_sg_intervals</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
+                  <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
+                  <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
+                                  <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
+                                  <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
+                                  <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>))</div><div class='img'><img src='plot_sg_intervals-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

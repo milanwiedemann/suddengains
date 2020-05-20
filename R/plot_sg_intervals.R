@@ -78,7 +78,8 @@ plot_sg_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 =
         ggplot2::ggplot(ggplot2::aes(x = id, y = value, fill = name)) +
         ggplot2::geom_bar(position = "fill", stat = "identity") +
         ggplot2::scale_fill_viridis_d(name = "", direction = -1, alpha = .8) +
-        ggplot2::labs(title = paste0("Percentage of session to session intervals analysed (Total number of intervals, n = ", sum(plot_count_intervals_data_temp$value) ,")")) +
+        ggplot2::labs(title = "Percentage of session to session intervals analysed",
+                      subtitle = paste0("Total number of intervals, n = ", sum(plot_count_intervals_data_temp$value) ,")")) +
         ggplot2::theme(legend.position = "right") +
         ggplot2::labs(x = "", y = "", caption = "Not Analysed Type 1: The total number of session to session intervals that can not be analysed for sudden gains due to the pattern of missing data.\n\nNot Analysed Type 2: The total number of session to session intervals from the first to the second and the second last to the last session.") +
         ggplot2::theme(legend.key = ggplot2::element_rect(color = NA, fill = NA),

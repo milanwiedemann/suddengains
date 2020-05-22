@@ -3,7 +3,7 @@
 - minor changes to integrate updates in tibble package
 
 # suddengains 0.4.3
-- Supress message about vector length from `extract_values()` in the functions `create_bysg()` and `create_byperson()`
+- Suppress message about vector length from `extract_values()` in the functions `create_bysg()` and `create_byperson()`
 - Update ggplot2 functions with "deprecated" warning message 
 - Add clearer detailed output message in `check_interval()` function
 

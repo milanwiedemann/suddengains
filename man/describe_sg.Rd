@@ -29,7 +29,7 @@ The list includes values for:
     }
 }
 \description{
-Some numbers (percentages) will be different depending which form of data set (bysg vs. byperson) is selected, because if multiple gains in bysg only one will be selected for further analyses.
+Descriptives might differ between the bysg and byperson data sets depending on whether multiple gains are present.
 }
 \examples{
 # Create bysg dataset
@@ -47,21 +47,4 @@ bysg <- create_bysg(data = sgdata,
 # Describe bysg dataset
 describe_sg(data = bysg,
             sg_data_structure = "bysg")
-
-# Create byperson dataset
-byperson_first <- create_byperson(data = sgdata,
-                                  sg_crit1_cutoff = 7,
-                                  id_var_name = "id",
-                                  tx_start_var_name = "bdi_s1",
-                                  tx_end_var_name = "bdi_s12",
-                                  sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3",
-                                                  "bdi_s4", "bdi_s5", "bdi_s6",
-                                                  "bdi_s7", "bdi_s8", "bdi_s9",
-                                                  "bdi_s10", "bdi_s11", "bdi_s12"),
-                                  sg_measure_name = "bdi",
-                                  multiple_sg_select = "first")
-
-# Describe byperson dataset
-describe_sg(data = byperson_first,
-            sg_data_structure = "byperson")
 }

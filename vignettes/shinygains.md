@@ -1,0 +1,28 @@
+---
+title: "shinygains: An interactive illustration of the suddengains R package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shinygains: An interactive illustration of the suddengains R package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+.shiny-app-frame {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  right: 0;
+}
+.shiny-app-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+
+<div class="shiny-app-frame"> 
+<iframe src="https://milanwiedemann.shinyapps.io/shinygains/">
+</iframe>
+</div>

@@ -159,9 +159,9 @@
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>Below are some examples illustrating the suddengains package. More details can be found in the <a href="https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html">Vignette</a> or in our <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276">PLOS ONE</a> paper.</p>
-<div id="functions-to-identify-sudden-gains" class="section level3">
+<div id="1-functions-to-identify-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
-<a href="#functions-to-identify-sudden-gains" class="anchor"></a>1. Functions to identify sudden gains</h3>
+<a href="#1-functions-to-identify-sudden-gains" class="anchor"></a>1. Functions to identify sudden gains</h3>
 <p>To identify sudden gains/losses you can use the <strong><code><a href="reference/identify_sg.html">identify_sg()</a></code></strong> and <strong><code><a href="reference/identify_sl.html">identify_sl()</a></code></strong> functions. These functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified. For example the variable <code>sg_2to3</code> holds information whether a sudden gains occurred from session two to three, with two being the pregain and three being the postgain session. Further functions to help with identifying sudden gains are listed above.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/identify_sg.html">identify_sg</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">sgdata</span>,
             <span class="kw">sg_crit1_cutoff</span> <span class="kw">=</span> <span class="fl">7</span>,
@@ -173,9 +173,9 @@
                             <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span>),
             <span class="kw">identify_sg_1to2</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
 </div>
-<div id="functions-to-create-datasets-for-further-analysis" class="section level3">
+<div id="2-functions-to-create-datasets-for-further-analysis" class="section level3">
 <h3 class="hasAnchor">
-<a href="#functions-to-create-datasets-for-further-analysis" class="anchor"></a>2. Functions to create datasets for further analysis</h3>
+<a href="#2-functions-to-create-datasets-for-further-analysis" class="anchor"></a>2. Functions to create datasets for further analysis</h3>
 <p>As participants may experience more than one gain, as in the present example, and to allow for different subsequent analyses, the package provides two options for output datasets: The <strong><code><a href="reference/create_bysg.html">create_bysg()</a></code></strong> function creates a dataset structured with one row per sudden gain, and the <strong><code><a href="reference/create_byperson.html">create_byperson()</a></code></strong> function creates a dataset structured with one row per person, indicating whether or not they experienced a sudden gain. The <strong><code><a href="reference/create_bysg.html">create_bysg()</a></code></strong> function is shown below. More functions to help with creating datasets for further analyses are listed above.</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Create output dataset with one row per sudden gain</span>
 <span class="co"># and save as an object called "bysg" to use later</span>
@@ -193,9 +193,9 @@
 <span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span>
 <span class="co">#&gt; Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.</span></pre></div>
 </div>
-<div id="helper-functions-to-visualise-and-report-sudden-gains" class="section level3">
+<div id="3-helper-functions-to-visualise-and-report-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
-<a href="#helper-functions-to-visualise-and-report-sudden-gains" class="anchor"></a>3. Helper functions to visualise and report sudden gains</h3>
+<a href="#3-helper-functions-to-visualise-and-report-sudden-gains" class="anchor"></a>3. Helper functions to visualise and report sudden gains</h3>
 <p>The <strong><code><a href="reference/plot_sg.html">plot_sg()</a></code></strong> function plots the ‘average’ sudden gain, and can be used to show changes around the sudden gain. The <strong><code><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories()</a></code></strong> can be used to visualise trajectories for a selection of individual cases.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Create plot of average change in depression symptoms (BDI) around the gain</span>
 <span class="fu"><a href="reference/plot_sg.html">plot_sg</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">bysg</span>,
@@ -245,9 +245,9 @@
 <span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_label_repel).</span></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="80%"></p>
 </div>
-<div id="helper-functions-to-export-data-sets-to-spss-excel-stata-and-csv" class="section level3">
+<div id="4-helper-functions-to-export-data-sets-to-spss-excel-stata-and-csv" class="section level3">
 <h3 class="hasAnchor">
-<a href="#helper-functions-to-export-data-sets-to-spss-excel-stata-and-csv" class="anchor"></a>4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV</h3>
+<a href="#4-helper-functions-to-export-data-sets-to-spss-excel-stata-and-csv" class="anchor"></a>4. Helper functions to export data sets to SPSS, Excel, Stata, and CSV</h3>
 <p>To continue working in another program (e.g. SPSS, STATA, Excel) the functions <strong><code><a href="reference/write_bysg.html">write_bysg()</a></code></strong> and <strong><code><a href="reference/write_byperson.html">write_byperson()</a></code></strong> can be used to export the datasets created in R as <em>.sav</em>, <em>.dta</em>, <em>.xlsx</em>, or <em>.csv</em> files.</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="co"># Here is one example how to create a "bysg" data set and write a CSV file to the computer.</span>
 <span class="co"># Note that you have to change the file path and name in the argument 'path'</span>

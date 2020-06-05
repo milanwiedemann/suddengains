@@ -54,6 +54,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113145816-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113145816-5');
+</script>
+
 
   </head>
 
@@ -139,7 +149,7 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-identify-sudden-gains" class="hasAnchor"><a href="#section-identify-sudden-gains" class="anchor"></a>Identify sudden gains</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -149,48 +159,6 @@
       
       
       <tr>
-        
-        <td>
-          <p><code><a href="check_interval.html">check_interval()</a></code> </p>
-        </td>
-        <td><p>Check if a given interval is a sudden gain/loss</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="count_intervals.html">count_intervals()</a></code> </p>
-        </td>
-        <td><p>Count number of between-session intervals available to identify sudden gains</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_byperson.html">create_byperson()</a></code> </p>
-        </td>
-        <td><p>Create a data set with one gain per person</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_bysg.html">create_bysg()</a></code> </p>
-        </td>
-        <td><p>Create a data set with one row for each sudden gain/loss</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="define_crit1_cutoff.html">define_crit1_cutoff()</a></code> </p>
-        </td>
-        <td><p>Define cut-off value for first SG criterion</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="describe_sg.html">describe_sg()</a></code> </p>
-        </td>
-        <td><p>Show descriptives for the sudden gains datasets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extract_values.html">extract_values()</a></code> </p>
-        </td>
-        <td><p>Extract values around the sudden gain</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="identify_sg.html">identify_sg()</a></code> </p>
@@ -205,15 +173,77 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_sg.html">plot_sg()</a></code> </p>
+          <p><code><a href="check_interval.html">check_interval()</a></code> </p>
         </td>
-        <td><p>Plot average change in variables around the sudden gain</p></td>
+        <td><p>Check if a given interval is a sudden gain/loss</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-create-data-sets-for-further-analysis" class="hasAnchor"><a href="#section-create-data-sets-for-further-analysis" class="anchor"></a>Create data sets for further analysis</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="extract_values.html">extract_values()</a></code> </p>
+        </td>
+        <td><p>Extract values around the sudden gain</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_sg_intervals.html">plot_sg_intervals()</a></code> </p>
+          <p><code><a href="create_bysg.html">create_bysg()</a></code> </p>
         </td>
-        <td><p>Plot summary of available data per time point and analysed session to session intervals</p></td>
+        <td><p>Create a data set with one row for each sudden gain/loss</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_byperson.html">create_byperson()</a></code> </p>
+        </td>
+        <td><p>Create a data set with one gain per person</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="write_bysg.html">write_bysg()</a></code> </p>
+        </td>
+        <td><p>Write a sudden gains data frame (bysg) to CSV, SPSS, STATA or Excel files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="write_byperson.html">write_byperson()</a></code> </p>
+        </td>
+        <td><p>Write a sudden gains data frame (byperson) to CSV, SPSS, STATA or Excel files</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-visualise-and-report-sudden-gains" class="hasAnchor"><a href="#section-visualise-and-report-sudden-gains" class="anchor"></a>Visualise and report sudden gains</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="count_intervals.html">count_intervals()</a></code> </p>
+        </td>
+        <td><p>Count number of between-session intervals available to identify sudden gains</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_sg.html">plot_sg()</a></code> </p>
+        </td>
+        <td><p>Plot average change in variables around the sudden gain</p></td>
       </tr><tr>
         
         <td>
@@ -223,10 +253,29 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="rename_sg_vars.html">rename_sg_vars()</a></code> </p>
+          <p><code><a href="plot_sg_intervals.html">plot_sg_intervals()</a></code> </p>
         </td>
-        <td><p>Rename variable names to a generic and consistent format</p></td>
+        <td><p>Plot summary of available data per time point and analysed session to session intervals</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="describe_sg.html">describe_sg()</a></code> </p>
+        </td>
+        <td><p>Show descriptives for the sudden gains datasets</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helper-functions" class="hasAnchor"><a href="#section-helper-functions" class="anchor"></a>Helper functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="select_cases.html">select_cases()</a></code> </p>
@@ -235,27 +284,40 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="define_crit1_cutoff.html">define_crit1_cutoff()</a></code> </p>
+        </td>
+        <td><p>Define cut-off value for first SG criterion</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rename_sg_vars.html">rename_sg_vars()</a></code> </p>
+        </td>
+        <td><p>Rename variable names to a generic and consistent format</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
           <p><code><a href="sgdata.html">sgdata</a></code> </p>
         </td>
-        <td><p>Longitudinal dataset with repeated measures of depression and rumination</p></td>
+        <td><p>Example dataset dataset with repeated measures of depression and rumination</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="sgdata_bad.html">sgdata_bad</a></code> </p>
         </td>
-        <td><p>Longitudinal dataset with repeated measures of depression and rumination (bad variable names)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_byperson.html">write_byperson()</a></code> </p>
-        </td>
-        <td><p>Write a sudden gains data frame (bysg) to CSV, SPSS, STATA or Excel files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_bysg.html">write_bysg()</a></code> </p>
-        </td>
-        <td><p>Write a sudden gains data frame (bysg) to CSV, SPSS, STATA or Excel files</p></td>
+        <td><p>Example dataset dataset with repeated measures of depression and rumination (bad variable names)</p></td>
       </tr>
     </tbody>
     </table>

@@ -5,7 +5,7 @@
 #' @param sg_var_list Vector, specifying the variable names of each measurement point sequentially.
 #' @param identify_sg_1to2 Logical, indicating whether to identify sudden losses from measurement point 1 to 2.
 #' If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.
-#' @return Plot showing percentage of available data per time point and percentage of session to session intervals that wer analysed for sudden gains.
+#' @return Plot showing percentage of available data per time point and percentage of session to session intervals that were analysed for sudden gains.
 #' @export
 #' @import patchwork
 #' @examples # Create plot

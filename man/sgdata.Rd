@@ -3,7 +3,7 @@
 \docType{data}
 \name{sgdata}
 \alias{sgdata}
-\title{Longitudinal dataset with repeated measures of depression and rumination}
+\title{Example dataset dataset with repeated measures of depression and rumination}
 \format{
 A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 \itemize{

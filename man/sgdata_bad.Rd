@@ -3,7 +3,7 @@
 \docType{data}
 \name{sgdata_bad}
 \alias{sgdata_bad}
-\title{Longitudinal dataset with repeated measures of depression and rumination (bad variable names)}
+\title{Example dataset dataset with repeated measures of depression and rumination (bad variable names)}
 \format{
 A longitudinal dataset in wide format, i.e one row per person, one column per variable.
 \itemize{
@@ -44,7 +44,7 @@ A longitudinal dataset in wide format, i.e one row per person, one column per va
 data(sgdata_bad)
 }
 \description{
-Same as \code{sgdata} but with bad vaiable names to illustrate that the package can also work with inconsistent names.
+Same as \code{sgdata} but with bad variable names to illustrate that the package can also work with inconsistent names.
 }
 \examples{
 # Load data into global environment

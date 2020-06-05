@@ -1,4 +1,4 @@
-#' Longitudinal dataset with repeated measures of depression and rumination
+#' Example dataset dataset with repeated measures of depression and rumination
 #'
 #' @description Example dataset with a measure of depression symptoms (BDI) and a secondary process measure (RQ; Rumination Questionnaire) to illustrate how the package works.
 #' @docType data
@@ -44,9 +44,9 @@
 "sgdata"
 
 
-#' Longitudinal dataset with repeated measures of depression and rumination (bad variable names)
+#' Example dataset dataset with repeated measures of depression and rumination (bad variable names)
 #'
-#' @description Same as \code{sgdata} but with bad vaiable names to illustrate that the package can also work with inconsistent names.
+#' @description Same as \code{sgdata} but with bad variable names to illustrate that the package can also work with inconsistent names.
 #' @docType data
 #' @usage data(sgdata_bad)
 #' @format A longitudinal dataset in wide format, i.e one row per person, one column per variable.

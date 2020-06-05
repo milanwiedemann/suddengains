@@ -17,7 +17,7 @@ plot_sg_intervals(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE)
 If set to TRUE, this implies that the first variable specified in \code{sg_var_list} represents a baseline measurement point, e.g. pre-intervention assessment.}
 }
 \value{
-Plot showing percentage of available data per time point and percentage of session to session intervals that wer analysed for sudden gains.
+Plot showing percentage of available data per time point and percentage of session to session intervals that were analysed for sudden gains.
 }
 \description{
 Plot summary of available data per time point and analysed session to session intervals

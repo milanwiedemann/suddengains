@@ -61,53 +61,42 @@ devtools::install_github("milanwiedemann/suddengains")
 The `suddengains` package comes with a range of features which can be
 categorised into:
 
-1.  Functions to identify sudden gains:
-
-<!-- end list -->
-
-  - `select_cases()`: Select sample providing enough data to identify
-    sudden gains
-  - `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
-    value for criterion 1
-  - `identify_sg()`: Identifies sudden gains
-  - `identify_sl()`: Identifies sudden losses
-  - `check_interval()`: Checks if a given interval is a sudden gain/loss
-
-<!-- end list -->
-
-2.  Functions to create datasets for further analysis:
-
-<!-- end list -->
-
-  - `extract_values()`: Extracts values on a secondary measure around
-    the sudden gain/loss
-  - `create_byperson()`: Creates a dataset with one row for each sudden
-    gain/loss
-  - `create_bysg()`: Creates a dataset with one row for each person
-
-<!-- end list -->
-
-3.  Helper functions to visualise and report sudden gains:
-
-<!-- end list -->
-
-  - `count_intervals()`: Count number of between-session intervals
-    available to identify sudden gains
-  - `plot_sg()`: Creates plots of the average sudden gain
-  - `plot_sg_trajectories()`: Creates plots of plots of individual case
-    trajectories
-  - `describe_sg()`: Shows descriptives for the sudden gains datasets
-
-<!-- end list -->
-
-4.  Helper functions to export data sets to SPSS, Excel, Stata, and CSV:
-
-<!-- end list -->
-
-  - `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
-    sudden gains data sets
-  - `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of the
-    sudden gains data sets
+  - **Identify sudden gains**:
+      - `select_cases()`: Select sample providing enough data to
+        identify sudden gains
+      - `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
+        value for criterion 1
+      - `identify_sg()`: Identifies sudden gains
+      - `identify_sl()`: Identifies sudden losses
+      - `check_interval()`: Checks if a given interval is a sudden
+        gain/loss
+  - **Create datasets for further analysis**:
+      - `extract_values()`: Extracts values on a secondary measure
+        around the sudden gain/loss
+      - `create_bysg()`: Creates a dataset with one row for each person
+      - `create_byperson()`: Creates a dataset with one row for each
+        sudden gain/loss
+      - `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
+        sudden gains data sets
+      - `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of
+        the sudden gains data sets
+  - **Visualise and report sudden gains**:
+      - `count_intervals()`: Count number of between-session intervals
+        available to identify sudden gains
+      - `plot_sg()`: Creates plots of the average sudden gain
+      - `plot_sg_trajectories()`: Creates plots of plots of individual
+        case trajectories
+      - `plot_sg_intervals()`: Plot summary of available data per time
+        point and analysed session to session intervals
+      - `describe_sg()`: Shows descriptives for the sudden gains
+        datasets
+  - **Helper functions**:
+      - `select_cases()`: Select sample providing enough data to
+        identify sudden gains
+      - `define_crit1_cutoff()`: Define cut-off value for first SG
+        criterion
+      - `rename_sg_vars()`: Rename variable names to a generic and
+        consistent format
 
 A detailed illustration of all functions can be found in the vignette on
 [CRAN](https://CRAN.R-project.org/package=suddengains). Note that the
@@ -122,7 +111,7 @@ or in our [PLOS
 ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276)
 paper.
 
-### 1\. Functions to identify sudden gains
+### Identify sudden gains
 
 To identify sudden gains/losses you can use the **`identify_sg()`** and
 **`identify_sl()`** functions. These functions return a data frame with
@@ -145,7 +134,7 @@ identify_sg(data = sgdata,
             identify_sg_1to2 = FALSE)
 ```
 
-### 2\. Functions to create datasets for further analysis
+### Create datasets for further analysis
 
 As participants may experience more than one gain, as in the present
 example, and to allow for different subsequent analyses, the package
@@ -171,16 +160,14 @@ bysg <- create_bysg(data = sgdata,
                     identify = "sg")
 #> First, second, and third sudden gains criteria were applied.
 #> The critical value for the third criterion was adjusted for missingness.
-#> Note: The vector specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.
 ```
 
-### 3\. Helper functions to visualise and report sudden gains
+### Visualise and report sudden gains
 
 The **`plot_sg()`** function plots the ‘average’ sudden gain, and can be
 used to show changes around the sudden gain. The
 **`plot_sg_trajectories()`** can be used to visualise trajectories for a
-selection of individual
-cases.
+selection of individual cases.
 
 ``` r
 # Create plot of average change in depression symptoms (BDI) around the gain
@@ -192,13 +179,6 @@ plot_sg(data = bysg,
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylab = "BDI", xlab = "Session",
         colour_single = "#239b89ff")
-#> Warning: `fun.y` is deprecated. Use `fun` instead.
-
-#> Warning: `fun.y` is deprecated. Use `fun` instead.
-
-#> Warning: `fun.y` is deprecated. Use `fun` instead.
-
-#> Warning: `fun.y` is deprecated. Use `fun` instead.
 #> Warning: Removed 27 rows containing non-finite values (stat_summary).
 
 #> Warning: Removed 27 rows containing non-finite values (stat_summary).
@@ -236,27 +216,3 @@ plot_sg_trajectories(data = sgdata,
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />
-
-### 4\. Helper functions to export data sets to SPSS, Excel, Stata, and CSV
-
-To continue working in another program (e.g. SPSS, STATA, Excel) the
-functions **`write_bysg()`** and **`write_byperson()`** can be used to
-export the datasets created in R as *.sav*, *.dta*, *.xlsx*, or *.csv*
-files.
-
-``` r
-# Here is one example how to create a "bysg" data set and write a CSV file to the computer.
-# Note that you have to change the file path and name in the argument 'path'
-write_bysg(data = sgdata,
-           sg_crit1_cutoff = 7,
-           id_var_name = "id",
-           tx_start_var_name = "bdi_s1",
-           tx_end_var_name = "bdi_s12",
-           sg_var_list = c("bdi_s1", "bdi_s2", "bdi_s3", "bdi_s4",
-                           "bdi_s5", "bdi_s6", "bdi_s7", "bdi_s8",
-                           "bdi_s9", "bdi_s10", "bdi_s11", "bdi_s12"),
-           sg_measure_name = "bdi",
-           identify = "sg",
-           format = "CSV",
-           path = "~/Desktop/bysg_data.csv")
-```

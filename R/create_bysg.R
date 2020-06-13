@@ -68,12 +68,12 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
     # Calculate number of sudden gains
     sg_sum <- data_crit123 %>%
-      dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+      dplyr::select(dplyr::matches("sg_\\d+to\\d+")) %>%
       base::sum(., na.rm = T)
 
     # Stop if no sudden gains were identified and return error
     if (sg_sum == 0) {
-      warning("No sudden gains were identified.", call. = FALSE)
+      stop("No sudden gains were identified.", call. = FALSE)
     }
 
   } else if (identify == "sl") {
@@ -92,12 +92,12 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
 
     # Calculate number of sudden gains
     sg_sum <- data_crit123 %>%
-      dplyr::select(dplyr::matches("sg_|sl_\\d+to\\d+")) %>%
+      dplyr::select(dplyr::matches("sl_\\d+to\\d+")) %>%
       base::sum(., na.rm = T)
 
     # Stop if no sudden losses were identified and return error
     if (sg_sum == 0) {
-      warning("No sudden losses were identified.", call. = FALSE)
+      stop("No sudden losses were identified.", call. = FALSE)
     }
   }
 

@@ -231,7 +231,7 @@ plot_sg <- function(data, id_var_name, tx_start_var_name, tx_end_var_name, sg_pr
             ggplot2::stat_summary(fun.data = ggplot2::mean_se,
                                   geom = "errorbar",
                                   fun.args = base::list(mult = 1.96),
-                                  width = 0.1,
+                                  width = 0.3,
                                   position = ggplot2::position_dodge(width = 0.2)) +
 
             # Add dotted line from start value to pre-pre-pre gain value

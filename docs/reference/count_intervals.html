@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +145,7 @@
     <p>Calculates the number of total between-session intervals present in the data set and the number of between-session intervals that are available to identify sudden gains talking into account the pattern of missing data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>count_intervals</span>(<span class='no'>data</span>, <span class='no'>id_var_name</span>, <span class='no'>sg_var_list</span>, <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>count_intervals</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>id_var_name</span>, <span class='va'>sg_var_list</span>, identify_sg_1to2 <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,11 +181,12 @@ If set to TRUE, this implies that the first variable specified in <code>sg_var_l
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Count between session intervals in "sgdata"</span>
-<span class='fu'>count_intervals</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-                <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-                <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
+<span class='fu'>count_intervals</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+                id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+                sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
                                 <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>, <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>,
-                                <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>))</div><div class='output co'>#&gt; $total_between_sess_intervals
+                                <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $total_between_sess_intervals
 #&gt; [1] 473
 #&gt; 
 #&gt; $total_between_sess_intervals_sg
@@ -208,11 +209,11 @@ If set to TRUE, this implies that the first variable specified in <code>sg_var_l
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

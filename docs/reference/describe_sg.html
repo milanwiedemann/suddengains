@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +145,7 @@
     <p>Descriptives might differ between the bysg and byperson data sets depending on whether multiple gains are present.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>describe_sg</span>(<span class='no'>data</span>, <span class='kw'>sg_data_structure</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bysg"</span>, <span class='st'>"byperson"</span>))</pre>
+    <pre class="usage"><span class='fu'>describe_sg</span><span class='op'>(</span><span class='va'>data</span>, sg_data_structure <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bysg"</span>, <span class='st'>"byperson"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,19 +180,21 @@ The list includes values for:</p><ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create bysg dataset</span>
-<span class='no'>bysg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_bysg.html'>create_bysg</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-                    <span class='kw'>sg_crit1_cutoff</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-                    <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-                    <span class='kw'>tx_start_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s1"</span>,
-                    <span class='kw'>tx_end_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s12"</span>,
-                    <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
+<span class='va'>bysg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_bysg.html'>create_bysg</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+                    sg_crit1_cutoff <span class='op'>=</span> <span class='fl'>7</span>,
+                    id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+                    tx_start_var_name <span class='op'>=</span> <span class='st'>"bdi_s1"</span>,
+                    tx_end_var_name <span class='op'>=</span> <span class='st'>"bdi_s12"</span>,
+                    sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
                                     <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                     <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
-                                    <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='input'>
+                                    <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
+                    sg_measure_name <span class='op'>=</span> <span class='st'>"bdi"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='input'>
 <span class='co'># Describe bysg dataset</span>
-<span class='fu'>describe_sg</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bysg</span>,
-            <span class='kw'>sg_data_structure</span> <span class='kw'>=</span> <span class='st'>"bysg"</span>)</div><div class='output co'>#&gt; $total_n
+<span class='fu'>describe_sg</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>bysg</span>,
+            sg_data_structure <span class='op'>=</span> <span class='st'>"bysg"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $total_n
 #&gt; [1] 24
 #&gt; 
 #&gt; $sg_total_n
@@ -227,11 +229,11 @@ The list includes values for:</p><ul>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

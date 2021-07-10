@@ -85,7 +85,7 @@ Further ggplot2 components can be added using + following this function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ Further ggplot2 components can be added using + following this function." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ Further ggplot2 components can be added using + following this function." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -151,25 +151,25 @@ The parameters starting with "group" allow to plot the average gain magnitude by
 Further ggplot2 components can be added using + following this function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_sg</span>(
-  <span class='no'>data</span>,
-  <span class='no'>id_var_name</span>,
-  <span class='no'>tx_start_var_name</span>,
-  <span class='no'>tx_end_var_name</span>,
-  <span class='no'>sg_pre_post_var_list</span>,
-  <span class='no'>ylab</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Session"</span>,
-  <span class='kw'>colour_single</span> <span class='kw'>=</span> <span class='st'>"#239b89ff"</span>,
-  <span class='kw'>colour_group</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"viridis"</span>, <span class='st'>"ggplot"</span>, <span class='st'>"grey"</span>),
-  <span class='kw'>viridis_option</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"D"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>),
-  <span class='kw'>viridis_begin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>viridis_end</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>group_var_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group_levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group_labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group_title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>apaish</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_sg</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>id_var_name</span>,
+  <span class='va'>tx_start_var_name</span>,
+  <span class='va'>tx_end_var_name</span>,
+  <span class='va'>sg_pre_post_var_list</span>,
+  <span class='va'>ylab</span>,
+  xlab <span class='op'>=</span> <span class='st'>"Session"</span>,
+  colour_single <span class='op'>=</span> <span class='st'>"#239b89ff"</span>,
+  colour_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"viridis"</span>, <span class='st'>"ggplot"</span>, <span class='st'>"grey"</span><span class='op'>)</span>,
+  viridis_option <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"D"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span><span class='op'>)</span>,
+  viridis_begin <span class='op'>=</span> <span class='fl'>0</span>,
+  viridis_end <span class='op'>=</span> <span class='fl'>1</span>,
+  group_var_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_levels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_labels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  apaish <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,24 +251,26 @@ and the 3 after the sudden gain, for the measure being plotted.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># First create a bysg (or byperson) dataset</span>
-<span class='no'>bysg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_bysg.html'>create_bysg</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-                    <span class='kw'>sg_crit1_cutoff</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-                    <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-                    <span class='kw'>tx_start_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s1"</span>,
-                    <span class='kw'>tx_end_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s12"</span>,
-                    <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
+<span class='va'>bysg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_bysg.html'>create_bysg</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+                    sg_crit1_cutoff <span class='op'>=</span> <span class='fl'>7</span>,
+                    id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+                    tx_start_var_name <span class='op'>=</span> <span class='st'>"bdi_s1"</span>,
+                    tx_end_var_name <span class='op'>=</span> <span class='st'>"bdi_s12"</span>,
+                    sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
                                     <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                     <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
-                                    <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                    <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='input'>
+                                    <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
+                    sg_measure_name <span class='op'>=</span> <span class='st'>"bdi"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='input'>
 <span class='co'># Plot average change of BDI values around the period of the sudden gain</span>
-<span class='fu'>plot_sg</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>bysg</span>,
-        <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-        <span class='kw'>tx_start_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s1"</span>,
-        <span class='kw'>tx_end_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s12"</span>,
-        <span class='kw'>sg_pre_post_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg_bdi_2n"</span>, <span class='st'>"sg_bdi_1n"</span>, <span class='st'>"sg_bdi_n"</span>,
-                                 <span class='st'>"sg_bdi_n1"</span>, <span class='st'>"sg_bdi_n2"</span>, <span class='st'>"sg_bdi_n3"</span>),
-        <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"BDI"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Session"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 27 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 27 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 8 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 10 rows containing non-finite values (stat_summary).</span></div><div class='img'><img src='plot_sg-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plot_sg</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>bysg</span>,
+        id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+        tx_start_var_name <span class='op'>=</span> <span class='st'>"bdi_s1"</span>,
+        tx_end_var_name <span class='op'>=</span> <span class='st'>"bdi_s12"</span>,
+        sg_pre_post_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sg_bdi_2n"</span>, <span class='st'>"sg_bdi_1n"</span>, <span class='st'>"sg_bdi_n"</span>,
+                                 <span class='st'>"sg_bdi_n1"</span>, <span class='st'>"sg_bdi_n2"</span>, <span class='st'>"sg_bdi_n3"</span><span class='op'>)</span>,
+        ylab <span class='op'>=</span> <span class='st'>"BDI"</span>, xlab <span class='op'>=</span> <span class='st'>"Session"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 27 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 27 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 14 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 8 rows containing non-finite values (stat_summary).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 10 rows containing non-finite values (stat_summary).</span></div><div class='img'><img src='plot_sg-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -280,11 +282,11 @@ and the 3 after the sudden gain, for the measure being plotted.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

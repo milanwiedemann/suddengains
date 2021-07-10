@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -45,7 +45,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -102,10 +102,12 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of suddengains from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"suddengains"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"suddengains"</span><span class="op">)</span></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"milanwiedemann/suddengains"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"milanwiedemann/suddengains"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="overview-of-the-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -179,78 +181,82 @@
 <h3 class="hasAnchor">
 <a href="#identify-sudden-gains" class="anchor"></a>Identify sudden gains</h3>
 <p>To identify sudden gains/losses you can use the <strong><code><a href="reference/identify_sg.html">identify_sg()</a></code></strong> and <strong><code><a href="reference/identify_sl.html">identify_sl()</a></code></strong> functions. These functions return a data frame with new variables indicating for each between-session interval whether a sudden gain/loss was identified. For example the variable <code>sg_2to3</code> holds information whether a sudden gains occurred from session two to three, with two being the pregain and three being the postgain session. Further functions to help with identifying sudden gains are listed above.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/identify_sg.html">identify_sg</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">sgdata</span>,
-            <span class="kw">sg_crit1_cutoff</span> <span class="kw">=</span> <span class="fl">7</span>,
-            <span class="kw">sg_crit2_pct</span> <span class="kw">=</span> <span class="fl">0.25</span>,
-            <span class="kw">sg_crit3</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-            <span class="kw">id_var_name</span> <span class="kw">=</span> <span class="st">"id"</span>,
-            <span class="kw">sg_var_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>,
-                            <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>,
-                            <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span>),
-            <span class="kw">identify_sg_1to2</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/identify_sg.html">identify_sg</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sgdata</span>,
+            sg_crit1_cutoff <span class="op">=</span> <span class="fl">7</span>,
+            sg_crit2_pct <span class="op">=</span> <span class="fl">0.25</span>,
+            sg_crit3 <span class="op">=</span> <span class="cn">TRUE</span>,
+            id_var_name <span class="op">=</span> <span class="st">"id"</span>,
+            sg_var_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>, 
+                            <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>, 
+                            <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span><span class="op">)</span>,
+            identify_sg_1to2 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="create-datasets-for-further-analysis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-datasets-for-further-analysis" class="anchor"></a>Create datasets for further analysis</h3>
 <p>As participants may experience more than one gain, as in the present example, and to allow for different subsequent analyses, the package provides two options for output datasets: The <strong><code><a href="reference/create_bysg.html">create_bysg()</a></code></strong> function creates a dataset structured with one row per sudden gain, and the <strong><code><a href="reference/create_byperson.html">create_byperson()</a></code></strong> function creates a dataset structured with one row per person, indicating whether or not they experienced a sudden gain. The <strong><code><a href="reference/create_bysg.html">create_bysg()</a></code></strong> function is shown below. More functions to help with creating datasets for further analyses are listed above.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Create output dataset with one row per sudden gain</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create output dataset with one row per sudden gain</span>
 <span class="co"># and save as an object called "bysg" to use later</span>
-<span class="no">bysg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/create_bysg.html">create_bysg</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">sgdata</span>,
-                    <span class="kw">sg_crit1_cutoff</span> <span class="kw">=</span> <span class="fl">7</span>,
-                    <span class="kw">id_var_name</span> <span class="kw">=</span> <span class="st">"id"</span>,
-                    <span class="kw">tx_start_var_name</span> <span class="kw">=</span> <span class="st">"bdi_s1"</span>,
-                    <span class="kw">tx_end_var_name</span> <span class="kw">=</span> <span class="st">"bdi_s12"</span>,
-                    <span class="kw">sg_var_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>,
-                                    <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>,
-                                    <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span>),
-                    <span class="kw">sg_measure_name</span> <span class="kw">=</span> <span class="st">"bdi"</span>,
-                    <span class="kw">identify</span> <span class="kw">=</span> <span class="st">"sg"</span>)
+<span class="va">bysg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_bysg.html">create_bysg</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sgdata</span>,
+                    sg_crit1_cutoff <span class="op">=</span> <span class="fl">7</span>,
+                    id_var_name <span class="op">=</span> <span class="st">"id"</span>,
+                    tx_start_var_name <span class="op">=</span> <span class="st">"bdi_s1"</span>,
+                    tx_end_var_name <span class="op">=</span> <span class="st">"bdi_s12"</span>,
+                    sg_var_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>, 
+                                    <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>, 
+                                    <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span><span class="op">)</span>,
+                    sg_measure_name <span class="op">=</span> <span class="st">"bdi"</span>,
+                    identify <span class="op">=</span> <span class="st">"sg"</span><span class="op">)</span>
 <span class="co">#&gt; First, second, and third sudden gains criteria were applied.</span>
-<span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span></pre></div>
+<span class="co">#&gt; The critical value for the third criterion was adjusted for missingness.</span></code></pre></div>
 </div>
 <div id="visualise-and-report-sudden-gains" class="section level3">
 <h3 class="hasAnchor">
 <a href="#visualise-and-report-sudden-gains" class="anchor"></a>Visualise and report sudden gains</h3>
 <p>The <strong><code><a href="reference/plot_sg.html">plot_sg()</a></code></strong> function plots the ‘average’ sudden gain, and can be used to show changes around the sudden gain. The <strong><code><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories()</a></code></strong> can be used to visualise trajectories for a selection of individual cases.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Create plot of average change in depression symptoms (BDI) around the gain</span>
-<span class="fu"><a href="reference/plot_sg.html">plot_sg</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">bysg</span>,
-        <span class="kw">id_var_name</span> <span class="kw">=</span> <span class="st">"id"</span>,
-        <span class="kw">tx_start_var_name</span> <span class="kw">=</span> <span class="st">"bdi_s1"</span>,
-        <span class="kw">tx_end_var_name</span> <span class="kw">=</span> <span class="st">"bdi_s12"</span>,
-        <span class="kw">sg_pre_post_var_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sg_bdi_2n"</span>, <span class="st">"sg_bdi_1n"</span>, <span class="st">"sg_bdi_n"</span>,
-                                 <span class="st">"sg_bdi_n1"</span>, <span class="st">"sg_bdi_n2"</span>, <span class="st">"sg_bdi_n3"</span>),
-        <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"BDI"</span>, <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Session"</span>,
-        <span class="kw">colour_single</span> <span class="kw">=</span> <span class="st">"#239b89ff"</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create plot of average change in depression symptoms (BDI) around the gain</span>
+<span class="fu"><a href="reference/plot_sg.html">plot_sg</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bysg</span>,
+        id_var_name <span class="op">=</span> <span class="st">"id"</span>,
+        tx_start_var_name <span class="op">=</span> <span class="st">"bdi_s1"</span>,
+        tx_end_var_name <span class="op">=</span> <span class="st">"bdi_s12"</span>,
+        sg_pre_post_var_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sg_bdi_2n"</span>, <span class="st">"sg_bdi_1n"</span>, <span class="st">"sg_bdi_n"</span>,
+                                 <span class="st">"sg_bdi_n1"</span>, <span class="st">"sg_bdi_n2"</span>, <span class="st">"sg_bdi_n3"</span><span class="op">)</span>,
+        ylab <span class="op">=</span> <span class="st">"BDI"</span>, xlab <span class="op">=</span> <span class="st">"Session"</span>,
+        colour_single <span class="op">=</span> <span class="st">"#239b89ff"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span>
 
 <span class="co">#&gt; Warning: Removed 27 rows containing non-finite values (stat_summary).</span>
 <span class="co">#&gt; Warning: Removed 14 rows containing non-finite values (stat_summary).</span>
 <span class="co">#&gt; Warning: Removed 8 rows containing non-finite values (stat_summary).</span>
-<span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></pre></div>
+<span class="co">#&gt; Warning: Removed 10 rows containing non-finite values (stat_summary).</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="50%"></p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># Visualise trajectories for a selection of individual cases</span>
-<span class="fu"><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">sgdata</span>,
-                     <span class="kw">id_var</span> <span class="kw">=</span> <span class="st">"id"</span>,
-                     <span class="kw">select_id_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"9"</span>),
-                     <span class="kw">var_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>,
-                                  <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>,
-                                  <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span>),
-                     <span class="kw">show_id</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                     <span class="kw">id_label_size</span> <span class="kw">=</span> <span class="fl">4</span>,
-                     <span class="kw">label.padding</span> <span class="kw">=</span> <span class="fl">.2</span>,
-                     <span class="kw">show_legend</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                     <span class="kw">colour</span> <span class="kw">=</span> <span class="st">"viridis"</span>,
-                     <span class="kw">viridis_option</span> <span class="kw">=</span> <span class="st">"D"</span>,
-                     <span class="kw">viridis_begin</span> <span class="kw">=</span> <span class="fl">0</span>,
-                     <span class="kw">viridis_end</span> <span class="kw">=</span> <span class="fl">1</span>,
-                     <span class="kw">connect_missing</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                     <span class="kw">scale_x_num</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                     <span class="kw">scale_x_num_start</span> <span class="kw">=</span> <span class="fl">1</span>,
-                     <span class="kw">apaish</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                     <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"Session"</span>,
-                     <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"BDI"</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Visualise trajectories for a selection of individual cases</span>
+<span class="fu"><a href="reference/plot_sg_trajectories.html">plot_sg_trajectories</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sgdata</span>,
+                     id_var <span class="op">=</span> <span class="st">"id"</span>,
+                     select_id_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"9"</span><span class="op">)</span>,
+                     var_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bdi_s1"</span>, <span class="st">"bdi_s2"</span>, <span class="st">"bdi_s3"</span>, <span class="st">"bdi_s4"</span>, 
+                                  <span class="st">"bdi_s5"</span>, <span class="st">"bdi_s6"</span>, <span class="st">"bdi_s7"</span>, <span class="st">"bdi_s8"</span>, 
+                                  <span class="st">"bdi_s9"</span>, <span class="st">"bdi_s10"</span>, <span class="st">"bdi_s11"</span>, <span class="st">"bdi_s12"</span><span class="op">)</span>,
+                     show_id <span class="op">=</span> <span class="cn">TRUE</span>,
+                     id_label_size <span class="op">=</span> <span class="fl">4</span>,
+                     label.padding <span class="op">=</span> <span class="fl">.2</span>,
+                     show_legend <span class="op">=</span> <span class="cn">TRUE</span>,
+                     colour <span class="op">=</span> <span class="st">"viridis"</span>,
+                     viridis_option <span class="op">=</span> <span class="st">"D"</span>,
+                     viridis_begin <span class="op">=</span> <span class="fl">0</span>,
+                     viridis_end <span class="op">=</span> <span class="fl">1</span>,
+                     connect_missing <span class="op">=</span> <span class="cn">TRUE</span>,
+                     scale_x_num <span class="op">=</span> <span class="cn">TRUE</span>,
+                     scale_x_num_start <span class="op">=</span> <span class="fl">1</span>,
+                     apaish <span class="op">=</span> <span class="cn">TRUE</span>,
+                     xlab <span class="op">=</span> <span class="st">"Session"</span>, 
+                     ylab <span class="op">=</span> <span class="st">"BDI"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span>
-<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_label_repel).</span></pre></div>
+<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_label_repel).</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="80%"></p>
 </div>
 </div>
@@ -272,7 +278,8 @@
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 <div class="citation">
@@ -285,6 +292,7 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Milan Wiedemann <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1991-282X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Graham M Thew <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2851-1315" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Mental Health Research UK <br><small class="roles"> Funder </small>  </li>
 <li>Wellcome Trust <br><small class="roles"> Funder </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
@@ -306,11 +314,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -91,7 +91,7 @@ Note. x1 to x6 are consecutive data points of the primary outcome measure. 'x' =
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@ Note. x1 to x6 are consecutive data points of the primary outcome measure. 'x' =
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,7 @@ Note. x1 to x6 are consecutive data points of the primary outcome measure. 'x' =
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,14 +163,14 @@ This function goes through the data and selects all cases with at least one of t
 <p><em>Note</em>. x1 to x6 are consecutive data points of the primary outcome measure. 'x' = Available data; '.' = Missing data. '<strong>N</strong>' represents available data to be examined as a possible pregain session.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_cases</span>(
-  <span class='no'>data</span>,
-  <span class='no'>id_var_name</span>,
-  <span class='no'>sg_var_list</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pattern"</span>, <span class='st'>"min_sess"</span>),
-  <span class='kw'>min_sess_num</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_id_lgl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>select_cases</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>id_var_name</span>,
+  <span class='va'>sg_var_list</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pattern"</span>, <span class='st'>"min_sess"</span><span class='op'>)</span>,
+  min_sess_num <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_id_lgl <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,53 +209,55 @@ If set to <code>FALSE</code> this function returns the input data together with 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># 1. method = "pattern"</span>
-<span class='fu'>select_cases</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-             <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-             <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
+<span class='fu'>select_cases</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+             id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+             sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
                              <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>, <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>,
-                             <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pattern"</span>,
-             <span class='kw'>return_id_lgl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>The method 'pattern' was used to select cases.</span>
-#&gt; <span class='message'>See help('select_cases') for more information.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 43 x 32</span><span>
+                             <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
+             method <span class='op'>=</span> <span class='st'>"pattern"</span>,
+             return_id_lgl <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>The method 'pattern' was used to select cases.</span>
+#&gt; <span class='message'>See help('select_cases') for more information.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 32</span><span>
 #&gt;       id bdi_s0 bdi_s1 bdi_s2 bdi_s3 bdi_s4 bdi_s5 bdi_s6 bdi_s7 bdi_s8 bdi_s9
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1     33     35     37     34     23     24     21     29     17     11
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10
-#&gt; </span><span style='color: #555555;'> 3</span><span>     3     40     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26
-#&gt; </span><span style='color: #555555;'> 4</span><span>     4     33     31     30     32     22     22     20     21     19     24
-#&gt; </span><span style='color: #555555;'> 5</span><span>     5     39     39     37     36     26     26     23     21     19      6
-#&gt; </span><span style='color: #555555;'> 6</span><span>     6     35     37     </span><span style='color: #BB0000;'>NA</span><span>     23     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     19
-#&gt; </span><span style='color: #555555;'> 7</span><span>     7     </span><span style='color: #BB0000;'>NA</span><span>     37     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span>     8     40     41     37     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span>     9     33     35     34     32     23     24     22     21     17     14
-#&gt; </span><span style='color: #555555;'>10</span><span>    10     34     35     35     25     25     17     17     16     16     11
-#&gt; </span><span style='color: #555555;'># … with 33 more rows, and 21 more variables: bdi_s10 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s11 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   bdi_s12 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_fu1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_fu2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s0 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s6 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s10 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s11 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s12 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_fu1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_fu2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_select </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1     33     35     37     34     23     24     21     29     17     11
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     2     26     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3     40     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4     33     31     30     32     22     22     20     21     19     24
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5     39     39     37     36     26     26     23     21     19      6
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     6     35     37     </span><span style='color: #BB0000;'>NA</span><span>     23     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     19
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7     </span><span style='color: #BB0000;'>NA</span><span>     37     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     8     40     41     37     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     9     33     35     34     32     23     24     22     21     17     14
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    10     34     35     35     25     25     17     17     16     16     11
+#&gt; </span><span style='color: #949494;'># … with 33 more rows, and 21 more variables: bdi_s10 &lt;dbl&gt;, bdi_s11 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   bdi_s12 &lt;dbl&gt;, bdi_fu1 &lt;dbl&gt;, bdi_fu2 &lt;dbl&gt;, rq_s0 &lt;dbl&gt;, rq_s1 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s2 &lt;dbl&gt;, rq_s3 &lt;dbl&gt;, rq_s4 &lt;dbl&gt;, rq_s5 &lt;dbl&gt;, rq_s6 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s7 &lt;dbl&gt;, rq_s8 &lt;dbl&gt;, rq_s9 &lt;dbl&gt;, rq_s10 &lt;dbl&gt;, rq_s11 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s12 &lt;dbl&gt;, rq_fu1 &lt;dbl&gt;, rq_fu2 &lt;dbl&gt;, sg_select &lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># 2. method = "min_sess"</span>
-<span class='fu'>select_cases</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-             <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-             <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
+<span class='fu'>select_cases</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+             id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+             sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>, <span class='st'>"bdi_s4"</span>,
                              <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>, <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>,
-                             <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"min_sess"</span>,
-             <span class='kw'>min_sess_num</span> <span class='kw'>=</span> <span class='fl'>9</span>,
-             <span class='kw'>return_id_lgl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The method 'min_sess' was used to select cases.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 43 x 2</span><span>
+                             <span class='st'>"bdi_s9"</span>, <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
+             method <span class='op'>=</span> <span class='st'>"min_sess"</span>,
+             min_sess_num <span class='op'>=</span> <span class='fl'>9</span>,
+             return_id_lgl <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>The method 'min_sess' was used to select cases.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 43 x 2</span><span>
 #&gt;       id sg_select
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1 TRUE     
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2 TRUE     
-#&gt; </span><span style='color: #555555;'> 3</span><span>     3 TRUE     
-#&gt; </span><span style='color: #555555;'> 4</span><span>     4 TRUE     
-#&gt; </span><span style='color: #555555;'> 5</span><span>     5 TRUE     
-#&gt; </span><span style='color: #555555;'> 6</span><span>     6 FALSE    
-#&gt; </span><span style='color: #555555;'> 7</span><span>     7 FALSE    
-#&gt; </span><span style='color: #555555;'> 8</span><span>     8 FALSE    
-#&gt; </span><span style='color: #555555;'> 9</span><span>     9 TRUE     
-#&gt; </span><span style='color: #555555;'>10</span><span>    10 TRUE     
-#&gt; </span><span style='color: #555555;'># … with 33 more rows</span><span></div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     2 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     6 FALSE    
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7 FALSE    
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     8 FALSE    
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     9 TRUE     
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    10 TRUE     
+#&gt; </span><span style='color: #949494;'># … with 33 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,11 +269,11 @@ If set to <code>FALSE</code> this function returns the input data together with 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

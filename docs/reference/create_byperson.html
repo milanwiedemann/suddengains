@@ -85,7 +85,7 @@ For cases with no sudden gain/loss the descriptive variables are coded as missin
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ For cases with no sudden gain/loss the descriptive variables are coded as missin
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ For cases with no sudden gain/loss the descriptive variables are coded as missin
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -151,24 +151,24 @@ values around the period of each gain/loss, and descriptives.
 For cases with no sudden gain/loss the descriptive variables are coded as missing (<code>NA</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_byperson</span>(
-  <span class='no'>data</span>,
-  <span class='no'>sg_crit1_cutoff</span>,
-  <span class='no'>id_var_name</span>,
-  <span class='no'>sg_var_list</span>,
-  <span class='no'>tx_start_var_name</span>,
-  <span class='no'>tx_end_var_name</span>,
-  <span class='no'>sg_measure_name</span>,
-  <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>, <span class='st'>"smallest"</span>, <span class='st'>"largest"</span>),
-  <span class='kw'>data_is_bysg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>identify</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sg"</span>, <span class='st'>"sl"</span>),
-  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sg_crit3_critical_value</span> <span class='kw'>=</span> <span class='fl'>2.776</span>,
-  <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>create_byperson</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>sg_crit1_cutoff</span>,
+  <span class='va'>id_var_name</span>,
+  <span class='va'>sg_var_list</span>,
+  <span class='va'>tx_start_var_name</span>,
+  <span class='va'>tx_end_var_name</span>,
+  <span class='va'>sg_measure_name</span>,
+  multiple_sg_select <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"first"</span>, <span class='st'>"last"</span>, <span class='st'>"smallest"</span>, <span class='st'>"largest"</span><span class='op'>)</span>,
+  data_is_bysg <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  identify <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sg"</span>, <span class='st'>"sl"</span><span class='op'>)</span>,
+  sg_crit2_pct <span class='op'>=</span> <span class='fl'>0.25</span>,
+  sg_crit3 <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sg_crit3_alpha <span class='op'>=</span> <span class='fl'>0.05</span>,
+  sg_crit3_adjust <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sg_crit3_critical_value <span class='op'>=</span> <span class='fl'>2.776</span>,
+  identify_sg_1to2 <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,39 +262,40 @@ If set to TRUE, this implies that the first variable specified in <code>sg_var_l
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create byperson data set, selecting the largest gain in case of muliple gains</span>
-<span class='fu'>create_byperson</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
-                <span class='kw'>sg_crit1_cutoff</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-                <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-                <span class='kw'>tx_start_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s1"</span>,
-                <span class='kw'>tx_end_var_name</span> <span class='kw'>=</span> <span class='st'>"bdi_s12"</span>,
-                <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
+<span class='fu'>create_byperson</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
+                sg_crit1_cutoff <span class='op'>=</span> <span class='fl'>7</span>,
+                id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+                tx_start_var_name <span class='op'>=</span> <span class='st'>"bdi_s1"</span>,
+                tx_end_var_name <span class='op'>=</span> <span class='st'>"bdi_s12"</span>,
+                sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
                                 <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                                 <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
-                                <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>),
-                <span class='kw'>sg_measure_name</span> <span class='kw'>=</span> <span class='st'>"bdi"</span>,
-                <span class='kw'>multiple_sg_select</span> <span class='kw'>=</span> <span class='st'>"largest"</span>)</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>The largest gain/loss was selected in case of multiple gains/losses.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 43 x 46</span><span>
-#&gt;       id id_sg sg_crit123 sg_session_n sg_freq_byperson sg_bdi_2n sg_bdi_1n
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1 1_sg…          1            7                2        24        21
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2 </span><span style='color: #BB0000;'>NA</span><span>             0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span>     3 3_sg…          1            8                1        37        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span>     4 4_sg…          1            3                1        31        30
-#&gt; </span><span style='color: #555555;'> 5</span><span>     5 5_sg…          1            8                2        23        21
-#&gt; </span><span style='color: #555555;'> 6</span><span>     6 </span><span style='color: #BB0000;'>NA</span><span>             0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span>     7 </span><span style='color: #BB0000;'>NA</span><span>             0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span>     8 </span><span style='color: #BB0000;'>NA</span><span>             0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span>     9 9_sg…          1            3                1        35        34
-#&gt; </span><span style='color: #555555;'>10</span><span>    10 10_s…          1            2                2        </span><span style='color: #BB0000;'>NA</span><span>        35
-#&gt; </span><span style='color: #555555;'># … with 33 more rows, and 39 more variables: sg_bdi_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_bdi_n1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   sg_bdi_n2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_bdi_n3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_magnitude </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   sg_bdi_tx_change </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_change_proportion </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   sg_reversal_value </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sg_reversal </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s0 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   bdi_s2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s6 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   bdi_s7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s10 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s11 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   bdi_s12 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_fu1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_fu2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s0 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s6 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s7 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s8 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s9 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s10 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_s11 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   rq_s12 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_fu1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, rq_fu2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+                                <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
+                sg_measure_name <span class='op'>=</span> <span class='st'>"bdi"</span>,
+                multiple_sg_select <span class='op'>=</span> <span class='st'>"largest"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span class='message'>The largest gain/loss was selected in case of multiple gains/losses.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 46</span><span>
+#&gt;       id id_sg   sg_crit123 sg_session_n sg_freq_byperson sg_bdi_2n sg_bdi_1n
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1 1_sg_7           1            7                2        24        21
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     2 </span><span style='color: #BB0000;'>NA</span><span>               0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3 3_sg_8           1            8                1        37        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4 4_sg_3           1            3                1        31        30
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5 5_sg_8           1            8                2        23        21
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     6 </span><span style='color: #BB0000;'>NA</span><span>               0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7 </span><span style='color: #BB0000;'>NA</span><span>               0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     8 </span><span style='color: #BB0000;'>NA</span><span>               0           </span><span style='color: #BB0000;'>NA</span><span>                0        </span><span style='color: #BB0000;'>NA</span><span>        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     9 9_sg_3           1            3                1        35        34
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    10 10_sg_2          1            2                2        </span><span style='color: #BB0000;'>NA</span><span>        35
+#&gt; </span><span style='color: #949494;'># … with 33 more rows, and 39 more variables: sg_bdi_n &lt;dbl&gt;, sg_bdi_n1 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   sg_bdi_n2 &lt;dbl&gt;, sg_bdi_n3 &lt;dbl&gt;, sg_magnitude &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   sg_bdi_tx_change &lt;dbl&gt;, sg_change_proportion &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   sg_reversal_value &lt;dbl&gt;, sg_reversal &lt;dbl&gt;, bdi_s0 &lt;dbl&gt;, bdi_s1 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   bdi_s2 &lt;dbl&gt;, bdi_s3 &lt;dbl&gt;, bdi_s4 &lt;dbl&gt;, bdi_s5 &lt;dbl&gt;, bdi_s6 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   bdi_s7 &lt;dbl&gt;, bdi_s8 &lt;dbl&gt;, bdi_s9 &lt;dbl&gt;, bdi_s10 &lt;dbl&gt;, bdi_s11 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   bdi_s12 &lt;dbl&gt;, bdi_fu1 &lt;dbl&gt;, bdi_fu2 &lt;dbl&gt;, rq_s0 &lt;dbl&gt;, rq_s1 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s2 &lt;dbl&gt;, rq_s3 &lt;dbl&gt;, rq_s4 &lt;dbl&gt;, rq_s5 &lt;dbl&gt;, rq_s6 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s7 &lt;dbl&gt;, rq_s8 &lt;dbl&gt;, rq_s9 &lt;dbl&gt;, rq_s10 &lt;dbl&gt;, rq_s11 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   rq_s12 &lt;dbl&gt;, rq_fu1 &lt;dbl&gt;, rq_fu2 &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -306,11 +307,11 @@ If set to TRUE, this implies that the first variable specified in <code>sg_var_l
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

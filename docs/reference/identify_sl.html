@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">suddengains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/milanwiedemann/suddengains/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,19 +145,19 @@
     <p>Function to identify sudden losses in longitudinal data structured in wide format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>identify_sl</span>(
-  <span class='no'>data</span>,
-  <span class='no'>id_var_name</span>,
-  <span class='no'>sg_var_list</span>,
-  <span class='no'>sg_crit1_cutoff</span>,
-  <span class='kw'>sg_crit2_pct</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>sg_crit3</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sg_crit3_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>sg_crit3_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sg_crit3_critical_value</span> <span class='kw'>=</span> <span class='fl'>2.776</span>,
-  <span class='kw'>identify_sg_1to2</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>crit123_details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>identify_sl</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>id_var_name</span>,
+  <span class='va'>sg_var_list</span>,
+  <span class='va'>sg_crit1_cutoff</span>,
+  sg_crit2_pct <span class='op'>=</span> <span class='fl'>0.25</span>,
+  sg_crit3 <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sg_crit3_alpha <span class='op'>=</span> <span class='fl'>0.05</span>,
+  sg_crit3_adjust <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sg_crit3_critical_value <span class='op'>=</span> <span class='fl'>2.776</span>,
+  identify_sg_1to2 <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  crit123_details <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,29 +230,30 @@ Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected t
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Identify sudden losses</span>
-<span class='fu'>identify_sl</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sgdata</span>,
+<span class='fu'>identify_sl</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>sgdata</span>,
             <span class='co'># Negative cut-off value to identify sudden losses</span>
-            <span class='kw'>sg_crit1_cutoff</span> <span class='kw'>=</span> -<span class='fl'>7</span>,
-            <span class='kw'>id_var_name</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
-            <span class='kw'>sg_var_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
+            sg_crit1_cutoff <span class='op'>=</span> <span class='op'>-</span><span class='fl'>7</span>,
+            id_var_name <span class='op'>=</span> <span class='st'>"id"</span>,
+            sg_var_list <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bdi_s1"</span>, <span class='st'>"bdi_s2"</span>, <span class='st'>"bdi_s3"</span>,
                             <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                             <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
-                            <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span>))</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 43 x 22</span><span>
+                            <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 22</span><span>
 #&gt;       id bdi_s1 bdi_s2 bdi_s3 bdi_s4 bdi_s5 bdi_s6 bdi_s7 bdi_s8 bdi_s9 bdi_s10
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1     35     37     34     23     24     21     29     17     11      11
-#&gt; </span><span style='color: #555555;'> 2</span><span>     2     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10       3
-#&gt; </span><span style='color: #555555;'> 3</span><span>     3     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26      24
-#&gt; </span><span style='color: #555555;'> 4</span><span>     4     31     30     32     22     22     20     21     19     24      33
-#&gt; </span><span style='color: #555555;'> 5</span><span>     5     39     37     36     26     26     23     21     19      6       7
-#&gt; </span><span style='color: #555555;'> 6</span><span>     6     37     </span><span style='color: #BB0000;'>NA</span><span>     23     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     19      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span>     7     37     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span>     8     41     37     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span>     9     35     34     32     23     24     22     21     17     14      10
-#&gt; </span><span style='color: #555555;'>10</span><span>    10     35     35     25     25     17     17     16     16     11       9
-#&gt; </span><span style='color: #555555;'># … with 33 more rows, and 11 more variables: bdi_s11 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bdi_s12 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   sl_2to3 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_3to4 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_4to5 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_5to6 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_6to7 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   sl_7to8 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_8to9 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_9to10 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, sl_10to11 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1     35     37     34     23     24     21     29     17     11      11
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     2     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10       3
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26      24
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4     31     30     32     22     22     20     21     19     24      33
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5     39     37     36     26     26     23     21     19      6       7
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     6     37     </span><span style='color: #BB0000;'>NA</span><span>     23     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     19      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7     37     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     8     41     37     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     9     35     34     32     23     24     22     21     17     14      10
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    10     35     35     25     25     17     17     16     16     11       9
+#&gt; </span><span style='color: #949494;'># … with 33 more rows, and 11 more variables: bdi_s11 &lt;dbl&gt;, bdi_s12 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   sl_2to3 &lt;int&gt;, sl_3to4 &lt;int&gt;, sl_4to5 &lt;int&gt;, sl_5to6 &lt;int&gt;, sl_6to7 &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   sl_7to8 &lt;int&gt;, sl_8to9 &lt;int&gt;, sl_9to10 &lt;int&gt;, sl_10to11 &lt;int&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -264,11 +265,11 @@ Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected t
 
       <footer>
       <div class="copyright">
-  <p>Developed by Milan Wiedemann, Mental Health Research UK, Wellcome Trust.</p>
+  <p>Developed by Milan Wiedemann, Graham M Thew, Mental Health Research UK, Wellcome Trust.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

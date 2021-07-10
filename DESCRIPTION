@@ -1,10 +1,10 @@
 Package: suddengains
 Title: Identify Sudden Gains in Longitudinal Data
-Date: 2020-05-20
-Version: 0.4.4
+Date: 2021-07-10
+Version: 0.4.5
 Authors@R: c(
   person("Milan", "Wiedemann", email = "milan.wiedemann@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1991-282X")),
-  person("Graham M", "Thew", role = "ctb", comment = c(ORCID = "0000-0003-2851-1315")),
+  person("Graham M", "Thew", role = "aut", comment = c(ORCID = "0000-0003-2851-1315")),
   person("Richard", "Stott", role = "ctb", comment = c(ORCID = "0000-0003-2533-5504")),
   person("Anke", "Ehlers", role = c("ctb", "ths"), comment = c(ORCID = "0000-0002-8742-0192")),
   person("Mental Health Research UK", role = c("fnd")),
@@ -13,7 +13,7 @@ Authors@R: c(
 Description: Identify sudden gains based on the three criteria outlined by Tang and DeRubeis (1999) <doi:10.1037/0022-006X.67.6.894> to a selection of repeated measures. Sudden losses, defined as the opposite of sudden gains can also be identified. Two different datasets can be created, one including all sudden gains/losses and one including one selected sudden gain/loss for each case. It can extract scores around sudden gains/losses. It can plot the average change around sudden gains/losses and trajectories of individual cases.
 Depends: 
     R (>= 3.5.0)
-License: GPL-3
+License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://milanwiedemann.github.io/suddengains/
 BugReports: https://github.com/milanwiedemann/suddengains/issues

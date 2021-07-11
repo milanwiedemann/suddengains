@@ -32,7 +32,8 @@ Imports:
     patchwork (>= 1.0.0),
     forcats,
     naniar,
-    scales
+    scales,
+    cli
 Suggests:
     haven (>= 2.1.0),
     writexl (>= 1.1.0),
@@ -40,6 +41,6 @@ Suggests:
     DT (>= 0.5),
     rmarkdown (>= 1.11),
     spelling (>= 2.1)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Language: en-US

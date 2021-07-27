@@ -56,16 +56,6 @@ The data set includes variables indicating values around the period of each gain
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113145816-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-113145816-5');
-</script>
-
 
   </head>
 
@@ -256,26 +246,26 @@ If set to TRUE, this implies that the first variable specified in <code>sg_var_l
                             <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                             <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span>,
             sg_measure_name <span class='op'>=</span> <span class='st'>"bdi"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 24 x 28</span><span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 24 x 28</span>
 #&gt;       id id_sg   sg_crit123 sg_session_n sg_freq_byperson bdi_s1 bdi_s2 bdi_s3
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1 1_sg_3           1            3                2     35     37     34
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1 1_sg_7           1            7                2     35     37     34
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3 3_sg_8           1            8                1     35     38     35
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4 4_sg_3           1            3                1     31     30     32
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5 5_sg_3           1            3                2     39     37     36
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     5 5_sg_8           1            8                2     39     37     36
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     9 9_sg_3           1            3                1     35     34     32
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>    10 10_sg_2          1            2                2     35     35     25
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>    10 10_sg_4          1            4                2     35     35     25
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    12 12_sg_3          1            3                1     38     38     31
-#&gt; </span><span style='color: #949494;'># … with 14 more rows, and 20 more variables: bdi_s4 &lt;dbl&gt;, bdi_s5 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   bdi_s6 &lt;dbl&gt;, bdi_s7 &lt;dbl&gt;, bdi_s8 &lt;dbl&gt;, bdi_s9 &lt;dbl&gt;, bdi_s10 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   bdi_s11 &lt;dbl&gt;, bdi_s12 &lt;dbl&gt;, sg_bdi_2n &lt;dbl&gt;, sg_bdi_1n &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   sg_bdi_n &lt;dbl&gt;, sg_bdi_n1 &lt;dbl&gt;, sg_bdi_n2 &lt;dbl&gt;, sg_bdi_n3 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   sg_magnitude &lt;dbl&gt;, sg_bdi_tx_change &lt;dbl&gt;, sg_change_proportion &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   sg_reversal_value &lt;dbl&gt;, sg_reversal &lt;dbl&gt;</span><span></div><div class='input'>
-</div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>     1 1_sg_3           1            3                2     35     37     34
+#&gt; <span style='color: #BCBCBC;'> 2</span>     1 1_sg_7           1            7                2     35     37     34
+#&gt; <span style='color: #BCBCBC;'> 3</span>     3 3_sg_8           1            8                1     35     38     35
+#&gt; <span style='color: #BCBCBC;'> 4</span>     4 4_sg_3           1            3                1     31     30     32
+#&gt; <span style='color: #BCBCBC;'> 5</span>     5 5_sg_3           1            3                2     39     37     36
+#&gt; <span style='color: #BCBCBC;'> 6</span>     5 5_sg_8           1            8                2     39     37     36
+#&gt; <span style='color: #BCBCBC;'> 7</span>     9 9_sg_3           1            3                1     35     34     32
+#&gt; <span style='color: #BCBCBC;'> 8</span>    10 10_sg_2          1            2                2     35     35     25
+#&gt; <span style='color: #BCBCBC;'> 9</span>    10 10_sg_4          1            4                2     35     35     25
+#&gt; <span style='color: #BCBCBC;'>10</span>    12 12_sg_3          1            3                1     38     38     31
+#&gt; <span style='color: #949494;'># … with 14 more rows, and 20 more variables: bdi_s4 &lt;dbl&gt;, bdi_s5 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   bdi_s6 &lt;dbl&gt;, bdi_s7 &lt;dbl&gt;, bdi_s8 &lt;dbl&gt;, bdi_s9 &lt;dbl&gt;, bdi_s10 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   bdi_s11 &lt;dbl&gt;, bdi_s12 &lt;dbl&gt;, sg_bdi_2n &lt;dbl&gt;, sg_bdi_1n &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sg_bdi_n &lt;dbl&gt;, sg_bdi_n1 &lt;dbl&gt;, sg_bdi_n2 &lt;dbl&gt;, sg_bdi_n3 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sg_magnitude &lt;dbl&gt;, sg_bdi_tx_change &lt;dbl&gt;, sg_change_proportion &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sg_reversal_value &lt;dbl&gt;, sg_reversal &lt;dbl&gt;</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

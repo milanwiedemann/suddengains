@@ -55,16 +55,6 @@
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113145816-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-113145816-5');
-</script>
-
 
   </head>
 
@@ -238,22 +228,22 @@ Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected t
                             <span class='st'>"bdi_s4"</span>, <span class='st'>"bdi_s5"</span>, <span class='st'>"bdi_s6"</span>,
                             <span class='st'>"bdi_s7"</span>, <span class='st'>"bdi_s8"</span>, <span class='st'>"bdi_s9"</span>,
                             <span class='st'>"bdi_s10"</span>, <span class='st'>"bdi_s11"</span>, <span class='st'>"bdi_s12"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 22</span><span>
+</div><div class='output co'>#&gt; <span class='message'>First, second, and third sudden gains criteria were applied.</span></div><div class='output co'>#&gt; <span class='message'>The critical value for the third criterion was adjusted for missingness.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 43 x 22</span>
 #&gt;       id bdi_s1 bdi_s2 bdi_s3 bdi_s4 bdi_s5 bdi_s6 bdi_s7 bdi_s8 bdi_s9 bdi_s10
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1     35     37     34     23     24     21     29     17     11      11
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     2     26     </span><span style='color: #BB0000;'>NA</span><span>     26     </span><span style='color: #BB0000;'>NA</span><span>     27     17     19     11     10       3
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     3     35     38     35     37     36     37     </span><span style='color: #BB0000;'>NA</span><span>     35     26      24
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     4     31     30     32     22     22     20     21     19     24      33
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     5     39     37     36     26     26     23     21     19      6       7
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     6     37     </span><span style='color: #BB0000;'>NA</span><span>     23     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     19      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     7     37     </span><span style='color: #BB0000;'>NA</span><span>     23     21     </span><span style='color: #BB0000;'>NA</span><span>     21     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     8     41     37     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     9     35     34     32     23     24     22     21     17     14      10
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    10     35     35     25     25     17     17     16     16     11       9
-#&gt; </span><span style='color: #949494;'># … with 33 more rows, and 11 more variables: bdi_s11 &lt;dbl&gt;, bdi_s12 &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   sl_2to3 &lt;int&gt;, sl_3to4 &lt;int&gt;, sl_4to5 &lt;int&gt;, sl_5to6 &lt;int&gt;, sl_6to7 &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   sl_7to8 &lt;int&gt;, sl_8to9 &lt;int&gt;, sl_9to10 &lt;int&gt;, sl_10to11 &lt;int&gt;</span><span></div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>     1     35     37     34     23     24     21     29     17     11      11
+#&gt; <span style='color: #BCBCBC;'> 2</span>     2     26     <span style='color: #BB0000;'>NA</span>     26     <span style='color: #BB0000;'>NA</span>     27     17     19     11     10       3
+#&gt; <span style='color: #BCBCBC;'> 3</span>     3     35     38     35     37     36     37     <span style='color: #BB0000;'>NA</span>     35     26      24
+#&gt; <span style='color: #BCBCBC;'> 4</span>     4     31     30     32     22     22     20     21     19     24      33
+#&gt; <span style='color: #BCBCBC;'> 5</span>     5     39     37     36     26     26     23     21     19      6       7
+#&gt; <span style='color: #BCBCBC;'> 6</span>     6     37     <span style='color: #BB0000;'>NA</span>     23     <span style='color: #BB0000;'>NA</span>     23     21     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     19      <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span>     7     37     <span style='color: #BB0000;'>NA</span>     23     21     <span style='color: #BB0000;'>NA</span>     21     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>      <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'> 8</span>     8     41     37     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>     <span style='color: #BB0000;'>NA</span>      <span style='color: #BB0000;'>NA</span>
+#&gt; <span style='color: #BCBCBC;'> 9</span>     9     35     34     32     23     24     22     21     17     14      10
+#&gt; <span style='color: #BCBCBC;'>10</span>    10     35     35     25     25     17     17     16     16     11       9
+#&gt; <span style='color: #949494;'># … with 33 more rows, and 11 more variables: bdi_s11 &lt;dbl&gt;, bdi_s12 &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sl_2to3 &lt;int&gt;, sl_3to4 &lt;int&gt;, sl_4to5 &lt;int&gt;, sl_5to6 &lt;int&gt;, sl_6to7 &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   sl_7to8 &lt;int&gt;, sl_8to9 &lt;int&gt;, sl_9to10 &lt;int&gt;, sl_10to11 &lt;int&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

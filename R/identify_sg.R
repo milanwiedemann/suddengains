@@ -61,7 +61,7 @@ identify_sg <- function(data, id_var_name, sg_var_list, sg_crit1_cutoff, sg_crit
         # Only ID variable and sudden gains variables needed
         data_select <- data %>%
             dplyr::arrange(!!rlang::sym(id_var_name)) %>%
-            dplyr::select(!!rlang::sym(id_var_name), sg_var_list)
+            dplyr::select(!!rlang::sym(id_var_name), dplyr::all_of(sg_var_list))
 
         # Remove ID from dataframe for loop
         data_loop <- data_select %>%

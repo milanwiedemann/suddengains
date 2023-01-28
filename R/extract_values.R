@@ -49,7 +49,7 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
 
   # Store all IDs in an object
   # This is needed at the end to add IDs for which no scores could be extracted
-  all_ids <- dplyr::select(data, id_var_name)
+  all_ids <- dplyr::select(data, dplyr::all_of(id_var_name))
 
   if (is.list(extract_var_list) == TRUE) {
 
@@ -61,13 +61,13 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
     message("Note: The measures specified in 'extract_var_list' must all have the same number of repeated time points as the measure used to identify sudden gains.")
 
     # create data with ids for loop to add
-    data_loop <- dplyr::select(data, id_var_name)
+    data_loop <- dplyr::select(data, dplyr::all_of(id_var_name))
 
     for (measure in seq_along(extract_var_list)) {
 
       # Select only variables needed to extract scores around sudden gain
       data_in <- data %>%
-        dplyr::select(id_var_name, sg_session_n, extract_var_list[[measure]])
+        dplyr::select(dplyr::all_of(id_var_name), sg_session_n, extract_var_list[[measure]])
 
       # Rename variables to generic names so the code below works
       data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list[[measure]], start_numbering = start_numbering)
@@ -87,9 +87,9 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
           index == 3  ~ "x_n_post3"
         )) %>%
         # keeping only relevant columns and converting back to the form you need
-        dplyr::select(id_var_name, name, value) %>%
+        dplyr::select(dplyr::all_of(id_var_name), name, value) %>%
         tidyr::spread(key = name, value = value) %>%
-        dplyr::select(id_var_name, x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
+        dplyr::select(dplyr::all_of(id_var_name), x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
 
       # Rename variables
       base::names(data_extract)[base::names(data_extract) == "x_n_pre2"] <- paste0("sg_", names(extract_var_list[measure]), "_2n")
@@ -116,14 +116,14 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
     message("Note: The measure specified in 'extract_var_list' must have the same number of repeated time points as the measure used to identify sudden gains.")
 
     # create data with ids for loop to add
-    data_loop <- dplyr::select(data, id_var_name)
+    data_loop <- dplyr::select(data, dplyr::all_of(id_var_name))
 
       # Select only variables needed to extract scores around sudden gain
       data_in <- data %>%
-        dplyr::select(id_var_name, sg_session_n, extract_var_list)
+        dplyr::select(dplyr::all_of(id_var_name), sg_session_n, dplyr::all_of(extract_var_list))
 
       # Rename variables so I can use my extract approach
-      data_extract <- rename_sg_vars(data = data_in, rename_var_list = extract_var_list, start_numbering = start_numbering)
+      data_extract <- rename_sg_vars(data = data_in, rename_var_list = dplyr::all_of(extract_var_list), start_numbering = start_numbering)
 
       data_extract <- data_extract %>%
         tidyr::gather(key = "time_str", value = "value", -!! rlang::sym(id_var_name), -sg_session_n) %>%
@@ -139,9 +139,9 @@ extract_values <- function(data, id_var_name, extract_var_list, sg_session_n_var
           index == 3  ~ "x_n_post3"
         )) %>%
         # keeping only relevant columns and converting back to the form you need
-        dplyr::select(id_var_name, name, value) %>%
+        dplyr::select(dplyr::all_of(id_var_name), name, value) %>%
         tidyr::spread(key = name, value = value) %>%
-        dplyr::select(id_var_name, x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
+        dplyr::select(dplyr::all_of(id_var_name), x_n_pre2, x_n_pre1, x_n, x_n_post1, x_n_post2, x_n_post3)
 
       # Rename variables
       base::names(data_extract)[base::names(data_extract) == "x_n_pre2"] <- paste0("sg_", extract_measure_name, "_2n")

@@ -61,7 +61,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
   # to create the byperson dataset
   if (data_is_bysg == FALSE) {
     data_bysg <- create_bysg(data = data,
-                             id_var_name = id_var_name,
+                             id_var_name = dplyr::all_of(id_var_name),
                              sg_var_list = sg_var_list,
                              sg_crit1_cutoff = sg_crit1_cutoff,
                              sg_crit2_pct = sg_crit2_pct,
@@ -84,7 +84,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
     base::message("The first gain/loss was selected in case of multiple gains/losses.")
 
     bysg_data_select <- data_bysg %>%
-      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::select(dplyr::all_of(id_var_name), id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
       dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
       dplyr::ungroup()
@@ -94,7 +94,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
     base::message("The last gain/loss was selected in case of multiple gains/losses.")
 
     bysg_data_select <- data_bysg %>%
-      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::select(dplyr::all_of(id_var_name), id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
       dplyr::filter(sg_session_n == base::max(sg_session_n)) %>%
       dplyr::ungroup()
@@ -104,7 +104,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
     base::message("The smallest gain/loss was selected in case of multiple gains/losses.")
 
     bysg_data_select <- data_bysg %>%
-      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::select(dplyr::all_of(id_var_name), id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
       dplyr::filter(sg_magnitude == base::min(sg_magnitude)) %>%
       dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%
@@ -115,7 +115,7 @@ create_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_
     base::message("The largest gain/loss was selected in case of multiple gains/losses.")
 
     bysg_data_select <- data_bysg %>%
-      dplyr::select(id_var_name, id_sg, dplyr::starts_with("sg_")) %>%
+      dplyr::select(dplyr::all_of(id_var_name), id_sg, dplyr::starts_with("sg_")) %>%
       dplyr::group_by(!! rlang::sym(id_var_name)) %>%
       dplyr::filter(sg_magnitude == base::max(sg_magnitude)) %>%
       dplyr::filter(sg_session_n == base::min(sg_session_n)) %>%

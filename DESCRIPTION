@@ -41,6 +41,6 @@ Suggests:
     DT (>= 0.5),
     rmarkdown (>= 1.11),
     spelling (>= 2.1)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Language: en-US

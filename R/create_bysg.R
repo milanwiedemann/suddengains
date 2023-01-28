@@ -56,8 +56,8 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     # Suppress warnings because I dont want to carry them over from the identify function
     # Insted return an error for the same case, no gains/losses for all create functions
     data_crit123 <- base::suppressWarnings(suddengains::identify_sg(data = data,
-                                                                    id_var_name = id_var_name,
-                                                                    sg_var_list = sg_var_list,
+                                                                    id_var_name = dplyr::all_of(id_var_name),
+                                                                    sg_var_list = dplyr::all_of(sg_var_list),
                                                                     sg_crit1_cutoff = sg_crit1_cutoff,
                                                                     sg_crit2_pct = sg_crit2_pct,
                                                                     sg_crit3 = sg_crit3,
@@ -80,8 +80,8 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     # Suppress warnings because I dont want to carry them over from the identify function
     # Insted return an error for the same case, no gains/losses for all create functions
     data_crit123 <- base::suppressWarnings(suddengains::identify_sl(data = data,
-                                                                    id_var_name = id_var_name,
-                                                                    sg_var_list = sg_var_list,
+                                                                    id_var_name = dplyr::all_of(id_var_name),
+                                                                    sg_var_list = dplyr::all_of(sg_var_list),
                                                                     sg_crit1_cutoff = sg_crit1_cutoff,
                                                                     sg_crit2_pct = sg_crit2_pct,
                                                                     sg_crit3 = sg_crit3,
@@ -136,7 +136,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
   }
 
   data_bysg <- data_bysg %>%
-    dplyr::left_join(dplyr::select(data_in, sg_var_select), by = id_var_name)
+    dplyr::left_join(dplyr::select(data_in, dplyr::all_of(sg_var_select)), by = id_var_name)
 
   # Set start value for numbering to extract the correct values around the gain
   if (identify_sg_1to2 == TRUE) {
@@ -180,7 +180,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     id_sg_list <- data_bysg$id_sg
 
     sg_reversal <- data_bysg %>%
-      dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
+      dplyr::select(id_sg, sg_session_n, sg_reversal_value, dplyr::all_of(sg_var_list)) %>%
       rename_sg_vars(sg_var_list, start_numbering = 0) %>%
       tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
       dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%
@@ -213,7 +213,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
     id_sg_list <- data_bysg$id_sg
 
     sg_reversal <- data_bysg %>%
-      dplyr::select(id_sg, sg_session_n, sg_reversal_value, sg_var_list) %>%
+      dplyr::select(id_sg, sg_session_n, sg_reversal_value, dplyr::all_of(sg_var_list)) %>%
       rename_sg_vars(sg_var_list, start_numbering = 0) %>%
       tidyr::gather(key = "time_str", value = "value", -id_sg, -sg_session_n, -sg_reversal_value) %>%
       dplyr::mutate(time_num = as.numeric(stringr::str_extract(time_str, "\\d+"))) %>%

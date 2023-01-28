@@ -1,3 +1,4 @@
+# Create dataset for testing
 df <- tibble::tribble(
   ~id, ~bdi_s0, ~bdi_s1, ~bdi_s2, ~bdi_s3, ~bdi_s4, ~bdi_s5, ~bdi_s6, ~bdi_s7, ~bdi_s8, ~bdi_s9, ~bdi_s10, ~bdi_s11, ~bdi_s12,
   1, 33, 35, 37, 34, 23, 24, 21, 29, 17, 11, 11, 10, 7,

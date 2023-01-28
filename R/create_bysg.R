@@ -173,7 +173,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
                     !! tx_change := !! rlang::sym(tx_start_var_name) - !! rlang::sym(tx_end_var_name),
                     sg_change_proportion = sg_magnitude / !! rlang::sym(tx_change),
                     # Replace "-Inf" in sg_change_proportion with NA for cases where tx_chage is 0
-                    sg_change_proportion = dplyr::na_if(sg_change_proportion, "-Inf"),
+                    sg_change_proportion = dplyr::na_if(sg_change_proportion, -Inf),
                     sg_reversal_value = !! rlang::sym(var_x_n_post1) + (sg_magnitude / 2))
 
     # Create lsit with all ids for each sudden gain
@@ -205,7 +205,7 @@ create_bysg <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_star
                     !! tx_change := !! rlang::sym(tx_start_var_name) - !! rlang::sym(tx_end_var_name),
                     sg_change_proportion = base::abs(sg_magnitude) / !! rlang::sym(tx_change),
                     # Replace "-Inf" in sg_change_proportion with NA for cases where tx_chage is 0
-                    sg_change_proportion = dplyr::na_if(sg_change_proportion, "-Inf"),
+                    sg_change_proportion = dplyr::na_if(sg_change_proportion, -Inf),
                     # The calculation of the sg_reversal_value is still correct as sg_magnitude is negative for losses
                     sg_reversal_value = !! rlang::sym(var_x_n_post1) + (sg_magnitude / 2))
 

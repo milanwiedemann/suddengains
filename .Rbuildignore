@@ -13,3 +13,6 @@
 ^tests$
 ^Meta$
 ^LICENSE\.md$
+^CRAN-SUBMISSION$
+^\.github$
+^codecov\.yml$

@@ -5,13 +5,14 @@
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
 [![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 [![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains)](https://cran.r-project.org/package=suddengains)
+[![Travis build
+status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=main)](https://travis-ci.com/milanwiedemann/suddengains)
+[![R-CMD-check](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/milanwiedemann/suddengains/branch/main/graph/badge.svg)](https://app.codecov.io/gh/milanwiedemann/suddengains?branch=main)
 <!-- badges: end -->
 
 Sudden gains are large and stable improvements in an outcome variable
@@ -61,42 +62,39 @@ devtools::install_github("milanwiedemann/suddengains")
 The `suddengains` package comes with a range of features which can be
 categorised into:
 
--   **Identify sudden gains**:
-    -   `select_cases()`: Select sample providing enough data to
-        identify sudden gains
-    -   `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
-        value for criterion 1
-    -   `identify_sg()`: Identifies sudden gains
-    -   `identify_sl()`: Identifies sudden losses
-    -   `check_interval()`: Checks if a given interval is a sudden
-        gain/loss
--   **Create datasets for further analysis**:
-    -   `extract_values()`: Extracts values on a secondary measure
-        around the sudden gain/loss
-    -   `create_bysg()`: Creates a dataset with one row for each person
-    -   `create_byperson()`: Creates a dataset with one row for each
-        sudden gain/loss
-    -   `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
-        sudden gains data sets
-    -   `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of
-        the sudden gains data sets
--   **Visualise and report sudden gains**:
-    -   `count_intervals()`: Count number of between-session intervals
-        available to identify sudden gains
-    -   `plot_sg()`: Creates plots of the average sudden gain
-    -   `plot_sg_trajectories()`: Creates plots of plots of individual
-        case trajectories
-    -   `plot_sg_intervals()`: Plot summary of available data per time
-        point and analysed session to session intervals
-    -   `describe_sg()`: Shows descriptives for the sudden gains
-        datasets
--   **Helper functions**:
-    -   `select_cases()`: Select sample providing enough data to
-        identify sudden gains
-    -   `define_crit1_cutoff()`: Define cut-off value for first SG
-        criterion
-    -   `rename_sg_vars()`: Rename variable names to a generic and
-        consistent format
+- **Identify sudden gains**:
+  - `select_cases()`: Select sample providing enough data to identify
+    sudden gains
+  - `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
+    value for criterion 1
+  - `identify_sg()`: Identifies sudden gains
+  - `identify_sl()`: Identifies sudden losses
+  - `check_interval()`: Checks if a given interval is a sudden gain/loss
+- **Create datasets for further analysis**:
+  - `extract_values()`: Extracts values on a secondary measure around
+    the sudden gain/loss
+  - `create_bysg()`: Creates a dataset with one row for each person
+  - `create_byperson()`: Creates a dataset with one row for each sudden
+    gain/loss
+  - `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
+    sudden gains data sets
+  - `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of the
+    sudden gains data sets
+- **Visualise and report sudden gains**:
+  - `count_intervals()`: Count number of between-session intervals
+    available to identify sudden gains
+  - `plot_sg()`: Creates plots of the average sudden gain
+  - `plot_sg_trajectories()`: Creates plots of plots of individual case
+    trajectories
+  - `plot_sg_intervals()`: Plot summary of available data per time point
+    and analysed session to session intervals
+  - `describe_sg()`: Shows descriptives for the sudden gains datasets
+- **Helper functions**:
+  - `select_cases()`: Select sample providing enough data to identify
+    sudden gains
+  - `define_crit1_cutoff()`: Define cut-off value for first SG criterion
+  - `rename_sg_vars()`: Rename variable names to a generic and
+    consistent format
 
 A detailed illustration of all functions can be found in the vignette on
 [CRAN](https://CRAN.R-project.org/package=suddengains). Note that the
@@ -179,12 +177,11 @@ plot_sg(data = bysg,
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylab = "BDI", xlab = "Session",
         colour_single = "#239b89ff")
-#> Warning: Removed 27 rows containing non-finite values (stat_summary).
-
-#> Warning: Removed 27 rows containing non-finite values (stat_summary).
-#> Warning: Removed 14 rows containing non-finite values (stat_summary).
-#> Warning: Removed 8 rows containing non-finite values (stat_summary).
-#> Warning: Removed 10 rows containing non-finite values (stat_summary).
+#> Warning: Removed 27 rows containing non-finite values (`stat_summary()`).
+#> Removed 27 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 14 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 8 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 10 rows containing non-finite values (`stat_summary()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" />
@@ -211,8 +208,8 @@ plot_sg_trajectories(data = sgdata,
                      apaish = TRUE,
                      xlab = "Session", 
                      ylab = "BDI")
-#> Warning: Removed 3 rows containing missing values (geom_point).
-#> Warning: Removed 3 rows containing missing values (geom_label_repel).
+#> Warning: Removed 3 rows containing missing values (`geom_point()`).
+#> Warning: Removed 3 rows containing missing values (`geom_label_repel()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />

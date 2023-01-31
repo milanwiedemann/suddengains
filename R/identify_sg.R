@@ -26,9 +26,9 @@
 #' @param crit123_details Logical, if set to \code{TRUE} this function returns information about which of the three criteria (e.g. "sg_crit1_2to3", "sg_crit2_2to3", and "sg_crit3_2to3") are met for each session to session interval for all cases.
 #' Variables named "sg_2to3", "sg_3to4" summarise all criteria that were selected to identify sudden gains.
 #' @return A wide data set indicating whether sudden gains are present for each session to session interval for all cases in \code{data}.
-#' @references Lutz, W., Ehrlich, T., Rubel, J., Hallwachs, N., Röttger, M.-A., Jorasz, C., … Tschitsaz-Stucki, A. (2013). The ups and downs of psychotherapy: Sudden gains and sudden losses identified with session reports. Psychotherapy Research, 23(1), 14–24. \url{https://doi.org/10.1080/10503307.2012.693837}.
+#' @references Lutz, W., Ehrlich, T., Rubel, J., Hallwachs, N., Röttger, M.-A., Jorasz, C., … Tschitsaz-Stucki, A. (2013). The ups and downs of psychotherapy: Sudden gains and sudden losses identified with session reports. Psychotherapy Research, 23(1), 14–24. <doi:doi.org/10.1080/10503307.2012.693837>.
 #'
-#' Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
+#' Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. <doi:10.1037/0022-006X.67.6.894>.
 #' @examples # Identify sudden gains
 #' identify_sg(data = sgdata,
 #'             sg_crit1_cutoff = 7,

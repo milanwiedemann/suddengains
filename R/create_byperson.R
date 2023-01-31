@@ -35,7 +35,7 @@
 #' The default is to select the first sudden gain (\code{"first"}) if someone experienced multiple gains.
 #' @param data_is_bysg Logical, specifying whether the data set in the \code{data} argument is a bysg datasets created using the \code{\link{create_bysg}} function.
 #' @return  A wide data set with one row per case (\code{id_var_name}) in \code{data}.
-#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \url{https://doi.org/10.1037/0022-006X.67.6.894}.
+#' @references Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. <doi:10.1037/0022-006X.67.6.894>.
 #' @export
 #' @examples # Create byperson data set, selecting the largest gain in case of muliple gains
 #' create_byperson(data = sgdata,

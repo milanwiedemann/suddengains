@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
-[![CRANstatus](https://www.r-pkg.org/badges/version/suddengains/)](https://cran.r-project.org/package=suddengains/)
+[![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains/)](https://cran.r-project.org/package=suddengains/)
 [![R-CMD-check](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->

@@ -5,14 +5,14 @@
 
 <!-- badges: start -->
 
-[![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 [![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains)](https://cran.r-project.org/package=suddengains)
+[![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 [![Travis build
 status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=main)](https://travis-ci.com/milanwiedemann/suddengains)
 [![R-CMD-check](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/milanwiedemann/suddengains/branch/main/graph/badge.svg)](https://app.codecov.io/gh/milanwiedemann/suddengains?branch=main)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains)](https://cran.r-project.org/package=suddengains)
 <!-- badges: end -->
 
 Sudden gains are large and stable improvements in an outcome variable

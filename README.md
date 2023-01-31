@@ -5,19 +5,16 @@
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.com/milanwiedemann/suddengains.svg?branch=master)](https://travis-ci.com/milanwiedemann/suddengains)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/v4lkpg630byy06wn?svg=true)](https://ci.appveyor.com/project/milanwiedemann/suddengains-ws7vl)
 [![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
-[![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains)](https://cran.r-project.org/package=suddengains)
+[![CRANstatus](https://www.r-pkg.org/badges/version/suddengains/)](https://cran.r-project.org/package=suddengains/)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains/)](https://cran.r-project.org/package=suddengains/)
+[![R-CMD-check](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/milanwiedemann/suddengains/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Sudden gains are large and stable improvements in an outcome variable
 between consecutive measurements, for example during a psychological
 intervention with multiple assessments (Tang and DeRubeis,
-[1999](https://doi.org/10.1037/0022-006X.67.6.894)). The R package
+[1999](https://pubmed.ncbi.nlm.nih.gov/10596511/)). The R package
 `suddengains` provides a set of tools to facilitate sudden gains
 research. It identifies sudden gains or sudden losses while allowing to
 apply adaptations of the standard criteria. It handles multiple gains by
@@ -27,23 +24,22 @@ gains to choose in case of multiple gains (e.g. the earliest or largest
 gain).
 
 An interactive web application
-**[`shinygains`](https://milanwiedemann.shinyapps.io/shinygains)**
+**[`shinygains`](https://milanwiedemann.shinyapps.io/shinygains/)**
 illustrates the main functions of this package and allows users to
 explore and understand the impact of different methodological choices.
 
 To learn more about the background of this package see our paper in
-[PLOS
-ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276).
-We have also created an open [Zotero
-group](https://www.zotero.org/groups/2280342/suddengains) collecting all
-the literature looking at sudden gains in psychological therapies.
+[PLOS ONE](https://pubmed.ncbi.nlm.nih.gov/32150589/). We have also
+created an open [Zotero
+group](https://www.zotero.org/groups/2280342/suddengains/) collecting
+all the literature looking at sudden gains in psychological therapies.
 Please let me know if I missed anything or join the group and add papers
 yourself.
 
 ## Installation
 
 You can install the released version of suddengains from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://CRAN.R-project.org/) with:
 
 ``` r
 install.packages("suddengains")
@@ -61,45 +57,42 @@ devtools::install_github("milanwiedemann/suddengains")
 The `suddengains` package comes with a range of features which can be
 categorised into:
 
--   **Identify sudden gains**:
-    -   `select_cases()`: Select sample providing enough data to
-        identify sudden gains
-    -   `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
-        value for criterion 1
-    -   `identify_sg()`: Identifies sudden gains
-    -   `identify_sl()`: Identifies sudden losses
-    -   `check_interval()`: Checks if a given interval is a sudden
-        gain/loss
--   **Create datasets for further analysis**:
-    -   `extract_values()`: Extracts values on a secondary measure
-        around the sudden gain/loss
-    -   `create_bysg()`: Creates a dataset with one row for each person
-    -   `create_byperson()`: Creates a dataset with one row for each
-        sudden gain/loss
-    -   `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
-        sudden gains data sets
-    -   `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of
-        the sudden gains data sets
--   **Visualise and report sudden gains**:
-    -   `count_intervals()`: Count number of between-session intervals
-        available to identify sudden gains
-    -   `plot_sg()`: Creates plots of the average sudden gain
-    -   `plot_sg_trajectories()`: Creates plots of plots of individual
-        case trajectories
-    -   `plot_sg_intervals()`: Plot summary of available data per time
-        point and analysed session to session intervals
-    -   `describe_sg()`: Shows descriptives for the sudden gains
-        datasets
--   **Helper functions**:
-    -   `select_cases()`: Select sample providing enough data to
-        identify sudden gains
-    -   `define_crit1_cutoff()`: Define cut-off value for first SG
-        criterion
-    -   `rename_sg_vars()`: Rename variable names to a generic and
-        consistent format
+- **Identify sudden gains**:
+  - `select_cases()`: Select sample providing enough data to identify
+    sudden gains
+  - `define_crit1_cutoff()`: Uses RCI formula to determine a cut-off
+    value for criterion 1
+  - `identify_sg()`: Identifies sudden gains
+  - `identify_sl()`: Identifies sudden losses
+  - `check_interval()`: Checks if a given interval is a sudden gain/loss
+- **Create datasets for further analysis**:
+  - `extract_values()`: Extracts values on a secondary measure around
+    the sudden gain/loss
+  - `create_bysg()`: Creates a dataset with one row for each person
+  - `create_byperson()`: Creates a dataset with one row for each sudden
+    gain/loss
+  - `write_bysg()`: Exports CSV, SPSS, Excel, or STATA files of the
+    sudden gains data sets
+  - `write_byperson()`: Exports CSV, SPSS, Excel, or STATA files of the
+    sudden gains data sets
+- **Visualise and report sudden gains**:
+  - `count_intervals()`: Count number of between-session intervals
+    available to identify sudden gains
+  - `plot_sg()`: Creates plots of the average sudden gain
+  - `plot_sg_trajectories()`: Creates plots of plots of individual case
+    trajectories
+  - `plot_sg_intervals()`: Plot summary of available data per time point
+    and analysed session to session intervals
+  - `describe_sg()`: Shows descriptives for the sudden gains datasets
+- **Helper functions**:
+  - `select_cases()`: Select sample providing enough data to identify
+    sudden gains
+  - `define_crit1_cutoff()`: Define cut-off value for first SG criterion
+  - `rename_sg_vars()`: Rename variable names to a generic and
+    consistent format
 
 A detailed illustration of all functions can be found in the vignette on
-[CRAN](https://CRAN.R-project.org/package=suddengains). Note that the
+[CRAN](https://CRAN.R-project.org/package=suddengains/). Note that the
 vignette is only available in R when you install the package from CRAN.
 
 ## Examples
@@ -179,12 +172,11 @@ plot_sg(data = bysg,
                                  "sg_bdi_n1", "sg_bdi_n2", "sg_bdi_n3"),
         ylab = "BDI", xlab = "Session",
         colour_single = "#239b89ff")
-#> Warning: Removed 27 rows containing non-finite values (stat_summary).
-
-#> Warning: Removed 27 rows containing non-finite values (stat_summary).
-#> Warning: Removed 14 rows containing non-finite values (stat_summary).
-#> Warning: Removed 8 rows containing non-finite values (stat_summary).
-#> Warning: Removed 10 rows containing non-finite values (stat_summary).
+#> Warning: Removed 27 rows containing non-finite values (`stat_summary()`).
+#> Removed 27 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 14 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 8 rows containing non-finite values (`stat_summary()`).
+#> Warning: Removed 10 rows containing non-finite values (`stat_summary()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" />
@@ -211,8 +203,8 @@ plot_sg_trajectories(data = sgdata,
                      apaish = TRUE,
                      xlab = "Session", 
                      ylab = "BDI")
-#> Warning: Removed 3 rows containing missing values (geom_point).
-#> Warning: Removed 3 rows containing missing values (geom_label_repel).
+#> Warning: Removed 3 rows containing missing values (`geom_point()`).
+#> Warning: Removed 3 rows containing missing values (`geom_label_repel()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />

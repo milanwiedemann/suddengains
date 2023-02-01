@@ -49,9 +49,9 @@ define_crit1_cutoff(data_sd = sgdata$bdi_s0,
                     reliability = 0.931)
 }
 \references{
-Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. <doi:10.1037/0022-006X.59.1.12>.
+Jacobson, N. S., & Truax, P. A. (1991). Clinical significance: A statistical approach to defining meaningful change in psychotherapy research. Journal of Consulting and Clinical Psychology, 59 (1), 12-19. \doi{10.1037/0022-006X.59.1.12}.
 
-Martinovich, Z., Saunders, S., & Howard, K. (1996). Some Comments on “Assessing Clinical Significance”. Psychotherapy Research, 6(2), 124–132. <doi:10.1080/10503309612331331648>.
+Martinovich, Z., Saunders, S., & Howard, K. (1996). Some Comments on “Assessing Clinical Significance”. Psychotherapy Research, 6(2), 124–132. \doi{10.1080/10503309612331331648}.
 
-Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. <doi:10.1037/0022-006X.71.1.14>.
+Stiles et al. (2003). Early sudden gains in psychotherapy under routine clinic conditions: Practice-based evidence. Journal of Consulting and Clinical Psychology, 71 (1), 14-21. \doi{10.1037/0022-006X.71.1.14}.
 }

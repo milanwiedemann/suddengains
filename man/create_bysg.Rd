@@ -84,5 +84,5 @@ create_bysg(data = sgdata,
 
 }
 \references{
-Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. <doi:10.1037/0022-006X.67.6.894>.
+Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \doi{10.1037/0022-006X.67.6.894}.
 }

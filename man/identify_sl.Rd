@@ -71,7 +71,7 @@ identify_sl(data = sgdata,
                             "bdi_s10", "bdi_s11", "bdi_s12"))
 }
 \references{
-Lutz, W., Ehrlich, T., Rubel, J., Hallwachs, N., Röttger, M.-A., Jorasz, C., … Tschitsaz-Stucki, A. (2013). The ups and downs of psychotherapy: Sudden gains and sudden losses identified with session reports. Psychotherapy Research, 23(1), 14–24. <doi:10.1080/10503307.2012.693837>.
+Lutz, W., Ehrlich, T., Rubel, J., Hallwachs, N., Röttger, M.-A., Jorasz, C., … Tschitsaz-Stucki, A. (2013). The ups and downs of psychotherapy: Sudden gains and sudden losses identified with session reports. Psychotherapy Research, 23(1), 14–24. \doi{10.1080/10503307.2012.693837}.
 
-Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. <doi:10.1037/0022-006X.67.6.894>.
+Tang, T. Z., & DeRubeis, R. J. (1999). Sudden gains and critical sessions in cognitive-behavioral therapy for depression. Journal of Consulting and Clinical Psychology, 67(6), 894–904. \doi{10.1037/0022-006X.67.6.894}.
 }

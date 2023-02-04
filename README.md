@@ -4,9 +4,9 @@
 # suddengains
 
 <!-- badges: start -->
+
 [![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
 [![CRANstatus](https://www.r-pkg.org/badges/version/suddengains)](https://cran.r-project.org/package=suddengains)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/suddengains/)](https://cran.r-project.org/package=suddengains/)
 <!-- badges: end -->
 
 Sudden gains are large and stable improvements in an outcome variable

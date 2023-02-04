@@ -92,5 +92,5 @@ describe_sg <- function(data, sg_data_structure = c("bysg", "byperson")) {
     }
 
     # Return descriptives
-    print(results)
+    results
 }

@@ -66,7 +66,7 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
 
     # Select variables and arrange by id
     data_select <- data %>%
-      dplyr::select(id_var_name, sg_var_list) %>%
+      dplyr::select(dplyr::all_of(id_var_name), dplyr::all_of(sg_var_list)) %>%
       dplyr::arrange(!! rlang::sym(id_var_name))
 
     method <- match.arg(method)
@@ -79,20 +79,20 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
       data_pattern <- !is.na(data_select[ , 2:(length(sg_var_list) + 1)])
 
       # Get list of IDs
-      id_list <- dplyr::select(data_select, id_var_name)
+      id_list <- dplyr::select(data_select, dplyr::all_of(id_var_name))
 
       # Combine IDs with data pattern
       data_pattern <- base::cbind(id_list, data_pattern)
 
       data_out <- data_pattern %>%
           tibble::as_tibble() %>%
-          tidyr::unite("pattern", sg_var_list, sep = " ") %>%
+          tidyr::unite("pattern", dplyr::all_of(sg_var_list), sep = " ") %>%
           dplyr::mutate(sg_pattern_1 = stringr::str_detect(pattern, "TRUE TRUE TRUE TRUE"),
                sg_pattern_2 = stringr::str_detect(pattern, "TRUE TRUE TRUE FALSE TRUE"),
                sg_pattern_3 = stringr::str_detect(pattern, "TRUE FALSE TRUE TRUE TRUE"),
                sg_pattern_4 = stringr::str_detect(pattern, "TRUE FALSE TRUE TRUE FALSE TRUE"),
                sg_select = dplyr::if_else(condition = (sg_pattern_1 == TRUE | sg_pattern_2 == TRUE | sg_pattern_3 == TRUE | sg_pattern_4 == TRUE), TRUE, FALSE)) %>%
-          dplyr::select(id_var_name, sg_select)
+          dplyr::select(dplyr::all_of(id_var_name), sg_select)
 
       } else if (method == "min_sess") {
 
@@ -110,7 +110,7 @@ select_cases <- function(data, id_var_name, sg_var_list, method = c("pattern", "
 
       data_out <- data_select %>%
           dplyr::mutate(sg_select = dplyr::if_else(nvalid >= min_sess_num, TRUE, FALSE)) %>%
-          dplyr::select(id_var_name, sg_select)
+          dplyr::select(dplyr::all_of(id_var_name), sg_select)
       }
 
     if (return_id_lgl == TRUE) {

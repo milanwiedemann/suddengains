@@ -47,7 +47,7 @@
 #'                sg_crit3_alpha = .01,
 #'                identify = "sg")
 #'
-#' # Check intervall for sudden gain using only third criterion
+#' # Check interval for sudden gain using only third criterion
 #' # Some missing data, alpha = 0.01
 #' check_interval(pre_values = c(NA,31,33),
 #'                post_values = c(5, NA, 7),
@@ -57,7 +57,7 @@
 #'                sg_crit3_alpha = .01,
 #'                identify = "sg")
 #'
-#' # Check intervall for sudden loss using all three criteria
+#' # Check interval for sudden loss using all three criteria
 #' # Some missing data, alpha = 0.05
 #' check_interval(pre_values = c(5, NA, 7),
 #'                post_values = c(16, 12, 14),

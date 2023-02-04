@@ -25,7 +25,7 @@
 count_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = FALSE) {
 
   # First, run identify_sg() function to identify sudden gains and store results
-  data_sg <- suppressMessages(suddengains::identify_sg(data = data,
+  data_sg <- suppressWarnings(suppressMessages(suddengains::identify_sg(data = data,
                                                        # Set this to 1 as it doesnt matter for counting, between session intervals
                                                        # I just need to know where all three criteria can be applied
                                                        sg_crit1_cutoff = 1,
@@ -34,7 +34,7 @@ count_intervals <- function(data, id_var_name, sg_var_list, identify_sg_1to2 = F
                                                        id_var_name = id_var_name,
                                                        sg_var_list = sg_var_list,
                                                        identify_sg_1to2 = identify_sg_1to2
-  ))
+  )))
 
   total_between_sess_intervals <- (base::length(sg_var_list) - 1) * base::nrow(data)
 

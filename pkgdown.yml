@@ -1,0 +1,11 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  shinygains: shinygains.html
+  suddengains-tutorial: suddengains-tutorial.html
+last_built: 2023-02-05T07:37Z
+urls:
+  reference: https://milanwiedemann.github.io/suddengains/reference
+  article: https://milanwiedemann.github.io/suddengains/articles
+

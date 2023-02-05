@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# suddengains
+# suddengains: Identify Sudden Gains in Longitudinal Data
 
 <!-- badges: start -->
 
@@ -93,7 +93,19 @@ A detailed illustration of all functions can be found in the vignette on
 [CRAN](https://CRAN.R-project.org/package=suddengains/). Note that the
 vignette is only available in R when you install the package from CRAN.
 
-## Examples
+## How to use `suddengains`
+
+Here are a few examples how to use the `suddengains` package.
+
+``` r
+# Load the package
+library(suddengains)
+#> 
+#> ── This is suddengains 0.7.0 ───────────────────────────────────────────────────
+#> ℹ Please report any issues or ideas at:
+#> ℹ https://github.com/milanwiedemann/suddengains/issues
+#> 
+```
 
 Below are some examples illustrating the suddengains package. More
 details can be found in the
@@ -177,7 +189,7 @@ plot_sg(data = bysg,
 #> Warning: Removed 10 rows containing non-finite values (`stat_summary()`).
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="50%" />
 
 ``` r
 # Visualise trajectories for a selection of individual cases
@@ -205,4 +217,4 @@ plot_sg_trajectories(data = sgdata,
 #> Warning: Removed 3 rows containing missing values (`geom_label_repel()`).
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="80%" />

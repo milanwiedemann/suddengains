@@ -5,8 +5,6 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
-library(suddengains)
-
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -15,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# suddengains
+# suddengains: Identify Sudden Gains in Longitudinal Data
 
 <!-- badges: start -->
 [![licence](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](https://choosealicense.com/licenses/mit/)
@@ -80,7 +78,14 @@ The `suddengains` package comes with a range of features which can be categorise
 A detailed illustration of all functions can be found in the vignette on [CRAN](https://CRAN.R-project.org/package=suddengains/).
 Note that the vignette is only available in R when you install the package from CRAN.
 
-## Examples
+## How to use `suddengains`
+
+Here are a few examples how to use the `suddengains` package.
+
+```{r}
+# Load the package
+library(suddengains)
+```
 
 Below are some examples illustrating the suddengains package.
 More details can be found in the [Vignette](https://CRAN.R-project.org/package=suddengains/vignettes/suddengains-tutorial.html) or in our [PLOS ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0230276) paper.

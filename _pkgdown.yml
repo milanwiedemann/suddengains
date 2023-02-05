@@ -1,36 +1,8 @@
-destination: docs
+url: https://milanwiedemann.github.io/suddengains/
 template:
+  bootstrap: 5
+  bslib:
+    primary: "#0054AD"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
 
-reference:
-- title: "Identify sudden gains"
-  contents:
-  - identify_sg
-  - identify_sl
-  - check_interval
-
-- title: "Create data sets for further analysis"
-  contents:
-  - extract_values
-  - create_bysg
-  - create_byperson
-  - write_bysg
-  - write_byperson
-
-- title: "Visualise and report sudden gains"
-  contents:
-  - count_intervals
-  - plot_sg
-  - plot_sg_trajectories
-  - plot_sg_intervals
-  - describe_sg
-
-- title: "Helper functions"
-  contents:
-  - select_cases
-  - define_crit1_cutoff
-  - rename_sg_vars
-
-- title: "Datasets"
-  contents:
-  - sgdata
-  - sgdata_bad

@@ -8,4 +8,4 @@
 
 ## Resubmission
 This is a resubmission.
-This fixes issues related to links and dois in the documentation of the package.
+This fix allows to suppress the package startup message.

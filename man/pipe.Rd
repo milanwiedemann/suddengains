@@ -6,6 +6,9 @@
 \usage{
 lhs \%>\% rhs
 }
+\value{
+Pipe operator %>% from magrittr
+}
 \description{
 Pipe operator
 }

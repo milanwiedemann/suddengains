@@ -76,6 +76,9 @@ The default is to identify sudden gains (\code{"sg"}).}
 see \code{\link[readr]{write_csv}} for \code{"CSV"}, \code{\link[haven]{write_sav}} for \code{"SPSS"}, \code{\link[haven]{write_dta}} for \code{"STATA"} or \code{\link[writexl]{write_xlsx}} for \code{"Excel"}
 for more information.}
 }
+\value{
+A csv file containing a wide data set with one row per sudden gain/loss.
+}
 \description{
 Writes a data frame as a specified file type.
 }

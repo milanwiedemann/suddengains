@@ -8,4 +8,5 @@
 
 ## Resubmission
 This is a resubmission.
-This fix allows to suppress the package startup message.
+This fix adds \value to .Rd files regarding exported methods and explain
+the functions results in the documentation.

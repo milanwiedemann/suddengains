@@ -83,6 +83,9 @@ Options are: \code{"first"}, \code{"last"}, \code{"smallest"}, or \code{"largest
 see \code{\link[readr]{write_csv}} for \code{"CSV"}, \code{\link[haven]{write_sav}} for \code{"SPSS"}, \code{\link[haven]{write_dta}} for \code{"STATA"} or \code{\link[writexl]{write_xlsx}} for \code{"Excel"}
 for more information.}
 }
+\value{
+A csv file containing a wide data set with one row per case (\code{id_var_name}) in \code{data}.
+}
 \description{
 Writes a data frame as a specified file type.
 }

@@ -1,90 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/404.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/articles/shinygains.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/articles/suddengains-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/index.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/check_interval.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/count_intervals.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/create_byperson.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/create_bysg.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/define_crit1_cutoff.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/describe_sg.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/extract_values.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/identify_sg.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/identify_sl.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg_intervals.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg_trajectories.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/rename_sg_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/select_cases.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/sgdata.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/sgdata_bad.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/write_byperson.html</loc>
-  </url>
-  <url>
-    <loc>https://milanwiedemann.github.io/suddengains/reference/write_bysg.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://milanwiedemann.github.io/suddengains/404.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/LICENSE-text.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/LICENSE.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/articles/index.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/articles/shinygains.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/articles/suddengains-tutorial.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/authors.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/index.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/news/index.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/check_interval.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/count_intervals.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/create_byperson.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/create_bysg.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/define_crit1_cutoff.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/describe_sg.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/extract_values.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/identify_sg.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/identify_sl.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/index.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/pipe.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg_intervals.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/plot_sg_trajectories.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/rename_sg_vars.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/select_cases.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/sgdata.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/sgdata_bad.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/write_byperson.html</loc></url>
+<url><loc>https://milanwiedemann.github.io/suddengains/reference/write_bysg.html</loc></url>
 </urlset>
+

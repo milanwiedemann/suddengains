@@ -91,7 +91,7 @@ write_byperson <- function(data, sg_crit1_cutoff, id_var_name, sg_var_list, tx_s
 
     # Write bysg data in the specified format
     if (format == "CSV") {
-        readr::write_csv(x = byperson_data, path = path, ...)
+        readr::write_csv(x = byperson_data, file = path, ...)
     } else if (format == "SPSS") {
         haven::write_sav(data = byperson_data, path = path, ...)
     } else if (format == "Excel") {
